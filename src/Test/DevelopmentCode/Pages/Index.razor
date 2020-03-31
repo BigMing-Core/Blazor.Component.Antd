@@ -1,0 +1,24 @@
+﻿@page "/"
+
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Common
+
+@*<Row Gutter="@(new SameGutter() { Gutter=4})">*@
+<Row Gutter="@(new  SameGutter() {  Gutter=8} )">
+
+    <Col Span="8"
+         XL="@(new ColResponsive { Span=1 , Order=3,Push=2})">
+    <div Style="height: 120px;  font-size: 14px;  line-height: 120px;  background: #0092ff;  border-radius: 4px;">col-1</div>
+    </Col>
+    <Col Span="8"
+         XL="@(new ColResponsive { Span=1 , Order=1})">
+    <div Style="height: 120px;  font-size: 14px;  line-height: 120px;  background: #0092ff;  border-radius: 4px;">col-2</div>
+    </Col>
+    <Col Span="8"
+         XL="@(new ColResponsive { Span=1 , Order=2})">
+    <div Style="height: 120px;  font-size: 14px;  line-height: 120px;  background: #0092ff;  border-radius: 4px;">col-3</div>
+    </Col>
+</Row>
+
+
+
