@@ -6,7 +6,7 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class SubMenu:WBCBase
+    public partial class SubMenu:LNBCBase
     {
     }
 }

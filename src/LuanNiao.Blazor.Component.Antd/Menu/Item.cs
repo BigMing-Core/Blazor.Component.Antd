@@ -7,7 +7,7 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class Item : WBCBase
+    public partial class Item : LNBCBase
     {
    
 

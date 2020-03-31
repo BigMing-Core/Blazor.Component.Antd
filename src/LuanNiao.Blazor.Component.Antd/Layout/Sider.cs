@@ -8,7 +8,7 @@ using LuanNiao.Blazor.Component.Antd.Common;
 
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
-    public partial class Sider : WBCBase
+    public partial class Sider : LNBCBase
     {
         [Parameter]
         public BreakPoint? Breakpoint { get; set; }

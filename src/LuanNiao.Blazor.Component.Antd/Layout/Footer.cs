@@ -7,7 +7,7 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
-    public partial class Footer:WBCBase
+    public partial class Footer:LNBCBase
     {
         [Parameter]
         public bool HasSilder { get; set; }

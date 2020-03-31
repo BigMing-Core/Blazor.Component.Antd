@@ -9,7 +9,7 @@ using LuanNiao.Blazor.Component.Antd.Common;
 
 namespace LuanNiao.Blazor.Component.Antd.Grid
 {
-    public partial class Col : WBCBase
+    public partial class Col : LNBCBase
     {
         [Parameter]
         public RenderFragment ChildContent { get; set; }

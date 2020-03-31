@@ -10,7 +10,7 @@ using LuanNiao.Blazor.Component.Antd.Common;
 
 namespace LuanNiao.Blazor.Component.Antd.Grid
 {
-    public partial class Row : WBCBase
+    public partial class Row : LNBCBase
     {
         [Parameter]
         public Justify? Justify
