@@ -27,6 +27,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             Click
         }
 
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
         /// <summary>
         /// vertical | horizontal | inline
         /// </summary>

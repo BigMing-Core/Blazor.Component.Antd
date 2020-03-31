@@ -23,6 +23,9 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             get; set;
         }
 
+
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
         [Inject]
         private IJSRuntime _jSRuntime { get; set; }
 
@@ -155,8 +158,5 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         }
 
         public event Action<int> GutterChange;
-
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
     }
 }
