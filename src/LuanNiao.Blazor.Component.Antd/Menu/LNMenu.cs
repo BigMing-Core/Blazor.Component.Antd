@@ -7,11 +7,11 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class Menu : LNBCBase
+    public partial class LNMenu : LNBCBase
     {
-        public Menu()
+        public LNMenu()
         {
-            _classHelper.SetStaticClass("ant-menu ant-menu-dark ant-menu-root ");
+            _classHelper.SetStaticClass("ant-menu ant-menu-root");
         }
         public enum MenuMode
         {
@@ -20,6 +20,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             Inline,
             VerticalLeft,
             VerticalRight
+        }
+
+        public enum MenuTheme
+        {
+            Light,
+            Dark
         }
         public enum TriggerSubMenuActionType
         {
@@ -35,7 +41,13 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// </summary>
         [Parameter]
         public MenuMode Mode { get; set; }
-         
+
+        [Parameter]
+        public MenuTheme Theme { get; set; } = MenuTheme.Light;
+
+        [Parameter]
+        public Action<LNMenu, Item> OnClick { get; set; }
+
         /// <summary>
         /// whether active first menu item when show if activeKey is not set or invalid
         /// </summary>
@@ -76,7 +88,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when select a menu item
         /// </summary>
         [Parameter]
-        public Action<Menu, Item> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<LNMenu, Item> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	called when click a menu item
         /// </summary>
@@ -86,7 +98,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when open/close sub menu
         /// </summary>
         [Parameter]
-        public Action<Menu, Item> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<LNMenu, Item> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	which action can trigger submenu open/close
         /// </summary>
@@ -149,7 +161,23 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
+            HandleTheme();
+            HandleMode();
+        }
 
+        private void HandleTheme()
+        {
+            switch (Theme)
+            {
+                case MenuTheme.Light:
+                    _classHelper.AddCustomClass("ant-menu-light");
+                    break;
+                case MenuTheme.Dark:
+                    _classHelper.AddCustomClass("ant-menu-dark");
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void HandleMode()
@@ -163,7 +191,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                     _classHelper.AddCustomClass($"ant-menu-horizontal");
                     break;
                 case MenuMode.Inline:
-                    _classHelper.AddCustomClass($"ant-menu-inline"); 
+                    _classHelper.AddCustomClass($"ant-menu-inline");
                     break;
                 case MenuMode.VerticalLeft:
                     _classHelper.AddCustomClass($"ant-menu-vertical-left");

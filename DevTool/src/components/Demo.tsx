@@ -5,7 +5,14 @@ import "antd/dist/antd.css"
 import "./demo.less"
 
 
-import { Button } from 'antd';
+import { Menu } from 'antd';
+import {
+  MailOutlined,
+  AppstoreOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 
 
 
@@ -14,14 +21,25 @@ import { Button } from 'antd';
 
 const DemoBox = (props: { value: any; children: React.ReactNode }) => <p style={{ height: props.value }}>{props.children}</p>;
 export class Demo extends Component<any, any>{
+
+
+  state = {
+    current: 'mail',
+  };
+
+  handleClick = (e:any) => {
+    console.log('click ', e);
+    this.setState({
+      current: e.key,
+    });
+  };
+
   render() {
     return (
-      <div>
-    <Button type="primary">asdasd</Button>
-    <Button>Default</Button>
-    <Button type="dashed" size="middle">Dashed</Button>
-    <Button type="link">Link</Button>
-  </div>
+      <Menu onClick={this.handleClick}>
+  
+      
+    </Menu>
     )
   }
 }
