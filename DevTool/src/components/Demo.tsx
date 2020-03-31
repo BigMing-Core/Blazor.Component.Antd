@@ -10,6 +10,7 @@ import {
   MailOutlined,
   AppstoreOutlined,
   SettingOutlined,
+  StepBackwardOutlined,
 } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
@@ -17,7 +18,7 @@ const { SubMenu } = Menu;
 
 
 
- 
+
 
 const DemoBox = (props: { value: any; children: React.ReactNode }) => <p style={{ height: props.value }}>{props.children}</p>;
 export class Demo extends Component<any, any>{
@@ -27,7 +28,7 @@ export class Demo extends Component<any, any>{
     current: 'mail',
   };
 
-  handleClick = (e:any) => {
+  handleClick = (e: any) => {
     console.log('click ', e);
     this.setState({
       current: e.key,
@@ -36,10 +37,7 @@ export class Demo extends Component<any, any>{
 
   render() {
     return (
-      <Menu onClick={this.handleClick}>
-  
-      
-    </Menu>
+      <StepBackwardOutlined />
     )
   }
 }
