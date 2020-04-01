@@ -1,5 +1,15 @@
 ﻿@page "/menu"
 @using LuanNiao.Blazor.Component.Antd.Menu
-<LNMenu>
-    <Item>asd</Item>
-</LNMenu>
+@using LuanNiao.Blazor.Component.Antd.Icons
+<HorizontalMenu>
+    <Item Disabled="true">
+        <MailOutlined />
+        Navigation One
+    </Item>
+    <Item>
+        <AppstoreOutlined />
+        Navigation Two
+    </Item>
+</HorizontalMenu>
+
+

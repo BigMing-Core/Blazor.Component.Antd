@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using LuanNiao.Blazor.Core;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class LNMenu : LNBCBase
+    public abstract class MenuBase : LNBCBase
     {
-        public LNMenu()
-        {
-            _classHelper.SetStaticClass("ant-menu ant-menu-root");
-        }
         public enum MenuMode
         {
             Vertical,
@@ -33,17 +29,20 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             Click
         }
 
-        /// <summary>
-        /// vertical | horizontal | inline
-        /// </summary>
-        [Parameter]
-        public MenuMode Mode { get; set; }
+        public MenuBase()
+        {
 
+            _classHelper.SetStaticClass("ant-menu ant-menu-root");
+        }
+
+
+        [Parameter]
+        public bool Disabled { get; set; }
         [Parameter]
         public MenuTheme Theme { get; set; } = MenuTheme.Light;
 
         [Parameter]
-        public Action<LNMenu, Item> OnClick { get; set; }
+        public Action<HorizontalMenu, Item> OnClick { get; set; }
 
         /// <summary>
         /// whether active first menu item when show if activeKey is not set or invalid
@@ -85,7 +84,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when select a menu item
         /// </summary>
         [Parameter]
-        public Action<LNMenu, Item> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<HorizontalMenu, Item> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	called when click a menu item
         /// </summary>
@@ -95,7 +94,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when open/close sub menu
         /// </summary>
         [Parameter]
-        public Action<LNMenu, Item> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<HorizontalMenu, Item> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	which action can trigger submenu open/close
         /// </summary>
@@ -155,51 +154,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public object Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-            HandleTheme();
-            HandleMode();
-        }
-
-        private void HandleTheme()
-        {
-            switch (Theme)
-            {
-                case MenuTheme.Light:
-                    _classHelper.AddCustomClass("ant-menu-light");
-                    break;
-                case MenuTheme.Dark:
-                    _classHelper.AddCustomClass("ant-menu-dark");
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void HandleMode()
-        {
-            switch (Mode)
-            {
-                case MenuMode.Vertical:
-                    _classHelper.AddCustomClass($"ant-menu-vertical");
-                    break;
-                case MenuMode.Horizontal:
-                    _classHelper.AddCustomClass($"ant-menu-horizontal");
-                    break;
-                case MenuMode.Inline:
-                    _classHelper.AddCustomClass($"ant-menu-inline");
-                    break;
-                case MenuMode.VerticalLeft:
-                    _classHelper.AddCustomClass($"ant-menu-vertical-left");
-                    break;
-                case MenuMode.VerticalRight:
-                    _classHelper.AddCustomClass($"ant-menu-vertical-right");
-                    break;
-                default:
-                    break;
-            }
-        }
 
     }
 }
