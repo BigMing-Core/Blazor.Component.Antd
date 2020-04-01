@@ -37,7 +37,16 @@ export class Demo extends Component<any, any>{
 
   render() {
     return (
-      <StepBackwardOutlined />
+      <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+      <Menu.Item key="mail">
+        <MailOutlined />
+        Navigation One
+      </Menu.Item>
+      <Menu.Item key="mail1">
+        <MailOutlined />
+        Navigation One
+      </Menu.Item>
+    </Menu>
     )
   }
 }

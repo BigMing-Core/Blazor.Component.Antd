@@ -24,8 +24,6 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         }
 
 
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
         [Inject]
         private IJSRuntime _jSRuntime { get; set; }
 

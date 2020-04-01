@@ -11,8 +11,6 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
 {
     public partial class Col : LNBCBase
     {
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
         [CascadingParameter]
         public Row DirectionRow
         {

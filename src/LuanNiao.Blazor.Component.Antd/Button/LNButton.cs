@@ -27,8 +27,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         public LBtnSize? BtnSize { get; set; }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
-        [Parameter]
         public LBtnType? BtnType { get; set; }
          
 
