@@ -20,7 +20,7 @@
 <LNButton BtnSize="LNButton.LBtnSize.Large" BtnType="LNButton.LBtnType.Primary"></LNButton>
 
 <LNButton BtnSize="LNButton.LBtnSize.Large" BtnType="LNButton.LBtnType.Primary"><DownloadOutlined></DownloadOutlined></LNButton>
- 
+
 
 
 <LNButton BtnSize="LNButton.LBtnSize.Middle">Middle</LNButton>
@@ -63,10 +63,12 @@
     </div>
 </div>
 
+<LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="@((btn)=> { btn.BeginLoading(0,1000*5); })">点击加载中,5秒后恢复</LNButton>
+
 <div class="box">
     <h3>图标按钮-通过图标属性</h3>
     <div>
-        <LNButton BtnType="LNButton.LBtnType.Primary"  >
+        <LNButton BtnType="LNButton.LBtnType.Primary">
             <Icon>
                 <DownloadOutlined></DownloadOutlined>
             </Icon>
@@ -74,9 +76,9 @@
                 图标加文字
             </ChildContent>
         </LNButton>
-        <LNButton BtnType="LNButton.LBtnType.Primary" >
+        <LNButton BtnType="LNButton.LBtnType.Primary">
             <Icon>
-                DownloadOutlined
+                <DownloadOutlined></DownloadOutlined>
             </Icon>
         </LNButton>
     </div>

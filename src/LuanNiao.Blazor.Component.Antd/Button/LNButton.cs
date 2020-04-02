@@ -74,36 +74,65 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         [Parameter]
         public string Target { get; set; }
 
-        //[Parameter]
-        //public EventCallback<MouseEventArgs> OnClickCallback { 
-        //    get; 
-        //    set;
-        //}
+
 
         [Parameter]
         public Action<LNButton> OnClickCallback { get; set; }
 
-        private string _disabled;
 
         private string _htmlType;
 
-        private string _href;
-
-        private string _target;
 
         public LNButton()
         {
             _classHelper.SetStaticClass("ant-btn");
         }
 
- 
+
+        public void BeginLoading(int delayMS = 0, int maxMS = 0)
+        {
+            if (delayMS > 0)
+            {
+                var delay = Task.Delay(delayMS).ContinueWith((_) =>
+                {
+                    this.IntoLoading();
+                });
+            }
+            else
+            {
+                this.IntoLoading();
+            }
+            if (maxMS > 0)
+            {
+                var autoRelease = Task.Delay(maxMS).ContinueWith((_) =>
+                {
+                    this.RecoverFromLoading();
+                });
+            }
+        }
+
+        private void IntoLoading()
+        {
+            _classHelper.AddCustomClass("ant-btn-loading");
+            this.Disabled = true;
+            this.Loading = true;
+            this.Flush();
+        }
+
+        public void RecoverFromLoading()
+        {
+            _classHelper.RemoveCustomClass("ant-btn-loading");
+            this.Disabled = false;
+            this.Loading = false;
+            this.Flush();
+        }
+
 
         protected override void OnInitialized()
-        { 
+        {
             HandleType();
             HandleShape();
             HandleSize();
-            HandleDisable();
             HandleBooleanProperties();
             HandleHref();
             HandleHtmlType();
@@ -150,23 +179,20 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             }
         }
 
-        private void HandleDisable()
-        {
-            _disabled = Disabled ? "disabled" : null;
-        }
+
 
         private void HandleHref()
         {
-            if (!string.IsNullOrWhiteSpace(Href))
-            {
-                _href = Href;
-                _target = !string.IsNullOrWhiteSpace(Target) ? Target : null;
-            }
-            else
-            {
-                _href = null;
-                _target = null;
-            }
+            //if (!string.IsNullOrWhiteSpace(Href))
+            //{
+            //    _href = Href;
+            //    _target = !string.IsNullOrWhiteSpace(Target) ? Target : null;
+            //}
+            //else
+            //{
+            //    _href = null;
+            //    _target = null;
+            //}
         }
 
         private void HandleShape()
@@ -228,8 +254,8 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void HandleIcon()
         {
-            _classHelper.AddCustomClass("ant-btn-icon-only", when:() => ChildContent == null && Icon != null);
+            _classHelper.AddCustomClass("ant-btn-icon-only", when: () => ChildContent == null && Icon != null);
         }
-         
+
     }
 }

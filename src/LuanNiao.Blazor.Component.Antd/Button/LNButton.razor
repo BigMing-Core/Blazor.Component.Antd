@@ -2,13 +2,18 @@
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using Microsoft.AspNetCore.Components.Web
 
-<button type="@_htmlType" class="@ClassName"
-        disabled="@_disabled"
-        href="@_href" target="@_target"
-        @onclick="()=>{OnClickCallback?.Invoke(this);}"> 
+@*href="@_href" target="@_target"*@
+<button type="@_htmlType"
+        class="@ClassName"
+        disabled="@((Disabled?"disabled":null))"
+        @onclick="()=>{OnClickCallback?.Invoke(this);}">
     @if (Loading)
     {
         <LoadingOutlined Spin="true"></LoadingOutlined>
+    }
+    else
+    {
+        _classHelper.RemoveCustomClass("ant-btn-loading");
     }
     @if (Icon != null)
     {
