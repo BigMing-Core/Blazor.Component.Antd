@@ -20,7 +20,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         [Parameter]
         public Align? Align
         {
-            get; set;
+            get; 
+            set;
         }
 
 
@@ -30,7 +31,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         [Parameter]
         public IGutter Gutter
         {
-            get; set;
+            get; 
+            set;
         }
 
         [Inject]
@@ -45,8 +47,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
                 if (Gutter is ResponsiveGutter adapt && adapt.TryGetGutter(_initialSize.InnerSize.Width, out var newGutter))
                 {
                     this._styleHelper.Rest();
-                    this._styleHelper.AddCustomStyle($"margin-left: -{newGutter}px");
-                    this._styleHelper.AddCustomStyle($"margin-right: -{newGutter}px");
+                    this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
+                    this._styleHelper.AddCustomStyleStr($"margin-right: -{newGutter}px");
                     this.GutterChange?.Invoke(newGutter);
                     Flush();
                 }
@@ -120,8 +122,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             if (Gutter is SameGutter sameGutter && sameGutter.Gutter != 0)
             {
                 var gutter = sameGutter.Gutter / 2;
-                this._styleHelper.AddCustomStyle($"margin-left: -{gutter}px");
-                this._styleHelper.AddCustomStyle($"margin-right: -{gutter}px");
+                this._styleHelper.AddCustomStyleStr($"margin-left: -{gutter}px");
+                this._styleHelper.AddCustomStyleStr($"margin-right: -{gutter}px");
             }
             else if (Gutter is ResponsiveGutter adapt)
             {
@@ -133,8 +135,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
                     if (adapt.TryGetGutter(data.InnerSize.Width, out var newGutter))
                     {
                         this._styleHelper.Rest();
-                        this._styleHelper.AddCustomStyle($"margin-left: -{newGutter}px");
-                        this._styleHelper.AddCustomStyle($"margin-right: -{newGutter}px");
+                        this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
+                        this._styleHelper.AddCustomStyleStr($"margin-right: -{newGutter}px");
                         this.GutterChange?.Invoke(newGutter);
                         Flush();
                     }
@@ -144,7 +146,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             {
                 var horizontalSize = margin.Horizontal / 2;
                 var vertialSize = margin.Vertial / 2;
-                this._styleHelper.AddCustomStyle($"margin: -{horizontalSize}px -{vertialSize}px {horizontalSize}px;");
+                this._styleHelper.AddCustomStyleStr($"margin: -{horizontalSize}px -{vertialSize}px {horizontalSize}px;");
             }
         }
 

@@ -21,16 +21,16 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
                     if (row.Gutter is SameGutter sameGutter && sameGutter.Gutter != 0)
                     {
                         var gutter = sameGutter.Gutter / 2;
-                        this._styleHelper.AddCustomStyle($"padding-left: {gutter}px");
-                        this._styleHelper.AddCustomStyle($"padding-right: {gutter}px");
+                        this._styleHelper.AddCustomStyleStr($"padding-left: {gutter}px");
+                        this._styleHelper.AddCustomStyleStr($"padding-right: {gutter}px");
                     }
                     else if (row.Gutter is ResponsiveGutter adapt)
                     {
                         row.GutterChange += (newGutter) =>
                         {
                             this._styleHelper.Rest();
-                            this._styleHelper.AddCustomStyle($"padding-left: {newGutter}px");
-                            this._styleHelper.AddCustomStyle($"padding-right: {newGutter}px");
+                            this._styleHelper.AddCustomStyleStr($"padding-left: {newGutter}px");
+                            this._styleHelper.AddCustomStyleStr($"padding-right: {newGutter}px");
                             Flush();
                         };
                     }
@@ -38,7 +38,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
                     {
                         var horizontalSize = margin.Horizontal / 2;
                         var vertialSize = margin.Vertial / 2;
-                        this._styleHelper.AddCustomStyle($"padding: {horizontalSize}px {vertialSize}px ");
+                        this._styleHelper.AddCustomStyleStr($"padding: {horizontalSize}px {vertialSize}px ");
                     }
                 }
             }

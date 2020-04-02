@@ -1,6 +1,7 @@
 ﻿@page "/button"
 @using LuanNiao.Blazor.Component.Antd.Button
 @using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Grid 
 
 
 <LNButton BtnType="LNButton.LBtnType.Primary">Primary</LNButton>
@@ -58,7 +59,7 @@
     <div style="padding: 5px; background-color: #ccc">
         <LNButton BtnType="LNButton.LBtnType.Primary" Danger="true">危险</LNButton>
         <LNButton BtnType="LNButton.LBtnType.Primary" Disabled="true">禁用</LNButton>
-        <LNButton BtnType="LNButton.LBtnType.Primary" Loading="true">加载中</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" Loading="@(_num%2==0)">加载中</LNButton>
         <LNButton BtnType="LNButton.LBtnType.Primary" Ghost="true">幽灵</LNButton>
     </div>
 </div>
@@ -111,8 +112,7 @@
 
 <div class="box">
     <h3>点击事件</h3>
-    <div>
-        <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="@((_) => { _num += 1; })">点击加1</LNButton>
+    <div> 
         <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="OnButtonClick">点击加1</LNButton>
         <span>点击次数：@_num</span>
     </div>
@@ -128,3 +128,4 @@
         this.StateHasChanged();
     }
 }
+ 

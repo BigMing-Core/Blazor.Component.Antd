@@ -46,6 +46,9 @@ export class Demo extends Component<any, any>{
             </span>
           }
           popupClassName="asdasdadasdsa"
+           onTitleClick={()=>{
+             console.log(1)
+           }}
         >
           <Menu.ItemGroup title="Item 1">
             <Menu.Item key="setting:1">Option 1</Menu.Item>
