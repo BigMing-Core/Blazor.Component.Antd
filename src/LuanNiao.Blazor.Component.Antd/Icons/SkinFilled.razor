@@ -1,1 +1,20 @@
-<span role="img" aria-label="skin" class="anticon antico-skin"><svg viewBox ="64 64 896 896" focusable="false" data-icon="skin" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><style type ="text/css" ></style ></defs><path d="M870 126H663.8c-17.4 0-32.9 11.9-37 29.3C614.3 208.1 567 246 512 246s-102.3-37.9-114.8-90.7a37.93 37.93 0 0 0-37-29.3H154a44 44 0 0 0-44 44v252a44 44 0 0 0 44 44h75v388a44 44 0 0 0 44 44h478a44 44 0 0 0 44-44V466h75a44 44 0 0 0 44-44V170a44 44 0 0 0-44-44z" xmlns="http://www.w3.org/2000/svg" /></svg></span>
+@*
+      Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
+*@
+
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span role="img" aria-label="{iconName}" class="anticon anticon-{iconName}">
+  <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="{iconName}" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <defs>
+      <style type="text/css"></style>
+    </defs>
+    <path d="M870 126H663.8c-17.4 0-32.9 11.9-37 29.3C614.3 208.1 567 246 512 246s-102.3-37.9-114.8-90.7a37.93 37.93 0 0 0-37-29.3H154a44 44 0 0 0-44 44v252a44 44 0 0 0 44 44h75v388a44 44 0 0 0 44 44h478a44 44 0 0 0 44-44V466h75a44 44 0 0 0 44-44V170a44 44 0 0 0-44-44z" xmlns="http://www.w3.org/2000/svg" />
+  </svg>
+</span>
+
+@code{
+[Parameter]
+public bool Spin { get; set; }
+
+}

@@ -1,1 +1,20 @@
-<span role="img" aria-label="fund" class="anticon antico-fund"><svg viewBox ="64 64 896 896" focusable="false" data-icon="fund" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><style type ="text/css" ></style ></defs><path fill="#333" d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560z" xmlns="http://www.w3.org/2000/svg" /> <path fill="#E6E6E6" d="M136 792h752V232H136v560zm56.4-130.5l214.9-215c3.1-3.1 8.2-3.1 11.3 0L533 561l254.5-254.6c3.1-3.1 8.2-3.1 11.3 0l36.8 36.8c3.1 3.1 3.1 8.2 0 11.3l-297 297.2a8.03 8.03 0 0 1-11.3 0L412.9 537.2 240.4 709.7a8.03 8.03 0 0 1-11.3 0l-36.7-36.9a8.03 8.03 0 0 1 0-11.3z" xmlns="http://www.w3.org/2000/svg" /> <path fill="#333" d="M229.1 709.7c3.1 3.1 8.2 3.1 11.3 0l172.5-172.5 114.4 114.5c3.1 3.1 8.2 3.1 11.3 0l297-297.2c3.1-3.1 3.1-8.2 0-11.3l-36.8-36.8a8.03 8.03 0 0 0-11.3 0L533 561 418.6 446.5a8.03 8.03 0 0 0-11.3 0l-214.9 215a8.03 8.03 0 0 0 0 11.3l36.7 36.9z" xmlns="http://www.w3.org/2000/svg" /></svg></span>
+@*
+      Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
+*@
+
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span role="img" aria-label="{iconName}" class="anticon anticon-{iconName}">
+  <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="{iconName}" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <defs>
+      <style type="text/css"></style>
+    </defs>
+    <path fill="#333" d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136V232h752v560z" xmlns="http://www.w3.org/2000/svg" /> <path fill="#E6E6E6" d="M136 792h752V232H136v560zm56.4-130.5l214.9-215c3.1-3.1 8.2-3.1 11.3 0L533 561l254.5-254.6c3.1-3.1 8.2-3.1 11.3 0l36.8 36.8c3.1 3.1 3.1 8.2 0 11.3l-297 297.2a8.03 8.03 0 0 1-11.3 0L412.9 537.2 240.4 709.7a8.03 8.03 0 0 1-11.3 0l-36.7-36.9a8.03 8.03 0 0 1 0-11.3z" xmlns="http://www.w3.org/2000/svg" /> <path fill="#333" d="M229.1 709.7c3.1 3.1 8.2 3.1 11.3 0l172.5-172.5 114.4 114.5c3.1 3.1 8.2 3.1 11.3 0l297-297.2c3.1-3.1 3.1-8.2 0-11.3l-36.8-36.8a8.03 8.03 0 0 0-11.3 0L533 561 418.6 446.5a8.03 8.03 0 0 0-11.3 0l-214.9 215a8.03 8.03 0 0 0 0 11.3l36.7 36.9z" xmlns="http://www.w3.org/2000/svg" />
+  </svg>
+</span>
+
+@code{
+[Parameter]
+public bool Spin { get; set; }
+
+}

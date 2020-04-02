@@ -19,13 +19,12 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         }
 
 
-        protected override void OnParametersSet()
+        protected override void OnInitialized()
         {
             if (HasSilder)
             {
                 _classHelper.AddCustomClass("ant-layout-has-sider");
-            }
-            base.OnParametersSet();
+            } 
         }
     }
 }

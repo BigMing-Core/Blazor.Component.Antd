@@ -37,6 +37,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
 
         [Parameter]
+        public string Key { get; set; }
+
+        [Parameter]
         public bool Disabled { get; set; }
         [Parameter]
         public MenuTheme Theme { get; set; } = MenuTheme.Light;

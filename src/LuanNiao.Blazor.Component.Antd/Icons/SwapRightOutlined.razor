@@ -1,1 +1,20 @@
-<span role="img" aria-label="swap-right" class="anticon antico-swap-right"><svg viewBox ="64 64 896 896" focusable="false" data-icon="swap-right" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><style type ="text/css" ></style ></defs><path d="M873.1 596.2l-164-208A32 32 0 0 0 684 376h-64.8c-6.7 0-10.4 7.7-6.3 13l144.3 183H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h695.9c26.8 0 41.7-30.8 25.2-51.8z" xmlns="http://www.w3.org/2000/svg" /></svg></span>
+@*
+      Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
+*@
+
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span role="img" aria-label="{iconName}" class="anticon anticon-{iconName}">
+  <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="{iconName}" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <defs>
+      <style type="text/css"></style>
+    </defs>
+    <path d="M873.1 596.2l-164-208A32 32 0 0 0 684 376h-64.8c-6.7 0-10.4 7.7-6.3 13l144.3 183H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h695.9c26.8 0 41.7-30.8 25.2-51.8z" xmlns="http://www.w3.org/2000/svg" />
+  </svg>
+</span>
+
+@code{
+[Parameter]
+public bool Spin { get; set; }
+
+}

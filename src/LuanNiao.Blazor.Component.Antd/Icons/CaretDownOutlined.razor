@@ -1,1 +1,20 @@
-<span role="img" aria-label="caret-down" class="anticon antico-caret-down"><svg viewBox ="64 64 896 896" focusable="false" data-icon="caret-down" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><style type ="text/css" ></style ></defs><path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" xmlns="http://www.w3.org/2000/svg" /></svg></span>
+@*
+      Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
+*@
+
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span role="img" aria-label="{iconName}" class="anticon anticon-{iconName}">
+  <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="{iconName}" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <defs>
+      <style type="text/css"></style>
+    </defs>
+    <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" xmlns="http://www.w3.org/2000/svg" />
+  </svg>
+</span>
+
+@code{
+[Parameter]
+public bool Spin { get; set; }
+
+}

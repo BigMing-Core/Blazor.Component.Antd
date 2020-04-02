@@ -1,3 +1,22 @@
-<span role="img" aria-label="plus" class="anticon antico-plus"><svg viewBox ="64 64 896 896" focusable="false" data-icon="plus" width="1em" height="1em" fill="currentColor" aria-hidden="true"><defs><style type ="text/css" ></style ></defs><defs xmlns="http://www.w3.org/2000/svg">
+@*
+      Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
+*@
+
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span role="img" aria-label="{iconName}" class="anticon anticon-{iconName}">
+  <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="{iconName}" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <defs>
+      <style type="text/css"></style>
+    </defs>
+    <defs xmlns="http://www.w3.org/2000/svg">
   <style type="text/css"></style>
-</defs> <path d="M474 152m8 0l60 0q8 0 8 8l0 704q0 8-8 8l-60 0q-8 0-8-8l0-704q0-8 8-8Z" p-id="10298" xmlns="http://www.w3.org/2000/svg"></path> <path d="M168 474m8 0l672 0q8 0 8 8l0 60q0 8-8 8l-672 0q-8 0-8-8l0-60q0-8 8-8Z" p-id="10299" xmlns="http://www.w3.org/2000/svg"></path></svg></span>
+</defs> <path d="M474 152m8 0l60 0q8 0 8 8l0 704q0 8-8 8l-60 0q-8 0-8-8l0-704q0-8 8-8Z" p-id="10298" xmlns="http://www.w3.org/2000/svg"></path> <path d="M168 474m8 0l672 0q8 0 8 8l0 60q0 8-8 8l-672 0q-8 0-8-8l0-60q0-8 8-8Z" p-id="10299" xmlns="http://www.w3.org/2000/svg"></path>
+  </svg>
+</span>
+
+@code{
+[Parameter]
+public bool Spin { get; set; }
+
+}

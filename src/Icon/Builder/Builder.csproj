@@ -9,4 +9,10 @@
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="template.lnico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

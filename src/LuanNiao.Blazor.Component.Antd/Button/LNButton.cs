@@ -1,5 +1,7 @@
-﻿using LuanNiao.Blazor.Core;
+﻿using LuanNiao.Blazor.Component.Antd.Icons;
+using LuanNiao.Blazor.Core;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Button
 {
-    public partial class LNButton : LNBCBase
+    public partial class LNButton
     {
         public enum LBtnType
         {
@@ -23,29 +25,94 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             Small
         }
 
+        public enum LBtnShape
+        {
+            Circle,
+            Round
+        }
+
+        public enum LBtnHtmlType
+        {
+            Button,
+            Submit,
+            Reset
+        }
+
         [Parameter]
         public LBtnSize? BtnSize { get; set; }
 
         [Parameter]
         public LBtnType? BtnType { get; set; }
-         
+
+        [Parameter]
+        public LBtnShape? BtnShape { get; set; }
+
+        [Parameter]
+        public LBtnHtmlType? BtnHtmlType { get; set; }
+
+        [Parameter]
+        public RenderFragment Icon { get; set; }
+
+        [Parameter]
+        public bool Disabled { get; set; }
+
+        [Parameter]
+        public bool Ghost { get; set; }
+
+        [Parameter]
+        public bool Loading { get; set; }
+
+        [Parameter]
+        public bool Block { get; set; }
+
+        [Parameter]
+        public bool Danger { get; set; }
+
+        [Parameter]
+        public string Href { get; set; }
+
+        [Parameter]
+        public string Target { get; set; }
+
+        //[Parameter]
+        //public EventCallback<MouseEventArgs> OnClickCallback { 
+        //    get; 
+        //    set;
+        //}
+
+        [Parameter]
+        public Action<LNButton> OnClickCallback { get; set; }
+
+        private string _disabled;
+
+        private string _htmlType;
+
+        private string _href;
+
+        private string _target;
 
         public LNButton()
         {
             _classHelper.SetStaticClass("ant-btn");
         }
 
+ 
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
+        protected override void OnInitialized()
+        { 
             HandleType();
+            HandleShape();
             HandleSize();
-
+            HandleDisable();
+            HandleBooleanProperties();
+            HandleHref();
+            HandleHtmlType();
+            HandleIcon();
         }
+
         private void HandleType()
         {
-            if (BtnType!=null)
+            if (BtnType != null)
             {
                 switch (BtnType.Value)
                 {
@@ -66,13 +133,13 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void HandleSize()
         {
-            if (BtnSize!=null)
+            if (BtnSize != null)
             {
                 switch (BtnSize.Value)
                 {
                     case LBtnSize.Large:
                         _classHelper.AddCustomClass("ant-btn-lg");
-                        break; 
+                        break;
                     case LBtnSize.Small:
                         _classHelper.AddCustomClass("ant-btn-sm");
                         break;
@@ -83,5 +150,86 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             }
         }
 
+        private void HandleDisable()
+        {
+            _disabled = Disabled ? "disabled" : null;
+        }
+
+        private void HandleHref()
+        {
+            if (!string.IsNullOrWhiteSpace(Href))
+            {
+                _href = Href;
+                _target = !string.IsNullOrWhiteSpace(Target) ? Target : null;
+            }
+            else
+            {
+                _href = null;
+                _target = null;
+            }
+        }
+
+        private void HandleShape()
+        {
+            if (!BtnShape.HasValue) return;
+
+            switch (BtnShape)
+            {
+                case LBtnShape.Circle:
+                    _classHelper.AddCustomClass("ant-btn-circle");
+                    break;
+                case LBtnShape.Round:
+                    _classHelper.AddCustomClass("ant-btn-round");
+                    break;
+            }
+        }
+
+        private void HandleHtmlType()
+        {
+            if (BtnHtmlType.HasValue)
+            {
+                _htmlType = BtnHtmlType.Value switch
+                {
+                    LBtnHtmlType.Button => "button",
+                    LBtnHtmlType.Reset => "reset",
+                    LBtnHtmlType.Submit => "submit",
+                    _ => null
+                };
+            }
+            else
+            {
+                _htmlType = null;
+            }
+        }
+
+        private void HandleBooleanProperties()
+        {
+            if (Danger)
+            {
+                _classHelper.AddCustomClass("ant-btn-dangerous");
+            }
+
+            if (Ghost)
+            {
+                _classHelper.AddCustomClass("ant-btn-background-ghost");
+            }
+
+            if (Block)
+            {
+                _classHelper.AddCustomClass("ant-btn-block");
+            }
+
+            if (Loading)
+            {
+                Disabled = true;
+                _classHelper.AddCustomClass("ant-btn-loading");
+            }
+        }
+
+        private void HandleIcon()
+        {
+            _classHelper.AddCustomClass("ant-btn-icon-only", when:() => ChildContent == null && Icon != null);
+        }
+         
     }
 }

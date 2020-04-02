@@ -1,18 +1,128 @@
 ﻿@page "/button"
 @using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Icons
+
 
 <LNButton BtnType="LNButton.LBtnType.Primary">Primary</LNButton>
 <LNButton>Default</LNButton>
 <LNButton BtnType="LNButton.LBtnType.Dashed">Dashed</LNButton>
-<LNButton BtnType="LNButton.LBtnType.Link">Link</LNButton>
+<LNButton BtnType="LNButton.LBtnType.Link" OnClickCallback="@((_) => { Console.WriteLine("再来"); })">Link</LNButton>
 
 
-<LNButton BtnSize="LNButton.LBtnSize.Large">Large</LNButton>
+<LNButton BtnSize="LNButton.LBtnSize.Large" OnClickCallback="@((_) => { Console.WriteLine("abc"); })">
+    <Icon>
+        <DownloadOutlined />
+    </Icon>
+    <ChildContent>
+        Large
+    </ChildContent>
+</LNButton>
+<LNButton BtnSize="LNButton.LBtnSize.Large" BtnType="LNButton.LBtnType.Primary"></LNButton>
+
+<LNButton BtnSize="LNButton.LBtnSize.Large" BtnType="LNButton.LBtnType.Primary"><DownloadOutlined></DownloadOutlined></LNButton>
+ 
+
+
 <LNButton BtnSize="LNButton.LBtnSize.Middle">Middle</LNButton>
-<LNButton BtnSize="LNButton.LBtnSize.Small">Small</LNButton>
+<LNButton BtnSize="LNButton.LBtnSize.Small">
+    <Icon>
+        <AccountBookOutlined />
+    </Icon>
+    <ChildContent>
+        Small
+    </ChildContent>
+</LNButton>
 
 
 
-<LNButton BtnType="LNButton.LBtnType.Primary" BtnSize="LNButton.LBtnSize.Large">Primary Large</LNButton> 
+<LNButton BtnType="LNButton.LBtnType.Primary" BtnSize="LNButton.LBtnSize.Large"><DownloadOutlined></DownloadOutlined> Primary Large</LNButton>
 <LNButton BtnType="LNButton.LBtnType.Dashed" BtnSize="LNButton.LBtnSize.Middle">Dashed Middle</LNButton>
 <LNButton BtnType="LNButton.LBtnType.Link" BtnSize="LNButton.LBtnSize.Small">Link Small</LNButton>
+
+<div class="box">
+    <h3>类型和形状</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary">Primary</LNButton>
+        <LNButton>Default</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Dashed">Dashed</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Link">Link</LNButton>
+
+        <LNButton BtnType="LNButton.LBtnType.Primary" BtnShape="@LNButton.LBtnShape.Circle">Circle</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" BtnShape="@LNButton.LBtnShape.Round">Round</LNButton>
+
+    </div>
+</div>
+
+<div class="box">
+    <h3>四种状态</h3>
+    <div style="padding: 5px; background-color: #ccc">
+        <LNButton BtnType="LNButton.LBtnType.Primary" Danger="true">危险</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" Disabled="true">禁用</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" Loading="true">加载中</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" Ghost="true">幽灵</LNButton>
+    </div>
+</div>
+
+<div class="box">
+    <h3>图标按钮-通过图标属性</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary"  >
+            <Icon>
+                <DownloadOutlined></DownloadOutlined>
+            </Icon>
+            <ChildContent>
+                图标加文字
+            </ChildContent>
+        </LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" >
+            <Icon>
+                DownloadOutlined
+            </Icon>
+        </LNButton>
+    </div>
+    <h3>图标按钮-通过ChildContent</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary"><DownloadOutlined></DownloadOutlined> 图标加文字</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary"><DownloadOutlined></DownloadOutlined></LNButton>
+    </div>
+    <p>二者不同之处在于，通过属性设置的图标会添加 ant-btn-icon-only 样式</p>
+</div>
+
+<div class="box">
+    <h3>按钮尺寸</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary" BtnSize="@LNButton.LBtnSize.Large">Large</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" BtnSize="@LNButton.LBtnSize.Middle">Middle</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" BtnSize="@LNButton.LBtnSize.Small">Small</LNButton>
+    </div>
+</div>
+
+<div class="box">
+    <h3>块状按钮</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary" Block="true">Primary</LNButton>
+        <LNButton Block="true">Default</LNButton>
+        <LNButton BtnType="@LNButton.LBtnType.Dashed" Block="true">Dashed</LNButton>
+        <LNButton BtnType="@LNButton.LBtnType.Link" Block="true">Link</LNButton>
+    </div>
+</div>
+
+<div class="box">
+    <h3>点击事件</h3>
+    <div>
+        <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="@((_) => { _num += 1; })">点击加1</LNButton>
+        <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="OnButtonClick">点击加1</LNButton>
+        <span>点击次数：@_num</span>
+    </div>
+</div>
+
+@code
+{
+    private int _num;
+
+    private void OnButtonClick(LNButton _)
+    {
+        _num += 1;
+        this.StateHasChanged();
+    }
+}

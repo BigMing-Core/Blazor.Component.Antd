@@ -74,10 +74,8 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         [Parameter]
         public ColResponsive? XXL { get; set; }
 
-        protected override void OnParametersSet()
+        protected override void OnInitialized()
         {
-
-            base.OnParametersSet();
             if (Span != null)
             {
                 _classHelper.AddCustomClass($"ant-col-{Span.Value}");

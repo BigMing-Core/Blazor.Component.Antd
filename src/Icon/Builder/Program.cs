@@ -24,16 +24,7 @@ namespace Builder
         public static string ClassTemplate =
             "";
 
-        public static string ICOTemplate =
- //"@inherits LuanNiao.Blazor.Core.LNBCBase" +
- "<span role=\"img\" aria-label=\"{0}\" class=\"anticon antico-{0}\">" +
-     "<svg viewBox =\"64 64 896 896\" focusable=\"false\" data-icon=\"{0}\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\">" +
-         "<defs>" +
-             "<style type =\"text/css\" ></style >" +
-         "</defs>" +
-             "{1}" +
-         "</svg>" +
- "</span>";
+        public static string ICOTemplate = "";
         private static string _sourceFolderPath = "";
         private static string _desFolderPath = @"./RazorFiles";
         public static void Main(string[] args)
@@ -50,8 +41,16 @@ namespace Builder
                       {
                           _desFolderPath = @"./RazorFiles";
                       }
+                      else
+                      {
+                          _desFolderPath = o.DesFolder;
+                      }
 
                   });
+            {
+                using var r = File.OpenText("./template.Lnico");
+                ICOTemplate = r.ReadToEnd();
+            }
             BuildFile();
         }
 
@@ -74,12 +73,13 @@ namespace Builder
                     );
                 var doc = XElement.Load(item);
                 var pathStr = string.Join(" ", doc.Elements().ToList());
-                var razorContext = string.Format(ICOTemplate, fi.Name.Replace(fi.Extension, ""), pathStr);
+                var razorContext = ICOTemplate.Replace("{ICOTemplate}", fi.Name.Replace(fi.Extension, "")).Replace("{svgContent}", pathStr);
                 var razorFileName = $"{componentName}.razor";
                 var classFileName = $"{componentName}.cs";
                 Console.WriteLine($"The LuanNiao.Blazor.Component.Antd's icon file creating..{razorFileName}");
                 Directory.CreateDirectory(_desFolderPath);
                 var razorFile = new FileInfo($"{_desFolderPath}/{razorFileName}");
+                razorFile.Delete();
                 using var razorFileStream = razorFile.OpenWrite();
                 razorFileStream.Write(Encoding.UTF8.GetBytes(razorContext));
             }

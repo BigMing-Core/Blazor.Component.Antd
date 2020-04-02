@@ -38,17 +38,14 @@ export class Demo extends Component<any, any>{
   render() {
     return (
       <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-        <Menu.Item key="mail">
-          <MailOutlined />
-          Navigation One
-        </Menu.Item>
+       
         <SubMenu
           title={
             <span className="submenu-title-wrapper">
-              <SettingOutlined />
               Navigation Three - Submenu
             </span>
           }
+          popupClassName="asdasdadasdsa"
         >
           <Menu.ItemGroup title="Item 1">
             <Menu.Item key="setting:1">Option 1</Menu.Item>
@@ -60,31 +57,7 @@ export class Demo extends Component<any, any>{
           </Menu.ItemGroup>
         </SubMenu>
 
-        
-        <SubMenu
-          title={
-            <span className="submenu-title-wrapper">
-              <SettingOutlined />
-              Navigation Three - Submenu
-            </span>
-          }
-        >
-          <Menu.ItemGroup title="Item 11">
-            <Menu.Item key="setting:11">Option 11</Menu.Item>
-            <Menu.Item key="setting:22">Option 22</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 22">
-            <Menu.Item key="setting:33">Option 33</Menu.Item>
-            <Menu.Item key="setting:44">Option 44</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-
-
-        <Menu.Item key="alipay">
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Navigation Four - Link
-          </a>
-        </Menu.Item>
+      
       </Menu>
     )
   }

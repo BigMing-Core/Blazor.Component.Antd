@@ -24,11 +24,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public string Title { get; set; }
 
-        
 
-        protected override void OnParametersSet()
+
+        protected override void OnInitialized()
         {
-            base.OnParametersSet();
             HandleDisable();
         }
         private void HandleDisable()
