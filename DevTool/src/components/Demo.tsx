@@ -44,9 +44,9 @@ export class Demo extends Component<any, any>{
 
   render() {
     return (
-      <Menu onClick={this.handleClick} onSelect={this.handleSelect}  multiple={true} selectedKeys={[this.state.current]} mode="horizontal">
-       
-       <SubMenu
+      <Menu onClick={this.handleClick} onSelect={this.handleSelect} multiple={true} selectedKeys={[this.state.current]} mode="horizontal">
+
+        <SubMenu
           title={
             <span className="submenu-title-wrapper">
               <SettingOutlined />
@@ -55,8 +55,10 @@ export class Demo extends Component<any, any>{
           }
         >
           <Menu.ItemGroup title={<span>asdasdsad</span>}>
+
+            <Menu.Divider></Menu.Divider>
             <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
+            <Menu.Divider></Menu.Divider>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Item 2">
             <Menu.Item key="setting:3">Option 3</Menu.Item>
@@ -68,7 +70,7 @@ export class Demo extends Component<any, any>{
           <MailOutlined />
           Navigation One
         </Menu.Item>
-      
+
       </Menu>
     )
   }

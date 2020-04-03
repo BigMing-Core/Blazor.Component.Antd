@@ -1,25 +1,43 @@
 ﻿@page "/menu"
 @using LuanNiao.Blazor.Component.Antd.Menu
 @using LuanNiao.Blazor.Component.Antd.Icons
-    <HorizontalMenu>
-        <SubMenu>
-            <Title>
-                <FlagFilled Spin="true"></FlagFilled>
-                asdadasd
-            </Title>
-            <ChildContent>
-                <ItemGroup> 
-                    <Title>
-                        <AlibabaOutlined Spin="true"></AlibabaOutlined>
-                        asdasd
-                    </Title>
-                    <ChildContent>
-                        <Item><BookFilled Spin="true"></BookFilled>G1 Item1</Item>
-                    </ChildContent>
-                </ItemGroup>
-            </ChildContent>
-        </SubMenu>
-        <Item><AccountBookFilled Spin="true"></AccountBookFilled> asdasdqweqwe</Item>
-    </HorizontalMenu>
+<HorizontalMenu>
+    <SubMenu>
+        <Title>
+            <FlagFilled Spin="true"></FlagFilled>
+            Submenu
+        </Title>
+        <ChildContent>
+            <ItemGroup>
+                <Title>
+                    <AlibabaOutlined Spin="true"></AlibabaOutlined>
+                    Submenu's group 1
+                </Title>
+                <ChildContent> 
+                    <Item><BookFilled Spin="true"></BookFilled>G1 Item1</Item>
+                    <Divider></Divider>
+                    <Item><BookFilled Spin="true"></BookFilled>G1 Item2</Item>
+                </ChildContent>
+            </ItemGroup>
+
+
+
+            <ItemGroup>
+                <Title>
+                    <AlibabaOutlined Spin="true"></AlibabaOutlined>
+                    Submenu's group 2
+                </Title>
+                <ChildContent> 
+                    <Item><BookFilled Spin="true"></BookFilled>G2 Item1</Item>
+                    <Divider></Divider>
+                    <Item><BookFilled Spin="true"></BookFilled>G2 Item2</Item>
+                </ChildContent>
+            </ItemGroup>
+
+
+        </ChildContent>
+    </SubMenu>
+    <Item><AccountBookFilled Spin="true"></AccountBookFilled> Single  menu item</Item>
+</HorizontalMenu>
 
 
