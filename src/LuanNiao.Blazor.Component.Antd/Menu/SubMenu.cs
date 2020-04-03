@@ -21,6 +21,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper.AddCustomClass(_hidULClassName).Build();
         }
 
+        [Parameter]
+        public RenderFragment<ItemGroup> Groups { get; set; }
+
         [Inject]
         public ElementInfo ElementHelper { get; set; }
 

@@ -14,12 +14,28 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             _classHelper.SetStaticClass("ant-menu-item");
         }
-   
+
         [Parameter]
         public bool Disabled { get; set; }
 
+        private string _key = null;
+
         [Parameter]
-        public string Key { get; set; }
+        public string Key
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_key))
+                {
+                    return IdentityKey;
+                }
+                return _key;
+            }
+            set
+            {
+                _key = value;
+            }
+        }
 
         [Parameter]
         public string Title { get; set; }

@@ -25,22 +25,28 @@
 
 <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
     <div>
-        <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")"  @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+        <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
             <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle">
-                <li class=" ant-menu-item-group">
-                    <div class="ant-menu-item-group-title" title="Item 1">Item @IdentityKey</div>
-                    <ul class="ant-menu-item-group-list">
-                        <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 1</li>
-                        <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 2</li>
-                    </ul>
-                </li>
-                <li class=" ant-menu-item-group">
-                    <div class="ant-menu-item-group-title" title="Item 2">Item 2</div>
-                    <ul class="ant-menu-item-group-list">
-                        <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 3</li>
-                        <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 4</li>
-                    </ul>
-                </li>
+
+                @*<Menu.ItemGroup title="Item 1">
+                        <li class=" ant-menu-item-group">
+                            <div class="ant-menu-item-group-title" title="Item 1">Item @IdentityKey</div>
+
+
+                             <Menu.Item key="setting:1">Option 3</Menu.Item>
+                    <Menu.Item key="setting:2">Option 2</Menu.Item>
+                            <ul class="ant-menu-item-group-list">
+                                <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 1</li>
+                                <li class="ant-menu-item ant-menu-item-only-child" role="menuitem">Option 2</li>
+                            </ul>
+
+
+
+                            </li>*@
+
+
+                @Groups
+
             </ul>
         </div>
     </div>

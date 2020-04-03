@@ -35,7 +35,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             _classHelper.SetStaticClass("ant-menu ant-menu-root");
         }
 
-
+        private readonly List<Item> _currentSelectItems = new List<Item>();
         [Parameter]
         public string Key { get; set; }
 
@@ -43,9 +43,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public bool Disabled { get; set; }
         [Parameter]
         public MenuTheme Theme { get; set; } = MenuTheme.Light;
-
-        [Parameter]
-        public Action<HorizontalMenu, Item> OnClick { get; set; }
 
         /// <summary>
         /// whether active first menu item when show if activeKey is not set or invalid
@@ -56,7 +53,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// whether allow multiple select
         /// </summary>
         [Parameter]
-        public bool Multiple { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool Multiple { get; set; } = false;
         /// <summary>
         /// 	allow selecting menu items
         /// </summary>
@@ -66,7 +63,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// selected keys of items
         /// </summary>
         [Parameter]
-        public List<string> SelectedKeys { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Item> SelectItems { get => _currentSelectItems; set { } }
         /// <summary>
         /// initial selected keys of items
         /// </summary>
@@ -76,7 +73,8 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// 	open keys of SubMenuItem
         /// </summary>
         [Parameter]
-        public List<string> OpenKeys { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string[] OpenKeys { get => _currentSelectItems.Select(item => item.Key).ToArray(); set { } }
+
 
         /// <summary>
         /// initial open keys of SubMenuItem
@@ -87,7 +85,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when select a menu item
         /// </summary>
         [Parameter]
-        public Action<HorizontalMenu, Item> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<MenuBase, List<Item>> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	called when click a menu item
         /// </summary>
@@ -97,7 +95,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when open/close sub menu
         /// </summary>
         [Parameter]
-        public Action<HorizontalMenu, Item> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<MenuBase, List<Item>> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	which action can trigger submenu open/close
         /// </summary>
