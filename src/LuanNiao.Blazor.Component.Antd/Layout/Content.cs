@@ -7,7 +7,7 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
-    public partial class Content:LNBCBase
+    public partial class Content : LNBCBase
     {
         [Parameter]
         public bool HasSilder { get; set; }
@@ -21,9 +21,11 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             if (HasSilder)
             {
                 _classHelper.AddCustomClass("ant-layout-has-sider");
-            }         }
+            }
+        }
     }
 }

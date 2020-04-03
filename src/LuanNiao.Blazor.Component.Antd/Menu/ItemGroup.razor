@@ -1,17 +1,12 @@
-﻿@inherits LuanNiao.Blazor.Component.Antd.Menu.MenuBase
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
 
-@*<Menu.ItemGroup title="Item 1">*@
-<li class=" ant-menu-item-group">
-    <div class="ant-menu-item-group-title" title="Item 1">Item @IdentityKey</div>
+<CascadingValue Value="this">
+    <li class="ant-menu-item-group">
+        <div class="ant-menu-item-group-title" >@Title</div> 
+        <ul class="ant-menu-item-group-list">
+            @ChildContent
+        </ul>
+    </li>
 
-
-    @* <Menu.Item key="setting:1">Option 3</Menu.Item>
-        <Menu.Item key="setting:2">Option 2</Menu.Item>*@
-    <ul class="ant-menu-item-group-list">
-        @Items
-    </ul>
-
-
-
-</li>
+</CascadingValue>

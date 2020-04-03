@@ -1,6 +1,7 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.AspNetCore.Components.Web
 
-@if (this.Parent is HorizontalMenu)
+@if (this.ItemGroup == null && this.RootMenuInstance is HorizontalMenu)
 {
     <li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" role="menuitem" style="display: none;">
         <div class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
@@ -9,6 +10,6 @@
         </div>
     </li>
 }
-<li class="@ClassName" style="@CStyle" role="menuitem">
+<li class="@ClassName" style="@CStyle" role="menuitem" @onclick="()=>{ HandleClickEvent(); }" disabled="@((Disabled?"disabled":null))">
     @ChildContent
 </li>

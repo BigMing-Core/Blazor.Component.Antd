@@ -15,9 +15,13 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         }
 
 
-
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet(); 
+        }
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             HandleTheme(); 
         }
 

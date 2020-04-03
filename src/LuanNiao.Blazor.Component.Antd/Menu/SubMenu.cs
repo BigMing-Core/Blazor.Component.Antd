@@ -21,8 +21,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper.AddCustomClass(_hidULClassName).Build();
         }
 
-        [Parameter]
-        public RenderFragment<ItemGroup> Groups { get; set; }
 
         [Inject]
         public ElementInfo ElementHelper { get; set; }
@@ -40,6 +38,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public RenderFragment Title { get; set; }
         [Parameter]
         public Action<SubMenu> OnTitleClick { get; set; }
+
+        [CascadingParameter]
+        public MenuBase RootMenuInstance { get; set; }
 
         private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper()
             .SetStaticClass("ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft")
@@ -61,11 +62,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             HandleParent();
         }
         private void HandleParent()
         {
-            if (this.Parent is HorizontalMenu)
+            if (this.RootMenuInstance is HorizontalMenu)
             {
                 _classHelper.AddCustomClass("ant-menu-submenu-horizontal");
             }

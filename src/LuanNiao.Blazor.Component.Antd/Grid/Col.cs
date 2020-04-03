@@ -76,6 +76,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             if (Span != null)
             {
                 _classHelper.AddCustomClass($"ant-col-{Span.Value}");

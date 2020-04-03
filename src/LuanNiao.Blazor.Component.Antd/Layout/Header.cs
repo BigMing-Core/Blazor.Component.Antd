@@ -21,6 +21,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             if (HasSilder)
             {
                 _classHelper.AddCustomClass("ant-layout-has-sider");

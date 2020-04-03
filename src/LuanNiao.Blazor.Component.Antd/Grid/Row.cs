@@ -58,6 +58,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             HandleGutter();
             HandleAlign();
             HandleJustify();

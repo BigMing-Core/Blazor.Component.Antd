@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
     public partial class ItemGroup
-    {
+    { 
+
         [Parameter]
-        public RenderFragment<Item> Items { get; set; }
+        public RenderFragment Title { get; set; }
     }
 }

@@ -154,7 +154,23 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public object Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
+        internal void Triggered(Item sourceItem)
+        {
+            this.ItemSelected?.Invoke(sourceItem);
+            if (this.Multiple && !this._currentSelectItems.Contains(sourceItem))
+            {
+                this._currentSelectItems.Add(sourceItem);
+            }
+            else
+            {
+                this._currentSelectItems.Clear();
+                this._currentSelectItems.Add(sourceItem);
+            }
+        }
 
-
+        /// <summary>
+        /// there's some on selected
+        /// </summary>
+        internal event Action<Item> ItemSelected;
     }
 }
