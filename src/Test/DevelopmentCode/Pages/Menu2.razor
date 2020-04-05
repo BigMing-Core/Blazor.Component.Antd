@@ -1,0 +1,55 @@
+﻿@page "/menu2"
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Icons
+<div style="width: 256px;">
+    <InlineMenu Theme="MenuBase.MenuTheme.Dark">
+        @*<Item key="1">
+            <PieChartOutlined />
+            <span>Option 1</span>
+        </Item>
+        <Item key="2">
+            <DesktopOutlined />
+            <span>Option 2</span>
+        </Item>
+        <Item key="3">
+            <ContainerOutlined />
+            <span>Option 3</span>
+        </Item>*@
+        <SubMenu Key="sub1">
+            <Title>
+                <span>
+                    <MailOutlined />
+                    <span>Navigation One</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <Item key="5">Option 5</Item>
+                <Item key="6">Option 6</Item>
+                <Item key="7">Option 7</Item>
+                <Item key="8">Option 8</Item>
+            </ChildContent>
+        </SubMenu>
+        @*<SubMenu Key="sub2">
+            <Title>
+                <span>
+                    <AppstoreOutlined />
+                    <span>Navigation Two</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <Item key="9">Option 9</Item>
+                <Item key="10">Option 10</Item>
+                <SubMenu key="sub3">
+                    <Title>
+                        Submenu
+                    </Title>
+                    <ChildContent>
+                        <Item key="11">Option 11</Item>
+                        <Item key="12">Option 12</Item>
+                    </ChildContent>
+                </SubMenu>
+            </ChildContent>
+        </SubMenu>*@
+    </InlineMenu>
+
+</div>

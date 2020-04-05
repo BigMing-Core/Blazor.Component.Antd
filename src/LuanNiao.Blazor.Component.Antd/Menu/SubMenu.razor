@@ -10,19 +10,41 @@
         </div>
     </li>
 }
-<li class="@ClassName" id="@($"{IdentityKey}_mainli")" style="@CStyle" role="menuitem" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
-    <div class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
-        @Title
-    </div>
+<li class="@ClassName"
+    id="@($"{IdentityKey}_mainli")"
+    style="@CStyle"
+    role="menuitem"
+    @onmouseover="@OnMouseOver"
+    @onmouseout="@OnMouseOut"
+   >
+    @if (this.RootMenuInstance is InlineMenu)
+    {
+        <div  @onclick="@OnMouseClick" class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true" style="padding-left:24px;">
+            @Title
+            <i class="ant-menu-submenu-arrow"></i>
+        </div>
+        <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle">
+            @ChildContent
+        </ul>
+    }
+    else
+    {
+        <div class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
+            @Title
+        </div>
+    }
 </li>
 
 
-<div style="position: absolute; top: 0px; left: 0px; width: 100%;">
-    <div>
-        <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
-            <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle"> 
-                @ChildContent
-            </ul>
+@if (this.RootMenuInstance is HorizontalMenu)
+{
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
+        <div>
+            <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+                <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle">
+                    @ChildContent
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+} 

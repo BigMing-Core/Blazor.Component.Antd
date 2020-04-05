@@ -5,12 +5,15 @@ import "antd/dist/antd.css"
 import "./demo.less"
 
 
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import {
-  MailOutlined,
   AppstoreOutlined,
-  SettingOutlined,
-  StepBackwardOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  PieChartOutlined,
+  DesktopOutlined,
+  ContainerOutlined,
+  MailOutlined,
 } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
@@ -19,59 +22,75 @@ const { SubMenu } = Menu;
 
 
 
-
 const DemoBox = (props: { value: any; children: React.ReactNode }) => <p style={{ height: props.value }}>{props.children}</p>;
 export class Demo extends Component<any, any>{
-
-
   state = {
-    current: 'mail',
+    collapsed: false,
   };
 
-  handleClick = (e: any) => {
-    console.log('click ', e);
+  toggleCollapsed = () => {
     this.setState({
-      current: e.key,
+      collapsed: !this.state.collapsed,
     });
   };
-
-  handleSelect = (e: any) => {
-    console.log('select ', e);
-    this.setState({
-      current: e.key,
-    });
-  };
-
   render() {
     return (
-      <Menu onClick={this.handleClick} onSelect={this.handleSelect} multiple={true} selectedKeys={[this.state.current]} mode="horizontal">
-
+      <div style={{ width: 256 }}>
+      <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+        {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+      </Button>
+      <Menu
+        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['sub1']}
+        mode="inline"
+        theme="dark"
+        inlineCollapsed={this.state.collapsed}
+      >
+        {/* <Menu.Item key="1">
+          <PieChartOutlined />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <DesktopOutlined />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <ContainerOutlined />
+          <span>Option 3</span>
+        </Menu.Item> */}
         <SubMenu
+          key="sub1"
           title={
-            <span className="submenu-title-wrapper">
-              <SettingOutlined />
-              Navigation Three - Submenu
+            <span>
+              <MailOutlined />
+              <span>Navigation One</span>
             </span>
           }
         >
-          <Menu.ItemGroup title={<span>asdasdsad</span>}>
-
-            <Menu.Divider></Menu.Divider>
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Divider></Menu.Divider>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
+          <Menu.Item key="5">Option 5</Menu.Item>
+          <Menu.Item key="6">Option 6</Menu.Item>
+          <Menu.Item key="7">Option 7</Menu.Item>
+          <Menu.Item key="8">Option 8</Menu.Item>
         </SubMenu>
-
-        <Menu.Item key="mail">
-          <MailOutlined />
-          Navigation One
-        </Menu.Item>
-
+        {/* <SubMenu
+          key="sub2"
+          title={
+            <span>
+              <AppstoreOutlined />
+              <span>Navigation Two</span>
+            </span>
+          }
+        >
+          <Menu.Item key="9">Option 9</Menu.Item>
+          <Menu.Item key="10">Option 10</Menu.Item>
+          <SubMenu key="sub3" title="Submenu">
+            <Menu.Item key="11">Option 11</Menu.Item>
+            <Menu.Item key="12">Option 12</Menu.Item>
+          </SubMenu>
+        </SubMenu> */}
       </Menu>
+    </div>
+
     )
   }
 }

@@ -11,7 +11,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
     {
         private const string _disableClassName = "ant-menu-item-disabled";
         private const string _openClassName = "ant-menu-submenu-open";
-        private const string _activeClassName = "t-menu-submenu-active";
+        private const string _activeClassName = "ant-menu-submenu-active";
         private const string _hideDivClassName = "ant-menu-submenu-hidden";
         private const string _hidULClassName = "ant-menu-hidden";
         public SubMenu()
@@ -27,6 +27,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         [Parameter]
         public string PopupClassName { get; set; }
+
+        [Parameter]
+        public string Key { get; set; }
 
         [Parameter]
         public List<MenuBase> Children { get; set; }
@@ -63,14 +66,19 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            HandleParent();
+            HandleRootMenuType();
         }
-        private void HandleParent()
+        private void HandleRootMenuType()
         {
             if (this.RootMenuInstance is HorizontalMenu)
             {
                 _classHelper.AddCustomClass("ant-menu-submenu-horizontal");
             }
+            else if (this.RootMenuInstance is InlineMenu)
+            {
+                _classHelper.AddCustomClass("ant-menu-submenu-inline");
+            }
+
         }
         private async void OnMouseOver()
         {
@@ -81,20 +89,47 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
             }
             _classHelper
-                .AddCustomClass(_openClassName)
+                .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu)
                 .AddCustomClass(_activeClassName);
-            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper.RemoveCustomClass(_hideDivClassName).Build();
-            HideSubMenuULClassName = _hideSubMenuULClassNameHelper.RemoveCustomClass(_hidULClassName).Build();
+            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
+                .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .Build();
+            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .Build();
+            this.Flush();
+        }
+
+        private void OnMouseClick()
+        {
+            if (this.RootMenuInstance is HorizontalMenu)
+            {
+                return;
+            }
+            if (_classHelper.Contains(_openClassName))
+            {
+
+            }
+            _classHelper
+                .TakeInverse(_openClassName);
+            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                 .TakeInverse(_hidULClassName)
+                .Build();
             this.Flush();
         }
 
         private void OnMouseOut()
         {
             _classHelper
-                .RemoveCustomClass(_openClassName)
+                .RemoveCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu)
                 .RemoveCustomClass(_activeClassName);
-            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper.AddCustomClass(_hideDivClassName).Build();
-            HideSubMenuULClassName = _hideSubMenuULClassNameHelper.AddCustomClass(_hidULClassName).Build();
+            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
+                .AddCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .Build();
+            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                .AddCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .Build();
+            this.Flush();
         }
 
     }

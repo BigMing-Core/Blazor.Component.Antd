@@ -85,7 +85,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when select a menu item
         /// </summary>
         [Parameter]
-        public Action<MenuBase, List<Item>> OnSelect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<MenuBase, List<Item>> OnSelect { get; set; }
         /// <summary>
         /// 	called when click a menu item
         /// </summary>
@@ -167,6 +167,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 this._currentSelectItems.Add(sourceItem);
             }
         }
+ 
 
         /// <summary>
         /// there's some on selected

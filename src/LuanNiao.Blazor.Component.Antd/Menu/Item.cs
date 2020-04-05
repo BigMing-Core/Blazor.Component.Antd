@@ -22,6 +22,8 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public bool Disabled { get; set; }
 
         private string _key = null;
+        private bool _selected = false;
+
 
         [Parameter]
         public string Key
@@ -60,7 +62,16 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             base.OnInitialized();
             HandleInGroup();
+            HandleInInlineMenu();
             RootMenuInstance.ItemSelected += GotOtherItemSelectedEvent;
+        }
+
+        private void HandleInInlineMenu()
+        {
+            if (RootMenuInstance is InlineMenu)
+            {
+                this._styleHelper.AddCustomStyle("padding-left", "24px");
+            }
         }
 
         private void GotOtherItemSelectedEvent(Item targetItem)
@@ -79,6 +90,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 return;
             }
+            this._selected = !this._selected;
             this._classHelper.AddCustomClass(_selectedClassName);
             this.RootMenuInstance.Triggered(this);
         }
