@@ -72,7 +72,7 @@ export class Demo extends Component<any, any>{
           <Menu.Item key="7">Option 7</Menu.Item>
           <Menu.Item key="8">Option 8</Menu.Item>
         </SubMenu>
-        {/* <SubMenu
+        <SubMenu
           key="sub2"
           title={
             <span>
@@ -87,7 +87,7 @@ export class Demo extends Component<any, any>{
             <Menu.Item key="11">Option 11</Menu.Item>
             <Menu.Item key="12">Option 12</Menu.Item>
           </SubMenu>
-        </SubMenu> */}
+        </SubMenu>
       </Menu>
     </div>
 

@@ -53,6 +53,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [CascadingParameter]
         public ItemGroup ItemGroup { get; set; }
 
+        [CascadingParameter]
+        public SubMenu ParentSubMenu { get; set; }
+
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -70,8 +73,23 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             if (RootMenuInstance is InlineMenu)
             {
-                this._styleHelper.AddCustomStyle("padding-left", "24px");
+                var depth = 1;
+                GetSubDepth(ref depth, this.ParentSubMenu);
+                this._styleHelper.AddCustomStyle("padding-left", $"{depth * 24}px");
             }
+        }
+
+        private void GetSubDepth(ref int depth, SubMenu parent)
+        {
+            if (parent == null)
+            {
+                return;
+            }
+            if (parent.ParentSubmenu != null)
+            {
+                GetSubDepth(ref depth, parent.ParentSubmenu);
+            }
+            depth += 1;
         }
 
         private void GotOtherItemSelectedEvent(Item targetItem)

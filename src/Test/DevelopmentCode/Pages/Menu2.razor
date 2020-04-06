@@ -3,18 +3,18 @@
 @using LuanNiao.Blazor.Component.Antd.Icons
 <div style="width: 256px;">
     <InlineMenu Theme="MenuBase.MenuTheme.Dark">
-        @*<Item key="1">
-            <PieChartOutlined />
-            <span>Option 1</span>
-        </Item>
-        <Item key="2">
-            <DesktopOutlined />
-            <span>Option 2</span>
-        </Item>
-        <Item key="3">
-            <ContainerOutlined />
-            <span>Option 3</span>
-        </Item>*@
+        <Item key="1">
+                <PieChartOutlined />
+                <span>Option 1</span>
+            </Item>
+            <Item key="2">
+                <DesktopOutlined />
+                <span>Option 2</span>
+            </Item>
+            <Item key="3">
+                <ContainerOutlined />
+                <span>Option 3</span>
+            </Item>
         <SubMenu Key="sub1">
             <Title>
                 <span>
@@ -29,7 +29,7 @@
                 <Item key="8">Option 8</Item>
             </ChildContent>
         </SubMenu>
-        @*<SubMenu Key="sub2">
+        <SubMenu Key="sub2">
             <Title>
                 <span>
                     <AppstoreOutlined />
@@ -41,15 +41,22 @@
                 <Item key="10">Option 10</Item>
                 <SubMenu key="sub3">
                     <Title>
+                        <AccountBookFilled />
                         Submenu
                     </Title>
                     <ChildContent>
-                        <Item key="11">Option 11</Item>
-                        <Item key="12">Option 12</Item>
+                        <Item key="11"> 
+                            <TeamOutlined/>
+                            Option 11
+                        </Item>
+                        <Item key="12"> 
+                            <RadiusUprightOutlined/>
+                            Option 12
+                        </Item>
                     </ChildContent>
                 </SubMenu>
             </ChildContent>
-        </SubMenu>*@
+        </SubMenu>
     </InlineMenu>
 
 </div>

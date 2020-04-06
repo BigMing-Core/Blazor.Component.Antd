@@ -13,7 +13,14 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private const string _openClassName = "ant-menu-submenu-open";
         private const string _activeClassName = "ant-menu-submenu-active";
         private const string _hideDivClassName = "ant-menu-submenu-hidden";
+        private const string _inlineClassName = "ant-menu-inline";
+        private const string _inlineSubClassName = "ant-menu-submenu-inline";
+        private const string _inlineHorClassName = "ant-menu-submenu-horizontal";
         private const string _hidULClassName = "ant-menu-hidden";
+        private const string _submenuUIVerticalStaticClassName = "ant-menu ant-menu-sub  ant-menu-vertical";
+        private const string _submenuDivStaticClassName = "ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft";
+
+
         public SubMenu()
         {
             _classHelper.SetStaticClass("ant-menu-submenu");
@@ -45,11 +52,15 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [CascadingParameter]
         public MenuBase RootMenuInstance { get; set; }
 
+        [CascadingParameter]
+        public SubMenu ParentSubmenu { get; set; }
+
+
         private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper()
-            .SetStaticClass("ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft")
+            .SetStaticClass(_submenuDivStaticClassName)
             .AddCustomClass(_hideDivClassName);
         private readonly ClassNameHelper _hideSubMenuULClassNameHelper = new ClassNameHelper()
-            .SetStaticClass("ant-menu ant-menu-sub  ant-menu-vertical ")
+            .SetStaticClass(_submenuUIVerticalStaticClassName)
             .AddCustomClass(_hidULClassName);
         private string HideSubMenuDivClassName { get; set; }
         private string HideSubMenuULClassName { get; set; }
@@ -72,11 +83,11 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             if (this.RootMenuInstance is HorizontalMenu)
             {
-                _classHelper.AddCustomClass("ant-menu-submenu-horizontal");
+                _classHelper.AddCustomClass(_inlineHorClassName);
             }
             else if (this.RootMenuInstance is InlineMenu)
             {
-                _classHelper.AddCustomClass("ant-menu-submenu-inline");
+                _classHelper.AddCustomClass(_inlineSubClassName);
             }
 
         }
@@ -113,6 +124,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             _classHelper
                 .TakeInverse(_openClassName);
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                .AddCustomClass(_inlineClassName)
                  .TakeInverse(_hidULClassName)
                 .Build();
             this.Flush();
