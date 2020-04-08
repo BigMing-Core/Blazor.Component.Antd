@@ -1,5 +1,6 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 @using Microsoft.AspNetCore.Components.Web
+@using LuanNiao.Blazor.Component.Antd.Icons
 
 
 <CascadingValue Value="this">
@@ -18,7 +19,7 @@
         role="menuitem"
         @onmouseover="@OnMouseOver"
         @onmouseout="@OnMouseOut">
-        @if (this.RootMenuInstance is InlineMenu)
+        @if (this.RootMenuInstance is InlineMenu inlineMenuInfo && !inlineMenuInfo.Collapsed)
         {
             <div @onclick="@OnMouseClick" class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true" style="padding-left:24px;">
                 @Title
@@ -32,12 +33,25 @@
         {
             <div class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
                 @Title
+                <i class="ant-menu-submenu-arrow"></i>
             </div>
         }
     </li>
 
 
     @if (this.RootMenuInstance is HorizontalMenu)
+    {
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div>
+                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+                    <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle">
+                        @ChildContent
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    else if (this.RootMenuInstance is InlineMenu inlineMenuInstance && inlineMenuInstance.Collapsed)
     {
         <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
             <div>

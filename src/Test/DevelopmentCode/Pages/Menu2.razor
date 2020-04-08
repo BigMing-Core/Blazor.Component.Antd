@@ -1,20 +1,24 @@
 ﻿@page "/menu2"
+@using LuanNiao.Blazor.Component.Antd.Button
 @using LuanNiao.Blazor.Component.Antd.Menu
 @using LuanNiao.Blazor.Component.Antd.Icons
 <div style="width: 256px;">
-    <InlineMenu Theme="MenuBase.MenuTheme.Dark">
+    <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="(item) => { instance.Collapse(); }">
+        <MenuUnfoldOutlined></MenuUnfoldOutlined>
+    </LNButton>
+    <InlineMenu Theme="MenuBase.MenuTheme.Dark" @ref="instance">
         <Item key="1">
-                <PieChartOutlined />
-                <span>Option 1</span>
-            </Item>
-            <Item key="2">
-                <DesktopOutlined />
-                <span>Option 2</span>
-            </Item>
-            <Item key="3">
-                <ContainerOutlined />
-                <span>Option 3</span>
-            </Item>
+            <PieChartOutlined />
+            <span>Option 1</span>
+        </Item>
+        <Item key="2">
+            <DesktopOutlined />
+            <span>Option 2</span>
+        </Item>
+        <Item key="3">
+            <ContainerOutlined />
+            <span>Option 3</span>
+        </Item>
         <SubMenu Key="sub1">
             <Title>
                 <span>
@@ -45,12 +49,12 @@
                         Submenu
                     </Title>
                     <ChildContent>
-                        <Item key="11"> 
-                            <TeamOutlined/>
+                        <Item key="11">
+                            <TeamOutlined />
                             Option 11
                         </Item>
-                        <Item key="12"> 
-                            <RadiusUprightOutlined/>
+                        <Item key="12">
+                            <RadiusUprightOutlined />
                             Option 12
                         </Item>
                     </ChildContent>
@@ -60,3 +64,12 @@
     </InlineMenu>
 
 </div>
+
+@code{
+    InlineMenu instance;
+
+
+    
+
+
+}

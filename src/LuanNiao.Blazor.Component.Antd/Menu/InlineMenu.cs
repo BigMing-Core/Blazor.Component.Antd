@@ -10,9 +10,27 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
     {
         public InlineMenu()
         {
-            _classHelper.AddCustomClass($"ant-menu-inline");
+            _classHelper
+                .AddCustomClass($"ant-menu-inline", () => !Collapsed)
+                .AddCustomClass($"ant-menu-inline-collapsed", () => Collapsed)
+                .AddCustomClass($"ant-menu-vertical", () => Collapsed);
         }
 
+        [Parameter]
+        public bool Collapsed { get; set; }
+
+        public async void Collapse()
+        {
+            Collapsed = !Collapsed;
+            _classHelper
+                 .RemoveCustomClass($"ant-menu-inline", () => Collapsed)
+                 .RemoveCustomClass($"ant-menu-inline-collapsed", () => !Collapsed)
+                 .RemoveCustomClass($"ant-menu-vertical", () => !Collapsed)
+                 .AddCustomClass($"ant-menu-inline", () => !Collapsed)
+                 .AddCustomClass($"ant-menu-inline-collapsed", () => Collapsed)
+                 .AddCustomClass($"ant-menu-vertical", () => Collapsed).Build();
+            this.Flush();
+        }
 
         protected override void OnParametersSet()
         {

@@ -46,10 +46,23 @@ export class Demo extends Component<any, any>{
         theme="dark"
         inlineCollapsed={this.state.collapsed}
       >
-        {/* <Menu.Item key="1">
-          <PieChartOutlined />
-          <span>Option 1</span>
-        </Menu.Item>
+       
+       <SubMenu
+          key="sub21"
+          title={
+            <span>
+              <AppstoreOutlined />
+              <span>Navigation Two</span>
+            </span>
+          }
+        >
+          <Menu.Item key="91">Option 9</Menu.Item>
+          <Menu.Item key="101">Option 10</Menu.Item>
+          <SubMenu key="sub31" title="Submenu">
+            <Menu.Item key="111">Option 11</Menu.Item>
+            <Menu.Item key="121">Option 12</Menu.Item>
+          </SubMenu>
+        </SubMenu>
         <Menu.Item key="2">
           <DesktopOutlined />
           <span>Option 2</span>
@@ -57,7 +70,7 @@ export class Demo extends Component<any, any>{
         <Menu.Item key="3">
           <ContainerOutlined />
           <span>Option 3</span>
-        </Menu.Item> */}
+        </Menu.Item>
         <SubMenu
           key="sub1"
           title={
@@ -88,6 +101,7 @@ export class Demo extends Component<any, any>{
             <Menu.Item key="12">Option 12</Menu.Item>
           </SubMenu>
         </SubMenu>
+
       </Menu>
     </div>
 

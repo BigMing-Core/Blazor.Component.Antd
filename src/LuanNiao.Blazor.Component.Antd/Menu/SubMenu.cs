@@ -15,6 +15,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private const string _hideDivClassName = "ant-menu-submenu-hidden";
         private const string _inlineClassName = "ant-menu-inline";
         private const string _inlineSubClassName = "ant-menu-submenu-inline";
+        private const string _verticalSubClassName = "ant-menu-submenu-vertical";
         private const string _inlineHorClassName = "ant-menu-submenu-horizontal";
         private const string _hidULClassName = "ant-menu-hidden";
         private const string _submenuUIVerticalStaticClassName = "ant-menu ant-menu-sub  ant-menu-vertical";
@@ -85,9 +86,16 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 _classHelper.AddCustomClass(_inlineHorClassName);
             }
-            else if (this.RootMenuInstance is InlineMenu)
+            else if (this.RootMenuInstance is InlineMenu inline)
             {
-                _classHelper.AddCustomClass(_inlineSubClassName);
+                if (inline.Collapsed)
+                {
+                    _classHelper.AddCustomClass(_verticalSubClassName);
+                }
+                else
+                {
+                    _classHelper.AddCustomClass(_inlineSubClassName);
+                }
             }
 
         }
@@ -95,31 +103,43 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             if (string.IsNullOrWhiteSpace(HideSubMenuDivStyle))
             {
-                var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
-                HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
-                HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
+                if (RootMenuInstance is HorizontalMenu)
+                {
+                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
+                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
+                    HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
+                }
+                else if (RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed)
+                {
+                    if (ParentSubmenu == null)
+                    {
+                        var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
+                        HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{elementInfo.Y}px").Build();
+                    }
+                    else
+                    {
+                        var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
+                        HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{elementInfo.Y}px").Build();
+                    }
+                }
             }
             _classHelper
-                .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .AddCustomClass(_activeClassName);
             HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
-                .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .Build();
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
-                .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .Build();
             this.Flush();
         }
 
         private void OnMouseClick()
         {
-            if (this.RootMenuInstance is HorizontalMenu)
+            if (this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
             {
                 return;
-            }
-            if (_classHelper.Contains(_openClassName))
-            {
-
             }
             _classHelper
                 .TakeInverse(_openClassName);
@@ -133,13 +153,13 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private void OnMouseOut()
         {
             _classHelper
-                .RemoveCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .RemoveCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .RemoveCustomClass(_activeClassName);
             HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
-                .AddCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .AddCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .Build();
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
-                .AddCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu)
+                .AddCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .Build();
             this.Flush();
         }
