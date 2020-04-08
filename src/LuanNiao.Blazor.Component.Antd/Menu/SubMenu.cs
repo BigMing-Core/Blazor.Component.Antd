@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LuanNiao.Blazor.Core;
+using LuanNiao.Blazor.Core.Common;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
@@ -57,6 +59,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public SubMenu ParentSubmenu { get; set; }
 
 
+        [Inject]
+        public IJSRuntime JSRT { get; set; }
+
+
         private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper()
             .SetStaticClass(_submenuDivStaticClassName)
             .AddCustomClass(_hideDivClassName);
@@ -72,7 +78,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         private readonly OriginalStyleHelper _hideSubMenuULStyle = new OriginalStyleHelper();
         private string HideSubMenuULStyle { get; set; }
-
+        private bool _inThisElementScope = false;
 
 
         protected override void OnInitialized()
@@ -101,28 +107,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         }
         private async void OnMouseOver()
         {
-            if (string.IsNullOrWhiteSpace(HideSubMenuDivStyle))
-            {
-                if (RootMenuInstance is HorizontalMenu)
-                {
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
-                    HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
-                }
-                else if (RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed)
-                {
-                    if (ParentSubmenu == null)
-                    {
-                        var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
-                        HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{elementInfo.Y}px").Build();
-                    }
-                    else
-                    {
-                        var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
-                        HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{elementInfo.Y}px").Build();
-                    }
-                }
-            }
+            _inThisElementScope = true;
+
+
             _classHelper
                 .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .AddCustomClass(_activeClassName);
@@ -132,6 +119,32 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
                 .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .Build();
+
+            //if (string.IsNullOrWhiteSpace(HideSubMenuDivStyle))
+            //{
+            if (RootMenuInstance is HorizontalMenu)
+            {
+                var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
+                HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
+                HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
+            }
+            else if (RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed)
+            {
+                if (ParentSubmenu == null)
+                {
+                    var windowSize = await JSRT.InvokeAsync<WindowSize>("WaveBlazor.GetWindowSize");
+                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
+                    var ulInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_subul");
+                    var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height)? elementInfo.Bottom-ulInfo.Height: elementInfo.Y;
+                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue}px").Build();
+                }
+                else
+                { 
+                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli"); 
+                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
+                }
+            }
+            //}
             this.Flush();
         }
 
@@ -147,21 +160,29 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 .AddCustomClass(_inlineClassName)
                  .TakeInverse(_hidULClassName)
                 .Build();
-            this.Flush();
         }
 
         private void OnMouseOut()
         {
-            _classHelper
+            _inThisElementScope = false;
+            Task.Run(async () =>
+            {
+                Task.Delay(100).Wait();
+                if (_inThisElementScope)
+                {
+                    return;
+                }
+                _classHelper
                 .RemoveCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
                 .RemoveCustomClass(_activeClassName);
-            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
-                .AddCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-                .Build();
-            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
-                .AddCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-                .Build();
-            this.Flush();
+                HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
+                    .AddCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+                    .Build();
+                HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                    .AddCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+                    .Build();
+                this.Flush();
+            });
         }
 
     }

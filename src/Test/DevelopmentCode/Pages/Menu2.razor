@@ -7,6 +7,20 @@
         <MenuUnfoldOutlined></MenuUnfoldOutlined>
     </LNButton>
     <InlineMenu Theme="MenuBase.MenuTheme.Dark" @ref="instance">
+        <SubMenu Key="sub1123">
+            <Title>
+                <span>
+                    <MailOutlined />
+                    <span>Navigation One</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <Item key="52">Option 5</Item>
+                <Item key="62">Option 6</Item>
+                <Item key="72">Option 7</Item>
+                <Item key="82">Option 8</Item>
+            </ChildContent>
+        </SubMenu>
         <Item key="1">
             <PieChartOutlined />
             <span>Option 1</span>

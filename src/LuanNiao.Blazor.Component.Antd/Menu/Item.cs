@@ -71,7 +71,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         private void HandleInInlineMenu()
         {
-            if (RootMenuInstance is InlineMenu)
+            if (RootMenuInstance is InlineMenu inlineMenu && !inlineMenu.Collapsed )
             {
                 var depth = 1;
                 GetSubDepth(ref depth, this.ParentSubMenu);
