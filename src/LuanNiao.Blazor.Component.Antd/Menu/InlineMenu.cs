@@ -19,10 +19,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public bool Collapsed { get; set; }
 
-        public async void Collapse()
+        public event Action<bool> CollapsedStatusChanged;
+
+        public async void InverseCollapseStatus()
         {
             Collapsed = !Collapsed;
-            _classHelper
+            _classHelper                
                  .RemoveCustomClass($"ant-menu-inline", () => Collapsed)
                  .RemoveCustomClass($"ant-menu-inline-collapsed", () => !Collapsed)
                  .RemoveCustomClass($"ant-menu-vertical", () => !Collapsed)
@@ -30,6 +32,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                  .AddCustomClass($"ant-menu-inline-collapsed", () => Collapsed)
                  .AddCustomClass($"ant-menu-vertical", () => Collapsed).Build();
             this.Flush();
+            CollapsedStatusChanged?.Invoke(Collapsed);
         }
 
         protected override void OnParametersSet()

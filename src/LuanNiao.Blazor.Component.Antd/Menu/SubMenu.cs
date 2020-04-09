@@ -108,17 +108,20 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private async void OnMouseOver()
         {
             _inThisElementScope = true;
+            if (!string.IsNullOrWhiteSpace(HideSubMenuDivStyle))
+            {
 
+                _classHelper
+                    .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+                    .AddCustomClass(_activeClassName);
+                HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
+                    .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+                    .Build();
+                HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+                    .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+                    .Build();
 
-            _classHelper
-                .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-                .AddCustomClass(_activeClassName);
-            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
-                .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-                .Build();
-            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
-                .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-                .Build();
+            }
 
             //if (string.IsNullOrWhiteSpace(HideSubMenuDivStyle))
             //{
@@ -134,17 +137,18 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 {
                     var windowSize = await JSRT.InvokeAsync<WindowSize>("WaveBlazor.GetWindowSize");
                     var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
-                    var ulInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_subul");
-                    var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height)? elementInfo.Bottom-ulInfo.Height: elementInfo.Y;
+                    var ulInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_subul"); 
+
+                    var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height) ? elementInfo.Bottom - ulInfo.Height : elementInfo.Y;
                     HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue}px").Build();
                 }
                 else
-                { 
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli"); 
+                {
+                    var elementInfo = await ElementHelper.GetElementRectsByID($"{IdentityKey}_mainli");
                     HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
                 }
             }
-            //}
+            //} 
             this.Flush();
         }
 

@@ -67,11 +67,20 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             HandleInGroup();
             HandleInInlineMenu();
             RootMenuInstance.ItemSelected += GotOtherItemSelectedEvent;
+            if (RootMenuInstance is InlineMenu inlineMenu)
+            {
+                inlineMenu.CollapsedStatusChanged += (status) =>
+                { 
+                    this._classHelper.AddCustomClass(_selectedClassName, () => this._selected);
+                    this.Flush();
+                    Console.WriteLine("set select");
+                };
+            }
         }
 
         private void HandleInInlineMenu()
         {
-            if (RootMenuInstance is InlineMenu inlineMenu && !inlineMenu.Collapsed )
+            if (RootMenuInstance is InlineMenu inlineMenu && !inlineMenu.Collapsed)
             {
                 var depth = 1;
                 GetSubDepth(ref depth, this.ParentSubMenu);
