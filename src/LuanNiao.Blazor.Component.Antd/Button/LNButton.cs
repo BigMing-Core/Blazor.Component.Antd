@@ -11,27 +11,27 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 {
     public partial class LNButton
     {
-        public enum LBtnType
+        public enum BType
         {
             Primary,
             Dashed,
             Link
         }
 
-        public enum LBtnSize
+        public enum BSize
         {
             Large,
             Middle,
             Small
         }
 
-        public enum LBtnShape
+        public enum BShape
         {
             Circle,
             Round
         }
 
-        public enum LBtnHtmlType
+        public enum BHtmlType
         {
             Button,
             Submit,
@@ -39,16 +39,16 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         }
 
         [Parameter]
-        public LBtnSize? BtnSize { get; set; }
+        public BSize? Size { get; set; }
 
         [Parameter]
-        public LBtnType? BtnType { get; set; }
+        public BType? Type { get; set; }
 
         [Parameter]
-        public LBtnShape? BtnShape { get; set; }
+        public BShape? Shape { get; set; }
 
         [Parameter]
-        public LBtnHtmlType? BtnHtmlType { get; set; }
+        public BHtmlType? HtmlType { get; set; }
 
         [Parameter]
         public RenderFragment Icon { get; set; }
@@ -133,25 +133,24 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             HandleType();
             HandleShape();
             HandleSize();
-            HandleBooleanProperties();
-            HandleHref();
+            HandleBooleanProperties(); 
             HandleHtmlType();
             HandleIcon();
         }
 
         private void HandleType()
         {
-            if (BtnType != null)
+            if (Type != null)
             {
-                switch (BtnType.Value)
+                switch (Type.Value)
                 {
-                    case LBtnType.Primary:
+                    case BType.Primary:
                         _classHelper.AddCustomClass("ant-btn-primary");
                         break;
-                    case LBtnType.Dashed:
+                    case BType.Dashed:
                         _classHelper.AddCustomClass("ant-btn-dashed");
                         break;
-                    case LBtnType.Link:
+                    case BType.Link:
                         _classHelper.AddCustomClass("ant-btn-link");
                         break;
                     default:
@@ -162,17 +161,17 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void HandleSize()
         {
-            if (BtnSize != null)
+            if (Size != null)
             {
-                switch (BtnSize.Value)
+                switch (Size.Value)
                 {
-                    case LBtnSize.Large:
+                    case BSize.Large:
                         _classHelper.AddCustomClass("ant-btn-lg");
                         break;
-                    case LBtnSize.Small:
+                    case BSize.Small:
                         _classHelper.AddCustomClass("ant-btn-sm");
                         break;
-                    case LBtnSize.Middle:
+                    case BSize.Middle:
                     default:
                         break;
                 }
@@ -180,31 +179,18 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         }
 
 
-
-        private void HandleHref()
-        {
-            //if (!string.IsNullOrWhiteSpace(Href))
-            //{
-            //    _href = Href;
-            //    _target = !string.IsNullOrWhiteSpace(Target) ? Target : null;
-            //}
-            //else
-            //{
-            //    _href = null;
-            //    _target = null;
-            //}
-        }
+ 
 
         private void HandleShape()
         {
-            if (!BtnShape.HasValue) return;
+            if (!Shape.HasValue) return;
 
-            switch (BtnShape)
+            switch (Shape)
             {
-                case LBtnShape.Circle:
+                case BShape.Circle:
                     _classHelper.AddCustomClass("ant-btn-circle");
                     break;
-                case LBtnShape.Round:
+                case BShape.Round:
                     _classHelper.AddCustomClass("ant-btn-round");
                     break;
             }
@@ -212,13 +198,13 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void HandleHtmlType()
         {
-            if (BtnHtmlType.HasValue)
+            if (HtmlType.HasValue)
             {
-                _htmlType = BtnHtmlType.Value switch
+                _htmlType = HtmlType.Value switch
                 {
-                    LBtnHtmlType.Button => "button",
-                    LBtnHtmlType.Reset => "reset",
-                    LBtnHtmlType.Submit => "submit",
+                    BHtmlType.Button => "button",
+                    BHtmlType.Reset => "reset",
+                    BHtmlType.Submit => "submit",
                     _ => null
                 };
             }

@@ -28,6 +28,24 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         [Parameter]
         public SiderTheme Theme { get; set; } = SiderTheme.Dark;
 
+        [CascadingParameter]
+        public LNLayout ParentLayout { get; set; }
+
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            HandleParentLayout();
+        }
+
+        private void HandleParentLayout()
+        {
+            if (ParentLayout != null)
+            {
+                ParentLayout.HasSider();
+            }
+        }
+
 
         public enum SiderTheme
         {

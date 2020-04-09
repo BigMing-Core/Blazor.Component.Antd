@@ -31,8 +31,8 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                  .AddCustomClass($"ant-menu-inline", () => !Collapsed)
                  .AddCustomClass($"ant-menu-inline-collapsed", () => Collapsed)
                  .AddCustomClass($"ant-menu-vertical", () => Collapsed).Build();
-            this.Flush();
             CollapsedStatusChanged?.Invoke(Collapsed);
+            this.Flush();
         }
 
         protected override void OnParametersSet()

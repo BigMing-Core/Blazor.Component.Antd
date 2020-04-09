@@ -8,24 +8,17 @@ using LuanNiao.Blazor.Core;
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
     public partial class Footer:LNBCBase
-    {
-        [Parameter]
-        public bool HasSilder { get; set; }
-
+    { 
 
         public Footer()
         {
-            _classHelper.SetStaticClass("ant-layout");
+            _classHelper.SetStaticClass("ant-layout-footer");
         }
 
 
         protected override void OnInitialized()
         {
-            base.OnInitialized();
-            if (HasSilder)
-            {
-                _classHelper.AddCustomClass("ant-layout-has-sider");
-            } 
+            base.OnInitialized(); 
         }
     }
 }

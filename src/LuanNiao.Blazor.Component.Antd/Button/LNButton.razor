@@ -2,31 +2,67 @@
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using Microsoft.AspNetCore.Components.Web
 
-@*href="@_href" target="@_target"*@
-<button type="@_htmlType"
-        class="@ClassName"
-        disabled="@((Disabled?"disabled":null))"
-        @onclick="()=>{OnClickCallback?.Invoke(this);}">
-    @if (Loading)
-    {
-        <LoadingOutlined Spin="true"></LoadingOutlined>
-    }
-    else
-    {
-        _classHelper.RemoveCustomClass("ant-btn-loading");
-    }
-    @if (Icon != null)
-    {
-        @Icon
-    }
-    @if (ChildContent != null)
-    {
-        <span>@ChildContent</span>
-    }
-    @if (ChildContent == null && Icon == null)//fix the empty child case's style bug
-    {
-        <span></span>
-    }
 
-</button>
 
+
+@if (string.IsNullOrWhiteSpace(Href))
+{
+
+    <button type="@_htmlType"
+            class="@ClassName"
+            disabled="@((Disabled ? "disabled" : null))"
+            @onclick="() => { OnClickCallback?.Invoke(this); }">
+        @if (Loading)
+        {
+            <LoadingOutlined Spin="true"></LoadingOutlined>
+        }
+        else
+        {
+            _classHelper.RemoveCustomClass("ant-btn-loading");
+        }
+        @if (Icon != null)
+        {
+            @Icon
+        }
+        @if (ChildContent != null)
+        {
+            <span>@ChildContent</span>
+        }
+        @if (ChildContent == null && Icon == null)//fix the empty child case's style bug
+        {
+            <span></span>
+        }
+
+    </button>
+
+}
+else
+{
+
+    <a href="@Href" target="@Target"
+       class="@ClassName"
+       disabled="@((Disabled ? "disabled" : null))"
+       @onclick="() => { OnClickCallback?.Invoke(this); }">
+        @if (Loading)
+        {
+            <LoadingOutlined Spin="true"></LoadingOutlined>
+        }
+        else
+        {
+            _classHelper.RemoveCustomClass("ant-btn-loading");
+        }
+        @if (Icon != null)
+        {
+            @Icon
+        }
+        @if (ChildContent != null)
+        {
+            <span>@ChildContent</span>
+        }
+        @if (ChildContent == null && Icon == null)//fix the empty child case's style bug
+        {
+            <span></span>
+        }
+
+    </a>
+}

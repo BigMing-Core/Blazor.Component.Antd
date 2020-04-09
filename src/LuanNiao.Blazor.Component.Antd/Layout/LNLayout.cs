@@ -7,25 +7,27 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
-    public partial class Layout : LNBCBase
+    public partial class LNLayout : LNBCBase
     {
-        [Parameter]
-        public bool HasSilder { get; set; }
 
+        [CascadingParameter]
+        public LNLayout ParentLayout { get; set; }
 
-        public Layout()
+        public LNLayout()
         {
             _classHelper.SetStaticClass("ant-layout");
         }
 
 
+        internal void HasSider()
+        {
+            _classHelper.AddCustomClass("ant-layout-has-sider");
+            this.Flush();
+        }
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            if (HasSilder)
-            {
-                _classHelper.AddCustomClass("ant-layout-has-sider");
-            } 
         }
     }
 }

@@ -35,7 +35,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             _classHelper.SetStaticClass("ant-menu ant-menu-root");
         }
 
-        private readonly List<Item> _currentSelectItems = new List<Item>();
+        private readonly List<string> _currentSelectItems = new List<string>();
         [Parameter]
         public string Key { get; set; }
 
@@ -63,7 +63,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// selected keys of items
         /// </summary>
         [Parameter]
-        public List<Item> SelectItems { get => _currentSelectItems; set { } }
+        public List<string> SelectItems { get => _currentSelectItems; set { } }
         /// <summary>
         /// initial selected keys of items
         /// </summary>
@@ -73,7 +73,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// 	open keys of SubMenuItem
         /// </summary>
         [Parameter]
-        public string[] OpenKeys { get => _currentSelectItems.Select(item => item.Key).ToArray(); set { } }
+        public string[] OpenKeys { get => _currentSelectItems.ToArray(); set { } }
 
 
         /// <summary>
@@ -157,14 +157,14 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         internal void Triggered(Item sourceItem)
         {
             this.ItemSelected?.Invoke(sourceItem);
-            if (this.Multiple && !this._currentSelectItems.Contains(sourceItem))
+            if (this.Multiple && !this._currentSelectItems.Contains(sourceItem.Key))
             {
-                this._currentSelectItems.Add(sourceItem);
+                this._currentSelectItems.Add(sourceItem.Key);
             }
             else
             {
                 this._currentSelectItems.Clear();
-                this._currentSelectItems.Add(sourceItem);
+                this._currentSelectItems.Add(sourceItem.Key);
             }
         }
  

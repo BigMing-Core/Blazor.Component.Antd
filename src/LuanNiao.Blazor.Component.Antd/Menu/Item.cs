@@ -21,25 +21,15 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public bool Disabled { get; set; }
 
-        private string _key = null;
+        private string _className { get; set; }
+
         private bool _selected = false;
 
 
         [Parameter]
         public string Key
         {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(_key))
-                {
-                    return IdentityKey;
-                }
-                return _key;
-            }
-            set
-            {
-                _key = value;
-            }
+            get; set;
         }
 
         [Parameter]
@@ -63,19 +53,17 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         }
         protected override void OnInitialized()
         {
+            HandleParentStatus();
             base.OnInitialized();
             HandleInGroup();
             HandleInInlineMenu();
             RootMenuInstance.ItemSelected += GotOtherItemSelectedEvent;
-            if (RootMenuInstance is InlineMenu inlineMenu)
-            {
-                inlineMenu.CollapsedStatusChanged += (status) =>
-                { 
-                    this._classHelper.AddCustomClass(_selectedClassName, () => this._selected);
-                    this.Flush();
-                    Console.WriteLine("set select");
-                };
-            }
+        }
+
+        private void HandleParentStatus()
+        {
+            this._selected = this.RootMenuInstance.SelectItems.Contains(this.Key);
+            this._classHelper.AddCustomClass(_selectedClassName, () => this._selected);
         }
 
         private void HandleInInlineMenu()

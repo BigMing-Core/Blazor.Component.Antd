@@ -15,17 +15,13 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         public Content()
         {
-            _classHelper.SetStaticClass("ant-layout");
+            _classHelper.SetStaticClass("ant-layout-content");
         }
 
 
         protected override void OnInitialized()
         {
-            base.OnInitialized();
-            if (HasSilder)
-            {
-                _classHelper.AddCustomClass("ant-layout-has-sider");
-            }
+            base.OnInitialized(); 
         }
     }
 }
