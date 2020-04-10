@@ -1,0 +1,26 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span>
+    @if (Href != null)
+    {
+        <a class="ant-breadcrumb-link" href="@Href">
+            @ChildContent
+        </a>
+    }
+    else
+    {
+        <span class="ant-breadcrumb-link">
+            @ChildContent
+        </span>
+
+    }
+
+    @if (RootBreadcrumb.Separator == null)
+    {
+        <span class="ant-breadcrumb-separator">/</span>
+    }
+    else
+    {
+        <span class="ant-breadcrumb-separator">@RootBreadcrumb.Separator</span>
+    }
+</span>

@@ -21,7 +21,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         public event Action<bool> CollapsedStatusChanged;
 
-        public async void InverseCollapseStatus()
+        public  void InverseCollapseStatus()
         {
             Collapsed = !Collapsed;
             _classHelper                

@@ -2,9 +2,11 @@
 
 @using LuanNiao.Blazor.Component.Antd.Layout
 @using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
 
 
 <style>
+
 
 
     .site-layout-content {
@@ -26,17 +28,34 @@
     <Header>
         <div class="logo" />
         <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
-            <Item key="1">nav 1</Item>
-            <Item key="2">nav 2</Item>
-            <Item key="3">nav 3</Item>
+            <LuanNiao.Blazor.Component.Antd.Menu.Item key="1">nav 1</LuanNiao.Blazor.Component.Antd.Menu.Item>
+            <LuanNiao.Blazor.Component.Antd.Menu.Item key="2">nav 2</LuanNiao.Blazor.Component.Antd.Menu.Item>
+            <LuanNiao.Blazor.Component.Antd.Menu.Item key="3">nav 3</LuanNiao.Blazor.Component.Antd.Menu.Item>
         </HorizontalMenu>
     </Header>
     <Content CStyle="padding:0 50px">
-        @*<Breadcrumb style=>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>*@
+        <LNBreadcrumb CStyle="margin:16px 0">
+            <ChildContent>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item Href="">Home</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item Href="">List</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item Href="">App</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+            </ChildContent>
+        </LNBreadcrumb>
+
+
+        <LNBreadcrumb CStyle="margin:16px 0">
+            <Separator>
+                <LuanNiao.Blazor.Component.Antd.Icons.ArrowDownOutlined></LuanNiao.Blazor.Component.Antd.Icons.ArrowDownOutlined>
+
+
+            </Separator>
+            <ChildContent>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>Home</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>List</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+                <LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>App</LuanNiao.Blazor.Component.Antd.Breadcrumb.Item>
+            </ChildContent>
+        </LNBreadcrumb>
+
         <div class="site-layout-content">Content</div>
     </Content>
     <Footer CStyle="text-align:center">Ant Design ©2018 Created by Ant UED</Footer>
