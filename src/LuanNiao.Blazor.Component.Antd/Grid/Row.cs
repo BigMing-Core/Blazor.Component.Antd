@@ -42,7 +42,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             if (firstRender)
             {
 
-                var _initialSize = await JSRT.InvokeAsync<WindowSize>("WaveBlazor.GetWindowSize");
+                var _initialSize = await JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
 
                 if (Gutter is ResponsiveGutter adapt && adapt.TryGetGutter(_initialSize.InnerSize.Width, out var newGutter))
                 {

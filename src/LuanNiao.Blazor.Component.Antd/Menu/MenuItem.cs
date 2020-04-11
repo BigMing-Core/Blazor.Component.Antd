@@ -7,16 +7,11 @@ using LuanNiao.Blazor.Core;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class Item : LNBCBase
+    public partial class MenuItem : LNBCBase
     {
         private const string _disableClassName = "ant-menu-item-disabled";
         private const string _inGroupClassName = "ant-menu-item-only-child";
         private const string _selectedClassName = "ant-menu-item-selected";
-        public Item()
-        {
-            _classHelper.SetStaticClass("ant-menu-item");
-        }
-
 
         [Parameter]
         public bool Disabled { get; set; }
@@ -57,7 +52,21 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             base.OnInitialized();
             HandleInGroup();
             HandleInInlineMenu();
+            HandleRootMenuType();
             RootMenuInstance.ItemSelected += GotOtherItemSelectedEvent;
+            
+        }
+
+        private void HandleRootMenuType()
+        {
+            if (RootMenuInstance is DropdownMenu)
+            {
+                _classHelper.SetStaticClass("ant-dropdown-menu-item ant-dropdown-menu-item-only-child");
+            }
+            else
+            {
+                _classHelper.SetStaticClass("ant-menu-item");
+            }
         }
 
         private void HandleParentStatus()
@@ -89,7 +98,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             depth += 1;
         }
 
-        private void GotOtherItemSelectedEvent(Item targetItem)
+        private void GotOtherItemSelectedEvent(MenuItem targetItem)
         {
             if (targetItem.Equals(this))
             {

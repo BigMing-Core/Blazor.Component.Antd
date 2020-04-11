@@ -1,0 +1,18 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<lnplacehoder  id="@($"main_{IdentityKey}")">
+    <a class="@ClassName"
+       style="@CStyle"
+       onClick="LuanNiaoBlazor.BlockClickEvent()"
+      >
+        @ChildContent
+    </a>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%;"  i>
+        <div>
+            <div class="@HideDivClassName" style="min-width: 74px; left: 0px; top: 24px;" d="@($"hideDiv_{IdentityKey}")">
+                @Overlay
+            </div>
+        </div>
+    </div>
+
+</lnplacehoder>

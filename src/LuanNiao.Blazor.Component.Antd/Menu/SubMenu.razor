@@ -14,7 +14,7 @@
         </li>
     }
     <li class="@ClassName"
-        id="@($"{IdentityKey}_mainli")"
+        id="@($"mainli_{IdentityKey}")"
         style="@CStyle"
         role="menuitem"
         @onmouseover="@OnMouseOver"
@@ -29,11 +29,24 @@
                 @ChildContent
             </ul>
         }
-        else
+        else if (this.RootMenuInstance is HorizontalMenu horizontalMenu)
         {
             <div class="ant-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
                 @Title
                 <i class="ant-menu-submenu-arrow"></i>
+            </div>
+        }
+        else if (this.RootMenuInstance is DropdownMenu)
+        {
+            <div class="ant-dropdown-menu-submenu-title" role="button" aria-expanded="false" aria-haspopup="true">
+                @Title
+                <span class="ant-dropdown-menu-submenu-arrow">
+                    <span role="img" aria-label="right" class="anticon anticon-right ant-dropdown-menu-submenu-arrow-icon">
+                        <svg viewBox="64 64 896 896" focusable="false" class="" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                            <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
+                        </svg>
+                    </span>
+                </span>
             </div>
         }
     </li>
@@ -43,7 +56,7 @@
     {
         <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
             <div>
-                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"hideSubMenuDiv_{IdentityKey}")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
                     <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle">
                         @ChildContent
                     </ul>
@@ -55,13 +68,26 @@
     {
         <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
             <div>
-                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"{IdentityKey}_hideSubMenuDiv")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
-                    <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle"  id="@($"{IdentityKey}_subul")">
+                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"hideSubMenuDiv_{IdentityKey}")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+                    <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle" id="@($"subul_{IdentityKey}")">
                         @ChildContent
                     </ul>
                 </div>
             </div>
         </div>
+    }
+    else if (this.RootMenuInstance is DropdownMenu)
+    {
+        <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div>
+                <div class="@HideSubMenuDivClassName" style="@HideSubMenuDivStyle" id="@($"hideSubMenuDiv_{IdentityKey}")" @onmouseover="@OnMouseOver" @onmouseout="@OnMouseOut">
+                    <ul class="@HideSubMenuULClassName" role="menu" style="@HideSubMenuULStyle" id="@($"subul_{IdentityKey}")">
+                        @ChildContent
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     }
 
 </CascadingValue>

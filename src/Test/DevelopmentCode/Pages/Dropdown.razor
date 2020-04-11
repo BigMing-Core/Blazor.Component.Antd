@@ -1,0 +1,34 @@
+﻿@page "/dropdown"
+@using LuanNiao.Blazor.Component.Antd.Dropdown
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Menu
+
+<HrefDropdown>
+    <ChildContent>
+        Hover me <DownOutlined />
+    </ChildContent>
+    <Overlay>
+        <DropdownMenu>
+            <MenuItem>1st menu item</MenuItem>
+            <MenuItem>2nd menu item</MenuItem>
+            <SubMenu>
+                <Title>
+                    sub menu
+                </Title>
+                <ChildContent>
+                    <MenuItem>3rd menu item</MenuItem>
+                    <MenuItem>4th menu item</MenuItem>
+                </ChildContent>
+            </SubMenu>
+            <SubMenu>
+                <Title>
+                    disabled sub menu
+                </Title>
+                <ChildContent>
+                    <MenuItem>5d menu item</MenuItem>
+                    <MenuItem>6th menu item</MenuItem>
+                </ChildContent>
+            </SubMenu>
+        </DropdownMenu>
+    </Overlay>
+</HrefDropdown> 

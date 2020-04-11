@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Breadcrumb
 {
-    public partial class Item
+    public partial class BreadcrumbItem
     {
         [CascadingParameter]
         public LNBreadcrumb RootBreadcrumb { get; set; }
 
         [Parameter]
         public string Href { get; set; }
-        public Item()
+
+        [Parameter]
+        public Action<BreadcrumbItem> OnClick { get; set; }
+
+        public BreadcrumbItem()
         {
             _classHelper.SetStaticClass("ant-breadcrumb-link");
         }

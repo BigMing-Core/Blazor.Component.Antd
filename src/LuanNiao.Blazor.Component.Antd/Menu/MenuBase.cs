@@ -85,7 +85,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when select a menu item
         /// </summary>
         [Parameter]
-        public Action<MenuBase, List<Item>> OnSelect { get; set; }
+        public Action<MenuBase, List<string>> OnSelect { get; set; }
         /// <summary>
         /// 	called when click a menu item
         /// </summary>
@@ -95,7 +95,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// called when open/close sub menu
         /// </summary>
         [Parameter]
-        public Action<MenuBase, List<Item>> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<MenuBase, List<string>> OnDeselect { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         /// <summary>
         /// 	which action can trigger submenu open/close
         /// </summary>
@@ -154,7 +154,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public object Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        internal void Triggered(Item sourceItem)
+        internal void Triggered(MenuItem sourceItem)
         {
             this.ItemSelected?.Invoke(sourceItem);
             if (this.Multiple && !this._currentSelectItems.Contains(sourceItem.Key))
@@ -172,6 +172,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// <summary>
         /// there's some on selected
         /// </summary>
-        internal event Action<Item> ItemSelected;
+        internal event Action<MenuItem> ItemSelected;
     }
 }
