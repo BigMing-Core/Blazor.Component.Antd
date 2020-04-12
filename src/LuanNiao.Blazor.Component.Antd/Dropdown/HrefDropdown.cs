@@ -88,7 +88,7 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         public void OnMouseOut()
         {
             _inElementScope = false;
-
+            HideSubInfo();
         }
 
 

@@ -11,7 +11,7 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
     public abstract class AbsDropdown : Core.LNBCBase
     {
         [Parameter]
-        public TriggerType Trigger { get; set; }
+        public TriggerType Trigger { get; set; } = TriggerType.Hover;
 
         [Parameter]
         public RenderFragment Overlay { get; set; }

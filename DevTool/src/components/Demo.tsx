@@ -8,37 +8,50 @@ import "./demo.less"
 
 
 
-import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-const { SubMenu } = Menu;
+import { Menu, Dropdown, Button } from 'antd'; const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+        1st menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+        2nd menu item
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        3rd menu item
+      </a>
+    </Menu.Item>
+  </Menu>
+);
 export class Demo extends Component<any, any>{
-  state = {
-    collapsed: false,
-  };
-
-  toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+ 
   render() {
     return (
-      <Dropdown overlay={<Menu>
-        <Menu.Item>1st menu item</Menu.Item>
-        <Menu.Item>2nd menu item</Menu.Item>
-        <SubMenu title="sub menu">
-          <Menu.Item>3rd menu item</Menu.Item>
-          <Menu.Item>4th menu item</Menu.Item>
-        </SubMenu>
-        <SubMenu title="disabled sub menu" disabled>
-          <Menu.Item>5d menu item</Menu.Item>
-          <Menu.Item>6th menu item</Menu.Item>
-        </SubMenu>
-      </Menu>}>
-      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-        Hover me <DownOutlined />
-      </a>
-    </Dropdown>
+      <div>
+        <Dropdown overlay={menu} placement="bottomLeft">
+          <Button>bottomLeft</Button>
+        </Dropdown>
+        <Dropdown overlay={menu} placement="bottomCenter">
+          <Button>bottomCenter</Button>
+        </Dropdown>
+        <Dropdown overlay={menu} placement="bottomRight">
+          <Button>bottomRight</Button>
+        </Dropdown>
+        <br />
+        <Dropdown overlay={menu} placement="topLeft">
+          <Button>topLeft</Button>
+        </Dropdown>
+        <Dropdown overlay={menu} placement="topCenter">
+          <Button>topCenter</Button>
+        </Dropdown>
+        <Dropdown overlay={menu} placement="topRight">
+          <Button>topRight</Button>
+        </Dropdown>
+      </div>
 
     )
   }
