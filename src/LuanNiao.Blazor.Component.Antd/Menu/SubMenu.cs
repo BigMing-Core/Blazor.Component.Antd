@@ -54,8 +54,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public SubMenu ParentSubmenu { get; set; }
 
 
-        [Inject]
-        public IJSRuntime JSRT { get; set; }
 
 
         private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper();
@@ -142,7 +140,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 if (ParentSubmenu == null)
                 {
-                    var windowSize = await JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
+                    var windowSize = await WindowInfo.GetWindowSize();
                     var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
                     var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
 
@@ -159,7 +157,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 if (ParentSubmenu == null)
                 {
-                    var windowSize = await JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
+                    var windowSize = await WindowInfo.GetWindowSize();// JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
                     var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
                     var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
 

@@ -20,29 +20,26 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         [Parameter]
         public Align? Align
         {
-            get; 
+            get;
             set;
         }
 
-
-        [Inject]
-        private IJSRuntime _jSRuntime { get; set; }
+         
 
         [Parameter]
         public IGutter Gutter
         {
-            get; 
+            get;
             set;
         }
 
-        [Inject]
-        public IJSRuntime JSRT { get; set; }
+
         protected async override void OnAfterRender(bool firstRender)
         {
             if (firstRender)
             {
 
-                var _initialSize = await JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
+                var _initialSize = await WindowInfo.GetWindowSize();
 
                 if (Gutter is ResponsiveGutter adapt && adapt.TryGetGutter(_initialSize.InnerSize.Width, out var newGutter))
                 {

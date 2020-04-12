@@ -13,11 +13,6 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         [Parameter]
         public TriggerType Trigger { get; set; }
 
-        [Inject]
-        public ElementInfo ElementHelper { get; set; }
-        [Inject]
-        protected IJSRuntime _jSRuntime { get; set; }
-
         [Parameter]
         public RenderFragment Overlay { get; set; }
     }
