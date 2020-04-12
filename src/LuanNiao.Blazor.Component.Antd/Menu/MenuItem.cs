@@ -61,7 +61,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             if (RootMenuInstance is DropdownMenu)
             {
-                _classHelper.SetStaticClass("ant-dropdown-menu-item ant-dropdown-menu-item-only-child");
+                _classHelper.SetStaticClass("ant-dropdown-menu-item ");
             }
             else
             {

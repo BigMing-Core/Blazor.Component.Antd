@@ -20,9 +20,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private const string _verticalSubClassName = "ant-menu-submenu-vertical";
         private const string _inlineHorClassName = "ant-menu-submenu-horizontal";
         private const string _hidULClassName = "ant-menu-hidden";
-        private const string _submenuUIVerticalStaticClassName = "ant-menu ant-menu-sub  ant-menu-vertical";
-        private const string _submenuDivStaticClassName = "ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft";
-
+        private const string _submenuUIVerticalStaticClassNameWithMenu = "ant-menu ant-menu-sub  ant-menu-vertical";
+        private const string _submenuDivStaticClassNameWithMenu = "ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft";
+        private const string _submenuUIVerticalStaticClassNameWithDropdown = "ant-dropdown-menu ant-dropdown-menu-sub  ant-dropdown-menu-vertical";
+        private const string _submenuDivStaticClassNameWithDropdown = "ant-dropdown-menu-submenu ant-dropdown-menu-submenu-popup ant-dropdown-menu-light ant-dropdown-menu-submenu-placement-rightTop";
 
 
 
@@ -57,12 +58,8 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         public IJSRuntime JSRT { get; set; }
 
 
-        private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper()
-            .SetStaticClass(_submenuDivStaticClassName)
-            .AddCustomClass(_hideDivClassName);
-        private readonly ClassNameHelper _hideSubMenuULClassNameHelper = new ClassNameHelper()
-            .SetStaticClass(_submenuUIVerticalStaticClassName)
-            .AddCustomClass(_hidULClassName);
+        private readonly ClassNameHelper _hideSubMenuDivClassNameHelper = new ClassNameHelper();
+        private readonly ClassNameHelper _hideSubMenuULClassNameHelper = new ClassNameHelper();
         private string HideSubMenuDivClassName { get; set; }
         private string HideSubMenuULClassName { get; set; }
 
@@ -80,8 +77,16 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             base.OnInitialized();
             HandleRootMenuType();
 
-            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper.AddCustomClass(_hideDivClassName).Build();
-            HideSubMenuULClassName = _hideSubMenuULClassNameHelper.AddCustomClass(_hidULClassName).Build();
+            HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
+            .SetStaticClass(_submenuDivStaticClassNameWithMenu,()=>!(RootMenuInstance is DropdownMenu))
+            .SetStaticClass(_submenuDivStaticClassNameWithDropdown, () => RootMenuInstance is DropdownMenu)
+            .AddCustomClass(_hideDivClassName)
+            .AddCustomClass(_hideDivClassName).Build();
+            HideSubMenuULClassName = _hideSubMenuULClassNameHelper
+            .SetStaticClass(_submenuUIVerticalStaticClassNameWithMenu, () => !(RootMenuInstance is DropdownMenu))
+            .SetStaticClass(_submenuUIVerticalStaticClassNameWithDropdown, () => RootMenuInstance is DropdownMenu)
+            .AddCustomClass(_hidULClassName)
+            .AddCustomClass(_hidULClassName).Build();
         }
         private void HandleRootMenuType()
         {
@@ -171,7 +176,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                     HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
                 }
             }
-            //} 
+            //}  
             this.Flush();
         }
 
