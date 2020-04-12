@@ -1,15 +1,14 @@
-﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+﻿@inherits AbsDropdown
 
-<lnplacehoder  id="@($"main_{IdentityKey}")">
+<lnplacehoder id="@($"main_{IdentityKey}")">
     <a class="@ClassName"
        style="@CStyle"
-       onClick="LuanNiaoBlazor.BlockClickEvent()"
-      >
+       onClick="LuanNiaoBlazor.BlockClickEvent()">
         @ChildContent
     </a>
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%;"  i>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%;" i>
         <div>
-            <div class="@HideDivClassName" style="min-width: 74px; left: 0px; top: 24px;" d="@($"hideDiv_{IdentityKey}")">
+            <div class="@_hideDivClassNameStr" style="@_hideSubMenuDivStyleStr" id="@($"hideDiv_{IdentityKey}")">
                 @Overlay
             </div>
         </div>

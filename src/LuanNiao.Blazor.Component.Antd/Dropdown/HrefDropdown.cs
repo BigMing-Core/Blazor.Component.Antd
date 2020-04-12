@@ -1,4 +1,5 @@
 ﻿using LuanNiao.Blazor.Core;
+using LuanNiao.Blazor.Core.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -8,26 +9,22 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Dropdown
 {
-    public partial class HrefDropdown
+    public partial class HrefDropdown : AbsDropdown
     {
         private const string _hideDivClassName = "ant-dropdown-hidden";
 
         private readonly ClassNameHelper _hideDivInfo = new ClassNameHelper().SetStaticClass("ant-dropdown ant-dropdown-placement-bottomLeft").AddCustomClass(_hideDivClassName);
         private bool _inElementScope = false;
 
-        [Parameter]
-        public string HideDivClassName { get; set; }
+        private readonly OriginalStyleHelper _hideSubMenuDivStyle = new OriginalStyleHelper();
 
-        [Parameter]
-        public RenderFragment Overlay { get; set; }
-
-        [Inject]
-        private IJSRuntime _jSRuntime { get; set; }
+        private string _hideDivClassNameStr;
+        private string _hideSubMenuDivStyleStr;
 
         public HrefDropdown()
         {
             _classHelper.SetStaticClass("ant-dropdown-link ant-dropdown-trigger");
-            HideDivClassName = _hideDivInfo.Build();
+            _hideDivClassNameStr = _hideDivInfo.Build();
         }
 
         protected override void OnInitialized()
@@ -37,25 +34,34 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
 
         [JSInvokable]
-        public void OnMouseEnter()
+        public async void OnMouseOver()
         {
             _inElementScope = true;
-            HideDivClassName = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
-            this.Flush(); 
+            var windowSize = await _jSRuntime.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
+            var elementInfo = await ElementHelper.GetElementRectsByID($"main_{IdentityKey}");
+
+            _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
+                .AddCustomStyle("left", $"{elementInfo.Left}px")
+                .AddCustomStyle("top", $"{ elementInfo.Bottom}px")
+                .AddCustomStyle("min-width", "74px")
+                .Build();
+            _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            this.Flush();
         }
 
         [JSInvokable]
         public void OnMouseOut()
         {
             _inElementScope = false;
-            Task.Run(() => {
+            Task.Run(() =>
+            {
                 Task.Delay(100).Wait();
                 if (_inElementScope)
                 {
                     return;
                 }
-                HideDivClassName = _hideDivInfo.AddCustomClass(_hideDivClassName).Build();
-                this.Flush(); 
+                _hideDivClassNameStr = _hideDivInfo.AddCustomClass(_hideDivClassName).Build();
+                this.Flush();
             });
         }
 
@@ -73,8 +79,7 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
         private void BindMouseEvent()
         {
-            _jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOver", $"main_{IdentityKey}", "OnMouseEnter", DotNetObjectReference.Create(this));
-            //_jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOver", $"hideDiv_{IdentityKey}", "OnMouseEnter", DotNetObjectReference.Create(this));
+            _jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOver", $"main_{IdentityKey}", "OnMouseOver", DotNetObjectReference.Create(this));
             _jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOut", $"main_{IdentityKey}", "OnMouseOut", DotNetObjectReference.Create(this));
         }
     }
