@@ -75,6 +75,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             base.OnInitialized();
             HandleRootMenuType();
 
+            _classHelper.AddCustomClass("ant-dropdown-menu-submenu-disabled", () => this.Disabled);
             HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
             .SetStaticClass(_submenuDivStaticClassNameWithMenu, () => !(RootMenuInstance is DropdownMenu))
             .SetStaticClass(_submenuDivStaticClassNameWithDropdown, () => RootMenuInstance is DropdownMenu)
@@ -114,6 +115,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         }
         private async void OnMouseOver()
         {
+            if (this.Disabled)
+            {
+                return;
+            }
             _inThisElementScope = true;
 
             /*
@@ -153,21 +158,28 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                     HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
                 }
             }
-            else if (RootMenuInstance is DropdownMenu)
+            else if (RootMenuInstance is DropdownMenu dropdownMenu)
             {
                 if (ParentSubmenu == null)
                 {
-                    var windowSize = await WindowInfo.GetWindowSize();// JSRT.InvokeAsync<WindowSize>("LuanNiaoBlazor.GetWindowSize");
+                    var windowSize = await WindowInfo.GetWindowSize();
                     var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
+                    var dropDownRectInfo = await dropdownMenu.GetMainElementRects();
                     var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
 
-                    var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height) ? elementInfo.Bottom - ulInfo.Height : elementInfo.Y;
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue - 24/*I have no idea about this number, dropdown's top needs this 24px.*/}px").Build();
+                    var topValue = elementInfo.Y - dropDownRectInfo.Y;
+                    HideSubMenuDivStyle = _hideSubMenuDivStyle
+                        .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
+                        .AddCustomStyle("top", $"{topValue}px")
+                        .Build();
                 }
                 else
                 {
                     var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
+                    HideSubMenuDivStyle = _hideSubMenuDivStyle
+                        .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
+                        .AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px")
+                        .Build();
                 }
             }
             HideSubMenuDivStyle = _hideSubMenuDivStyle.RemoveCustomStyle("opacity").Build();
@@ -176,6 +188,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         private void OnMouseClick()
         {
+            if (this.Disabled)
+            {
+                return;
+            }
             if (this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
             {
                 return;
@@ -190,6 +206,10 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
         private void OnMouseOut()
         {
+            if (this.Disabled)
+            {
+                return;
+            }
             _inThisElementScope = false;
             Task.Run(() =>
             {

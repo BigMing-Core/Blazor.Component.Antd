@@ -1,7 +1,7 @@
 ﻿@inherits LuanNiao.Blazor.Component.Antd.Menu.MenuBase
 
 <CascadingValue Value="this">
-    <ul class="@ClassName" role="menu" tabindex="0" style="@CStyle">
+    <ul id="@($"main_{IdentityKey}")" class="@ClassName" role="menu" tabindex="0" style="@CStyle">
         @ChildContent
     </ul>
 </CascadingValue>

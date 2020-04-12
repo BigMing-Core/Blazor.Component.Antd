@@ -58,9 +58,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 default:
                     break;
             }
-        }
-
-        [Parameter]
-        public List<MenuBase> SubMenu { get; set; }
+        } 
     }
 }

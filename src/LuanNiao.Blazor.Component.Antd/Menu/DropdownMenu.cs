@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LuanNiao.Blazor.Core.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             _classHelper
                 .AddCustomClass("ant-dropdown-menu-light", () => this.Theme== MenuTheme.Light)
                 .AddCustomClass("ant-dropdown-menu-dark", () => this.Theme == MenuTheme.Dark);
+        }
+
+        public async Task<ElementRects> GetMainElementRects()
+        {
+            return await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
         }
     }
 }

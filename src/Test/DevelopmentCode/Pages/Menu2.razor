@@ -3,7 +3,7 @@
 @using LuanNiao.Blazor.Component.Antd.Menu
 @using LuanNiao.Blazor.Component.Antd.Icons
 <div style="width: 256px;">
-    <LNButton BtnType="LNButton.LBtnType.Primary" OnClickCallback="(item) => { instance.InverseCollapseStatus(); }">
+    <LNButton Type="LNButton.BType.Primary" OnClickCallback="(item) => { instance.InverseCollapseStatus(); }">
         <MenuUnfoldOutlined></MenuUnfoldOutlined>
     </LNButton>
     <InlineMenu Theme="MenuBase.MenuTheme.Dark" @ref="instance">

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Dropdown
 {
-    public partial class BtnDropdown
+    public enum DropdownTheme
     {
+        HrefByA = 0,
+        Button = 1
     }
 }

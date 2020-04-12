@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Dropdown
 {
-    public partial class HrefDropdown : AbsDropdown
+    public partial class LNDropdown
     {
         private const string _hideDivClassName = "ant-dropdown-hidden";
 
@@ -21,15 +21,37 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         private string _hideDivClassNameStr;
         private string _hideSubMenuDivStyleStr;
 
-        public HrefDropdown()
+
+        [Parameter]
+        public TriggerType Trigger { get; set; } = TriggerType.Hover;
+
+        [Parameter]
+        public RenderFragment Overlay { get; set; }
+
+        [Parameter]
+        public DropdownTheme Theme { get; set; } = DropdownTheme.HrefByA;
+
+        public LNDropdown()
         {
-            _classHelper.SetStaticClass("ant-dropdown-link ant-dropdown-trigger");
             _hideDivClassNameStr = _hideDivInfo.Build();
         }
+
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            switch (Theme)
+            {
+                case DropdownTheme.HrefByA:
+                    _classHelper.SetStaticClass("ant-dropdown-link ant-dropdown-trigger");
+                    break;
+                case DropdownTheme.Button:
+                    _classHelper.SetStaticClass("ant-btn ant-dropdown-trigger");
+                    break;
+                default:
+                    break;
+            }
         }
 
 
@@ -58,14 +80,13 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
         private async Task ShowSubInfo()
         {
-            var windowSize = await WindowInfo.GetWindowSize();
-            var elementRectInfo = await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
-
+            var elementRectInfo = await GetMainElementRects();
+            var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8/*Antd's style needs this 8px(•́⌄•́๑)૭✧*/ : elementRectInfo.Bottom;
             _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
-                .AddCustomStyle("left", $"{elementRectInfo.Left}px")
-                .AddCustomStyle("top", $"{ elementRectInfo.Bottom}px")
-                .AddCustomStyle("min-width", "74px")
-                .Build();
+                    .AddCustomStyle("left", $"{elementRectInfo.Left}px")
+                    .AddCustomStyle("top", $"{ top}px")
+                    .AddCustomStyle("min-width", "74px")
+                    .Build();
             _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
             this.Flush();
         }
@@ -110,16 +131,17 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
             if (this.Trigger == TriggerType.Click)
             {
                 ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
-                //_jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnClick", $"main_{IdentityKey}", "WillShowSubInfo", DotNetObjectReference.Create(this));
             }
             else
             {
                 ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
                 ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
-                //_jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOver", $"main_{IdentityKey}", "WillShowSubInfo", DotNetObjectReference.Create(this));
-                //_jSRuntime.InvokeVoidAsync("LuanNiaoBlazor.BindElementOnMouseOut", $"main_{IdentityKey}", "OnMouseOut", DotNetObjectReference.Create(this));
             }
+        }
 
+        public async Task<ElementRects> GetMainElementRects()
+        {
+            return await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
         }
     }
 }
