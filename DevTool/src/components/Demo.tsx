@@ -13,26 +13,26 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 const menu = (
   <Menu>
-  <Menu.Item>1st menu item</Menu.Item>
-  <Menu.Item>2nd menu item</Menu.Item>
-  <SubMenu title="sub menu">
-    <Menu.Item>3rd menu item</Menu.Item>
-    <Menu.Item>4th menu item</Menu.Item>
-  </SubMenu>
-  <SubMenu title="disabled sub menu" disabled>
-    <Menu.Item>5d menu item</Menu.Item>
-    <Menu.Item>6th menu item</Menu.Item>
-  </SubMenu>
-</Menu>
+    <Menu.Item key="1">1st menu item</Menu.Item>
+    <Menu.Item key="2">2nd menu item</Menu.Item>
+    <Menu.Item key="3">3rd menu item</Menu.Item>
+  </Menu>
 );
 export class Demo extends Component<any, any>{
  
   render() {
     return (
-      <Dropdown overlay={menu}>
-      <Button>
-        Button <DownOutlined />
-      </Button>
+      <Dropdown overlay={menu} trigger={['contextMenu']}>
+      <div
+        className="site-dropdown-context-menu"
+        style={{
+          textAlign: 'center',
+          height: 200,
+          lineHeight: '200px',
+        }}
+      >
+        Right Click on here
+      </div>
     </Dropdown>
 
     )

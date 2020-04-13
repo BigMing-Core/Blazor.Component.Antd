@@ -31,6 +31,11 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         [Parameter]
         public DropdownTheme Theme { get; set; } = DropdownTheme.HrefByA;
 
+
+        [Parameter]
+        public RenderFragment ContextFrame { get; set; }
+
+
         public LNDropdown()
         {
             _hideDivClassNameStr = _hideDivInfo.Build();
@@ -41,13 +46,41 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         {
             base.OnInitialized();
 
+            if (Trigger == TriggerType.ContextMenu)
+            {
+                HandleTriggerType();
+            }
+            else
+            {
+                HandleTheme();
+            }
+            _classHelper.AddCustomClass("ant-dropdown-trigger");
+        }
+
+
+        private void HandleTriggerType()
+        {
+            switch (Trigger)
+            {
+                case TriggerType.ContextMenu:
+                    _classHelper.SetStaticClass("ln-site-dropdown-context-menu");
+                    break;
+                case TriggerType.Hover:
+                case TriggerType.Click:
+                default:
+                    break;
+            }
+        }
+
+        private void HandleTheme()
+        {
             switch (Theme)
             {
                 case DropdownTheme.HrefByA:
-                    _classHelper.SetStaticClass("ant-dropdown-link ant-dropdown-trigger");
+                    _classHelper.SetStaticClass("ant-dropdown-link");
                     break;
                 case DropdownTheme.Button:
-                    _classHelper.SetStaticClass("ant-btn ant-dropdown-trigger");
+                    _classHelper.SetStaticClass("ant-btn");
                     break;
                 default:
                     break;
@@ -56,38 +89,73 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
 
         [JSInvokable]
-        public async void WillShowSubInfo()
+        public async void WillShowSubInfo(WindowEvent data)
         {
-            if (this.Trigger == TriggerType.Hover)
+
+            switch (this.Trigger)
             {
-                this._inElementScope = true;
-                await ShowSubInfo();
-            }
-            else
-            {
-                this._inElementScope = !this._inElementScope;
-                if (this._inElementScope)
-                {
+                case TriggerType.Hover:
+                    this._inElementScope = true;
                     await ShowSubInfo();
-                }
-                else
-                {
-                    HideSubInfo();
-                }
+                    break;
+                case TriggerType.Click:
+                    this._inElementScope = !this._inElementScope;
+                    if (this._inElementScope)
+                    {
+                        await ShowSubInfo();
+                    }
+                    else
+                    {
+                        HideSubInfo();
+                    }
+                    break;
+                case TriggerType.ContextMenu:
+                    ShowSubInfo(data);
+                    break;
+                default:
+                    break;
             }
 
+
+        }
+
+        private void ShowSubInfo(WindowEvent data)
+        {
+            _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
+                    .AddCustomStyle("left", $"{data.MouseEvent.ClientX}px")
+                    .AddCustomStyle("top", $"{data.MouseEvent.ClientY}px")
+                    .AddCustomStyle("min-width", "74px")
+                    .Build();
+            _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            this.Flush();
         }
 
         private async Task ShowSubInfo()
         {
-            var elementRectInfo = await GetMainElementRects();
-            var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8/*Antd's style needs this 8px(•́⌄•́๑)૭✧*/ : elementRectInfo.Bottom;
-            _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
-                    .AddCustomStyle("left", $"{elementRectInfo.Left}px")
-                    .AddCustomStyle("top", $"{ top}px")
-                    .AddCustomStyle("min-width", "74px")
-                    .Build();
-            _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            if (this.Trigger == TriggerType.ContextMenu)
+            {
+
+                //var elementRectInfo = await WindowInfo.GetCurrentMouseLocation();
+
+                //_hideSubMenuDivStyleStr = _hideSubMenuDivStyle
+                //        .AddCustomStyle("left", $"{elementRectInfo.X}px")
+                //        .AddCustomStyle("top", $"{elementRectInfo.Y}px")
+                //        .AddCustomStyle("min-width", "74px")
+                //        .Build();
+                //_hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            }
+            else
+            {
+                var elementRectInfo = await GetMainElementRects();
+                /*Antd's style needs this 8px(•́⌄•́๑)૭✧ use to fix the div's location, if we haven't this 8px, the div will cover the button's bottom.*/
+                var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8 : elementRectInfo.Bottom;
+                _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
+                        .AddCustomStyle("left", $"{elementRectInfo.Left}px")
+                        .AddCustomStyle("top", $"{ top}px")
+                        .AddCustomStyle("min-width", "74px")
+                        .Build();
+                _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            }
             this.Flush();
         }
 
@@ -132,10 +200,15 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
             {
                 ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
             }
-            else
+            else if (this.Trigger == TriggerType.Hover)
             {
                 ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
                 ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
+            }
+            else if (this.Trigger == TriggerType.ContextMenu)
+            {
+                ElementInfo.BindContextMenuEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this, true);
+                ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
             }
         }
 

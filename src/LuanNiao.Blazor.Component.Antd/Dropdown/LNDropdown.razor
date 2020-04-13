@@ -1,14 +1,33 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
-
+<style>
+    .ln-site-dropdown-context-menu {
+        background: #f7f7f7;
+        color: #777;
+    }
+</style>
 <lnplacehoder id="@($"main_{IdentityKey}")">
-    @if (Theme == DropdownTheme.Button)
+    @if (Trigger == TriggerType.ContextMenu)
+    {
+
+        if (this.ContextFrame == null)
+        {
+            <div class="ln-site-dropdown-context-menu ant-dropdown-trigger" style="text-align: center;height: 200px;line-height: 200px;">
+                @ChildContent
+            </div>
+        }
+        else
+        {
+            @ContextFrame
+        }
+    }
+    else if (Theme == DropdownTheme.Button)
     {
         <button type="button" class="@ClassName"
-                style="@CStyle"> 
-                @ChildContent 
+                style="@CStyle">
+            @ChildContent
         </button>
     }
-    else
+    else if (Theme == DropdownTheme.HrefByA)
     {
         <a class="@ClassName"
            style="@CStyle"
@@ -26,3 +45,5 @@
         </div>
     </div>
 </lnplacehoder>
+
+
