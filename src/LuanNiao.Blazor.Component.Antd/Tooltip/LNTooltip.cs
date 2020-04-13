@@ -114,60 +114,60 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             var left = 0d;
             var top = 0d;
 
-            
+
 
             switch (Placement)
             {
                 case PlacementType.Top:
                     left = spanElementInfo.X - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
-                    top = spanElementInfo.Y - spanElementInfo.Height - _toolTopArrowFixSize;
+                    top = spanElementInfo.OffetTop - spanElementInfo.Height - _toolTopArrowFixSize;
                     break;
                 case PlacementType.TopLeft:
                     left = spanElementInfo.X;
-                    top = spanElementInfo.Y - spanElementInfo.Height - _toolTopArrowFixSize;
+                    top = spanElementInfo.OffetTop - spanElementInfo.Height - _toolTopArrowFixSize;
                     break;
                 case PlacementType.TopRight:
                     left = spanElementInfo.Right - hideDivElementInfo.Width;
-                    top = spanElementInfo.Y - spanElementInfo.Height - _toolTopArrowFixSize;
+                    top = spanElementInfo.OffetTop - spanElementInfo.Height - _toolTopArrowFixSize;
                     break;
 
                 case PlacementType.Left:
                     left = spanElementInfo.Left - hideDivElementInfo.Width;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
                 case PlacementType.LeftTop:
                     left = spanElementInfo.Left - hideDivElementInfo.Width;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
                 case PlacementType.LeftBottom:
                     left = spanElementInfo.Left - hideDivElementInfo.Width;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
 
                 case PlacementType.Right:
                     left = spanElementInfo.Right;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
                 case PlacementType.RightTop:
                     left = spanElementInfo.Right;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
                 case PlacementType.RightBottom:
                     left = spanElementInfo.Right;
-                    top = spanElementInfo.Y;
+                    top = spanElementInfo.OffetTop;
                     break;
 
                 case PlacementType.Bottom:
                     left = spanElementInfo.X - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
-                    top = spanElementInfo.Bottom;
+                    top = spanElementInfo.OffetTop + spanElementInfo.OffsetHeight;
                     break;
                 case PlacementType.BottomLeft:
                     left = spanElementInfo.X;
-                    top = spanElementInfo.Bottom;
+                    top = spanElementInfo.OffetTop + spanElementInfo.OffsetHeight;
                     break;
                 case PlacementType.BottomRight:
                     left = spanElementInfo.Right - hideDivElementInfo.Width;
-                    top = spanElementInfo.Bottom;
+                    top = spanElementInfo.OffetTop + spanElementInfo.OffsetHeight;
                     break;
             }
 
