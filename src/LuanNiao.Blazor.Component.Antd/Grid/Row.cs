@@ -5,20 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LuanNiao.Blazor.Core;
-using LuanNiao.Blazor.Core.Common;
-using LuanNiao.Blazor.Component.Antd.Common;
+using LuanNiao.Blazor.Core.Common; 
 
 namespace LuanNiao.Blazor.Component.Antd.Grid
 {
     public partial class Row : LNBCBase
     {
         [Parameter]
-        public Justify? Justify
+        public JustifyType? Justify
         {
             get; set;
         }
         [Parameter]
-        public Align? Align
+        public AlignType? Align
         {
             get;
             set;
@@ -69,19 +68,19 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             }
             switch (Justify.Value)
             {
-                case Common.Justify.Start:
+                case JustifyType.Start:
                     _classHelper.AddCustomClass("ant-row-start");
                     break;
-                case Common.Justify.End:
+                case JustifyType.End:
                     _classHelper.AddCustomClass("ant-row-end");
                     break;
-                case Common.Justify.Center:
+                case JustifyType.Center:
                     _classHelper.AddCustomClass("ant-row-center");
                     break;
-                case Common.Justify.SpaceAround:
+                case JustifyType.SpaceAround:
                     _classHelper.AddCustomClass("ant-row-space-around");
                     break;
-                case Common.Justify.SpaceBetween:
+                case JustifyType.SpaceBetween:
                     _classHelper.AddCustomClass("ant-row-space-between");
                     break;
                 default:
@@ -97,13 +96,13 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             }
             switch (Align.Value)
             {
-                case Common.Align.Top:
+                case AlignType.Top:
                     _classHelper.AddCustomClass("ant-row-top");
                     break;
-                case Common.Align.Middle:
+                case AlignType.Middle:
                     _classHelper.AddCustomClass("ant-row-middle");
                     break;
-                case Common.Align.Bottom:
+                case AlignType.Bottom:
                     _classHelper.AddCustomClass("ant-row-bottom");
                     break;
                 default:

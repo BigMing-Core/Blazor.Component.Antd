@@ -1,0 +1,18 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+
+<div id="@($"main_{IdentityKey}")" style="display:inline-block" >
+    @ChildContent
+</div>
+
+
+<div style="position: absolute; top: 0px; left: 0px; width: 100%;">
+    <div>
+        <div class="@OverlayClass" style="@OverlayStyle" id="@($"hidediv_{IdentityKey}")">
+            <div class="ant-tooltip-content">
+                <div class="ant-tooltip-arrow"> </div>
+                <div class="ant-tooltip-inner" role="tooltip">@Title</div>
+            </div>
+        </div>
+    </div>
+</div>

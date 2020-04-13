@@ -132,30 +132,16 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
         private async Task ShowSubInfo()
         {
-            if (this.Trigger == TriggerType.ContextMenu)
-            {
-
-                //var elementRectInfo = await WindowInfo.GetCurrentMouseLocation();
-
-                //_hideSubMenuDivStyleStr = _hideSubMenuDivStyle
-                //        .AddCustomStyle("left", $"{elementRectInfo.X}px")
-                //        .AddCustomStyle("top", $"{elementRectInfo.Y}px")
-                //        .AddCustomStyle("min-width", "74px")
-                //        .Build();
-                //_hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
-            }
-            else
-            {
-                var elementRectInfo = await GetMainElementRects();
-                /*Antd's style needs this 8px(•́⌄•́๑)૭✧ use to fix the div's location, if we haven't this 8px, the div will cover the button's bottom.*/
-                var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8 : elementRectInfo.Bottom;
-                _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
-                        .AddCustomStyle("left", $"{elementRectInfo.Left}px")
-                        .AddCustomStyle("top", $"{ top}px")
-                        .AddCustomStyle("min-width", "74px")
-                        .Build();
-                _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
-            }
+            var elementRectInfo = await GetMainElementRects();
+            /*Antd's style needs this 8px(•́⌄•́๑)૭✧ use to fix the div's location, if we haven't this 8px, the div will cover the button's bottom.*/
+            var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8 : elementRectInfo.Bottom;
+            _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
+                    .AddCustomStyle("left", $"{elementRectInfo.Left}px")
+                    .AddCustomStyle("top", $"{ top}px")
+                    .AddCustomStyle("min-width", "74px")
+                    .Build();
+            _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
+            //}
             this.Flush();
         }
 
