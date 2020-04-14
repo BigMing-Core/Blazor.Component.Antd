@@ -21,13 +21,12 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
 
         public LNRadio()
         {
-            _classHelper.AddCustomClass("ant-radio");
+            _classHelper.SetStaticClass("ant-radio");
         }
         protected override void OnParametersSet()
         {
-              _classHelper.AddCustomClass(_checkClass,()=> Checked)
-                .AddCustomClass(_disabledClass,()=> Disabled)
-                .RemoveCustomClass(_disabledClass,()=>!Disabled); 
+            _classHelper.AddCustomClass(_checkClass, () => Checked)
+              .AddOrRemove(_disabledClass, condition: () => Disabled);
             this.Flush();
         }
         protected override void OnInitialized()
@@ -41,8 +40,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
                 return;
             }
             Checked = !Checked;
-            _classHelper.AddCustomClass(_checkClass,()=> Checked)
-                .RemoveCustomClass(_checkClass,()=>!Checked); 
+            _classHelper.AddOrRemove(_checkClass, ()=> Checked); 
            this.Flush();
         }
 

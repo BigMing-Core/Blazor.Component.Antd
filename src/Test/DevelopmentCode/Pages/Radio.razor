@@ -9,6 +9,13 @@
 <LNRadio Disabled="@(disable)">Disbled</LNRadio>
 <LNButton Type="LNButton.BType.Primary" OnClickCallback="NumPlus">Toggle disabled</LNButton>
 <a>@disable</a>
+<div>--</div>
+<LNRadioGroup>
+    <LNRadioItem>a</LNRadioItem>
+    <LNRadioItem>b</LNRadioItem>
+    <LNRadioItem>c</LNRadioItem>
+    <LNRadioItem>d</LNRadioItem>
+</LNRadioGroup>
 @code{
     private bool disable = true;
     private void NumPlus(LNButton _)
