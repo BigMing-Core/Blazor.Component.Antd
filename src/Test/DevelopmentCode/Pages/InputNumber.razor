@@ -1,0 +1,37 @@
+﻿@page "/inputnumber"
+@using LuanNiao.Blazor.Component.Antd.InputNumber
+@using LuanNiao.Blazor.Component.Antd.Button
+
+<LNInputNumber Size="LuanNiao.Blazor.Component.Antd.ComponentSize.Small"></LNInputNumber>
+<LNInputNumber></LNInputNumber>
+<LNInputNumber Size="LuanNiao.Blazor.Component.Antd.ComponentSize.Large"></LNInputNumber>
+
+
+
+<LNInputNumber Min="100" Max="110"></LNInputNumber>
+
+
+
+<br />
+
+<LNInputNumber Size="LuanNiao.Blazor.Component.Antd.ComponentSize.Large" Disabled="@Disabled"></LNInputNumber>
+<LNButton OnClickCallback="@AAAA">
+    click to disiabled the input number control
+</LNButton>
+
+
+
+@code{
+
+    public bool Disabled { get; set; } = false;
+
+    public void AAAA(LNButton btn)
+    {
+
+        Disabled = !Disabled;
+        this.StateHasChanged();
+    }
+
+
+
+}
