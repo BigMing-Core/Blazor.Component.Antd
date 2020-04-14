@@ -16,9 +16,13 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
         private const string _lgSizeClassName = "ant-input-number-lg";
         private const string _smallSizeClassName = "ant-input-number-sm";
         private double _value = 0;
+        private string _displayValue = "";
 
         [Parameter]
         public ComponentSize Size { get; set; } = ComponentSize.Middle;
+
+        [Parameter]
+        public string Formatter { get; set; } = "{0}";
 
         [Parameter]
         public double Min { get; set; } = Double.MinValue;
@@ -85,9 +89,11 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
             {
                 return;
             }
-            _value += Step;
-            this.Flush();
+            _value += Step; 
+            HandleDisplayValue();
         }
+
+
 
 
         [JSInvokable]
@@ -101,6 +107,13 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
                 return;
             }
             _value -= Step;
+            HandleDisplayValue();
+        }
+
+
+        private void HandleDisplayValue()
+        {
+            _displayValue = string.Format(this.Formatter, _value);
             this.Flush();
         }
 
@@ -144,6 +157,8 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
             {
                 this._value = Min;
             }
+
+            HandleDisplayValue();
         }
 
 
