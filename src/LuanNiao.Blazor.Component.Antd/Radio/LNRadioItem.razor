@@ -1,20 +1,22 @@
-﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+﻿@inherits LuanNiao.Blazor.Component.Antd.Radio.RadioBase
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using Microsoft.AspNetCore.Components.Web
 
-<label class="ant-radio-wrapper">
-    <span class="@ClassName">
-        <input type="radio" class="ant-radio-input" value=""
-               disabled="@((Disabled?"disabled":null))"
-               @onclick="()=> { HandleClickEvent(); }"
-               @onkeypress:preventDefault
-               @onclick:stopPropagation="true">
+   
+        <label class="ant-radio-wrapper">
+            <span class="@ClassName">
+                <input type="radio" class="ant-radio-input" value="@Value"
+                       disabled="@((Disabled?"disabled":null))"
+                       @onclick="()=> { HandleClickEvent(); }"
+                       @onkeypress:preventDefault
+                       @onclick:stopPropagation="true">
 
-        <span class="ant-radio-inner"></span>
-    </span>
-    @if (ChildContent != null)
-    {
-        <span>@ChildContent</span>
-    }
+                <span class="ant-radio-inner"></span>
+            </span>
+            @if (ChildContent != null)
+            {
+                <span>@ChildContent</span>
+            }
 
-</label>
+        </label>
+   

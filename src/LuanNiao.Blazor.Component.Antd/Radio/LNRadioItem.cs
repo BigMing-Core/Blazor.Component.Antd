@@ -15,8 +15,11 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         public bool Disabled { get; set; }
         [Parameter]
         public bool Checked { get; set; }
-        //[CascadingParameter]
-        //public int Value { get; set; }
+        [Parameter ]
+        public int Value { get; set; }
+        [CascadingParameter]
+        public LNRadioGroup Group { get; set; }
+
         private const string _checkClass = "ant-radio-checked";
         private const string _disabledClass = "ant-radio-disabled";
 
@@ -33,7 +36,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            this.ItemSelected += GotOtherItemSelectedEvent;
+            Group.ItemSelected += GotOtherItemSelectedEvent;
         }
 
         private void HandleClickEvent()
@@ -44,7 +47,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
             }
             Checked = !Checked;
             this._classHelper.AddCustomClass(_checkClass);
-            this.Triggered(this);
+            Group.Triggered(this);
             this.Flush();
         }
  
@@ -52,34 +55,11 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         {
             if (targetItem.Equals(this))
             {
+                Group._checkValue = this.Value;
                 return;
             }
             this._classHelper.RemoveCustomClass(_checkClass);
             this.Flush();
-        }
-        [Parameter]
-        public List<string> SelectItems { get; set; } = new List<string>();
-        [Parameter]
-        public string Key
-        {
-            get; set;
-        }
-        internal void Triggered(LNRadioItem sourceItem)
-        {
-            this.ItemSelected?.Invoke(sourceItem);
-            if ( !this.SelectItems.Contains(sourceItem.IdentityKey))
-            {
-                this.SelectItems.Add(sourceItem.IdentityKey);
-            }
-            else
-            {
-                this.SelectItems.Clear();
-                this.SelectItems.Add(sourceItem.IdentityKey);
-            }
-        }
-        /// <summary>
-        /// there's some on selected
-        /// </summary>
-        internal event Action<LNRadioItem> ItemSelected;
+        }    
     }
 }
