@@ -1,7 +1,8 @@
 ﻿@page "/button"
 @using LuanNiao.Blazor.Component.Antd.Button
 @using LuanNiao.Blazor.Component.Antd.Icons
-@using LuanNiao.Blazor.Component.Antd.Grid 
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd
 
 
 <LNButton Type="LNButton.BType.Primary">Primary</LNButton>
@@ -10,7 +11,7 @@
 <LNButton Type="LNButton.BType.Link" OnClickCallback="@((_) => { Console.WriteLine("再来"); })">Link</LNButton>
 
 
-<LNButton Size="LNButton.BSize.Large" OnClickCallback="@((_) => { Console.WriteLine("abc"); })">
+<LNButton Size="ComponentSize.Large" OnClickCallback="@((_) => { Console.WriteLine("abc"); })">
     <Icon>
         <DownloadOutlined />
     </Icon>
@@ -18,14 +19,14 @@
         Large
     </ChildContent>
 </LNButton>
-<LNButton Size="LNButton.BSize.Large" Type="LNButton.BType.Primary"></LNButton>
+<LNButton Size="ComponentSize.Large" Type="LNButton.BType.Primary"></LNButton>
 
-<LNButton Size="LNButton.BSize.Large" Type="LNButton.BType.Primary"><DownloadOutlined></DownloadOutlined></LNButton>
+<LNButton Size="ComponentSize.Large" Type="LNButton.BType.Primary"><DownloadOutlined></DownloadOutlined></LNButton>
 
 
 
-<LNButton Size="LNButton.BSize.Middle">Middle</LNButton>
-<LNButton Size="LNButton.BSize.Small">
+<LNButton Size="ComponentSize.Middle">Middle</LNButton>
+<LNButton Size="ComponentSize.Small">
     <Icon>
         <AccountBookOutlined />
     </Icon>
@@ -34,12 +35,12 @@
     </ChildContent>
 </LNButton>
 
-<LNButton Type="LNButton.BType.Primary" Danger="true" Href="http://www.baidu.com" Target="_blank"> 
+<LNButton Type="LNButton.BType.Primary" Danger="true" Href="http://www.baidu.com" Target="_blank">
 </LNButton>
 
-<LNButton Type="LNButton.BType.Primary" Size="LNButton.BSize.Large"><DownloadOutlined></DownloadOutlined> Primary Large</LNButton>
-<LNButton Type="LNButton.BType.Dashed" Size="LNButton.BSize.Middle">Dashed Middle</LNButton>
-<LNButton Type="LNButton.BType.Link" Size="LNButton.BSize.Small">Link Small</LNButton>
+<LNButton Type="LNButton.BType.Primary" Size="ComponentSize.Large"><DownloadOutlined></DownloadOutlined> Primary Large</LNButton>
+<LNButton Type="LNButton.BType.Dashed" Size="ComponentSize.Middle">Dashed Middle</LNButton>
+<LNButton Type="LNButton.BType.Link" Size="ComponentSize.Small">Link Small</LNButton>
 
 <div class="box">
     <h3>类型和形状</h3>
@@ -95,9 +96,9 @@
 <div class="box">
     <h3>按钮尺寸</h3>
     <div>
-        <LNButton Type="LNButton.BType.Primary" Size="@LNButton.BSize.Large">Large</LNButton>
-        <LNButton Type="LNButton.BType.Primary" Size="@LNButton.BSize.Middle">Middle</LNButton>
-        <LNButton Type="LNButton.BType.Primary" Size="@LNButton.BSize.Small">Small</LNButton>
+        <LNButton Type="LNButton.BType.Primary" Size="@ComponentSize.Large">Large</LNButton>
+        <LNButton Type="LNButton.BType.Primary" Size="@ComponentSize.Middle">Middle</LNButton>
+        <LNButton Type="LNButton.BType.Primary" Size="@ComponentSize.Small">Small</LNButton>
     </div>
 </div>
 
@@ -113,7 +114,7 @@
 
 <div class="box">
     <h3>点击事件</h3>
-    <div> 
+    <div>
         <LNButton Type="LNButton.BType.Primary" OnClickCallback="OnButtonClick">点击加1</LNButton>
         <span>点击次数：@_num</span>
     </div>
@@ -129,4 +130,3 @@
         this.StateHasChanged();
     }
 }
- 

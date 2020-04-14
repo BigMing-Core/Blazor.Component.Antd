@@ -18,12 +18,7 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             Link
         }
 
-        public enum BSize
-        {
-            Large,
-            Middle,
-            Small
-        }
+        
 
         public enum BShape
         {
@@ -39,7 +34,7 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         }
 
         [Parameter]
-        public BSize? Size { get; set; }
+        public ComponentSize? Size { get; set; }
 
         [Parameter]
         public BType? Type { get; set; }
@@ -165,13 +160,13 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             {
                 switch (Size.Value)
                 {
-                    case BSize.Large:
+                    case ComponentSize.Large:
                         _classHelper.AddCustomClass("ant-btn-lg");
                         break;
-                    case BSize.Small:
+                    case ComponentSize.Small:
                         _classHelper.AddCustomClass("ant-btn-sm");
                         break;
-                    case BSize.Middle:
+                    case ComponentSize.Middle:
                     default:
                         break;
                 }
