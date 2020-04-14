@@ -1,0 +1,26 @@
+﻿@page "/radio"
+@using LuanNiao.Blazor.Component.Antd.Radio
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Button
+
+<LNRadio Checked="true">ClickRadio</LNRadio>
+<LNRadio Checked="false">ClickRadio</LNRadio>
+
+<LNRadio Disabled="@(disable)">Disbled</LNRadio>
+<LNButton Type="LNButton.BType.Primary" OnClickCallback="NumPlus">Toggle disabled</LNButton>
+<a>@disable</a>
+<div>--</div>
+<LNRadioGroup>
+    <LNRadioItem Value ="1">a</LNRadioItem>
+    <LNRadioItem  Value ="2">b</LNRadioItem>
+    <LNRadioItem  Value ="3">c</LNRadioItem>
+    <LNRadioItem  Value ="4">d</LNRadioItem>
+</LNRadioGroup>
+@code{
+    private bool disable = true;
+    private void NumPlus(LNButton _)
+    {
+        disable = !disable;
+        this.StateHasChanged();
+    }
+}
