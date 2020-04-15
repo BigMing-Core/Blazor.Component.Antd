@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using LuanNiao.Blazor.Component.Antd.Layout;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,15 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         [Parameter]
         public bool Collapsed { get; set; }
 
+        [CascadingParameter]
+        public Sider ParentSilder { get; set; }
+
         public event Action<bool> CollapsedStatusChanged;
 
-        public  void InverseCollapseStatus()
+        public void InverseCollapseStatus()
         {
             Collapsed = !Collapsed;
-            _classHelper                
+            _classHelper
                  .RemoveCustomClass($"ant-menu-inline", () => Collapsed)
                  .RemoveCustomClass($"ant-menu-inline-collapsed", () => !Collapsed)
                  .RemoveCustomClass($"ant-menu-vertical", () => !Collapsed)
@@ -43,7 +47,20 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             base.OnInitialized();
             HandleTheme();
+            HandleSiderEvent();
         }
+
+        private void HandleSiderEvent()
+        {
+            if (ParentSilder != null)
+            {
+                ParentSilder.CollapsedBtnClicked += () =>
+                {
+                    InverseCollapseStatus();
+                };
+            }
+        }
+
 
         private void HandleTheme()
         {
@@ -58,6 +75,6 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 default:
                     break;
             }
-        } 
+        }
     }
 }
