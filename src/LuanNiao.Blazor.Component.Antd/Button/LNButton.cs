@@ -18,7 +18,7 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             Link
         }
 
-        
+
 
         public enum BShape
         {
@@ -69,8 +69,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         [Parameter]
         public string Target { get; set; }
 
-
-
         [Parameter]
         public Action<LNButton> OnClickCallback { get; set; }
 
@@ -83,6 +81,18 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             _classHelper.SetStaticClass("ant-btn");
         }
 
+        protected override void OnInitialized()
+        {
+            HandleType();
+            HandleShape();
+            HandleSize();
+            HandleDanger();
+            HandleGhost();
+            HandleBlock(); 
+            HandleHtmlType();
+            HandleIcon();
+            HandleLoading();
+        }
 
         public void BeginLoading(int delayMS = 0, int maxMS = 0)
         {
@@ -108,9 +118,9 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void IntoLoading()
         {
-            _classHelper.AddCustomClass("ant-btn-loading");
             this.Disabled = true;
             this.Loading = true;
+            this.HandleLoading();
             this.Flush();
         }
 
@@ -120,17 +130,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             this.Disabled = false;
             this.Loading = false;
             this.Flush();
-        }
-
-
-        protected override void OnInitialized()
-        {
-            HandleType();
-            HandleShape();
-            HandleSize();
-            HandleBooleanProperties(); 
-            HandleHtmlType();
-            HandleIcon();
         }
 
         private void HandleType()
@@ -173,9 +172,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             }
         }
 
-
- 
-
         private void HandleShape()
         {
             if (!Shape.HasValue) return;
@@ -209,29 +205,26 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             }
         }
 
-        private void HandleBooleanProperties()
+
+        private void HandleDanger()
         {
-            if (Danger)
-            {
-                _classHelper.AddCustomClass("ant-btn-dangerous");
-            }
-
-            if (Ghost)
-            {
-                _classHelper.AddCustomClass("ant-btn-background-ghost");
-            }
-
-            if (Block)
-            {
-                _classHelper.AddCustomClass("ant-btn-block");
-            }
-
-            if (Loading)
-            {
-                Disabled = true;
-                _classHelper.AddCustomClass("ant-btn-loading");
-            }
+            _classHelper.AddOrRemove("ant-btn-dangerous", () => Danger);
         }
+
+        private void HandleGhost()
+        {
+            _classHelper.AddOrRemove("ant-btn-background-ghost", () => Ghost);
+        }
+
+        private void HandleBlock()
+        {
+            _classHelper.AddOrRemove("ant-btn-block", () => Block);
+        }
+
+        private void HandleLoading()
+        {
+            _classHelper.AddOrRemove("ant-btn-loading", () => Loading);
+        } 
 
         private void HandleIcon()
         {
