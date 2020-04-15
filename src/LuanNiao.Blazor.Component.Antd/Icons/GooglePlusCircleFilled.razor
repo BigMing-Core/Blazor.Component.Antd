@@ -4,7 +4,7 @@
 
 @inherits LuanNiao.Blazor.Core.LNBCBase
 
-<span role="img" aria-label="google-plus-circle" class="anticon anticon-google-plus-circle">
+<span role="img" aria-label="google-plus-circle" class="@ClassName" style="@CStyle">
   <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="google-plus-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
     <defs>
       <style type="text/css"></style>
@@ -16,5 +16,9 @@
 @code{
 [Parameter]
 public bool Spin { get; set; }
-
+protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _classHelper.SetStaticClass("anticon anticon-google-plus-circle");
+    }
 }

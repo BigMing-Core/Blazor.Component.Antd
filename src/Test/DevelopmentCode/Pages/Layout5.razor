@@ -1,1 +1,85 @@
 ﻿@page "/layout5"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+
+
+<style>
+    #components-layout-demo-custom-trigger .trigger {
+        font-size: 18px;
+        line-height: 64px;
+        padding: 0 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+        #components-layout-demo-custom-trigger .trigger:hover {
+            color: #1890ff;
+        }
+
+    #components-layout-demo-custom-trigger .logo {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+
+    .site-layout-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+    }
+</style>
+
+
+<div id="components-layout-demo-custom-trigger">
+    <LNLayout>
+        <Sider @ref="sider">
+            <div class="logo"></div>
+            <InlineMenu Theme="MenuBase.MenuTheme.Dark"  >
+                <MenuItem key="1">
+                    <UserOutlined />
+                    <span>nav 1</span>
+                </MenuItem>
+                <MenuItem key="2">
+                    <VideoCameraOutlined />
+                    <span>nav 2</span>
+                </MenuItem>
+                <MenuItem key="3">
+                    <UploadOutlined />
+                    <span>nav 3</span>
+                </MenuItem>
+            </InlineMenu>
+
+        </Sider>
+        <LNLayout ClassName="site-layout">
+            <Header ClassName="site-layout-background" CStyle="padding: 0">
+                <div @onclick="@(()=>Click())">
+                    <MenuUnfoldOutlined ClassName="trigger"></MenuUnfoldOutlined>
+                </div>
+            </Header>
+            <Content ClassName="site-layout-background" CStyle="margin:24px 16px;padding: 24px;min-Height: 280px">
+                content
+            </Content>
+        </LNLayout>
+    </LNLayout>
+</div>
+
+
+@code{
+
+    public Sider sider; 
+
+    public void Click()
+    { 
+        sider.InverseCollapseStatus();
+        this.StateHasChanged();
+    }
+
+}

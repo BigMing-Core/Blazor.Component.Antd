@@ -4,7 +4,7 @@
 
 @inherits LuanNiao.Blazor.Core.LNBCBase
 
-<span role="img" aria-label="caret-right" class="anticon anticon-caret-right">
+<span role="img" aria-label="caret-right" class="@ClassName" style="@CStyle">
   <svg viewBox="64 64 896 896" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="caret-right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
     <defs>
       <style type="text/css"></style>
@@ -16,5 +16,9 @@
 @code{
 [Parameter]
 public bool Spin { get; set; }
-
+protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _classHelper.SetStaticClass("anticon anticon-caret-right");
+    }
 }

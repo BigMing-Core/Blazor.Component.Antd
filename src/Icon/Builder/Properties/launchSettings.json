@@ -1,7 +1,8 @@
 {
   "profiles": {
     "Builder": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-s C:\\Users\\ben\\Documents\\GitHub\\Blazor.Component.Antd\\src\\Icon\\Builder\\AntdSVG -d C:\\Users\\ben\\Documents\\GitHub\\Blazor.Component.Antd\\src\\LuanNiao.Blazor.Component.Antd\\Icons"
     }
   }
 }

@@ -94,7 +94,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         }
 
         [JSInvokable]
-        public void OnCollapsedClicked()
+        public void InverseCollapseStatus()
         {
             this.Collapsed = !this.Collapsed;
             CollapsedBtnClicked?.Invoke();
@@ -104,7 +104,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindClickEvent($"sider_trigger_{IdentityKey}", nameof(OnCollapsedClicked), this, true);
+            ElementInfo.BindClickEvent($"sider_trigger_{IdentityKey}", nameof(InverseCollapseStatus), this, true);
         }
 
 
