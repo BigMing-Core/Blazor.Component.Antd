@@ -1,0 +1,165 @@
+﻿@page "/layout7"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Tooltip
+
+<style>
+
+    #components-layout-demo-fixed-sider .logo {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+</style>
+
+<div id="components-layout-demo-fixed-sider">
+    <LNLayout>
+        <Sider CStyle="overflow:auto;height:100vh;position:fixed;left: 0">
+            <div class="logo" />
+            <InlineMenu Theme="MenuBase.MenuTheme.Dark">
+                <MenuItem key="1">
+                    <UserOutlined />
+                    <span className="nav-text">nav 1</span>
+                </MenuItem>
+                <MenuItem key="2">
+                    <VideoCameraOutlined />
+                    <span className="nav-text">nav 2</span>
+                </MenuItem>
+                <MenuItem key="3">
+                    <UploadOutlined />
+                    <span className="nav-text">nav 3</span>
+                </MenuItem>
+                <MenuItem key="4">
+                    <BarChartOutlined />
+                    <span className="nav-text">nav 4</span>
+                </MenuItem>
+                <MenuItem key="5">
+                    <CloudOutlined />
+                    <span className="nav-text">nav 5</span>
+                </MenuItem>
+                <MenuItem key="6">
+                    <AppstoreOutlined />
+                    <span className="nav-text">nav 6</span>
+                </MenuItem>
+                <MenuItem key="7">
+                    <TeamOutlined />
+                    <span className="nav-text">nav 7</span>
+                </MenuItem>
+                <MenuItem key="8">
+                    <ShopOutlined />
+                    <span className="nav-text">nav 8</span>
+                </MenuItem>
+            </InlineMenu>
+        </Sider>
+        <LNLayout ClassName="site-layout" CStyle="margin-left: 200px">
+            <Header ClassName="site-layout-background" CStyle="padding: 0"/>
+            <Content CStyle="margin:24px 16px 0; overflow: initial">
+                <div class="site-layout-background" style="padding: 24px;text-align:center">
+                    ...
+                    <br />
+                    Really
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    long
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    ...
+                    <br />
+                    content
+                </div>
+            </Content>
+            <Footer CStyle="text-align:center">Ant Design ©2018 Created by Ant UED</Footer>
+        </LNLayout>
+    </LNLayout>
+</div>
