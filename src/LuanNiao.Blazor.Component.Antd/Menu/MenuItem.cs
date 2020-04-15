@@ -54,7 +54,16 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             HandleInInlineMenu();
             HandleRootMenuType();
             RootMenuInstance.ItemSelected += GotOtherItemSelectedEvent;
-            
+            HandleCurrentKeyValue();
+            GetRootDefaultKeyState();
+        }
+
+        private void HandleCurrentKeyValue()
+        {
+            if (string.IsNullOrWhiteSpace(Key))
+            {
+                Key = $"lnMenuItem{RootMenuInstance.GetMyID()}";
+            }
         }
 
         private void HandleRootMenuType()
@@ -72,6 +81,17 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private void HandleParentStatus()
         {
             this._selected = this.RootMenuInstance.SelectItems.Contains(this.Key);
+            this._classHelper.AddCustomClass(_selectedClassName, () => this._selected);
+        }
+
+        private void GetRootDefaultKeyState()
+        {
+            this._selected = RootMenuInstance.DefaultSelectedKeys.Contains(this.Key);
+            HandleSelected();
+        }
+
+        private void HandleSelected()
+        {
             this._classHelper.AddCustomClass(_selectedClassName, () => this._selected);
         }
 
@@ -114,8 +134,8 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 return;
             }
-            this._selected = !this._selected;
-            this._classHelper.AddCustomClass(_selectedClassName);
+            this._selected = true;
+            HandleSelected();
             this.RootMenuInstance.Triggered(this);
         }
 

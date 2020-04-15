@@ -36,8 +36,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         }
 
         private readonly List<string> _currentSelectItems = new List<string>();
-        [Parameter]
-        public string Key { get; set; }
+
+        private int _currentMenuItemKey = 0;
+         
 
         [Parameter]
         public bool Disabled { get; set; }
@@ -53,12 +54,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// whether allow multiple select
         /// </summary>
         [Parameter]
-        public bool Multiple { get; set; } = false;
-        /// <summary>
-        /// 	allow selecting menu items
-        /// </summary>
-        [Parameter]
-        public bool Selectable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool Multiple { get => false; set => throw new NotImplementedException(); } 
         /// <summary>
         /// selected keys of items
         /// </summary>
@@ -68,7 +64,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// initial selected keys of items
         /// </summary>
         [Parameter]
-        public string[] DefaultSelectedKeys { get; set; }
+        public string[] DefaultSelectedKeys { get; set; } =new string[0];
         /// <summary>
         /// 	open keys of SubMenuItem
         /// </summary>
@@ -80,7 +76,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// initial open keys of SubMenuItem
         /// </summary>
         [Parameter]
-        public string[] DefaultOpenKeys { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string[] DefaultOpenKeys { get; set; } = new string[0];
         /// <summary>
         /// called when select a menu item
         /// </summary>
@@ -117,42 +113,9 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         /// delay time to show popup sub menu. unit: s
         /// </summary>
         [Parameter]
-        public int SubMenuOpenDelay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        /// <summary>
-        /// whether to render submenu even if it is not visible
-        /// </summary>
-        [Parameter]
-        public bool ForceSubMenuRender { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        /// <summary>
-        /// Where to render the DOM node of popup menu when the mode is horizontal or vertical
-        /// </summary>
-        [Parameter]
-        public object GetPopupContainer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-
-        /// <summary>
-        /// Describes how the popup menus should be positioned
-        /// </summary>
-        [Parameter]
-        public object BuiltinPlacements { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-
-        /// <summary>
-        /// Specify the menu item icon.
-        /// </summary>
-        [Parameter]
-        public object ItemIcon { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-
-        /// <summary>
-        /// Specify the menu item icon.
-        /// </summary>
-        [Parameter]
-        public object ExpandIcon { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-
-        /// <summary>
-        /// 	Layout direction of menu component, it supports RTL direction too.
-        /// </summary>
-        [Parameter]
-        public object Direction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public int SubMenuOpenDelay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); } 
+         
+  
 
         internal void Triggered(MenuItem sourceItem)
         {
@@ -167,7 +130,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 this._currentSelectItems.Add(sourceItem.Key);
             }
         }
- 
+        internal int GetMyID()
+        {
+            return System.Threading.Interlocked.Increment(ref _currentMenuItemKey);
+        }
+
+
 
         /// <summary>
         /// there's some on selected

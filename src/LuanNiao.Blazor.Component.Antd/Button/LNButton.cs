@@ -33,6 +33,7 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             Reset
         }
 
+        private string _htmlType;
         [Parameter]
         public ComponentSize? Size { get; set; }
 
@@ -72,28 +73,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         [Parameter]
         public Action<LNButton> OnClickCallback { get; set; }
 
-
-        private string _htmlType;
-
-
-        public LNButton()
-        {
-            _classHelper.SetStaticClass("ant-btn");
-        }
-
-        protected override void OnInitialized()
-        {
-            HandleType();
-            HandleShape();
-            HandleSize();
-            HandleDanger();
-            HandleGhost();
-            HandleBlock(); 
-            HandleHtmlType();
-            HandleIcon();
-            HandleLoading();
-        }
-
         public void BeginLoading(int delayMS = 0, int maxMS = 0)
         {
             if (delayMS > 0)
@@ -115,6 +94,27 @@ namespace LuanNiao.Blazor.Component.Antd.Button
                 });
             }
         }
+
+
+
+        public LNButton()
+        {
+            _classHelper.SetStaticClass("ant-btn");
+        }
+
+        protected override void OnInitialized()
+        {
+            HandleType();
+            HandleShape();
+            HandleSize();
+            HandleDanger();
+            HandleGhost();
+            HandleBlock(); 
+            HandleHtmlType();
+            HandleIcon();
+            HandleLoading();
+        }
+
 
         private void IntoLoading()
         {
@@ -204,7 +204,6 @@ namespace LuanNiao.Blazor.Component.Antd.Button
                 _htmlType = null;
             }
         }
-
 
         private void HandleDanger()
         {

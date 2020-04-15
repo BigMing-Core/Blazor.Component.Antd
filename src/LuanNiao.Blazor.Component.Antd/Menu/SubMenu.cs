@@ -19,6 +19,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private const string _inlineSubClassName = "ant-menu-submenu-inline";
         private const string _verticalSubClassName = "ant-menu-submenu-vertical";
         private const string _inlineHorClassName = "ant-menu-submenu-horizontal";
+        private const string _subMenuDisabledClassName = "ant-dropdown-menu-submenu-disabled";
         private const string _hidULClassName = "ant-menu-hidden";
         private const string _submenuUIVerticalStaticClassNameWithMenu = "ant-menu ant-menu-sub  ant-menu-vertical";
         private const string _submenuDivStaticClassNameWithMenu = "ant-menu-submenu ant-menu-submenu-popup ant-menu-light ant-menu-submenu-placement-bottomLeft";
@@ -61,12 +62,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         private string HideSubMenuDivClassName { get; set; }
         private string HideSubMenuULClassName { get; set; }
 
-        private readonly OriginalStyleHelper _hideSubMenuDivStyle = new OriginalStyleHelper();
-        private string HideSubMenuDivStyle { get; set; }
+        private string _hideSubMenuDivStyle;
+        private readonly OriginalStyleHelper _hideSubMenuDivStyleHelper = new OriginalStyleHelper();
 
+        private string _hideSubMenuULStyle;
+        private readonly OriginalStyleHelper _hideSubMenuULStyleHelper = new OriginalStyleHelper();
 
-        private readonly OriginalStyleHelper _hideSubMenuULStyle = new OriginalStyleHelper();
-        private string HideSubMenuULStyle { get; set; }
         private bool _inThisElementScope = false;
 
 
@@ -74,19 +75,51 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
         {
             base.OnInitialized();
             HandleRootMenuType();
+            HandleDisable();
+            HandleSubMenuChildClassInfo();
+            HandleCurrentKeyValue();
+            HandleMenuDefaultOpenkeys();
+        }
 
-            _classHelper.AddCustomClass("ant-dropdown-menu-submenu-disabled", () => this.Disabled);
+        /// <summary>
+        /// just handle in the inline menu
+        /// </summary>
+        private void HandleMenuDefaultOpenkeys()
+        {
+            if (RootMenuInstance is InlineMenu && RootMenuInstance.DefaultOpenKeys.Contains(Key))
+            {
+                OnMouseClick();
+            }
+        }
+
+        private void HandleDisable()
+        {
+            _classHelper.AddCustomClass(_subMenuDisabledClassName, () => this.Disabled);
+        }
+
+        /// <summary>
+        /// use to set the submenu's popup div and ul's default class info
+        /// </summary>
+        private void HandleSubMenuChildClassInfo()
+        {
             HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
             .SetStaticClass(_submenuDivStaticClassNameWithMenu, () => !(RootMenuInstance is DropdownMenu))
             .SetStaticClass(_submenuDivStaticClassNameWithDropdown, () => RootMenuInstance is DropdownMenu)
-            .AddCustomClass(_hideDivClassName)
             .AddCustomClass(_hideDivClassName).Build();
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
             .SetStaticClass(_submenuUIVerticalStaticClassNameWithMenu, () => !(RootMenuInstance is DropdownMenu))
             .SetStaticClass(_submenuUIVerticalStaticClassNameWithDropdown, () => RootMenuInstance is DropdownMenu)
-            .AddCustomClass(_hidULClassName)
             .AddCustomClass(_hidULClassName).Build();
         }
+
+        private void HandleCurrentKeyValue()
+        {
+            if (string.IsNullOrWhiteSpace(Key))
+            {
+                Key = $"lnSubMenu_{RootMenuInstance.GetMyID()}";
+            }
+        }
+
         private void HandleRootMenuType()
         {
 
@@ -121,69 +154,92 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             }
             _inThisElementScope = true;
 
+
+            ShowSubMenuDiv();
+            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("opacity", "0").Build();
+
+            if (RootMenuInstance is HorizontalMenu)
+            {
+                await HandleHorizontalMenuCase();
+            }
+            else if ((RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
+            {
+                await HandleInlineMenuCase();
+            }
+            else if (RootMenuInstance is DropdownMenu dropdownMenu)
+            {
+                await HandleInDropdownMenuCase(dropdownMenu);
+            }
+            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.RemoveCustomStyle("opacity").Build();
+            this.Flush();
+        }
+
+        private void ShowSubMenuDiv()
+        {
             /*
              I'm not sure about that the antd other type's menu's status. so write all case below.
              */
             _classHelper
-                .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed) || this.RootMenuInstance is DropdownMenu)
-                .AddCustomClass(_activeClassName);
+                   .AddCustomClass(_openClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed) || this.RootMenuInstance is DropdownMenu)
+                   .AddCustomClass(_activeClassName);
             HideSubMenuDivClassName = _hideSubMenuDivClassNameHelper
                 .RemoveCustomClass(_hideDivClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && !inlineMenu.Collapsed) || this.RootMenuInstance is DropdownMenu)
                 .Build();
             HideSubMenuULClassName = _hideSubMenuULClassNameHelper
                 .RemoveCustomClass(_hidULClassName, () => this.RootMenuInstance is HorizontalMenu || (this.RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed) || this.RootMenuInstance is DropdownMenu)
                 .Build();
-            HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("opacity", "0").Build();
+        }
 
-            if (RootMenuInstance is HorizontalMenu)
+        private async Task HandleHorizontalMenuCase()
+        {
+
+            var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
+            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
+            _hideSubMenuULStyle = _hideSubMenuULStyleHelper.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
+        }
+
+        private async Task HandleInlineMenuCase()
+        {
+            if (ParentSubmenu == null)
+            {
+                var windowSize = await WindowInfo.GetWindowSize();
+                var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
+                var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
+
+                var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height) ? elementInfo.Bottom - ulInfo.Height : elementInfo.Y;
+                _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue}px").Build();
+            }
+            else
             {
                 var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Left}px").AddCustomStyle("top", $"{elementInfo.Bottom + 2}px").Build();
-                HideSubMenuULStyle = _hideSubMenuULStyle.AddCustomStyle("min-width", $"{elementInfo.Width}px").Build();
+                _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
             }
-            else if ((RootMenuInstance is InlineMenu inlineMenu && inlineMenu.Collapsed))
-            {
-                if (ParentSubmenu == null)
-                {
-                    var windowSize = await WindowInfo.GetWindowSize();
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                    var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
+        }
 
-                    var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height) ? elementInfo.Bottom - ulInfo.Height : elementInfo.Y;
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue}px").Build();
-                }
-                else
-                {
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px").Build();
-                }
-            }
-            else if (RootMenuInstance is DropdownMenu dropdownMenu)
-            {
-                if (ParentSubmenu == null)
-                {
-                    var windowSize = await WindowInfo.GetWindowSize();
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                    var dropDownRectInfo = await dropdownMenu.GetMainElementRects();
-                    var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
+        private async Task HandleInDropdownMenuCase(DropdownMenu dropdownMenu)
+        {
 
-                    var topValue = elementInfo.Y - dropDownRectInfo.Y;
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle
-                        .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
-                        .AddCustomStyle("top", $"{topValue}px")
-                        .Build();
-                }
-                else
-                {
-                    var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
-                    HideSubMenuDivStyle = _hideSubMenuDivStyle
-                        .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
-                        .AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px")
-                        .Build();
-                }
+            if (ParentSubmenu == null)
+            {
+                var windowSize = await WindowInfo.GetWindowSize();
+                var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
+                var dropDownRectInfo = await dropdownMenu.GetMainElementRects();
+                var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
+
+                var topValue = elementInfo.Y - dropDownRectInfo.Y;
+                _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper
+                    .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
+                    .AddCustomStyle("top", $"{topValue}px")
+                    .Build();
             }
-            HideSubMenuDivStyle = _hideSubMenuDivStyle.RemoveCustomStyle("opacity").Build();
-            this.Flush();
+            else
+            {
+                var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
+                _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper
+                    .AddCustomStyle("left", $"{elementInfo.Width + 2}px")
+                    .AddCustomStyle("top", $"{(elementInfo.Height < 44 ? 44 : elementInfo.Height > 100 ? 100 : elementInfo.Height)}px")
+                    .Build();
+            }
         }
 
         private void OnMouseClick()
