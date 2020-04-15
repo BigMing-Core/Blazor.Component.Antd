@@ -6,70 +6,38 @@ import "./demo.less"
 
 
 
-import { Layout, Menu } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 
 export class Demo extends Component<any, any>{
-  state = {
-    collapsed: false,
-  };
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
 
   render() {
     return (
-      <div id="components-layout-demo-custom-trigger">
+      <div id="components-layout-demo-fixed">
         <Layout>
-          <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-              <Menu.Item key="1">
-                <UserOutlined />
-                <span>nav 1</span>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <VideoCameraOutlined />
-                <span>nav 2</span>
-              </Menu.Item>
-              <Menu.Item key="3">
-                <UploadOutlined />
-                <span>nav 3</span>
-              </Menu.Item>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+              <Menu.Item key="1">nav 1</Menu.Item>
+              <Menu.Item key="2">nav 2</Menu.Item>
+              <Menu.Item key="3">nav 3</Menu.Item>
             </Menu>
-          </Sider>
-          <Layout className="site-layout">
-            <Header className="site-layout-background" style={{ padding: 0 }}>
-              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                className: 'trigger',
-                onClick: this.toggle,
-              })}
-            </Header>
-            <Content
-              className="site-layout-background"
-              style={{
-                margin: '24px 16px',
-                padding: 24,
-                minHeight: 280,
-              }}
-            >
+          </Header>
+          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
               Content
+        </div>
           </Content>
-          </Layout>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
-
       </div>
     )
   }
