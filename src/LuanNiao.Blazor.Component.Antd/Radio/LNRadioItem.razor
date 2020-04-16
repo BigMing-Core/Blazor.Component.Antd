@@ -2,21 +2,20 @@
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using Microsoft.AspNetCore.Components.Web
 
-   
-        <label class="ant-radio-wrapper">
-            <span class="@ClassName">
-                <input type="radio" class="ant-radio-input" value="@Value"
-                       disabled="@((Disabled?"disabled":null))"
-                       @onclick="()=> { HandleClickEvent(); }"
-                       @onkeypress:preventDefault
-                       @onclick:stopPropagation="true">
 
-                <span class="ant-radio-inner"></span>
-            </span>
-            @if (ChildContent != null)
-            {
-                <span>@ChildContent</span>
-            }
+<label class="ant-radio-wrapper">
+    <span class="@ClassName">
+        <input type="radio" class="ant-radio-input" value="@Value"
+               disabled="@((Disabled?"disabled":null))"
+               @onclick="()=> { HandleClickEvent(); }"
+               @onkeypress:preventDefault
+               @onclick:stopPropagation="true">
 
-        </label>
-   
+        <span class="ant-radio-inner"></span>
+    </span>
+    @if (ChildContent != null)
+    {
+        <span>@ChildContent</span>
+    }
+
+</label>
