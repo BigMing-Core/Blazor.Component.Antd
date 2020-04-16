@@ -36,7 +36,10 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
 
         [Parameter]
         public long MouseLeaveDelay { get; set; }
-         
+
+        [Parameter]
+        public bool InsideOfTarget { get; set; }
+
 
 
         protected override void OnInitialized()
@@ -116,15 +119,76 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
         public async void OnMouseOver()
         {
             _visibled = true;
-            var spanElementInfo = await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
             _overlayClass.RemoveCustomClass("ant-tooltip-hidden");
             _overlayStyle.AddCustomStyle("opacity", "0");
             this.Flush();
-            var hideDivElementInfo = await ElementInfo.GetElementRectsByID($"hidediv_{IdentityKey}");
             var left = 0d;
             var top = 0d;
 
+            var spanElementInfo = await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
+            var hideDivElementInfo = await ElementInfo.GetElementRectsByID($"hidediv_{IdentityKey}");
 
+            if (InsideOfTarget)
+            {
+                InsideOfTargetCals(ref left, ref top, spanElementInfo, hideDivElementInfo);
+            }
+            else
+            {
+                NormalCalc(ref left, ref top, spanElementInfo, hideDivElementInfo);
+            }
+
+            _overlayStyle
+                .AddCustomStyle("left", $"{left}px")
+                .AddCustomStyle("top", $"{top}px")
+                .AddCustomStyle("position", $"fixed")
+                .RemoveCustomStyle("opacity");
+            this.Flush();
+        }
+
+        [JSInvokable]
+        public void OnMouseOut()
+        {
+            _visibled = false;
+            _overlayClass.AddCustomClass("ant-tooltip-hidden");
+            this.Flush();
+        }
+
+        private void InsideOfTargetCals(ref double left, ref double top, ElementRects spanElementInfo, ElementRects hideDivElementInfo)
+        {
+            switch (Placement)
+            {
+                case PlacementType.Top: 
+                case PlacementType.TopLeft: 
+                case PlacementType.TopRight:
+                    left = 0 - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
+                    top = spanElementInfo.Top - spanElementInfo.Height - _toolTopArrowFixSize;
+                    break;
+
+                case PlacementType.Left: 
+                case PlacementType.LeftTop: 
+                case PlacementType.LeftBottom:
+                    left = 0 - hideDivElementInfo.Width;
+                    top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
+                    break;
+
+                case PlacementType.Right: 
+                case PlacementType.RightTop: 
+                case PlacementType.RightBottom:
+                    left = 0 + Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
+                    top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
+                    break;
+
+                case PlacementType.Bottom: 
+                case PlacementType.BottomLeft: 
+                case PlacementType.BottomRight:
+                    left = 0 - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
+                    top = spanElementInfo.Top + spanElementInfo.Height;
+                    break;
+            }
+        }
+
+        private void NormalCalc(ref double left, ref double top, ElementRects spanElementInfo, ElementRects hideDivElementInfo)
+        {
 
             switch (Placement)
             {
@@ -180,21 +244,6 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
                     top = spanElementInfo.Top + spanElementInfo.Height;
                     break;
             }
-
-            _overlayStyle
-                .AddCustomStyle("left", $"{left}px")
-                .AddCustomStyle("top", $"{top}px")
-                .AddCustomStyle("position", $"fixed")
-                .RemoveCustomStyle("opacity");
-            this.Flush();
-        }
-
-        [JSInvokable]
-        public async void OnMouseOut()
-        {
-            _visibled = false;
-            _overlayClass.AddCustomClass("ant-tooltip-hidden");
-            this.Flush();
         }
 
 

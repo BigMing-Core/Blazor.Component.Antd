@@ -81,9 +81,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         public void BindMouseEvent()
         {
             ElementInfo.BindMouseMoveEvent($"body", nameof(RightHandleMove), this, true);
-            ElementInfo.BindMouseUpEvent($"body", nameof(RightHandleMouseUp), this, true);
-            ElementInfo.BindMouseUpEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseUp), this, true);
-            ElementInfo.BindMouseUpEvent($"maindiv_{IdentityKey}", nameof(RightHandleMouseUp), this, true);
+            ElementInfo.BindMouseUpEvent($"body", nameof(RightHandleMouseUp), this, true); 
             ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this, true);
         }
 
