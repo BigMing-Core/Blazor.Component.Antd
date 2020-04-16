@@ -39,7 +39,11 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         [Parameter]
         public bool Disabled { get; set; }
 
-
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+            HandleDisabled();
+        }
 
 
         public LNSlider()
@@ -71,7 +75,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         private void HandleDisabled()
         {
             _classHelper
-                    .AddCustomClass(_silderDisabledClassName, () => Disabled);
+                    .AddOrRemove(_silderDisabledClassName, () => Disabled);
         }
 
         public void BindMouseEvent()
@@ -92,6 +96,10 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         [JSInvokable]
         public void RightHandleMouseDown(WindowEvent _)
         {
+            if (this.Disabled)
+            {
+                return;
+            }
             _rightHandleMouseDown = true;
         }
 
@@ -101,11 +109,11 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             if (!_rightHandleMouseDown)
             {
                 return;
-            } 
+            }
             _currentRightValue = ((double)e.MouseEvent.ClientX) / ((double)e.CurrentWindowInfo.InnerSize.Width) * ((double)100);
-            _rightHandleStyle = string.Format(_rightHandleStyleTemplate,  _currentRightValue);
+            _rightHandleStyle = string.Format(_rightHandleStyleTemplate, _currentRightValue);
             _sliderTrackStyle = string.Format(_sliderTrackStyleTemplate, _currentLeftValue, _currentRightValue);
-            this.Flush(); 
+            this.Flush();
         }
     }
 }

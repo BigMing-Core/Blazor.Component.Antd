@@ -36,6 +36,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
 
         [Parameter]
         public long MouseLeaveDelay { get; set; }
+         
 
 
         protected override void OnInitialized()
@@ -43,6 +44,15 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             base.OnInitialized();
             HandlePlacementType();
             HandleDefaultVisibleInfo();
+            HandleMainDivStyle();
+        }
+        private void HandleMainDivStyle()
+        {
+            //display:inline-block
+            if (!_styleHelper.HasCustomStyle())
+            {
+                _styleHelper.AddCustomStyleStr("display:inline-block");
+            }
         }
 
         private void HandleDefaultVisibleInfo()

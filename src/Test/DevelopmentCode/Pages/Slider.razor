@@ -1,7 +1,32 @@
 ﻿@page "/slider"
 
 @using LuanNiao.Blazor.Component.Antd.Slider
+@using LuanNiao.Blazor.Component.Antd.Button
 
-<LNSlider>
+<LNSlider Disabled="@StateInfo">
 
 </LNSlider>
+
+<LNButton OnClickCallback="@((e)=> { ChangeState(e); })">
+    Click to @if (StateInfo)
+    {
+        @("enable")
+    }
+    else
+    {
+        @("disable")
+    }
+
+</LNButton>
+
+
+@code
+{
+    public bool StateInfo { get; set; }
+
+    public void ChangeState(LNButton e)
+    {
+        this.StateInfo = !this.StateInfo;
+        this.StateHasChanged();
+    }
+}
