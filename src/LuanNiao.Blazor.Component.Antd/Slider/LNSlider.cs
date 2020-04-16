@@ -39,6 +39,9 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         [Parameter]
         public bool Disabled { get; set; }
 
+        [Parameter]
+        public string ValueFormatter { get; set; } = "{0:F2}";
+
         protected override void OnParametersSet()
         {
             base.OnParametersSet();

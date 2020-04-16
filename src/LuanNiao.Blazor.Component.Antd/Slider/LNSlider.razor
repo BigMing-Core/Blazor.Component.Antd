@@ -13,7 +13,7 @@
 
     <div id="@($"righthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_rightHandleStyle">
         <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Right" InsideOfTarget="true">
-            <Title>asd</Title> 
+            <Title>@(string.Format(ValueFormatter, _currentRightValue))</Title> 
         </LNTooltip>
 
     </div>
