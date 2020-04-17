@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Radio\LNRadioItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Radio\LNRadioItem.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
 

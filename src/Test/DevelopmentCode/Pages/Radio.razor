@@ -5,16 +5,27 @@
 
 <LNRadio Checked="true">ClickRadio</LNRadio>
 <LNRadio Checked="false">ClickRadio</LNRadio>
-
 <LNRadio Disabled="@(disable)">Disbled</LNRadio>
 <LNButton Type="LNButton.BType.Primary" OnClickCallback="NumPlus">Toggle disabled</LNButton>
 <a>@disable</a>
 <div>--</div>
+<LNRadioGroup Disabled="true">
+    <LNRadio  Checked="true" Value ="1">a</LNRadio>
+    <LNRadio  Value ="2">b</LNRadio>
+    <LNRadio  Value ="3">c</LNRadio>
+    <LNRadio  Value ="4">d</LNRadio>
+</LNRadioGroup>
 <LNRadioGroup>
-    <LNRadioItem Value ="1">a</LNRadioItem>
-    <LNRadioItem  Value ="2">b</LNRadioItem>
-    <LNRadioItem  Value ="3">c</LNRadioItem>
-    <LNRadioItem  Value ="4">d</LNRadioItem>
+    <LNRadio Checked="true" Value="1">a</LNRadio>
+    <LNRadio Value="2">b</LNRadio>
+    <LNRadio Value="3">c</LNRadio>
+    <LNRadio Value="4">d</LNRadio>
+</LNRadioGroup>
+<LNRadioGroup>
+    <LNRadio Disabled="true" CStyle="display: block; height: 30px; line-height: 30px;" Value="VA">a</LNRadio>
+    <LNRadio Checked="true" CStyle="display: block; height: 30px; line-height: 30px;" Value="VB">b</LNRadio>
+    <LNRadio Value="VC"  CStyle="display: block; height: 30px; line-height: 30px;">c</LNRadio>
+    <LNRadio Value="VD"  CStyle="display: block; height: 30px; line-height: 30px;">d</LNRadio>
 </LNRadioGroup>
 @code{
     private bool disable = true;

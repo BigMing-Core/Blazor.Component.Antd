@@ -10,15 +10,14 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
     {
         [Parameter]
         public bool Disabled { get; set; }
-        [Parameter]
-        public bool Checked { get; set; }
-
-        private const string _checkClass = "ant-radio-checked";
-        private const string _disabledClass = "ant-radio-disabled";
 
         public LNRadioGroup()
         {
             _classHelper.SetStaticClass("ant-radio-group");
+        }
+        protected override void OnParametersSet()
+        {
+            this.Flush();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         [Parameter ]
         public int Value { get; set; }
         [CascadingParameter]
-        public LNRadioGroup Group { get; set; }
+        public RadioBase RootGourp { get; set; }
 
         private const string _checkClass = "ant-radio-checked";
         private const string _disabledClass = "ant-radio-disabled";
@@ -36,7 +36,8 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            Group.ItemSelected += GotOtherItemSelectedEvent;
+            if(RootGourp!=null)
+                RootGourp.ItemSelected += GotOtherItemSelectedEvent;
         }
 
         private void HandleClickEvent()
@@ -46,20 +47,27 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
                 return;
             }
             Checked = !Checked;
-            this._classHelper.AddCustomClass(_checkClass);
-            Group.Triggered(this);
+            if (RootGourp != null)
+            {
+                RootGourp.Triggered(this);
+            }
+            else
+            {
+                _classHelper.AddOrRemove(_checkClass, () => Checked);
+            }
             this.Flush();
         }
- 
+
         private void GotOtherItemSelectedEvent(LNRadioItem targetItem)
         {
             if (targetItem.Equals(this))
             {
-                Group._checkValue = this.Value;
+                this._classHelper.AddCustomClass(_checkClass);
+                RootGourp._checkValue = this.Value;
                 return;
             }
             this._classHelper.RemoveCustomClass(_checkClass);
             this.Flush();
-        }    
+        }
     }
 }
