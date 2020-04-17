@@ -39,7 +39,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         public bool Disabled { get; set; }
 
         [Parameter]
-        public string ValueFormatter { get; set; } = "{0:F2}";
+        public string TipFormatter { get; set; } = "{0:F2}";
 
         [Parameter]
         public double Value { get; set; }
