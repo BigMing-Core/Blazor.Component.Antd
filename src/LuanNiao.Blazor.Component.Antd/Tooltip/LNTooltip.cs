@@ -157,32 +157,32 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
         {
             switch (Placement)
             {
-                case PlacementType.Top: 
-                case PlacementType.TopLeft: 
+                case PlacementType.Top:
+                case PlacementType.TopLeft:
                 case PlacementType.TopRight:
                     left = 0 - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
                     top = spanElementInfo.Top - spanElementInfo.Height - _toolTopArrowFixSize;
                     break;
 
-                case PlacementType.Left: 
-                case PlacementType.LeftTop: 
+                case PlacementType.Left:
+                case PlacementType.LeftTop:
                 case PlacementType.LeftBottom:
                     left = 0 - hideDivElementInfo.Width;
                     top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
                     break;
 
-                case PlacementType.Right: 
-                case PlacementType.RightTop: 
+                case PlacementType.Right:
+                case PlacementType.RightTop:
                 case PlacementType.RightBottom:
                     left = 0 + Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
                     top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
                     break;
 
-                case PlacementType.Bottom: 
-                case PlacementType.BottomLeft: 
+                case PlacementType.Bottom:
+                case PlacementType.BottomLeft:
                 case PlacementType.BottomRight:
                     left = 0 - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
-                    top = spanElementInfo.Top + spanElementInfo.Height;
+                    top = 0 + spanElementInfo.Height;
                     break;
             }
         }
