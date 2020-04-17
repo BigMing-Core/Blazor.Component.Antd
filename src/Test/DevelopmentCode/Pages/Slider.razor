@@ -18,6 +18,9 @@
 <br />
 <br />
 <Row>
+
+    <Col Span="2">
+    </Col>
     <Col Span="4">
     <LNSlider Disabled="@StateInfo">
 
@@ -36,9 +39,12 @@
 
     </LNButton>
     </Col>
-    <Col Span="18">
+    <Col Span="16">
 
 
+    </Col>
+
+    <Col Span="2">
     </Col>
     <Col Span="4">
     <LNSlider Disabled="@StateInfo" OnChange="@DataChange">
@@ -51,8 +57,7 @@
     RightValue:@(RightValue.ToString("F2"))
     </Col>
 
-    <Col Span="4">
-    RightValue:@(RightValue.ToString("F2"))
+    <Col Span="4"> 
     </Col>
 </Row>
 

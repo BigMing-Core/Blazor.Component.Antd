@@ -17,8 +17,9 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         /// left: 0%; right: auto; width: 14%;
         /// </summary>
         private readonly string _sliderTrackStyleTemplate = "left: {0}%; right: auto; width: {1}%;";
+        private readonly string _topLevelIndex = "z-index:9999;";
 
-        private readonly string _handleStyleTemplate = "left: {0}%; right: auto; transform: translateX(-50%);";
+        private readonly string _handleStyleTemplate = "left: {0}%; right: auto; transform: translateX(-50%);{1}";
         private string _sliderTrackStyle = string.Empty;
         private readonly OriginalStyleHelper _sliderTrackStyleHelper = new OriginalStyleHelper();
 
@@ -76,8 +77,8 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
 
         private void HandleValue()
         {
-            _rightHandleStyle = string.Format(_handleStyleTemplate, _currentRightValue.ToString("F2"));
-            _leftHandleStyle = string.Format(_handleStyleTemplate, _currentLeftValue.ToString("F2"));
+            _rightHandleStyle = string.Format(_handleStyleTemplate, _currentRightValue.ToString("F2"),(_rightHandleMouseDown? _topLevelIndex:""));
+            _leftHandleStyle = string.Format(_handleStyleTemplate, _currentLeftValue.ToString("F2"), (_leftHandleMouseDown ? _topLevelIndex : ""));
             _sliderTrackStyle = string.Format(_sliderTrackStyleTemplate, _currentLeftValue.ToString("F2"), (_currentRightValue - _currentLeftValue).ToString("F2"));
         }
 
@@ -132,7 +133,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 return;
             }
             var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
-            _currentLeftValue = ((double)e.MouseEvent.ClientX) / ((double)elementInfo.Width) * ((double)100);
+            _currentLeftValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)elementInfo.Width) * ((double)100);
             if (_currentRightValue - _currentLeftValue <= 0)
             {
                 _currentLeftValue = _currentRightValue;
@@ -154,7 +155,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 return;
             }
             var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
-            _currentRightValue = ((double)e.MouseEvent.ClientX) / ((double)(elementInfo.Width)) * ((double)100);
+            _currentRightValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)(elementInfo.Width)) * ((double)100);
 #if DEBUG
             Console.WriteLine($"{e.MouseEvent.ClientX}");
             Console.WriteLine($"{elementInfo.Width}");
