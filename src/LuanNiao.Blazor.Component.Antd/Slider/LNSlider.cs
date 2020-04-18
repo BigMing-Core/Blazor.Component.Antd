@@ -16,18 +16,17 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         /// <summary>
         /// left: 0%; right: auto; width: 14%;
         /// </summary>
-        private string _sliderTrackStyleTemplate = "left: {0}%; right: auto; width: {1}%;";
+        private readonly string _sliderTrackStyleTemplate = "left: {0}%; right: auto; width: {1}%;";
+        private readonly string _topLevelIndex = "z-index:9999;";
+
+        private readonly string _handleStyleTemplate = "left: {0}%; right: auto; transform: translateX(-50%);{1}";
         private string _sliderTrackStyle = string.Empty;
         private readonly OriginalStyleHelper _sliderTrackStyleHelper = new OriginalStyleHelper();
 
-        private MouseEvent? _preLeftLocation = null;
         private bool _leftHandleMouseDown = false;
-        private string _leftHandleStyleTemplate = "left: {0}%; right: auto; transform: translateX(-50%);";
         private string _leftHandleStyle = string.Empty;
 
-        private MouseEvent? _preRightLocation = null;
         private bool _rightHandleMouseDown = false;
-        private string _rightHandleStyleTemplate = "left: {0}%; right: auto; transform: translateX(-50%);";
         private string _rightHandleStyle = string.Empty;
         private readonly OriginalStyleHelper _rightHandleStyleHelper = new OriginalStyleHelper();
 
@@ -40,14 +39,13 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         public bool Disabled { get; set; }
 
         [Parameter]
-        public string ValueFormatter { get; set; } = "{0:F2}";
+        public string TipFormatter { get; set; } = "{0:F2}";
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-            HandleDisabled();
-        }
+        [Parameter]
+        public double Value { get; set; }
 
+        [Parameter]
+        public Action<double, double> OnChange { get; set; }
 
         public LNSlider()
         {
@@ -62,6 +60,12 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             HandleValue();
         }
 
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+            HandleDisabled();
+        }
+
         protected override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);
@@ -73,29 +77,36 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
 
         private void HandleValue()
         {
-            _rightHandleStyle = string.Format(_rightHandleStyleTemplate, _currentRightValue.ToString("F2"));
+            _rightHandleStyle = string.Format(_handleStyleTemplate, _currentRightValue.ToString("F2"),(_rightHandleMouseDown? _topLevelIndex:""));
+            _leftHandleStyle = string.Format(_handleStyleTemplate, _currentLeftValue.ToString("F2"), (_leftHandleMouseDown ? _topLevelIndex : ""));
+            _sliderTrackStyle = string.Format(_sliderTrackStyleTemplate, _currentLeftValue.ToString("F2"), (_currentRightValue - _currentLeftValue).ToString("F2"));
         }
+
         private void HandleDisabled()
         {
             _classHelper
                     .AddOrRemove(_silderDisabledClassName, () => Disabled);
         }
 
-        public void BindMouseEvent()
+        private void BindMouseEvent()
         {
-            ElementInfo.BindMouseMoveEvent($"body", nameof(RightHandleMove), this, true);
-            ElementInfo.BindMouseUpEvent($"body", nameof(RightHandleMouseUp), this, true); 
-            ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this, true);
+            ElementInfo.BindMouseUpEvent($"body", nameof(HandleMouseUp), this);
+
+            ElementInfo.BindMouseMoveEvent($"body", nameof(RightHandleMove), this);
+            ElementInfo.BindMouseMoveEvent($"body", nameof(LeftHandleMove), this);
+            ElementInfo.BindMouseDownEvent($"lefthandle_{IdentityKey}", nameof(LeftHandleMouseDown), this);
+            ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this);
+        }
+
+
+        [JSInvokable]
+        public void HandleMouseUp()
+        {
+            _leftHandleMouseDown = _rightHandleMouseDown = false;
         }
 
         [JSInvokable]
-        public void RightHandleMouseUp(WindowEvent _)
-        {
-            _rightHandleMouseDown = false;
-        }
-
-        [JSInvokable]
-        public void RightHandleMouseDown(WindowEvent _)
+        public void RightHandleMouseDown()
         {
             if (this.Disabled)
             {
@@ -105,15 +116,60 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
         [JSInvokable]
+        public void LeftHandleMouseDown()
+        {
+            if (this.Disabled)
+            {
+                return;
+            }
+            _leftHandleMouseDown = true;
+        }
+
+        [JSInvokable]
+        public async void LeftHandleMove(WindowEvent e)
+        {
+            if (!_leftHandleMouseDown)
+            {
+                return;
+            }
+            var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
+            _currentLeftValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)elementInfo.Width) * ((double)100);
+            if (_currentRightValue - _currentLeftValue <= 0)
+            {
+                _currentLeftValue = _currentRightValue;
+            }
+            else if (_currentLeftValue < 0)
+            {
+                _currentLeftValue = 0;
+            }
+            HandleValue();
+            OnChange?.Invoke(_currentLeftValue, _currentRightValue);
+            this.Flush();
+        }
+
+        [JSInvokable]
         public async void RightHandleMove(WindowEvent e)
         {
             if (!_rightHandleMouseDown)
             {
                 return;
             }
-            _currentRightValue = ((double)e.MouseEvent.ClientX) / ((double)e.CurrentWindowInfo.InnerSize.Width) * ((double)100);
-            _rightHandleStyle = string.Format(_rightHandleStyleTemplate, _currentRightValue);
-            _sliderTrackStyle = string.Format(_sliderTrackStyleTemplate, _currentLeftValue, _currentRightValue);
+            var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
+            _currentRightValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)(elementInfo.Width)) * ((double)100);
+#if DEBUG
+            Console.WriteLine($"{e.MouseEvent.ClientX}");
+            Console.WriteLine($"{elementInfo.Width}");
+#endif
+            if (_currentRightValue - _currentLeftValue <= 0)
+            {
+                _currentRightValue = _currentLeftValue;
+            }
+            else if (_currentRightValue > 100)
+            {
+                _currentRightValue = 100;
+            }
+            HandleValue();
+            OnChange?.Invoke(_currentLeftValue, _currentRightValue);
             this.Flush();
         }
     }

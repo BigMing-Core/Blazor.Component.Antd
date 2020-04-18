@@ -11,12 +11,22 @@
     <div class="ant-slider-step">
     </div>
 
-    <div id="@($"righthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_rightHandleStyle">
-        <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Right" InsideOfTarget="true">
-            <Title>@(string.Format(ValueFormatter, _currentRightValue))</Title> 
-        </LNTooltip>
 
+    <div id="@($"lefthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_leftHandleStyle">
+        <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" InsideOfTarget="true">
+            <Title>@(string.Format(TipFormatter, _currentLeftValue))</Title>
+        </LNTooltip>
     </div>
+
+
+
+    <div id="@($"righthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_rightHandleStyle">
+        <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" InsideOfTarget="true">
+            <Title>@(string.Format(TipFormatter, _currentRightValue))</Title>
+        </LNTooltip>
+    </div>
+
+
     <div class="ant-slider-mark">
     </div>
 </div>

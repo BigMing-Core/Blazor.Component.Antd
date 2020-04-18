@@ -2,33 +2,84 @@
 
 @using LuanNiao.Blazor.Component.Antd.Slider
 @using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Grid
 
-    <br /><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br />
 
-<LNSlider Disabled="@StateInfo">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<Row>
 
-</LNSlider>
+    <Col Span="2">
+    </Col>
+    <Col Span="4">
+    <LNSlider Disabled="@StateInfo" TipFormatter="@("{0:F2}%")">
 
-<LNButton OnClickCallback="@((e)=> { ChangeState(e); })">
-    Click to @if (StateInfo)
-    {
-        @("enable")
-    }
-    else
-    {
-        @("disable")
-    }
+    </LNSlider>
+    </Col>
+    <Col Span="2">
+    <LNButton OnClickCallback="@((e)=> { ChangeState(e); })">
+        Click to @if (StateInfo)
+        {
+            @("enable")
+        }
+        else
+        {
+            @("disable")
+        }
 
-</LNButton>
+    </LNButton>
+    </Col>
+    <Col Span="16">
+
+
+    </Col>
+
+    <Col Span="2">
+    </Col>
+    <Col Span="4">
+    <LNSlider Disabled="@StateInfo" OnChange="@DataChange">
+
+    </LNSlider>
+    </Col>
+    <Col Span="4">
+
+    LeftValue:@(LeftValue.ToString("F2"))
+    RightValue:@(RightValue.ToString("F2"))
+    </Col>
+
+    <Col Span="4"> 
+    </Col>
+</Row>
+
 
 
 @code
 {
     public bool StateInfo { get; set; }
+    public double LeftValue { get; set; }
+    public double RightValue { get; set; }
 
     public void ChangeState(LNButton e)
     {
         this.StateInfo = !this.StateInfo;
+        this.StateHasChanged();
+    }
+
+
+    public void DataChange(double leftValue, double rightValue)
+    {
+        LeftValue = leftValue;
+        RightValue = rightValue;
         this.StateHasChanged();
     }
 }
