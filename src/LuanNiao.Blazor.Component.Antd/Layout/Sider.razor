@@ -1,24 +1,27 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 @using LuanNiao.Blazor.Component.Antd.Icons
 
+
 <CascadingValue Value="this">
-    <aside class="ant-layout-sider ant-layout-sider-dark" style="@CStyle">
+    <aside class="ant-layout-sider ant-layout-sider-dark lnsider" style="@CStyle">
         <div class="ant-layout-sider-children">
             @ChildContent
         </div>
         @if (Collapsible)
         {
-    <div class="ant-layout-sider-trigger" style="@_siderTriggerStyle" id="@($"sider_trigger_{IdentityKey}")">
-        @if (Collapsed)
-        {
-            <RightOutlined></RightOutlined>
-        }
-        else
-        { 
-        <LeftOutlined></LeftOutlined>
-        }
-    </div>
+            <div class="ant-layout-sider-trigger" style="@_siderTriggerStyle" id="@($"sider_trigger_{IdentityKey}")">
+                @if (Collapsed)
+                {
+                    <RightOutlined></RightOutlined>
+                }
+                else
+                {
+                    <LeftOutlined></LeftOutlined>
+                }
+            </div>
         }
     </aside>
 
 </CascadingValue>
+
+ 
