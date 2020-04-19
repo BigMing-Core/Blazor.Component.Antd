@@ -1,0 +1,21 @@
+﻿
+@page "/TranslaterTest"
+
+@using static LuanNiao.Blazor.Core.Translater
+@using LuanNiao.Blazor.Component.Antd.Button
+
+<h3>@Tr("home")</h3>
+<LNButton OnClickCallback="@((a)=> { ConvertTo("en"); this.StateHasChanged(); })">
+
+    change to english
+</LNButton>
+
+
+<LNButton OnClickCallback="@((a)=> { ConvertTo("cn"); this.StateHasChanged(); })">
+
+  切换中文
+</LNButton>
+
+@code {
+
+}

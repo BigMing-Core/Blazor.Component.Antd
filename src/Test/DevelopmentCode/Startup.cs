@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting; 
+using Microsoft.Extensions.Hosting;
 using LuanNiao.Blazor.Core;
 
 namespace DevelopmentCode
@@ -25,6 +25,11 @@ namespace DevelopmentCode
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Translater.AddLanguageFile(new Translater.SourceItem[]
+            {
+                new Translater.SourceItem() {  CultureName="cn", ItemType= Translater.SourceItemType.OrignalString, Data=DevelopmentCode.Properties.Resources.cn},
+                new Translater.SourceItem() {  CultureName="en", ItemType= Translater.SourceItemType.OrignalString, Data=DevelopmentCode.Properties.Resources.en},
+            });
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddLuanNiaoBlazor();
