@@ -34,12 +34,26 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         private double _currentLeftValue = 0;
         private double _currentRightValue = 0;
 
+        private double _halfOfStep = 0;
+        private double _rangeSize = 0;
 
+        private ElementRects _elementRects;
+
+        [Parameter]
+        public double Max { get; set; } = 100;
+        [Parameter]
+        public double Min { get; set; } = 0;
         [Parameter]
         public bool Disabled { get; set; }
 
         [Parameter]
         public string TipFormatter { get; set; } = "{0:F2}";
+
+        [Parameter]
+        public bool Range { get; set; } = false;
+
+        [Parameter]
+        public double? Step { get; set; } = null;
 
         [Parameter]
         public double Value { get; set; }
@@ -58,7 +72,10 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             base.OnInitialized();
             HandleDisabled();
             HandleValue();
+            CalcStepInfo();
         }
+
+
 
         protected override void OnParametersSet()
         {
@@ -71,15 +88,33 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                BindMouseEvent();
+                BindMouseEvent(); 
             }
         }
 
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            HandleElementDefaultInfo();
+            return base.OnAfterRenderAsync(firstRender);
+        }
+        private async void HandleElementDefaultInfo()
+        {
+
+            _elementRects = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
+        }
+
+
         private void HandleValue()
         {
-            _rightHandleStyle = string.Format(_handleStyleTemplate, _currentRightValue.ToString("F2"),(_rightHandleMouseDown? _topLevelIndex:""));
+            _rightHandleStyle = string.Format(_handleStyleTemplate, _currentRightValue.ToString("F2"), (_rightHandleMouseDown ? _topLevelIndex : ""));
             _leftHandleStyle = string.Format(_handleStyleTemplate, _currentLeftValue.ToString("F2"), (_leftHandleMouseDown ? _topLevelIndex : ""));
             _sliderTrackStyle = string.Format(_sliderTrackStyleTemplate, _currentLeftValue.ToString("F2"), (_currentRightValue - _currentLeftValue).ToString("F2"));
+        }
+
+        private void CalcStepInfo()
+        {
+            _halfOfStep = (Step == null ? 1 : Step.Value) / 2;
+            _rangeSize = Max - Min;
         }
 
         private void HandleDisabled()
@@ -96,6 +131,22 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             ElementInfo.BindMouseMoveEvent($"body", nameof(LeftHandleMove), this);
             ElementInfo.BindMouseDownEvent($"lefthandle_{IdentityKey}", nameof(LeftHandleMouseDown), this);
             ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this);
+        }
+ 
+        [JSInvokable]
+        public async void OnElementResize()
+        {
+            _elementRects = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
+#if DEBUG
+            Console.WriteLine(nameof(OnElementResize));
+#endif
+        }
+
+
+        private double PrettifyValue(double value)
+        {
+            var data = Min + (value * (_rangeSize) / 100);
+            return Math.Round(data, 6);
         }
 
 
@@ -126,14 +177,31 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
         [JSInvokable]
-        public async void LeftHandleMove(WindowEvent e)
+        public void LeftHandleMove(WindowEvent e)
         {
             if (!_leftHandleMouseDown)
             {
                 return;
             }
-            var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
-            _currentLeftValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)elementInfo.Width) * ((double)100);
+            var percentOfElement = ((e.MouseEvent.ClientX - _elementRects.X)) / (_elementRects.Width);
+            double targetStepNum = 0;
+
+            var numberOfRange = _rangeSize * percentOfElement;
+            var _step = Step == null ? 1 : Step.Value;
+            var remainderOfStep = numberOfRange % _step;
+
+            if (remainderOfStep >= _halfOfStep)
+            {
+                targetStepNum = numberOfRange + _step - remainderOfStep;
+            }
+            else
+            {
+                targetStepNum = numberOfRange - remainderOfStep;
+            }
+            percentOfElement = targetStepNum * 100 / _rangeSize;
+
+            _currentLeftValue = percentOfElement;
+
             if (_currentRightValue - _currentLeftValue <= 0)
             {
                 _currentLeftValue = _currentRightValue;
@@ -148,18 +216,33 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
         [JSInvokable]
-        public async void RightHandleMove(WindowEvent e)
+        public void RightHandleMove(WindowEvent e)
         {
             if (!_rightHandleMouseDown)
             {
                 return;
             }
-            var elementInfo = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
-            _currentRightValue = ((double)(e.MouseEvent.ClientX - elementInfo.X)) / ((double)(elementInfo.Width)) * ((double)100);
-#if DEBUG
-            Console.WriteLine($"{e.MouseEvent.ClientX}");
-            Console.WriteLine($"{elementInfo.Width}");
-#endif
+            var percentOfElement = ((e.MouseEvent.ClientX - _elementRects.X)) / (_elementRects.Width);
+            double targetStepNum = 0;
+
+            var numberOfRange = _rangeSize * percentOfElement;
+            var _step = Step == null ? 1 : Step.Value;
+            var remainderOfStep = numberOfRange % _step;
+
+            if (remainderOfStep >= _halfOfStep)
+            {
+                targetStepNum = numberOfRange + _step - remainderOfStep;
+            }
+            else
+            {
+                targetStepNum = numberOfRange - remainderOfStep;
+            }
+            if (Step != null && (targetStepNum + Min) > Max)
+            {
+                return;
+            }
+            percentOfElement = targetStepNum * 100 / _rangeSize; 
+            _currentRightValue = percentOfElement;
             if (_currentRightValue - _currentLeftValue <= 0)
             {
                 _currentRightValue = _currentLeftValue;
@@ -169,7 +252,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 _currentRightValue = 100;
             }
             HandleValue();
-            OnChange?.Invoke(_currentLeftValue, _currentRightValue);
+            OnChange?.Invoke(PrettifyValue(_currentLeftValue), PrettifyValue(_currentRightValue));
             this.Flush();
         }
     }
