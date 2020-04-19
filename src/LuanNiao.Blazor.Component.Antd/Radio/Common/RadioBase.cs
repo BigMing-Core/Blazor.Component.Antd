@@ -9,13 +9,13 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
     public class RadioBase : LNBCBase
     {
         internal int _checkValue;
-        internal void Triggered(LNRadio sourceItem)
+        internal void Triggered(Radio sourceItem)
         {
             this.ItemSelected?.Invoke(sourceItem);
         }
         /// <summary>
         /// there's some on selected
         /// </summary>
-        internal event Action<LNRadio> ItemSelected;
+        internal event Action<Radio> ItemSelected;
     }
 }

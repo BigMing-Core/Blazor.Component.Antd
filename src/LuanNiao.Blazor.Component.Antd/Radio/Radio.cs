@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Radio
 {
-    public partial class LNRadio
+    public partial class Radio
     {
         //private readonly StyleItem[] _verticaStyleItem ={
         //    new StyleItem() { StyleName = "display", Value = "block" },
@@ -28,19 +28,19 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         [Parameter]
         public string Value { get; set; }
         [CascadingParameter]
-        public LNRadioGroup RootGourp { get; set; }
+        public RadioGroup RootGourp { get; set; }
 
         private const string _checkClass = "ant-radio-checked";
         private const string _disabledClass = "ant-radio-disabled";
 
-        public LNRadio()
+        public Radio()
         {
             _classHelper.SetStaticClass("ant-radio");
         }
         protected override void OnParametersSet()
         {
             _classHelper.AddCustomClass(_checkClass, () => Checked)
-              .AddOrRemove(_disabledClass, condition: () => Disabled );
+              .AddOrRemove(_disabledClass, condition: () => Disabled);
             this.Flush();
         }
         protected override void OnInitialized()
@@ -75,7 +75,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
             this.Flush();
         }
 
-        private void GotOtherItemSelectedEvent(LNRadio targetItem)
+        private void GotOtherItemSelectedEvent(Radio targetItem)
         {
             if (targetItem.Equals(this))
             {

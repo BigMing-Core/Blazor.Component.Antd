@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Radio
 {
-    public partial class LNRadioGroup
+    public partial class RadioGroup
     {
         [Parameter]
         public bool Disabled { get; set; }
 
-        public LNRadioGroup()
+        public RadioGroup()
         {
             _classHelper.SetStaticClass("ant-radio-group");
         }
