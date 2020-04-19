@@ -40,14 +40,12 @@
     </LNButton>
     </Col>
     <Col Span="16">
-
-
     </Col>
 
     <Col Span="2">
     </Col>
     <Col Span="4">
-    <LNSlider Disabled="@StateInfo" OnChange="@DataChange">
+    <LNSlider Disabled="@StateInfo" OnChange="@DataChange" Range="true">
 
     </LNSlider>
     </Col>
@@ -57,7 +55,55 @@
     RightValue:@(RightValue.ToString("F2"))
     </Col>
 
-    <Col Span="4"> 
+    <Col Span="14">
+    </Col>
+
+
+    <Col Span="2">
+    </Col>
+    <Col Span="4">
+    <LNSlider Disabled="@StateInfo" OnChange="@DataChange1" Step="3">
+
+    </LNSlider>
+    </Col>
+    <Col Span="4">
+    with step:3  current value:@RightValue1
+    </Col>
+
+    <Col Span="14">
+    </Col>
+
+
+
+    <Col Span="2">
+    </Col>
+    <Col Span="4">
+    <LNSlider Disabled="@StateInfo" OnChange="@DataChange2" Step="3" Min="12" Max="32">
+
+    </LNSlider>
+    </Col>
+    <Col Span="4">
+    with step:3 and min:12 max=32  current left value:@LeftValue2 current right value:@RightValue2
+    </Col>
+
+    <Col Span="14">
+    </Col>
+
+
+
+
+    <Col Span="2">
+    </Col>
+    <Col Span="4">
+    <LNSlider Disabled="@StateInfo" OnChange="@DataChange3" Step="0.01" Min="0.02" Max="1">
+
+    </LNSlider>
+    </Col>
+    <Col Span="4">
+    with step:0.01 and min:0.02 max=1  current left value:@LeftValue3 current right value:@RightValue3
+    </Col>
+
+    <Col Span="14">
     </Col>
 </Row>
 
@@ -68,6 +114,14 @@
     public bool StateInfo { get; set; }
     public double LeftValue { get; set; }
     public double RightValue { get; set; }
+    public double RightValue1 { get; set; }
+
+
+    public double LeftValue2 { get; set; }
+    public double RightValue2 { get; set; }
+
+    public double LeftValue3 { get; set; }
+    public double RightValue3 { get; set; }
 
     public void ChangeState(LNButton e)
     {
@@ -80,6 +134,28 @@
     {
         LeftValue = leftValue;
         RightValue = rightValue;
+        this.StateHasChanged();
+    }
+
+    public void DataChange1(double leftValue, double rightValue)
+    {
+        RightValue1 = rightValue;
+        this.StateHasChanged();
+    }
+
+
+    public void DataChange2(double leftValue, double rightValue)
+    {
+        LeftValue2 = leftValue;
+        RightValue2 = rightValue;
+        this.StateHasChanged();
+    }
+
+
+    public void DataChange3(double leftValue, double rightValue)
+    {
+        LeftValue3 = leftValue;
+        RightValue3 = rightValue;
         this.StateHasChanged();
     }
 }

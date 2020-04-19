@@ -4,9 +4,7 @@ import * as ReactDOM from "react-dom"
 import "antd/dist/antd.css"
 import "./demo.less"
 
-
-
-import { Input } from 'antd';
+import { Slider } from 'antd';
 export class Demo extends Component<any, any>{
   state = {
     disabled: false,
@@ -18,8 +16,9 @@ export class Demo extends Component<any, any>{
 
   render() {
     const { disabled } = this.state;
-    return (
-      <Input placeholder="Basic usage" disabled={true} />
+    return ( 
+    <Slider min={0} max={100} step={0.001}  />
+
     )
   }
 }
