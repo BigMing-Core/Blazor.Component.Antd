@@ -1,0 +1,9 @@
+﻿@inherits LuanNiao.Blazor.Component.Antd.Radio.RadioBase
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using Microsoft.AspNetCore.Components.Web
+
+<CascadingValue Value="this">
+    <div class="@ClassName ant-radio-group-outline" id="rdp_@IdentityKey">
+        @ChildContent
+    </div>
+</CascadingValue>

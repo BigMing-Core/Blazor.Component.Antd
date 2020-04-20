@@ -1,0 +1,29 @@
+﻿@page "/checkbox"
+@using LuanNiao.Blazor.Component.Antd.CheckBox
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Button
+
+<CheckBox Value="123" Checked="true">checked</CheckBox>
+<CheckBox Checked="false">un checked</CheckBox>
+<CheckBox Disabled="@(disable)">Disbled</CheckBox>
+<LNButton Type="LNButton.BType.Primary" OnClickCallback="NumPlus">Toggle disabled</LNButton>
+<a>@disable</a>
+<div>--</div>
+<CheckBoxGroup Name="ln1" Disabled="true">
+    <CheckBox Disabled="false">a1</CheckBox>
+    <CheckBox>a2</CheckBox>
+    <CheckBox>a3</CheckBox>
+</CheckBoxGroup>
+<CheckBoxGroup Name="ln2">
+    <CheckBox Disabled="true">b1</CheckBox>
+    <CheckBox>b2</CheckBox>
+    <CheckBox>b3</CheckBox>
+</CheckBoxGroup>
+@code{
+    private bool disable = true;
+    private void NumPlus(LNButton _)
+    {
+        disable = !disable;
+        this.StateHasChanged();
+    }
+}
