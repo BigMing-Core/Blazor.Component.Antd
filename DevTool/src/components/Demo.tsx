@@ -4,20 +4,40 @@ import * as ReactDOM from "react-dom"
 import "antd/dist/antd.css"
 import "./demo.less"
 
-import { Slider } from 'antd';
+import { Drawer, Button } from 'antd';
+
+
 export class Demo extends Component<any, any>{
-  state = {
-    disabled: false,
+  state = { visible: false };
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
   };
 
-  handleDisabledChange = (disabled:any) => {
-    this.setState({ disabled });
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
   };
-
-  render() {
-    const { disabled } = this.state;
+  render() { 
     return ( 
-    <Slider min={0} max={100} step={0.001}  />
+      <div>
+      <Button type="primary" onClick={this.showDrawer}>
+        Open
+      </Button>
+      <Drawer
+        placement="left"
+        closable={true}
+        onClose={this.onClose}
+        visible={this.state.visible}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+    </div>
 
     )
   }

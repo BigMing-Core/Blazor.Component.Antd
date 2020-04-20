@@ -129,13 +129,14 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 this._currentSelectItems.Clear();
                 this._currentSelectItems.Add(sourceItem.Key);
             }
+            this.OnSelect?.Invoke(this, this._currentSelectItems);
         }
         internal int GetMyID()
         {
             return System.Threading.Interlocked.Increment(ref _currentMenuItemKey);
         }
 
-
+        
 
         /// <summary>
         /// there's some on selected
