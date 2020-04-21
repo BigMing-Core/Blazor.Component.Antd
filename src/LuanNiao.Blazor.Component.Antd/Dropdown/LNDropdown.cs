@@ -125,7 +125,7 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
                     }
                     else
                     {
-                        HideSubInfo();
+                        await HideSubInfo();
                     }
                     break;
                 case TriggerType.ContextMenu:
@@ -162,25 +162,25 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
             this.Flush();
         }
 
-        public void HideSubInfo()
+        public async Task HideSubInfo()
         {
-            Task.Run(() =>
-            {
-                Task.Delay(100).Wait();
+            await Task.Run(async () =>
+            { 
+                await Task.Delay(100);
                 if (_inElementScope)
                 {
                     return;
                 }
-                _hideDivClassNameStr = _hideDivInfo.AddCustomClass(_hideDivClassName).Build();
+                _hideDivClassNameStr = _hideDivInfo.AddCustomClass(_hideDivClassName).Build(); 
                 this.Flush();
             });
         }
 
         [JSInvokable]
-        public void OnMouseOut()
+        public async void OnMouseOut()
         {
             _inElementScope = false;
-            HideSubInfo();
+            await HideSubInfo();
         }
 
 
@@ -214,6 +214,6 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
                 ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
             }
         }
- 
+
     }
 }
