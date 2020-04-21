@@ -29,6 +29,9 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         public RenderFragment Overlay { get; set; }
 
         [Parameter]
+        public ComponentSize BtnSize { get; set; } = ComponentSize.Middle;
+
+        [Parameter]
         public DropdownTheme Theme { get; set; } = DropdownTheme.HrefByA;
 
 
@@ -57,6 +60,22 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
             _classHelper.AddCustomClass("ant-dropdown-trigger");
         }
 
+
+        private void HandleComponentSize()
+        {
+            switch (BtnSize)
+            {
+                case ComponentSize.Large:
+                    _classHelper.AddCustomClass("ant-btn-lg");
+                    break;
+                case ComponentSize.Small:
+                    _classHelper.AddCustomClass("ant-btn-sm");
+                    break;
+                case ComponentSize.Middle:
+                default:
+                    break;
+            }
+        }
 
         private void HandleTriggerType()
         {
@@ -132,16 +151,14 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
         private async Task ShowSubInfo()
         {
-            var elementRectInfo = await GetMainElementRects();
-            /*Antd's style needs this 8px(•́⌄•́๑)૭✧ use to fix the div's location, if we haven't this 8px, the div will cover the button's bottom.*/
-            var top = Theme == DropdownTheme.Button ? elementRectInfo.Bottom + 8 : elementRectInfo.Bottom;
+            var elementRectInfo = await ElementInfo.GetElementRectsByID($"btn_{IdentityKey}");
+            var top = elementRectInfo.Bottom;
             _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
                     .AddCustomStyle("left", $"{elementRectInfo.Left}px")
                     .AddCustomStyle("top", $"{ top}px")
                     .AddCustomStyle("min-width", "74px")
                     .Build();
             _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
-            //}
             this.Flush();
         }
 
@@ -197,10 +214,6 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
                 ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
             }
         }
-
-        public async Task<ElementRects> GetMainElementRects()
-        {
-            return await ElementInfo.GetElementRectsByID($"main_{IdentityKey}");
-        }
+ 
     }
 }

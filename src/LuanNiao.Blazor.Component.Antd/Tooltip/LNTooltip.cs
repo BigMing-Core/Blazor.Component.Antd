@@ -168,14 +168,14 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
                 case PlacementType.LeftTop:
                 case PlacementType.LeftBottom:
                     left = 0 - hideDivElementInfo.Width;
-                    top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
+                    top = spanElementInfo.OffsetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
                     break;
 
                 case PlacementType.Right:
                 case PlacementType.RightTop:
                 case PlacementType.RightBottom:
                     left = 0 + Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
-                    top = spanElementInfo.OffetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
+                    top = spanElementInfo.OffsetTop - Math.Abs(spanElementInfo.Height - hideDivElementInfo.Height) / 2;
                     break;
 
                 case PlacementType.Bottom:

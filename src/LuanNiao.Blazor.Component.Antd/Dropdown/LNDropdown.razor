@@ -5,7 +5,7 @@
         color: #777;
     }
 </style>
-<lnplacehoder id="@($"main_{IdentityKey}")">
+<div id="@($"main_{IdentityKey}")">
     @if (Trigger == TriggerType.ContextMenu)
     {
 
@@ -23,7 +23,7 @@
     else if (Theme == DropdownTheme.Button)
     {
         <button type="button" class="@ClassName"
-                style="@CStyle">
+                style="@CStyle" id="@($"btn_{IdentityKey}")">
             @ChildContent
         </button>
     }
@@ -31,19 +31,19 @@
     {
         <a class="@ClassName"
            style="@CStyle"
-           onClick="LuanNiaoBlazor.BlockClickEvent()">
+           onClick="LuanNiaoBlazor.BlockClickEvent()" id="@($"btn_{IdentityKey}")">
             @ChildContent
         </a>
     }
 
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
+    <div style="position: fixed;z-index: 3;top: 0px;left: 0px;width: 100%;">
         <div>
             <div class="@_hideDivClassNameStr" style="@_hideSubMenuDivStyleStr" id="@($"hideDiv_{IdentityKey}")">
                 @Overlay
             </div>
         </div>
     </div>
-</lnplacehoder>
+</div>
 
 
