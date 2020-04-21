@@ -4,31 +4,41 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
-import { Slider, Spin } from "antd";
-export class Demo extends Component<any, any> {
-  state = {
-    disabled: false,
+import { Drawer, Button } from 'antd';
+
+
+export class Demo extends Component<any, any>{
+  state = { visible: false };
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
   };
 
-  handleDisabledChange = (disabled: any) => {
-    this.setState({ disabled });
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
   };
+  render() { 
+    return ( 
+      <div>
+      <Button type="primary" onClick={this.showDrawer}>
+        Open
+      </Button>
+      <Drawer
+        placement="left"
+        closable={true}
+        onClose={this.onClose}
+        visible={this.state.visible}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+    </div>
 
-  render() {
-    const { disabled } = this.state;
-    return (
-      <Spin
-        size="large"
-        wrapperClassName="aaa"
-        className="bbbss"
-        tip="bbs"
-        delay={2}
-        spinning={true}
-        style={{
-          width: 40,
-        }}
-        //indicator={<div>aaa</div>}
-      />
-    );
+    )
   }
 }
