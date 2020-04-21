@@ -260,16 +260,16 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 .Build();
         }
 
-        private void OnMouseOut()
+        private async Task OnMouseOut()
         {
             if (this.Disabled)
             {
                 return;
             }
             _inThisElementScope = false;
-            Task.Run(() =>
+            await Task.Run(async () =>
             {
-                Task.Delay(100).Wait();
+                await Task.Delay(100);
                 if (_inThisElementScope)
                 {
                     return;
