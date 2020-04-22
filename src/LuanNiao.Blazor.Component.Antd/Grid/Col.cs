@@ -36,7 +36,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
                     {
                         var horizontalSize = margin.Horizontal / 2;
                         var vertialSize = margin.Vertial / 2;
-                        this._styleHelper.AddCustomStyleStr($"padding: {horizontalSize}px {vertialSize}px ");
+                        this._styleHelper.AddCustomStyleStr($"padding: {vertialSize}px {horizontalSize}px ");
                     }
                 }
             }
