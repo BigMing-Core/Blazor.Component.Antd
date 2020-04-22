@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace LuanNiao.Blazor.Component.Antd.Radio
 {
     public class RadioBase : LNBCBase
-    {
-        internal int _checkValue;
+    { 
         internal void Triggered(Radio sourceItem)
         {
             this.ItemSelected?.Invoke(sourceItem);
