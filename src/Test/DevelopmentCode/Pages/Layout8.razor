@@ -12,7 +12,7 @@
 <LNLayout>
     <Sider CStyle="overflow:auto;height:100%;position:fixed;left:0px;" @ref="SiderInstance">
         <div style="height: 32px; background: rgba(255, 255, 255, 0.2); margin: 16px;" />
-        <InlineMenu Theme="MenuBase.MenuTheme.Dark" DefaultSelectedKeys="@(new string[]{"home"})">
+        <InlineMenu Theme="MenuBase.MenuTheme.Dark" DefaultSelectedKeys="@(new[]{"home"})">
             <MenuItem Key="home">
                 @if (SiderInstance.Collapsed)
                 {
@@ -80,7 +80,7 @@
                     <Overlay>
                         <DropdownMenu>
                             <MenuItem>1st menu item</MenuItem>
-                            <MenuItem>2nd menu item</MenuItem> 
+                            <MenuItem>2nd menu item</MenuItem>
                         </DropdownMenu>
                     </Overlay>
                 </LNDropdown>
@@ -127,6 +127,7 @@
 
 }
 <style>
+
     .logo {
         height: 32px;
         background: rgba(255, 255, 255, 0.2);

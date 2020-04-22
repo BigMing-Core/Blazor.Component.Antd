@@ -83,8 +83,8 @@ namespace LuanNiao.Blazor.Component.Antd.Spin
             {
                 _classHelper.AddOrRemove(_spinningClassName, condition: () => Spining);
                 _blurClass.AddOrRemove("ant-spin-blur", condition: () => Spining);
+                this.Flush();
             }
-            this.Flush();
         }
         private void HandleSpining()
         {
