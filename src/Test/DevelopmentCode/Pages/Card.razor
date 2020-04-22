@@ -1,0 +1,40 @@
+﻿@page "/card"
+@using LuanNiao.Blazor.Component.Antd.Card
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+
+<Row>
+    <Col Span="24">
+    <span></span>
+    </Col>
+    <Col Span="1">
+    </Col>
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="22">
+        <LNCard CStyle="width:300px" Actions="new[]{ a1,a2,a3}">
+            <Title>
+                Default size card
+            </Title>
+            <Extra>
+                <a href="#">More</a>
+            </Extra>
+            <ChildContent>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <Col Span="1">
+
+    </Col>
+</Row>
+
+
+@code{
+    private RenderFragment a1 =@<SettingOutlined />;
+private RenderFragment a2 = @<EditOutlined />;
+private RenderFragment a3 = @<EllipsisOutlined />;
+
+}
