@@ -1,12 +1,62 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
-<div class="ant-spin ant-spin-lg ant-spin-spinning ant-spin-show-text bbbss"
-     style="width: 40px;">
-    <span class="ant-spin-dot ant-spin-dot-spin">
-        <i class="ant-spin-dot-item"></i>
-        <i class="ant-spin-dot-item"></i>
-        <i class="ant-spin-dot-item"></i>
-        <i class="ant-spin-dot-item"></i>
-    </span>
-    <div class="ant-spin-text">loading</div>
-</div>
+
+
+
+@if (ChildContent != null)
+{
+    <div class="ant-spin-nested-loading">
+        <div>
+            @if (Spining)
+            {
+
+                <div class="@ClassName" style="@CStyle">
+                    @if (Indicator != null)
+                    {
+                        @Indicator
+                    }
+                    else
+                    {
+                        <span class="ant-spin-dot ant-spin-dot-spin">
+                            <i class="ant-spin-dot-item"></i>
+                            <i class="ant-spin-dot-item"></i>
+                            <i class="ant-spin-dot-item"></i>
+                            <i class="ant-spin-dot-item"></i>
+                        </span>
+                    }
+                    @if (Tip != null)
+                    {
+                        <div class="ant-spin-text">@Tip</div>
+                    }
+                </div>
+            }
+
+        </div>
+        <div class="@BlurClass">
+            @ChildContent
+        </div>
+    </div>
+}
+else
+{
+    <div class="@ClassName" style="@CStyle">
+        @if (Indicator != null)
+        {
+            @Indicator
+        }
+        else
+        {
+            <span class="ant-spin-dot ant-spin-dot-spin">
+                <i class="ant-spin-dot-item"></i>
+                <i class="ant-spin-dot-item"></i>
+                <i class="ant-spin-dot-item"></i>
+                <i class="ant-spin-dot-item"></i>
+            </span>
+        }
+        @if (Tip != null)
+        {
+            <div class="ant-spin-text">@Tip</div>
+        }
+    </div>
+}
+

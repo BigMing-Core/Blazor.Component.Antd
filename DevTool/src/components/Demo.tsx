@@ -4,12 +4,10 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, Spin, Alert, Switch } from "antd";
 
-
-export class Demo extends Component<any, any>{
-  state = { visible: false };
-
+export class Demo extends Component<any, any> {
+  state = { visible: false ,loading: false };
   showDrawer = () => {
     this.setState({
       visible: true,
@@ -21,24 +19,23 @@ export class Demo extends Component<any, any>{
       visible: false,
     });
   };
-  render() { 
-    return ( 
-      <div>
-      <Button type="primary" onClick={this.showDrawer}>
-        Open
-      </Button>
-      <Drawer
-        placement="left"
-        closable={true}
-        onClose={this.onClose}
-        visible={this.state.visible}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Drawer>
-    </div>
 
-    )
+  toggle = (value:boolean) => {
+    this.setState({ loading: value });
+  };
+  render() {
+    return (<div>
+      <Spin spinning={this.state.loading} size="small" delay={2000}>
+        {/* <Alert
+          message="Alert message title"
+          description="Further details about the context of this alert."
+          type="info"
+        /> */}
+      </Spin>
+      <div style={{ marginTop: 16 }}>
+        Loading state：
+        <Switch checked={this.state.loading} onChange={this.toggle} />
+      </div>
+    </div>);
   }
 }

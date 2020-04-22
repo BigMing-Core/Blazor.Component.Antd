@@ -357,3 +357,4 @@ MigrationBackup/
 #Add by benlampson
 dist/
 DevTool/package-lock.json
+.DS_Store
