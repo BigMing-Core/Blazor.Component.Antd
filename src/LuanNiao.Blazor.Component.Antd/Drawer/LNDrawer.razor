@@ -6,8 +6,8 @@
 
 
 
-<div>
-    <div tabindex="-1" class="@ClassName">
+<div style="@((RenderToCurrentContainer?_renderInContainerStyle:null))">
+    <div tabindex="-1" class="@ClassName" style="@((RenderToCurrentContainer?"position: absolute;":null))">
         <div class="ant-drawer-mask" id="@($"mask_{IdentityKey}")"></div>
         <div class="ant-drawer-content-wrapper" style="@_contentWrapperStyle">
             <div class="ant-drawer-content">

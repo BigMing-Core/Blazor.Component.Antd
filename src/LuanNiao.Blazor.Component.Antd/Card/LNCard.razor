@@ -1,31 +1,58 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
-<div class="@ClassName" style="@CStyle">
-    <div class="ant-card-head">
-        <div class="ant-card-head-wrapper">
-            <div class="ant-card-head-title">
-                @Title
+<CascadingValue Value="this">
+    <div class="@ClassName" style="@CStyle">
+        @if (Title != null || Extra != null)
+        {
+            <div class="ant-card-head">
+                <div class="ant-card-head-wrapper">
+                    <div class="ant-card-head-title">
+                        @Title
+                    </div>
+                    @if (Extra != null)
+                    {
+                        <div class="ant-card-extra">
+                            @Extra
+                        </div>
+                    }
+                </div>
             </div>
-            @if (Extra != null)
+        }
+
+        @if (Cover != null)
+        {
+            <div class="ant-card-cover">
+                <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png">
+            </div>
+        }
+        <div class="ant-card-body">
+            @ChildContent
+            @if (MetaAvatar != null || MetaDescription != null || MetaTitle != null)
             {
-                <div class="ant-card-extra">
-                    @Extra
+                <div class="@MetaClassName" style="@MetaStyle">
+                    @if (MetaAvatar != null)
+                    {
+                        <div class="ant-card-meta-avatar">@MetaTitle</div>
+                    }
+                    <div class="ant-card-meta-detail">
+
+                        @if (MetaTitle != null)
+                        {
+                            <div class="ant-card-meta-title">@MetaTitle</div>
+                        }
+                        @if (MetaDescription != null)
+                        {
+                            <div class="ant-card-meta-description">@MetaDescription</div>
+                        }
+                    </div>
                 </div>
             }
         </div>
+        @if (Actions != null)
+        {
+            <ul class="ant-card-actions">
+                @Actions
+            </ul>
+        }
     </div>
-    <div class="ant-card-body">
-        @ChildContent
-    </div>
-    @if (Actions != null)
-    {
-        <ul class="ant-card-actions">
-            @for (int i = 0; i < Actions.Count; i++)
-            {
-                <li style="@($"width:{Math.Round((float)100 / (float)Actions.Count,2)}%") " id="@($"actionLi_{IdentityKey}_{i}")">
-                    <span>@Actions[i]</span>
-                </li>
-            }
-        </ul>
-    }
-</div>
+</CascadingValue>

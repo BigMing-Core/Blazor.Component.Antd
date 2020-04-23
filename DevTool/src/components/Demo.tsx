@@ -7,30 +7,44 @@ import "./demo.less";
 
 
 
-
-
-import { Card } from 'antd';
-
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-
-
+import { Drawer, Button } from 'antd';
 
 
 export class Demo extends Component<any, any> {
- 
+  state = { visible: false };
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };
   render() {
     return (
-      <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
-      ]}
-      >
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
+      <div className="site-drawer-render-in-current-wrapper">
+        Render in this
+        <div style={{ marginTop: 16 }}>
+          <Button type="primary" onClick={this.showDrawer}>
+            Open
+        </Button>
+        </div>
+        <Drawer
+          title="Basic Drawer"
+          placement="right"
+          closable={false}
+          onClose={this.onClose}
+          visible={this.state.visible}
+          getContainer={false}
+          style={{ position: 'absolute' }}
+        >
+          <p>Some contents...</p>
+        </Drawer>
+      </div>
     );
   }
 }
