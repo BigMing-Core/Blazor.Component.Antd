@@ -23,7 +23,7 @@ namespace LuanNiao.Blazor.Component.Antd.Drawer
         private const string _noTitleClassName = "ant-drawer-header-no-title";
         private const string _withTitleClassName = "ant-drawer-header";
 
-        private const string _renderInContainerStyle = "height: 100%;position: relative;";
+        private const string _renderInContainerStyle = "height: 100%;position: relative;overflow:hidden;";
 
 
         private string _contentWrapperStyle = "";

@@ -38,6 +38,12 @@
     bottom
 </LNButton>
 
+
+
+<LNButton OnClickCallback="@(OnSelected6)">
+    Show In div
+</LNButton>
+
 <LNDrawer @ref="_lNDrawer" Closable="false">
     <Title>I'm title <AccountBookFilled></AccountBookFilled></Title>
     <ChildContent>
@@ -79,6 +85,16 @@
 
 
 
+<div style="height:200px">
+
+    <LNDrawer @ref="_lNDrawer6" Placement="PlacementType.Right" RenderToCurrentContainer="true">
+        <p>Some contents...Right</p>
+        <p>Some contents...Right</p>
+        <p>Some contents...Right</p>
+    </LNDrawer>
+
+</div>
+
 
 
 
@@ -91,6 +107,7 @@
     private LNDrawer _lNDrawer3 = null;
     private LNDrawer _lNDrawer4 = null;
     private LNDrawer _lNDrawer5 = null;
+    private LNDrawer _lNDrawer6 = null;
 
 
     public void OnSelected(LNButton _)
@@ -118,6 +135,12 @@
     public void OnSelected5(LNButton _)
     {
         _lNDrawer5.TakeInverseOpenStatus();
+    }
+
+
+    public void OnSelected6(LNButton _)
+    {
+        _lNDrawer6.TakeInverseOpenStatus();
     }
 }
 
