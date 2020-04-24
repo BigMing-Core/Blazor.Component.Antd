@@ -120,8 +120,8 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
         {
             if (ChildContent != null)
             {
-                var node = await ElementInfo.GetElementRectsByID("avatar_node");
-                var child = await ElementInfo.GetElementRectsByID("avatar_string");
+                var node = await ElementInfo.GetElementRectsByID($"avatar_node_{ IdentityKey}");
+                var child = await ElementInfo.GetElementRectsByID($"avatar_string_{IdentityKey}");
                 var nodeWidth = node.OffsetWidth;
                 var childWidth = child.OffsetWidth;
                 var scale = nodeWidth - 8 < childWidth ? (nodeWidth - 8) / childWidth : 1;

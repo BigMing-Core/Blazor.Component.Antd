@@ -1,10 +1,10 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
 
-<span class="@ClassName" style="@CStyle" id="avatar_node">
+<span class="@ClassName" style="@CStyle" id="@($"avatar_node_{IdentityKey}")">
     @if (ChildContent != null)
     {
-        <span class="ant-avatar-string" style="@StringStyleName" id="avatar_string">
+        <span class="ant-avatar-string" style="@StringStyleName" id="@($"avatar_string_{IdentityKey}")">
             @ChildContent
         </span>
     }
