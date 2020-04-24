@@ -1,0 +1,38 @@
+﻿@page "/badge"
+@using LuanNiao.Blazor.Component.Antd.Badge
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd
+
+    <Row Gutter="@(new MarginGutter() {   Vertial=24})">
+        <Col Span="24">
+        <br />
+        </Col>
+        <Col Span="2">
+        <br />
+        </Col>
+        <Col Span="2">
+        <LNBadge>
+
+            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+        </LNBadge>
+        </Col>
+
+        <Col Span="2">
+        <LNBadge Count="32">
+
+            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+        </LNBadge>
+        </Col>
+
+    </Row>
+
+<style>
+    .head-example {
+        width: 42px;
+        height: 42px;
+        border-radius: 2px;
+        background: #eee;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>

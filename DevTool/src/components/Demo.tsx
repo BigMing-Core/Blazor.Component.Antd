@@ -5,46 +5,36 @@ import "antd/dist/antd.css";
 import "./demo.less";
 
 
+import { Row,Col } from 'antd';
 
+import { Badge } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
 
-import { Drawer, Button } from 'antd';
 
 
 export class Demo extends Component<any, any> {
-  state = { visible: false };
-
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };
+ 
   render() {
     return (
-      <div className="site-drawer-render-in-current-wrapper">
-        Render in this
-        <div style={{ marginTop: 16 }}>
-          <Button type="primary" onClick={this.showDrawer}>
-            Open
-        </Button>
-        </div>
-        <Drawer
-          title="Basic Drawer"
-          placement="right"
-          closable={false}
-          onClose={this.onClose}
-          visible={this.state.visible}
-          getContainer={false}
-          style={{ position: 'absolute' }}
-        >
-          <p>Some contents...</p>
-        </Drawer>
-      </div>
+      <Row gutter={24}>
+        <Col span={24}><br/></Col>
+    <Col span={2}></Col>
+    <Col span={2}>
+    <Badge count={32}>
+      <a href="#" className="head-example" />
+    </Badge>
+    </Col>
+    {/* <Col span={2}>
+    <Badge count={0} showZero>
+      <a href="#" className="head-example" />
+    </Badge>
+    </Col>
+    <Col span={2}>
+    <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />}>
+      <a href="#" className="head-example" />
+    </Badge>
+    </Col>  */}
+  </Row>
     );
   }
 }
