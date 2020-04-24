@@ -10,8 +10,8 @@
     </Col>
     <Col Span="1">
     </Col>
-    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="22">
-        <LNCard CStyle="width:300px" Actions="new[]{ a1,a2,a3}">
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="6">
+        <LNCard CStyle="width:300px">
             <Title>
                 Default size card
             </Title>
@@ -23,18 +23,88 @@
                 <p>Card content</p>
                 <p>Card content</p>
             </ChildContent>
+            <Actions>
+                <CardAction>
+                    <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="@(async ( a)=>{ Console.WriteLine("asd"); })" />
+                </CardAction>
+                <CardAction>
+                    <EditOutlined />
+                </CardAction>
+                <CardAction>
+                    <EllipsisOutlined />
+                </CardAction>
+            </Actions>
         </LNCard>
     </LuanNiao.Blazor.Component.Antd.Grid.Col>
 
     <Col Span="1">
 
     </Col>
+
+    <Col Span="1">
+    </Col>
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="6">
+        <LNCard CStyle="width:300px">
+            <Title>
+                Default size card
+            </Title>
+            <Cover>
+                <img alt="example"
+                     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+            </Cover>
+            <ChildContent>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+            </ChildContent>
+            <MetaTitle>Card title</MetaTitle>
+            <MetaDescription>This is the description</MetaDescription>
+            <Actions>
+                <CardAction>
+                    <SettingOutlined />
+                </CardAction>
+                <CardAction>
+                    <EditOutlined />
+                </CardAction>
+                <CardAction>
+                    <EllipsisOutlined />
+                </CardAction>
+            </Actions>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <Col Span="1">
+
+    </Col>
+
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="6">
+        <LNCard CStyle="width:300px" Bordered="false" Hoverable="true">
+            <Title>
+                Default size card
+            </Title>
+            <ChildContent>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="6">
+        <LNCard CStyle="width:300px">
+
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
 </Row>
 
 
-@code{
-    private RenderFragment a1 =@<SettingOutlined />;
-private RenderFragment a2 = @<EditOutlined />;
-private RenderFragment a3 = @<EllipsisOutlined />;
 
+@code{
+   
 }
