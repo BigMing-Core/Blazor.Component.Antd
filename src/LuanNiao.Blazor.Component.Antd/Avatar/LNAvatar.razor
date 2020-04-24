@@ -1,0 +1,18 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+
+<span class="@ClassName" style="@CStyle" id="avatar_node">
+    @if (ChildContent != null)
+    {
+        <span class="ant-avatar-string" style="@StringStyleName" id="avatar_string">
+            @ChildContent
+        </span>
+    }
+
+    @Icon
+
+    @if (!string.IsNullOrEmpty(Src))
+    {
+        <img src="@Src" alt="@Alt" >
+    }
+</span>

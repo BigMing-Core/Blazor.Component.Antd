@@ -4,33 +4,27 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
+import { Card, Avatar, Button } from 'antd';
 
-
-
-
-
-import { Card } from 'antd';
-
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-
-
-
+import { EditOutlined, EllipsisOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
 export class Demo extends Component<any, any> {
  
   render() {
     return (
-      <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
-      ]}
-      >
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
+      <div>
+   <Avatar icon={<UserOutlined />} />
+    <Avatar>U</Avatar>
+    <Avatar>
+      <Button>User</Button>
+
+    </Avatar>
+    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  alt="bbbbb"/>
+    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+ 
+    <Avatar alt="user3"></Avatar>
+  </div>
     );
   }
 }
