@@ -1,65 +1,78 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
 @if (ChildContent == null)
-{ 
-
+{
+    @if (Dot)
+    {
+        <sup data-show="true" class="ant-scroll-number ant-badge-dot"></sup>
+    }
+    else
+    {
+        <sup data-show="true" class="ant-scroll-number ant-badge-count ant-badge-multiple-words" title="@_count">
+            @_count
+        </sup>
+    }
+}
+else
+{
+    <span class="@ClassName" style="@CStyle">
+        @ChildContent
+        @if (ShowZero || (_countStrList.Count != 0 && !_countStrList[0].Equals("0")))
+        {
+            @if (Dot)
+            {
+                <sup data-show="true" class="ant-scroll-number ant-badge-dot"></sup>
+            }
+            else
+            {
+                <sup data-show="true" class="ant-scroll-number ant-badge-count ant-badge-multiple-words" title="@_count">
+                    @_count
+                </sup>
+            }
+        }
+    </span>
 }
 
-<span class="@ClassName" style="@CStyle">
-    @ChildContent
-    @if (ShowZero || (_countStrList.Count != 0 && !_countStrList[0].Equals("0")))
+@*
+    @if (_overflowed)
     {
-        @if (Dot)
-        {
-            <sup data-show="true" class="ant-scroll-number ant-badge-dot"></sup>
-        }
-        else
-        {
-            <sup data-show="true" class="ant-scroll-number ant-badge-count ant-badge-multiple-words" title="@_count">
-
-                @if (_overflowed)
-                {
-                    @(string.Join("",_countStrList))
-                }
-                else
-                {
-                    @foreach (var item in _countStrList)
-                    {
-                        <span class="ant-scroll-number-only" style="margin: 0px -2px 0px -2px;transform: translateY(-1@(item)00%);">
-                            <p class="ant-scroll-number-only-unit">0</p>
-                            <p class="ant-scroll-number-only-unit">1</p>
-                            <p class="ant-scroll-number-only-unit">2</p>
-                            <p class="ant-scroll-number-only-unit">3</p>
-                            <p class="ant-scroll-number-only-unit">4</p>
-                            <p class="ant-scroll-number-only-unit">5</p>
-                            <p class="ant-scroll-number-only-unit">6</p>
-                            <p class="ant-scroll-number-only-unit">7</p>
-                            <p class="ant-scroll-number-only-unit">8</p>
-                            <p class="ant-scroll-number-only-unit">9</p>
-                            <p class="ant-scroll-number-only-unit">0</p>
-                            <p class="ant-scroll-number-only-unit">1</p>
-                            <p class="ant-scroll-number-only-unit">2</p>
-                            <p class="ant-scroll-number-only-unit">3</p>
-                            <p class="ant-scroll-number-only-unit">4</p>
-                            <p class="ant-scroll-number-only-unit">5</p>
-                            <p class="ant-scroll-number-only-unit">6</p>
-                            <p class="ant-scroll-number-only-unit">7</p>
-                            <p class="ant-scroll-number-only-unit">8</p>
-                            <p class="ant-scroll-number-only-unit">9</p>
-                            <p class="ant-scroll-number-only-unit">0</p>
-                            <p class="ant-scroll-number-only-unit">1</p>
-                            <p class="ant-scroll-number-only-unit">2</p>
-                            <p class="ant-scroll-number-only-unit">3</p>
-                            <p class="ant-scroll-number-only-unit">4</p>
-                            <p class="ant-scroll-number-only-unit">5</p>
-                            <p class="ant-scroll-number-only-unit">6</p>
-                            <p class="ant-scroll-number-only-unit">7</p>
-                            <p class="ant-scroll-number-only-unit">8</p>
-                            <p class="ant-scroll-number-only-unit">9</p>
-                        </span>
-                    }
-                }
-            </sup>
-        }
+        @(string.Join("",_countStrList))
     }
-</span>
+    else
+    {
+        @foreach (var item in _countStrList)
+        {
+            <span class="ant-scroll-number-only" style="margin: 0px -2px 0px -2px;transition: none 0s ease 0s;transform: translateY(-1@(item)00%);">
+                <p class="ant-scroll-number-only-unit">0</p>
+                <p class="ant-scroll-number-only-unit">1</p>
+                <p class="ant-scroll-number-only-unit">2</p>
+                <p class="ant-scroll-number-only-unit">3</p>
+                <p class="ant-scroll-number-only-unit">4</p>
+                <p class="ant-scroll-number-only-unit">5</p>
+                <p class="ant-scroll-number-only-unit">6</p>
+                <p class="ant-scroll-number-only-unit">7</p>
+                <p class="ant-scroll-number-only-unit">8</p>
+                <p class="ant-scroll-number-only-unit">9</p>
+                <p class="ant-scroll-number-only-unit">0</p>
+                <p class="ant-scroll-number-only-unit">1</p>
+                <p class="ant-scroll-number-only-unit">2</p>
+                <p class="ant-scroll-number-only-unit">3</p>
+                <p class="ant-scroll-number-only-unit">4</p>
+                <p class="ant-scroll-number-only-unit">5</p>
+                <p class="ant-scroll-number-only-unit">6</p>
+                <p class="ant-scroll-number-only-unit">7</p>
+                <p class="ant-scroll-number-only-unit">8</p>
+                <p class="ant-scroll-number-only-unit">9</p>
+                <p class="ant-scroll-number-only-unit">0</p>
+                <p class="ant-scroll-number-only-unit">1</p>
+                <p class="ant-scroll-number-only-unit">2</p>
+                <p class="ant-scroll-number-only-unit">3</p>
+                <p class="ant-scroll-number-only-unit">4</p>
+                <p class="ant-scroll-number-only-unit">5</p>
+                <p class="ant-scroll-number-only-unit">6</p>
+                <p class="ant-scroll-number-only-unit">7</p>
+                <p class="ant-scroll-number-only-unit">8</p>
+                <p class="ant-scroll-number-only-unit">9</p>
+            </span>
+        }
+    }*@
