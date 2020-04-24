@@ -24,12 +24,11 @@ export class Demo extends Component<any, any> {
       <a href="#" className="head-example" />
     </Badge>
     </Col>
-    {/* <Col span={2}>
-    <Badge count={0} showZero>
-      <a href="#" className="head-example" />
+     <Col span={2}>
+     <Badge color="#f50" text="#f50" >
     </Badge>
     </Col>
-    <Col span={2}>
+   {/* <Col span={2}>
     <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />}>
       <a href="#" className="head-example" />
     </Badge>

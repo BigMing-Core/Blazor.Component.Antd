@@ -12,13 +12,19 @@ namespace LuanNiao.Blazor.Component.Antd.Badge
 
         private readonly List<string> _countStrList = new List<string>();
         private int _count = 0;
+        private bool _overflowed = false;
         [Parameter]
         public int Count
         {
-            get => _count; set { _count = value; }
+            get;set;
         }
 
-
+        [Parameter]
+        public bool ShowZero { get; set; } = false;
+        [Parameter]
+        public int OverflowCount { get; set; } = 99;
+        [Parameter]
+        public bool Dot { get; set; }
 
 
 
@@ -31,14 +37,26 @@ namespace LuanNiao.Blazor.Component.Antd.Badge
         protected override void OnInitialized()
         {
             base.OnInitialized();
+            _count = Count;
             HandleCount();
         }
-
+        
 
         private void HandleCount()
         {
+            
             _countStrList.Clear();
-            _countStrList.AddRange(_count.ToString().ToCharArray().Select(item => item.ToString()));
+            if (_count > OverflowCount)
+            {
+                _overflowed = true;
+                _countStrList.AddRange(OverflowCount.ToString().ToCharArray().Select(item => item.ToString()));
+                _countStrList.Add("+");
+            }
+            else
+            {
+                _overflowed = false;
+                _countStrList.AddRange(_count.ToString().ToCharArray().Select(item => item.ToString()));
+            }
         }
 
 
@@ -46,6 +64,7 @@ namespace LuanNiao.Blazor.Component.Antd.Badge
         {
             _count += data;
             this.HandleCount();
+            this.Flush();
         }
     }
 }
