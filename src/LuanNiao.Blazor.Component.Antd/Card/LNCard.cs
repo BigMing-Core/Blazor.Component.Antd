@@ -6,11 +6,12 @@ using System.Text;
 
 namespace LuanNiao.Blazor.Component.Antd.Card
 {
-     
+
     public partial class LNCard
     {
 
         private const string _staticClassName = "ant-card";
+        private const string _innerClassName = "ant-card-type-inner";
         private const string _borderedClassName = "ant-card-bordered";
         private const string _hoverableClassName = "ant-card-hoverable";
         /*did we need the interlocked ? Who cares~ (•́⌄•́๑)૭✧ we change this if we found the bug~ Yes!!!!!*/
@@ -27,6 +28,9 @@ namespace LuanNiao.Blazor.Component.Antd.Card
         public bool Bordered { get; set; } = true;
 
         [Parameter]
+        public bool Inner { get; set; }
+
+        [Parameter]
         public bool Hoverable { get; set; } = false;
 
         [Parameter]
@@ -36,7 +40,7 @@ namespace LuanNiao.Blazor.Component.Antd.Card
 
         [Parameter]
         public RenderFragment Extra { get; set; }
-         
+
         [Parameter]
         public RenderFragment Actions { get; set; }
 
@@ -74,8 +78,14 @@ namespace LuanNiao.Blazor.Component.Antd.Card
             base.OnInitialized();
             HandleBordered();
             HandleHoverable();
+            HandleInner();
         }
 
+
+        private void HandleInner()
+        {
+            _classHelper.AddCustomClass(_innerClassName, () => Inner);
+        }
 
         private void HandleHoverable()
         {
