@@ -9,10 +9,12 @@
         </span>
     }
 
-    @Icon
-
     @if (!string.IsNullOrEmpty(Src))
     {
-        <img src="@Src" alt="@Alt" >
+        <img src="@Src" alt="@Alt">
+    }
+    else
+    {
+        @Icon
     }
 </span>

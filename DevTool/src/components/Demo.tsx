@@ -19,7 +19,7 @@ export class Demo extends Component<any, any> {
       <Button>User</Button>
 
     </Avatar>
-    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  alt="bbbbb"/>
+    <Avatar icon={<UserOutlined />}  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  alt="bbbbb"/>
     <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
     <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
  

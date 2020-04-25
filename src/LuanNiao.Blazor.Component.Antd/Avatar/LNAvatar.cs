@@ -80,14 +80,21 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
             HandleShape();
             HandleSize();
             _classHelper.AddOrRemove("ant-avatar-icon", condition: () => Icon != null);
-            _classHelper.AddOrRemove("ant-avatar-image", condition: () => Src != null);
+            _classHelper.AddOrRemove("ant-avatar-image", condition: () => Src != null); 
         }
+
+        /// <summary>
+        /// Handle Shape
+        /// </summary>
         private void HandleShape()
         {
             _classHelper.AddOrRemove("ant-avatar-circle", condition: () => Shape == AShape.Circle);
             _classHelper.AddOrRemove("ant-avatar-square", condition: () => Shape == AShape.Square);
 
         }
+        /// <summary>
+        /// Handle Size
+        /// </summary>
         private void HandleSize()
         {
             if (Size?.Value != null)
@@ -112,11 +119,11 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
                     _styleHelper.AddCustomStyle("font-size", size2 / 2 + "px;");
                 });
             }
-
-
         }
-
-        private async void HandleTextTransfer()
+        /// <summary>
+        /// Change text transform scale
+        /// </summary>
+        private async void HandleTextTransform()
         {
             if (ChildContent != null)
             {
@@ -129,15 +136,21 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
                 this.Flush();
             }
         }
-        protected override void OnParametersSet()
+        protected override Task OnParametersSetAsync()
         {
-            base.OnParametersSet();
+            if (_hasFirstRender)
+            {
+                HandleTextTransform();
+                HandleShape();
+                HandleSize();
+            }
+            return base.OnParametersSetAsync();
         }
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                HandleTextTransfer();
+                HandleTextTransform();
             }
             return base.OnAfterRenderAsync(firstRender);
         }
