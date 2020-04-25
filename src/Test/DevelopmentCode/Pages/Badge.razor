@@ -63,8 +63,13 @@
 
 
         <Col Span="2">
-        <LNBadge Count="10" ShowZero="true"  > 
-        </LNBadge> 
+        <LNBadge Count="10" ShowZero="true">
+        </LNBadge>
+        </Col>
+
+
+        <Col Span="2">
+        <LNBadge Count="4" ClassName="site-badge-count-4" />
         </Col>
     </Row>
 @code{
@@ -84,5 +89,12 @@
         background: #eee;
         display: inline-block;
         vertical-align: middle;
+    }
+    
+
+    .site-badge-count-4 .ant-badge-count {
+        background-color: #fff;
+        color: #999;
+        box-shadow: 0 0 0 1px #d9d9d9 inset;
     }
 </style>

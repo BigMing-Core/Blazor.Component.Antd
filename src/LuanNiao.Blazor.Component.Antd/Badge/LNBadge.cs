@@ -28,17 +28,20 @@ namespace LuanNiao.Blazor.Component.Antd.Badge
 
 
 
-
-        public LNBadge()
-        {
-            _classHelper.SetStaticClass(_staticClassName);
-        }
+ 
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
             _count = Count;
             HandleCount();
+            HandleStaticClassName();
+        }
+
+        private void HandleStaticClassName()
+        {
+
+            _classHelper.SetStaticClass(_staticClassName);
         }
         
 
