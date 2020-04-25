@@ -101,10 +101,37 @@
             <p>Card content</p>
         </LNCard>
     </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="6">
+        <LNCard>
+            <Title>
+                Card title
+            </Title>
+            <ChildContent>
+                <p className="site-card-demo-inner-p">Group title</p>
+                <LNCard Inner="true">
+                    <Title>
+                        Inner Card title
+                    </Title>
+                    <ChildContent>
+                        Inner Card content
+                    </ChildContent>
+                </LNCard>
+                <LNCard CStyle="margin-top:16px" Inner="true">
+                    <Title>
+                        Inner Card title
+                    </Title>
+                    <ChildContent>
+                        Inner Card content
+                    </ChildContent>
+                </LNCard>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
 </Row>
 
 
 
 @code{
-   
+
 }
