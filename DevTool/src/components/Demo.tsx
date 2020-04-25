@@ -4,27 +4,96 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
-import { Card, Avatar, Button } from 'antd';
 
-import { EditOutlined, EllipsisOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { Card } from 'antd';
 
-export class Demo extends Component<any, any> {
+const tabList = [
+  {
+    key: 'tab1',
+    tab: 'tab1',
+  },
+  {
+    key: 'tab2',
+    tab: 'tab2',
+  },
+];
+
+const contentList = {
+  tab1: <p>content1</p>,
+  tab2: <p>content2</p>,
+};
+
+const tabListNoTitle = [
+  {
+    key: 'article',
+    tab: 'article',
+  },
+  {
+    key: 'app',
+    tab: 'app',
+  },
+  {
+    key: 'project',
+    tab: 'project',
+  },
+];
+
+const contentListNoTitle = {
+  article: <p>article content</p>,
+  app: <p>app content</p>,
+  project: <p>project content</p>,
+};
+
  
+export class Demo extends Component<any, any> {
+  state = {
+    key: 'tab1',
+    noTitleKey: 'app',
+  };
+
+  onTabChange = (key:any, type:any) => {
+    console.log(key, type);
+    this.setState({ [type]: key });
+  };
   render() {
+    var data;
+    if(this.state.key=="tab1")
+    {
+
+      data=contentList.tab1
+    }
+    else{
+      data=contentList.tab2
+    }
     return (
       <div>
-   <Avatar icon={<UserOutlined />} />
-    <Avatar>U</Avatar>
-    <Avatar>
-      <Button>User</Button>
-
-    </Avatar>
-    <Avatar icon={<UserOutlined />}  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  alt="bbbbb"/>
-    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-    <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
- 
-    <Avatar alt="user3"></Avatar>
-  </div>
+        <Card
+         
+          title="Card title"
+          extra={<a href="#">More</a>}
+          tabList={tabList}
+          activeTabKey={this.state.key}
+          onTabChange={key => {
+            this.onTabChange(key, 'key');
+          }}
+        >
+          
+          {data}
+        </Card>
+        <br />
+        <br />
+        {/* <Card
+          style={{ width: '100%' }}
+          tabList={tabListNoTitle}
+          activeTabKey={this.state.noTitleKey}
+          tabBarExtraContent={<a href="#">More</a>}
+          onTabChange={key => {
+            this.onTabChange(key, 'noTitleKey');
+          }}
+        >
+          {contentListNoTitle[this.state.noTitleKey]}
+        </Card> */}
+      </div>
     );
   }
 }
