@@ -4,74 +4,100 @@
 @using LuanNiao.Blazor.Component.Antd
 @using LuanNiao.Blazor.Component.Antd.Icons
 
-    <Row Gutter="@(new MarginGutter() {   Vertial=24})">
-        <Col Span="24">
-        <br />
-        </Col>
-        <Col Span="2">
-        <br />
-        </Col>
-        <Col Span="2">
-        <LNBadge>
+<Row Gutter="@(new MarginGutter() {   Vertial=24})">
+    <Col Span="24">
+    <br />
+    </Col>
+    <Col Span="2">
+    <br />
+    </Col>
+    <Col Span="2">
+    <LNBadge>
 
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        </Col>
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
 
-        <Col Span="2">
-        <LNBadge Count="32">
+    <Col Span="2">
+    <LNBadge Count="32">
 
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        </Col>
-        <Col Span="2">
-        <LNBadge Count="322">
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
+    <Col Span="2">
+    <LNBadge Count="322">
 
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        </Col>
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
 
-        <Col Span="2">
-        <LNBadge Count="2">
+    <Col Span="2">
+    <LNBadge Count="2">
 
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        </Col>
-
-
-        <Col Span="2">
-        <LNBadge Count="0" ShowZero="true">
-
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        </Col>
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
 
 
-        <Col Span="2">
-        <LNBadge Count="0" ShowZero="true" Dot="true">
-            <NotificationOutlined />
-        </LNBadge>
-        </Col>
+    <Col Span="2">
+    <LNBadge Count="0" ShowZero="true">
+
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
 
 
-        <Col Span="2">
-        <LNBadge Count="0" ShowZero="true" @ref="_test">
-            <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
-        </LNBadge>
-        <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="@Add">add</LuanNiao.Blazor.Component.Antd.Button.LNButton>
-        </Col>
+    <Col Span="2">
+    <LNBadge Count="0" ShowZero="true" Dot="true">
+        <NotificationOutlined />
+    </LNBadge>
+    </Col>
 
 
-        <Col Span="2">
-        <LNBadge Count="10" ShowZero="true">
-        </LNBadge>
-        </Col>
+    <Col Span="2">
+    <LNBadge Count="0" ShowZero="true" @ref="_test">
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="@Add">add</LuanNiao.Blazor.Component.Antd.Button.LNButton>
+    </Col>
 
 
-        <Col Span="2">
-        <LNBadge Count="4" ClassName="site-badge-count-4" />
-        </Col>
-    </Row>
+    <Col Span="2">
+    <LNBadge Count="10" ShowZero="true">
+    </LNBadge>
+    </Col>
+
+
+    <Col Span="2">
+    <LNBadge Count="4" ClassName="site-badge-count-4" />
+    </Col>
+
+    <Col Span="2">
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Default" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Error" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Success" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Warning" />
+    </Col>
+    <Col Span="2">
+    </Col>
+    <Col Span="2">
+    </Col>
+    <Col Span="2">
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" CStyle="width:10px;height:10px;" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" CStyle="width:10px;height:10px;background: #f50" Text="#f50" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" CStyle="width:10px;height:10px;background: ##2db7f5" Text="#2db7f5" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" CStyle="width:10px;height:10px;background: #87d068" Text="#87d068" />
+    <LNBadge Dot="true" Status="LNBadge.BadgeStatus.Processing" CStyle="width:10px;height:10px;background: #108ee9" Text="#108ee9" />
+    </Col>
+
+    <Col Span="2">
+    <LNBadge Count="2" Title="My title">
+
+        <a onclick="LuanNiaoBlazor.BlockClickEvent()" class="head-example" />
+    </LNBadge>
+    </Col>
+</Row>
 @code{
     LNBadge _test = null;
 
@@ -90,7 +116,7 @@
         display: inline-block;
         vertical-align: middle;
     }
-    
+
 
     .site-badge-count-4 .ant-badge-count {
         background-color: #fff;

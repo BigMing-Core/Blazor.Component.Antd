@@ -7,7 +7,7 @@
 
   
   <ItemGroup>
-    <PackageReference Include="LuanNiao.Core" Version="0.0.4" />
+    <PackageReference Include="LuanNiao.Core" Version="0.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0-preview.2.20167.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-preview.2.20167.3" />
   </ItemGroup>
