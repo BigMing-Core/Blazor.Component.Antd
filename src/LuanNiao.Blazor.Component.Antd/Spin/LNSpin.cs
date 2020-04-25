@@ -55,8 +55,6 @@ namespace LuanNiao.Blazor.Component.Antd.Spin
         public RenderFragment Indicator { get; set; }
 
 
-
-        [Parameter]
         public string BlurClass { get { return _blurClass.Build(); } set { _blurClass.AddCustomClass(value); } }
 
         public LNSpin()
