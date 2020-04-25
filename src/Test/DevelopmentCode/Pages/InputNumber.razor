@@ -19,8 +19,8 @@ WithFormatter and 0.01Step
 
 <br />
 
-<LNInputNumber Size="LuanNiao.Blazor.Component.Antd.ComponentSize.Large" Disabled="@Disabled"></LNInputNumber>
-<LNButton OnClickCallback="@AAAA">
+<LNInputNumber Size="LuanNiao.Blazor.Component.Antd.ComponentSize.Large" Disabled="@Disabled" @ref="_ref"></LNInputNumber>
+<LNButton OnClickCallback="@AAAA" >
     click to disiabled the input number control
 </LNButton>
 
@@ -29,12 +29,13 @@ WithFormatter and 0.01Step
 @code{
 
     public bool Disabled { get; set; } = false;
-
+    LNInputNumber _ref;
     public void AAAA(LNButton btn)
     {
 
         Disabled = !Disabled;
         this.StateHasChanged();
+        Console.Write(_ref.Value);
     }
 
 
