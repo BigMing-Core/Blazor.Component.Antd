@@ -15,6 +15,7 @@ namespace LuanNiao.Blazor.Component.Antd.Select
             Multiple,
             Tags
         }
+        private bool _showOptions = false;
         /// <summary>
         /// Whether to show the drop-down arrow
         /// </summary>
@@ -32,6 +33,7 @@ namespace LuanNiao.Blazor.Component.Antd.Select
         protected override Task OnInitializedAsync()
         {
             HandleShowArrow();
+            HandleMode();
             return base.OnInitializedAsync();
         }
         protected override Task OnParametersSetAsync()
@@ -43,9 +45,26 @@ namespace LuanNiao.Blazor.Component.Antd.Select
             return base.OnAfterRenderAsync(firstRender);
         }
 
+        protected Task OnTaggorOptions()
+        {
+            _classHelper.AddOrRemove("ant-select-open",condition:()=> _showOptions);
+
+            this.Flush();
+            _showOptions = true;
+            return Task.CompletedTask;
+        }
+
         private void HandleShowArrow()
         {
             _classHelper.AddOrRemove("ant-select-show-arrow", condition: () => ShowArrow);
         }
+        private void HandleMode()
+        {
+            _classHelper.AddOrRemove("ant-select-single", condition
+                : () => Mode == SMode.Single);
+            _classHelper.AddOrRemove("ant-select-multiple", condition: () => Mode == SMode.Multiple || Mode == SMode.Tags);
+        }
+
+
     }
 }

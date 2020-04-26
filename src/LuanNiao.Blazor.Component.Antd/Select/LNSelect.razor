@@ -2,7 +2,7 @@
 @using LuanNiao.Blazor.Component.Antd.Icons;
 
 <div class="@ClassName"
-     style="@CStyle">
+     style="@CStyle" @onclick="@OnTaggorOptions()">
     <div class="ant-select-selector">
         <span class="ant-select-selection-search">
             <input autocomplete="off"
