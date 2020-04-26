@@ -65,7 +65,7 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
 
         private void HandleVisiable()
         {
-            _maskClass.AddOrRemove("ant-modal-mask-hidden", condition: () => this.Visible);
+            _maskClass.AddOrRemove("ant-modal-mask-hidden", condition: () => !this.Visible);
             if (this.Visible)
             {
                 _styleHelper.RemoveCustomStyle("display");
