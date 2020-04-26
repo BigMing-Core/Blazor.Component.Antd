@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using LuanNiao.Blazor.Component.Antd; 
 using LuanNiao.Blazor.Core;
 
 namespace DevelopmentCode
@@ -32,7 +33,7 @@ namespace DevelopmentCode
             });
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddLuanNiaoBlazor();
+            services.AddLuanNiaoBlazorAntdExtensions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

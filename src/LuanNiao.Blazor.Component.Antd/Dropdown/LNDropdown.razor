@@ -1,17 +1,12 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
-<style>
-    .ln-site-dropdown-context-menu {
-        background: #f7f7f7;
-        color: #777;
-    }
-</style>
+ 
 <div id="@($"main_{IdentityKey}")">
     @if (Trigger == TriggerType.ContextMenu)
     {
 
         if (this.ContextFrame == null)
         {
-            <div class="ln-site-dropdown-context-menu ant-dropdown-trigger" style="text-align: center;height: 200px;line-height: 200px;">
+            <div class="ln-site-dropdown-context-menu ant-dropdown-trigger" style="background: #f7f7f7;color: #777;text-align: center;height: 200px;line-height: 200px;">
                 @ChildContent
             </div>
         }
