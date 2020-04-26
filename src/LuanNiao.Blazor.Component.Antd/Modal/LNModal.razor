@@ -1,12 +1,14 @@
-﻿@inherits LuanNiao.Blazor.Core.LNBCBase;
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
 
 @using LuanNiao.Blazor.Component.Antd.Icons;
 
 <div class="ant-modal-root">
-    <div class="ant-modal-mask"></div>
+    <div class="@MaskClass"></div>
     <div tabindex="-1"
-         class="ant-modal-wrap"
+         class="@ClassName"
          role="dialog"
+         style="@CStyle"
          aria-labelledby="rcDialogTitle0">
         <div role="document"
              class="ant-modal"

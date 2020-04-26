@@ -1,0 +1,18 @@
+﻿@page "/modal"
+@using LuanNiao.Blazor.Component.Antd.Modal;
+@using LuanNiao.Blazor.Component.Antd.Button; 
+
+<div class="box">
+    <h3>Basic Basic modal.</h3>
+    <LNButton OnClickCallback="@OnModalShow">Open Modal</LNButton>
+    <LNModal Visible="@showModal"></LNModal>
+</div>
+
+@code{
+    private bool showModal = false;
+    private void OnModalShow(LNButton _)
+    {
+        this.showModal = true;
+    }
+
+}
