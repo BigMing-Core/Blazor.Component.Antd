@@ -5,95 +5,21 @@ import "antd/dist/antd.css";
 import "./demo.less";
 
 
-import { Card } from 'antd';
+import { message, Button } from 'antd';
 
-const tabList = [
-  {
-    key: 'tab1',
-    tab: 'tab1',
-  },
-  {
-    key: 'tab2',
-    tab: 'tab2',
-  },
-];
-
-const contentList = {
-  tab1: <p>content1</p>,
-  tab2: <p>content2</p>,
+const success = () => {
+  message
+    .loading('Action in progress..', 0)
+    .then(() => message.success('Loading finished', 0))
+    .then(() => message.info('Loading finished is finished', 0));
 };
-
-const tabListNoTitle = [
-  {
-    key: 'article',
-    tab: 'article',
-  },
-  {
-    key: 'app',
-    tab: 'app',
-  },
-  {
-    key: 'project',
-    tab: 'project',
-  },
-];
-
-const contentListNoTitle = {
-  article: <p>article content</p>,
-  app: <p>app content</p>,
-  project: <p>project content</p>,
-};
-
- 
 export class Demo extends Component<any, any> {
-  state = {
-    key: 'tab1',
-    noTitleKey: 'app',
-  };
-
-  onTabChange = (key:any, type:any) => {
-    console.log(key, type);
-    this.setState({ [type]: key });
-  };
+ 
+ 
   render() {
-    var data;
-    if(this.state.key=="tab1")
-    {
-
-      data=contentList.tab1
-    }
-    else{
-      data=contentList.tab2
-    }
+    
     return (
-      <div>
-        <Card
-         
-          title="Card title"
-          extra={<a href="#">More</a>}
-          tabList={tabList}
-          activeTabKey={this.state.key}
-          onTabChange={key => {
-            this.onTabChange(key, 'key');
-          }}
-        >
-          
-          {data}
-        </Card>
-        <br />
-        <br />
-        {/* <Card
-          style={{ width: '100%' }}
-          tabList={tabListNoTitle}
-          activeTabKey={this.state.noTitleKey}
-          tabBarExtraContent={<a href="#">More</a>}
-          onTabChange={key => {
-            this.onTabChange(key, 'noTitleKey');
-          }}
-        >
-          {contentListNoTitle[this.state.noTitleKey]}
-        </Card> */}
-      </div>
+      <Button onClick={success}>Display sequential messages</Button>
     );
   }
 }
