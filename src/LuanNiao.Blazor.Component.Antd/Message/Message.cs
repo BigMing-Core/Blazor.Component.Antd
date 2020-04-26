@@ -8,7 +8,7 @@ namespace LuanNiao.Blazor.Component.Antd
     public partial class Message
     {
 
-        internal readonly ObservableCollection<MessageItem> _messages = new ObservableCollection<MessageItem>();
+        internal readonly ObservableCollection<MessageItem> _messages = new ObservableCollection<MessageItem>(); 
 
         public void Success(MessageItem item)
         {
