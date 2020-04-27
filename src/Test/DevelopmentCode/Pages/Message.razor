@@ -13,11 +13,12 @@
 
 <LNButton OnClickCallback="@ShowCM">Show custom message </LNButton>
 
+<LNButton OnClickCallback="@ShowMessageChain">Message Chain </LNButton>
 
 @code{
 
     private RenderFragment _icon =@<AccountBookTwotone></AccountBookTwotone>;
-private RenderFragment _content =@<LNButton></LNButton>;
+private RenderFragment _content =@<LNButton Type="LNButton.BType.Dashed">I'm button</LNButton>;
 
 }
 
@@ -31,6 +32,40 @@ private RenderFragment _content =@<LNButton></LNButton>;
     public LuanNiao.Blazor.Component.Antd.Message MyProperty { get; set; }
 
 
+    private void ShowMessageChain(LNButton _)
+    {
+        var error = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Error
+        };
+        var success = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Success
+        };
+        var info = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Info
+        };
+        var loading = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Loading
+        };
+        var warning = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Warning
+        };
+        MyProperty.Chain(error).Chain(success).Chain(info).Chain(loading).Chain(warning);
+    }
 
 
     private void ShowCM(LNButton _)

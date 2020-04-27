@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd
 {
@@ -27,7 +28,15 @@ namespace LuanNiao.Blazor.Component.Antd
                 });
             }
         }
-
+        public  Message Chain(MessageItem item)
+        {
+            lock (_messages)
+            {
+                _messages.Add(item);
+            }
+            item.Wait();
+            return this;
+        }
         public Message Show(MessageItem item)
         {
             lock (_messages)
