@@ -5,14 +5,7 @@
 <div class="box">
     <h3>Basic: Basic modal.</h3>
     <LNButton Type="LNButton.BType.Primary"  OnClickCallback="OnModalShow">Open Modal</LNButton>
-    <LNModal Visible="@showModal" OnCancel="@OnCancel" OkText="sdfdsfd" >
-        <Title>Hello, Basic Modal</Title>
-        <ChildContent>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-        </ChildContent>
-    </LNModal>
+    <LNModal Visible="@showModal"></LNModal>
 </div>
 
 @code{
@@ -20,11 +13,6 @@
     private void OnModalShow(LNButton _)
     {
         this.showModal = true;
-        this.StateHasChanged();
-    }
-    private void OnCancel(LNModal _)
-    {
-        this.showModal = false;
         this.StateHasChanged();
     }
 
