@@ -6,10 +6,10 @@
 @if (string.IsNullOrWhiteSpace(Href))
 {
 
-    <button type="@_htmlType"
+    <button id="@($"lnButton_{IdentityKey}")" type="@_htmlType"
             class="@ClassName"
             disabled="@((Disabled ? "disabled" : null))"
-            @onclick="() => { OnClickCallback?.Invoke(this); }">
+           >
         @if (Loading)
         {
             <LoadingOutlined Spin="true"></LoadingOutlined>
@@ -34,10 +34,10 @@
 else
 {
 
-    <a href="@Href" target="@Target"
+    <a id="@($"lnButton_{IdentityKey}")" href="@Href" target="@Target"
        class="@ClassName"
        disabled="@((Disabled ? "disabled" : null))"
-       @onclick="() => { OnClickCallback?.Invoke(this); }">
+       >
         @if (Loading)
         {
             <LoadingOutlined Spin="true"></LoadingOutlined>

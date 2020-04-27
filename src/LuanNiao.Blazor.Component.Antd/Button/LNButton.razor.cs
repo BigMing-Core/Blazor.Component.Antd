@@ -2,6 +2,7 @@
 using LuanNiao.Blazor.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,7 +96,14 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             }
         }
 
-
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                BindMouseEvent();
+            }
+        }
 
         public LNButton()
         {
@@ -109,13 +117,22 @@ namespace LuanNiao.Blazor.Component.Antd.Button
             HandleSize();
             HandleDanger();
             HandleGhost();
-            HandleBlock(); 
+            HandleBlock();
             HandleHtmlType();
             HandleIcon();
             HandleLoading();
         }
 
+        private void BindMouseEvent()
+        {
+            ElementInfo.BindClickEvent($"lnButton_{IdentityKey}", nameof(OnElementClicked), this, true);
+        }
 
+        [JSInvokable]
+        public async void OnElementClicked()
+        {
+            await Task.Run(() => { OnClickCallback?.Invoke(this); });
+        }
         private void IntoLoading()
         {
             this.Disabled = true;
@@ -223,7 +240,7 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         private void HandleLoading()
         {
             _classHelper.AddOrRemove("ant-btn-loading", () => Loading);
-        } 
+        }
 
         private void HandleIcon()
         {
