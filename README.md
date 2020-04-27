@@ -35,6 +35,8 @@ LuanNiao Blazor  ***No release plan***
   ```
 - Run the `DevelopmentCode`
 - Visit http://localhost:5000 in your supported browser.
+- You need to put the page URL in which you want to have a look. This project is our development project.
+- If you want to see ***demo*** pls move to [doc](https://github.com/luanniao/luanniao.club)
   
   > The latest version of Visual Studio 2019 is recommended for development.
 
