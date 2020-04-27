@@ -85,11 +85,11 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             }
             if (Pull != null)
             {
-                _classHelper.AddCustomClass($"ant-col-pull-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-pull-{24-Span.Value}");
             }
             if (Push != null)
             {
-                _classHelper.AddCustomClass($"ant-col-push-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-push-{24-Span.Value}");
             }
             if (Order != null)
             {
