@@ -17,26 +17,46 @@
                  aria-hidden="true"
                  style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
             <div class="ant-modal-content">
-                <button type="button" aria-label="Close" class="ant-modal-close">
+                <button type="button" id="@($"lnBtnClose_{IdentityKey}")" aria-label="Close" class="ant-modal-close">
                     <span class="ant-modal-close-x">
-                        <CloseCircleOutlined></CloseCircleOutlined>
+                        @if (CloseIcon != null)
+                        {
+                            @CloseIcon
+                        }
+                        else
+                        {
+                            <CloseOutlined></CloseOutlined>
+                        }
+
                     </span>
                 </button>
                 <div class="ant-modal-header">
-                    <div class="ant-modal-title" id="rcDialogTitle0">Basic Modal</div>
+                    <div class="ant-modal-title" id="rcDialogTitle0">
+                        @Title
+                    </div>
                 </div>
                 <div class="ant-modal-body">
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+
+                    @ChildContent
                 </div>
                 <div class="ant-modal-footer">
                     <div>
-                        <button type="button" class="ant-btn">
+                        <button type="button" id="@($"lnBtnCancel_{IdentityKey}")" class="ant-btn">
                             <span>Cancel</span>
-                        </button><button type="button" class="ant-btn ant-btn-primary">
-                            <span>OK</span>
                         </button>
+                        @if (OkText != null)
+                        {
+                            <button type="button" id="@($"lnBtnOk_{IdentityKey}")" class="ant-btn ant-btn-primary">
+                                <span>@OkText</span>
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" id="@($"lnBtnOk_{IdentityKey}")" class="ant-btn ant-btn-primary">
+                                <span>OK</span>
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>
