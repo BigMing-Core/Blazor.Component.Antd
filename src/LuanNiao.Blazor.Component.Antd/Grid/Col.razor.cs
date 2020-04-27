@@ -81,7 +81,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             }
             if (Offset != null)
             {
-                _classHelper.AddCustomClass($"ant-col-offet-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-offset-{Span.Value}");
             }
             if (Pull != null)
             {
