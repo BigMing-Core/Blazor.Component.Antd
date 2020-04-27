@@ -28,8 +28,10 @@ The LuanNiao Blazor component library is the component library of our team for l
 For specific details, please see the description on the front page of our documentation website, where we have written a lot of reasons for our compromise and the current warehouse design architecture and business flow diagram.
 
 ## Announcement 公告
+首先,我们保证我们的仓库不会收费,这也是为什么我们使用MIT协议的原因.您可以在遵循MIT的背景下任意时刻克隆本仓库.<br/>
 经过我们公司与团队进行一天的商讨,同时经过可实施性分析与成本分析后,我们未来将不会对文档演示网站进行美化.<br/>
 这里指的美化,仅仅是指:我们会维护,但并不会编写标准级别的阅读文档,您可以在文档网站看到我们的所有组件功能,但我们不会对此进行排版布局.<br/>
+First of all, we guarantee that our warehouse will not be charged, which is why we use MIT protocol. You can clone this warehouse at any time in the context of complying with MIT.<br/>
 After a day of discussion between our company and the team, as well as after implementability analysis and cost analysis, we will not beautify the document demonstration website in the future.<br/>
 The beautification here refers only to: we will maintain, but we will not write standard-level reading documents.You can see all of our component functions on the documentation website, but we will not typographically layout this.
 <br/>
