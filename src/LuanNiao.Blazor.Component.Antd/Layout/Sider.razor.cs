@@ -53,7 +53,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         private string _siderTriggerStyle = "";
         private readonly OriginalStyleHelper _siderTriggerStyleHelper = new OriginalStyleHelper();
 
-        internal event Action CollapsedBtnClicked;
+        public event Action CollapsedBtnClicked;
 
 
         protected override void OnInitialized()
