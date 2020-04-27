@@ -14,6 +14,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         private readonly StyleItem _siderTriggerCollapsed = new StyleItem() { StyleName = "width", Value = "80px" };
         private readonly StyleItem _siderTriggerUncollapsed = new StyleItem() { StyleName = "width", Value = "200px" };
+        private readonly StyleItem _siderTriggerUncollapsedFullScreen = new StyleItem() { StyleName = "width", Value = "100%" };
 
 
         private readonly StyleItem[] _siderUncollapsed = {
@@ -21,6 +22,13 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         new StyleItem() { StyleName = "max-width", Value = "200px" },
         new StyleItem() { StyleName = "min-width", Value = "200px" },
         new StyleItem() { StyleName = "width", Value = "200px" }
+        };
+        private readonly StyleItem[] _siderUncollapsedFullScreen = {
+        new StyleItem() { StyleName = "flex", Value = "0 0 100%" },
+        new StyleItem() { StyleName = "max-width", Value = "100%" },
+        new StyleItem() { StyleName = "min-width", Value = "100%" },
+        new StyleItem() { StyleName = "width", Value = "100%" },
+        new StyleItem() { StyleName = "z-index", Value = "10" }
         };
         private readonly StyleItem[] _siderCollapsed ={
         new StyleItem() { StyleName = "flex", Value = "0 0 80px" },
@@ -44,6 +52,8 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         [Parameter]
         public bool ReverseArrow { get; set; }
         [Parameter]
+        public bool FullScreenMode { get; set; }
+        [Parameter]
         public SiderTheme Theme { get; set; } = SiderTheme.Dark;
 
         [CascadingParameter]
@@ -53,28 +63,31 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         private string _siderTriggerStyle = "";
         private readonly OriginalStyleHelper _siderTriggerStyleHelper = new OriginalStyleHelper();
 
-        internal event Action CollapsedBtnClicked;
+        public event Action CollapsedBtnClicked;
 
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
             HandleParentLayout();
-            HandleCollapsedState();
         }
+
+
 
         private void HandleCollapsedState()
         {
             _siderTriggerStyle = _siderTriggerStyleHelper.AddDiffCustomStyle(
                 _siderTriggerCollapsed,
-                _siderTriggerUncollapsed,
+                FullScreenMode ? _siderTriggerUncollapsedFullScreen : _siderTriggerUncollapsed,
                 condition: () => this.Collapsed).Build();
             this._styleHelper.AddDiffCustomStyle(
                 _siderCollapsed,
-                _siderUncollapsed,
+                FullScreenMode ? _siderUncollapsedFullScreen : _siderUncollapsed,
                 condition: () => this.Collapsed
                 ).Build();
         }
+
+
 
         private void HandleParentLayout()
         {
@@ -84,15 +97,27 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
             }
         }
 
-        protected override void OnAfterRender(bool firstRender)
+        protected async override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
                 BindMouseEvent();
+                WindowEventHub.Resized += WindowEventHub_Resized;
+                WindowEventHub_Resized(await WindowInfo.GetWindowSize());
+                HandleCollapsedState();
+                this.Flush();
             }
         }
 
+        private void WindowEventHub_Resized(WindowSize obj)
+        {            
+            FullScreenMode = obj.InnerSize.Width <= 575;
+            HandleCollapsedState();
+            this.Flush();
+        }
+
+       
         [JSInvokable]
         public void InverseCollapseStatus()
         {

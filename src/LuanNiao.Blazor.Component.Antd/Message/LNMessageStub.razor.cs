@@ -14,7 +14,8 @@ namespace LuanNiao.Blazor.Component.Antd
 
         protected override void OnInitialized()
         {
-            MessageInstance._messages.CollectionChanged += _messages_CollectionChanged;
+            MessageInstance.Messages.CollectionChanged += _messages_CollectionChanged;
+            MessageInstance.CurrentStub = this;
             base.OnInitialized();
         }
 
@@ -28,11 +29,18 @@ namespace LuanNiao.Blazor.Component.Antd
                     {
                         var itemInstance = (item as Message.MessageItem);
                         await Task.Delay(itemInstance.Duration);
+                        if (itemInstance.Removing)
+                        {
+                            return;
+                        }
                         itemInstance.Removing = true;
 
                         this.Flush();
                         await Task.Delay(1000);
-                        MessageInstance._messages.Remove(itemInstance);
+                        lock (MessageInstance.Messages)
+                        {
+                            MessageInstance.Messages.Remove(itemInstance);
+                        }
                     });
                 }
             }

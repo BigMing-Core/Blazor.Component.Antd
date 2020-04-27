@@ -58,7 +58,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         public int? Order { get; set; }
         [Parameter]
         public int? Offset { get; set; }
-
+         
         [Parameter]
         public ColResponsive? XS { get; set; }
         [Parameter]
@@ -81,20 +81,20 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             }
             if (Offset != null)
             {
-                _classHelper.AddCustomClass($"ant-col-offet-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-offset-{Span.Value}");
             }
             if (Pull != null)
             {
-                _classHelper.AddCustomClass($"ant-col-pull-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-pull-{24-Span.Value}");
             }
             if (Push != null)
             {
-                _classHelper.AddCustomClass($"ant-col-push-{Span.Value}");
+                _classHelper.AddCustomClass($"ant-col-push-{24-Span.Value}");
             }
             if (Order != null)
             {
                 _classHelper.AddCustomClass($"ant-col-order-{Span.Value}");
-            }
+            } 
             XS?.WeaveTo(_classHelper, "ant-col-xs-{0}");
             SM?.WeaveTo(_classHelper, "ant-col-sm-{0}");
             MD?.WeaveTo(_classHelper, "ant-col-md-{0}");
