@@ -2,7 +2,7 @@
 ## Environment Support
 
 - .NET Core 3.1
-- Blazor WebAssembly 3.2 Preview 5.
+- Components version:5.0.0-preview.3.20215.14
 - Support for server-side environments.
 - Support for WebAssembly static file deployments.
 - Support for 4 major browsers engines, and Internet Explorer 11+ ([Blazor server-side](https://docs.microsoft.com/en-us/aspnet/core/blazor/supported-platforms?view=aspnetcore-3.1) only).
