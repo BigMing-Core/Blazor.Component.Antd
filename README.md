@@ -7,6 +7,9 @@
   <span>A Blazor Component Library based on Ant V4 style</span>
   <br/>
   <br/>
+   <a href="https://gitter.im/luanniao-Blazor-Component-Antd/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+    <img alt="Gitter" src="https://badges.gitter.im/Append-IT/ant-design-blazor.svg"/>
+  </a>
 </div>
 
 我们的库目标在于借助现有的体系来制作稳定的,高可用性的Blazor组件库.<br/>
@@ -75,9 +78,7 @@ Similarly, if you find that our Release version (> 1.0.0) appears in the Nuget w
 
 ## Examples
 
-我们拥有全球级别的CDN静态部署网站.
-
-Building.....还没写完哈哈哈哈哈(•́⌄•́๑)૭✧
+[LuanNiao Blazor](https://doc.luanniao.club)
 
 ## Installation
 
