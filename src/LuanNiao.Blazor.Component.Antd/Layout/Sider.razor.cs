@@ -70,7 +70,6 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         {
             base.OnInitialized();
             HandleParentLayout();
-            HandleCollapsedState();
         }
 
 
@@ -98,19 +97,24 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
             }
         }
 
-        protected override void OnAfterRender(bool firstRender)
+        protected async override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
                 BindMouseEvent();
                 WindowEventHub.Resized += WindowEventHub_Resized;
+                WindowEventHub_Resized(await WindowInfo.GetWindowSize());
+                HandleCollapsedState();
+                this.Flush();
             }
         }
 
         private void WindowEventHub_Resized(WindowSize obj)
         {            
             FullScreenMode = obj.InnerSize.Width <= 575;
+            HandleCollapsedState();
+            this.Flush();
         }
 
        

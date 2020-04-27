@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Menu
 {
-    public partial class Divider
+    public partial class MenuDivider
     {
     }
 }
