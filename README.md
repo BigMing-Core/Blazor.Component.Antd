@@ -9,7 +9,8 @@
   <br/>
 </div>
 
-我们的库目标在于借助现有的体系来制作稳定的,高可用性的Blazor组件库,我们不会与其他实现一样去同步官方的CSS以及对应的实现,我们目前锁定于antd v4.0.4.
+我们的库目标在于借助现有的体系来制作稳定的,高可用性的Blazor组件库.<br/>
+我们不会与其他实现一样去同步官方的CSS以及对应的实现,我们目前锁定于antd v4.0.4.
 <br/>
 Our library goal is to use the existing system to make a stable, high-availability Blazor component library.<br/>
 We will not synchronize the official CSS and corresponding implementations like other implementations.<br/>
@@ -17,8 +18,8 @@ We are currently locked in antd v4.0.4.
 <Br/>
 
 ## About LuanNiao
-鸾鸟是中国一家小型的软件公司的前端团队,我们致力与开发公司企业内部OA,ERP等项目,以及对外外包业务.<br/>
-我们同样也会存在对应的WEBGL,CANVAS 2D部分的业务内容,我司目前技术栈保持在:C, C++, QT, .NET CORE, Golang, React, Vue.<br/>
+鸾鸟是中国一家小型的软件公司的前端团队,我们公司方向为:OA,ERP,IOT,FPGA定制,MCU开发,机器人,视觉识别,图形绘制,GIS等,以及对外外包业务.<br/>
+我们同样也会存在对应的WEBGL,CANVAS 2D部分的业务内容,我司目前技术栈保持在:C, C++, QT, .NET CORE, Golang, H5, OPENGL, React, Vue.<br/>
 LuanNiao Blazor 组件库是我们团队对于落地实际网站业务时的组件库,我们的仓库并不受限于实现ANTD的功能,而是为了做到实际在开发网站场景中能够实际使用为目标进行开发.<br/>
 具体细节内容详见我们的文档网站首页描述,那里我们编写了很多我们做出妥协的原因与当前仓库的设计架构与业务流转图.<p></p>
 LuanNiao is the front-end team of a small software company in China.We are committed to developing and developing internal OA, ERP and other projects of the company, as well as outsourcing business.<br/>
