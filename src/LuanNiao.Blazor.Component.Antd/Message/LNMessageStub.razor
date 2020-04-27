@@ -3,35 +3,60 @@
 @namespace LuanNiao.Blazor.Component.Antd
 
 @using LuanNiao.Blazor.Component.Antd.Icons
-@*move-up-leave move-up-leave-active*@
 <div>
     <div class="ant-message">
         <span>
-            @foreach (Message.MessageItem item in MessageInstance._messages)
-            {
-                <div class="ant-message-notice @(item.Removing?"move-up-leave move-up-leave-active":"")" >
-                    <div class="ant-message-notice-content">
-                        <div class="ant-message-custom-content ant-message-success">
-                            <CheckCircleFilled></CheckCircleFilled>
-                            <span>@item.Text</span>
-                        </div>
-                    </div>
-                </div>
-            }
+            @{
+                lock (MessageInstance.Messages)
+                {
+                    foreach (Message.MessageItem item in MessageInstance.Messages)
+                    {
+                        <div class="@item.ClassName">
+                            <div class="ant-message-notice-content">
+                                <div class="@item.MessageTypeClassName">
+                                    @if (item.Icon == null)
+                                    {
+                                        @switch (item.MessageType)
+                                        {
+                                            case Message.MessageItemType.Success:
+                                                <CheckCircleFilled></CheckCircleFilled>
+                                                break;
+                                            case Message.MessageItemType.Error:
+                                                <CloseCircleFilled></CloseCircleFilled>
+                                                break;
+                                            case Message.MessageItemType.Info:
+                                                <InfoCircleFilled></InfoCircleFilled>
+                                                break;
+                                            case Message.MessageItemType.Warning:
+                                                <WarningFilled></WarningFilled>
+                                                break;
+                                            case Message.MessageItemType.Loading:
+                                                <LoadingOutlined Spin="true"></LoadingOutlined>
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @item.Icon
+                                    }
 
+                                    <span>
+                                        @if (item.Content == null)
+                                        {
+                                            @item.Text
+                                        }
+                                        else
+                                        {
+                                            @item.Content
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
 
         </span>
     </div>
 </div>
-
-
-
-@*<div class="ant-message-notice ">
-        <div class="ant-message-notice-content">
-            <div class="ant-message-custom-content ant-message-loading">
-                <LoadingOutlined Spin="true"></LoadingOutlined>
-
-                <span>Action in progress..</span>
-            </div>
-        </div>
-    </div>*@
