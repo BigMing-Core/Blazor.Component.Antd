@@ -1,6 +1,9 @@
 
 <div align="center" >
   <img src="https://resource.luanniao.club/commonres/icon.png">
+  <br/>
+  This icon comes from Google, our artist sketched it, if you mind, we will be happy to remove it at any time.<br/>
+  这个图标来自于谷歌,我们的美工素描了一下,如果您介意,我们很乐意随时移除它.<br/>
   <h3>LuanNiao Blazor Component-- ANTD</h3>
   <h3>鸾鸟Blazor组件库--基于ANTDV4 风格</h3>
   <span>A Blazor Component Library based on Ant V4 style</span>
