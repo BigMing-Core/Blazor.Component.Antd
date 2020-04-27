@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.Text;
 
 namespace LuanNiao.Blazor.Component.Antd.Divider
@@ -34,16 +34,13 @@ namespace LuanNiao.Blazor.Component.Antd.Divider
         [Parameter]
         public bool Dashed { get; set; }
 
-        protected override void OnAfterRender(bool firstRender)
-        {
-            base.OnAfterRender(firstRender);
-            if (firstRender)
-            {
-                HandleIsVertical();
-                HandleOrientation();
-                HandleDashed();
-            }
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            HandleIsVertical();
+            HandleOrientation();
+            HandleDashed();
         }
 
         private void HandleDashed()
