@@ -58,7 +58,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
         public int? Order { get; set; }
         [Parameter]
         public int? Offset { get; set; }
-
+         
         [Parameter]
         public ColResponsive? XS { get; set; }
         [Parameter]
@@ -94,7 +94,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             if (Order != null)
             {
                 _classHelper.AddCustomClass($"ant-col-order-{Span.Value}");
-            }
+            } 
             XS?.WeaveTo(_classHelper, "ant-col-xs-{0}");
             SM?.WeaveTo(_classHelper, "ant-col-sm-{0}");
             MD?.WeaveTo(_classHelper, "ant-col-md-{0}");
