@@ -78,9 +78,7 @@ Similarly, if you find that our Release version (> 1.0.0) appears in the Nuget w
 
 ## Examples
 
-我们拥有全球级别的CDN静态部署网站.
-
-Building.....还没写完哈哈哈哈哈(•́⌄•́๑)૭✧
+[LuanNiao Blazor](https://doc.luanniao.club)
 
 ## Installation
 
