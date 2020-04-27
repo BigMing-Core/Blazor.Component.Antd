@@ -1,9 +1,6 @@
 
 <div align="center" >
   <img src="https://resource.luanniao.club/commonres/icon.png">
-  <br/>
-  This icon comes from Google, our artist sketched it, if you mind, we will be happy to remove it at any time.<br/>
-  这个图标来自于谷歌,我们的美工素描了一下,如果您介意,我们很乐意随时移除它.<br/>
   <h3>LuanNiao Blazor Component-- ANTD</h3>
   <h3>鸾鸟Blazor组件库--基于ANTDV4 风格</h3>
   <span>A Blazor Component Library based on Ant V4 style</span>
@@ -20,6 +17,10 @@ We will not synchronize the official CSS and corresponding implementations like 
 We are currently locked in antd v4.0.4.
 <Br/>
 
+  <br/>
+  This icon comes from Google, our artist sketched it, if you mind, we will be happy to remove it at any time.<br/>
+  这个图标来自于谷歌,我们的美工素描了一下,如果您介意,我们很乐意随时移除它.<br/>
+  
 ## About LuanNiao
 鸾鸟是中国一家小型的软件公司的前端团队,我们公司方向为:OA,ERP,IOT,FPGA定制,MCU开发,机器人,视觉识别,图形绘制,GIS等,以及对外外包业务.<br/>
 我们同样也会存在对应的WEBGL,CANVAS 2D部分的业务内容,我司目前技术栈保持在:C, C++, QT, .NET CORE, Golang, H5, OPENGL, React, Vue.<br/>
