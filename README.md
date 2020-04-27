@@ -17,6 +17,12 @@ We will not synchronize the official CSS and corresponding implementations like 
 We are currently locked in antd v4.0.4.
 <Br/>
 
+  <br/>
+  This icon comes from Google, our artist sketched it, if you mind, we will be happy to remove it at any time.<br/>
+  这个图标来自于谷歌,我们的美工素描了一下,如果您介意,我们很乐意随时移除它.<br/>
+
+### We need a selfless person to help us improve the document warehouse
+### 我们需要一个无私的人协助我们完善文档仓库
 ## About LuanNiao
 鸾鸟是中国一家小型的软件公司的前端团队,我们公司方向为:OA,ERP,IOT,FPGA定制,MCU开发,机器人,视觉识别,图形绘制,GIS等,以及对外外包业务.<br/>
 我们同样也会存在对应的WEBGL,CANVAS 2D部分的业务内容,我司目前技术栈保持在:C, C++, QT, .NET CORE, Golang, H5, OPENGL, React, Vue.<br/>
@@ -26,6 +32,31 @@ LuanNiao is the front-end team of a small software company in China.We are commi
 We will also have corresponding business content of WEBGL and CANVAS 2D parts.Our current technology stack remains at: C, C ++, QT, .NET CORE, Golang, React, Vue.<br/>
 The LuanNiao Blazor component library is the component library of our team for landing on the actual website business.Our warehouse is not limited to the realization of the function of ANTD, but for the purpose of actual use in the development website scenario.<br/>
 For specific details, please see the description on the front page of our documentation website, where we have written a lot of reasons for our compromise and the current warehouse design architecture and business flow diagram.
+
+## Announcement 公告
+首先,我们保证我们的仓库不会收费,这也是为什么我们使用MIT协议的原因.您可以在遵循MIT的背景下任意时刻克隆本仓库.<br/>
+经过我们公司与团队进行一天的商讨,同时经过可实施性分析与成本分析后,我们未来将不会对文档演示网站进行美化.<br/>
+这里指的美化,仅仅是指:我们会维护,但并不会编写标准级别的阅读文档,您可以在文档网站看到我们的所有组件功能,但我们不会对此进行排版布局.<br/>
+First of all, we guarantee that our warehouse will not be charged, which is why we use MIT protocol. You can clone this warehouse at any time in the context of complying with MIT.<br/>
+After a day of discussion between our company and the team, as well as after implementability analysis and cost analysis, we will not beautify the document demonstration website in the future.<br/>
+The beautification here refers only to: we will maintain, but we will not write standard-level reading documents.You can see all of our component functions on the documentation website, but we will not typographically layout this.
+<br/>
+我们目前的开发速度大约是每天大约一个新组件,在正常项目中使用的组件完成后,会有测试测试部门介入,届时更新速度将会降低,但所有目标全部指向兼容性与组件组合的测试.<br/>
+与此同时,我们的性能优化是处于整个组件的开发生命周期中的.但我们保证:我们对外的接口保持一致.<br/>
+Our current development speed is about one new component per day.After the components used in normal projects are completed, there will be a test and testing department to intervene.The update speed will be reduced by then, but all the goals are directed to the testing of compatibility and component combinations.<br/>
+At the same time, our performance optimization is in the development life cycle of the entire component. But we guarantee: our external interface remains consistent.<br/>
+
+# Pay Attention 注意
+
+作为公司维护的项目,在2020年我们并不推荐您使用我们的仓库,我们仍旧不推荐您将我们完成的组件使用在生产环境.<br/>
+根据测试部门预计,我们的测试周期大约在2~3个月.当然,这还是在我们能够开发完毕并且性能测试通过的情况下.<br/>
+您可以持续关注此仓库,我们会随时更新我们的实际项目应用进展,您可以以此作为参考来确定是否使用本仓库.<br/>
+As a project maintained by the company, we do not recommend you to use our warehouse in 2020, we still do not recommend that you use our finished components in the production environment. <br/>
+According to the test department's estimate, our test cycle is about 2 ~ 3 months. Of course, this is still when we can complete the development and pass the performance test. <br/>
+You can continue to pay attention to this warehouse, we will update our actual project application progress at any time, you can use this as a reference to determine whether to use this warehouse. <br/>
+
+同样的,您如果发现在Nuget仓库出现我们的Release版本(>1.0.0),则您可以使用其作为企业门户级别的网站使用.<br/>
+Similarly, if you find that our Release version (> 1.0.0) appears in the Nuget warehouse, you can use it as an enterprise portal level website.<br/>
 
 ## Environment Support 环境支持
 
@@ -77,3 +108,6 @@ If you don't mind, you can pay attention to the current warehouse and pay attent
  
 
 
+## Other 其他杂项
+如果您愿意,我们很乐意见到您来协助我们完成这项复杂的任务,我们清楚这个任务并不简单,我们感激每一位为我们提交PR的人,并将其铭记于心.<br/>
+If you are willing, we are happy to advise you to help us complete this complex task. We understand that this task is not simple. We are grateful to everyone who submitted a PR for us and remember it in our hearts. <Br / >
