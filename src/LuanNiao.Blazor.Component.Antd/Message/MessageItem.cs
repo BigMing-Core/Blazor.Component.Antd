@@ -11,6 +11,7 @@ namespace LuanNiao.Blazor.Component.Antd
             public string Text { get; set; }
             public int Duration { get; set; }
             public Action OnClose { get; set; }
+            public bool Removing { get; set; }
         }
     }
 }
