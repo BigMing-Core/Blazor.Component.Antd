@@ -29,7 +29,7 @@ For specific details, please see the description on the front page of our docume
 
 ## Announcement 公告
 经过我们公司与团队进行一天的商讨,同时经过可实施性分析与成本分析后,我们未来将不会对文档演示网站进行美化.<br/>
-这里指的美化,仅仅是指:我们会维护,但并不会编写标准级别的阅读文档,您可以在文档网站看到我们的所有组件功能,但我们不会对此进行排版布局.
+这里指的美化,仅仅是指:我们会维护,但并不会编写标准级别的阅读文档,您可以在文档网站看到我们的所有组件功能,但我们不会对此进行排版布局.<br/>
 After a day of discussion between our company and the team, as well as after implementability analysis and cost analysis, we will not beautify the document demonstration website in the future.<br/>
 The beautification here refers only to: we will maintain, but we will not write standard-level reading documents.You can see all of our component functions on the documentation website, but we will not typographically layout this.
 <br/>
