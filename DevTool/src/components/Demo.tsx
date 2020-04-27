@@ -41,7 +41,7 @@ export class Demo extends Component<any, any> {
           Open Modal
         </Button>
         <Modal
-          title="Basic Modal"
+          title={<div className="mmmb">bbbsdsdf</div>}
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
