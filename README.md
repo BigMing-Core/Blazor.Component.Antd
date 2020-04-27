@@ -1,6 +1,6 @@
 
 <div align="center" >
-  <img src="https://luanniao.oss-cn-chengdu.aliyuncs.com/commonres/icon.png">
+  <img src="https://resource.luanniao.club/commonres/icon.png">
   <h3>LuanNiao Blazor Component-- ANTD</h3>
   <h3>鸾鸟Blazor组件库--基于ANTDV4 风格</h3>
   <span>A Blazor Component Library based on Ant V4 style</span>
