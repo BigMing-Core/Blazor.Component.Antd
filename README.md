@@ -21,8 +21,8 @@ We are currently locked in antd v4.0.4.
   This icon comes from Google, our artist sketched it, if you mind, we will be happy to remove it at any time.<br/>
   这个图标来自于谷歌,我们的美工素描了一下,如果您介意,我们很乐意随时移除它.<br/>
 
-### We ask open source friends to help us improve the document warehouse
-### 我们请求开源的朋友帮我们完善文档仓库
+### We need a selfless person to help us improve the document warehouse
+### 我们需要一个无私的人协助我们完善文档仓库
 ## About LuanNiao
 鸾鸟是中国一家小型的软件公司的前端团队,我们公司方向为:OA,ERP,IOT,FPGA定制,MCU开发,机器人,视觉识别,图形绘制,GIS等,以及对外外包业务.<br/>
 我们同样也会存在对应的WEBGL,CANVAS 2D部分的业务内容,我司目前技术栈保持在:C, C++, QT, .NET CORE, Golang, H5, OPENGL, React, Vue.<br/>
