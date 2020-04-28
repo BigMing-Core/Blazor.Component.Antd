@@ -58,6 +58,12 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             GetRootDefaultKeyState();
         }
 
+        protected override void Dispose(bool flag)
+        {
+            RootMenuInstance.ItemSelected -= GotOtherItemSelectedEvent;
+            base.Dispose(flag);
+        }
+
         private void HandleCurrentKeyValue()
         {
             if (string.IsNullOrWhiteSpace(Key))
