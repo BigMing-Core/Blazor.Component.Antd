@@ -156,7 +156,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
 
             ShowSubMenuDiv();
-            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("opacity", "0").Build();
+            
 
             if (RootMenuInstance is HorizontalMenu)
             {
@@ -170,7 +170,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 await HandleInDropdownMenuCase(dropdownMenu);
             }
-            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.RemoveCustomStyle("opacity").Build();
+           
             this.Flush();
         }
 
@@ -206,7 +206,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
                 var elementInfo = await ElementHelper.GetElementRectsByID($"mainli_{IdentityKey}");
                 var ulInfo = await ElementHelper.GetElementRectsByID($"subul_{IdentityKey}");
 
-                var topValue = ((elementInfo.Y + ulInfo.Height) > windowSize.InnerSize.Height) ? elementInfo.Bottom - ulInfo.Height : elementInfo.Y;
+                var topValue = ((elementInfo.OffsetTop + ulInfo.Height) > windowSize.OuterHeight) ? elementInfo.OffsetTop - ulInfo.Height+elementInfo.Height : elementInfo.OffsetTop;
                 _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("left", $"{elementInfo.Width + 2}px").AddCustomStyle("top", $"{topValue}px").Build();
             }
             else

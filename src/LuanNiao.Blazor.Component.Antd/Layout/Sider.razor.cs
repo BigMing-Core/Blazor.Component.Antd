@@ -112,7 +112,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         private void WindowEventHub_Resized(WindowSize obj)
         {            
-            FullScreenMode = obj.InnerSize.Width <= 575;
+            FullScreenMode = obj.InnerWidth <= 575;
             HandleCollapsedState();
             this.Flush();
         }
