@@ -7,8 +7,9 @@
   <br/>
   <br/>
    <a href="https://gitter.im/luanniao-Blazor-Component-Antd/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-    <img alt="Gitter" src="https://badges.gitter.im/Append-IT/ant-design-blazor.svg"/>
+    Gitter
   </a>
+ <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=37aa7e890f0ead2e3cb5955691d64f12ef7f318748bd342ed574ec1e15a22c47"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="鸾鸟" title="鸾鸟"></a>
 </div>
 
 我们的库目标在于借助现有的体系来制作稳定的,高可用性的Blazor组件库.<br/>
@@ -54,7 +55,7 @@ At the same time, our performance optimization is in the development life cycle 
 根据测试部门预计,我们的测试周期大约在2~3个月.当然,这还是在我们能够开发完毕并且性能测试通过的情况下.<br/>
 您可以持续关注此仓库,我们会随时更新我们的实际项目应用进展,您可以以此作为参考来确定是否使用本仓库.<br/>
 As a project maintained by the company, we do not recommend you to use our warehouse in 2020, we still do not recommend that you use our finished components in the production environment. <br/>
-According to the test department's estimate, our test cycle is about 2 ~ 3 months. Of course, this is still when we can complete the development and pass the performance test. <br/>
+According to the test department's estimate, our test cycle is about 2 ~ 3 months. Of course, this is after when we can complete the development and pass the performance test. <br/>
 You can continue to pay attention to this warehouse, we will update our actual project application progress at any time, you can use this as a reference to determine whether to use this warehouse. <br/>
 
 同样的,您如果发现在Nuget仓库出现我们的Release版本(>1.0.0),则您可以使用其作为企业门户级别的网站使用.<br/>
@@ -111,3 +112,6 @@ If you don't mind, you can pay attention to the current warehouse and pay attent
 ## Other 其他杂项
 如果您愿意,我们很乐意见到您来协助我们完成这项复杂的任务,我们清楚这个任务并不简单,我们感激每一位为我们提交PR的人,并将其铭记于心.<br/>
 If you are willing, we are happy to advise you to help us complete this complex task. We understand that this task is not simple. We are grateful to everyone who submitted a PR for us and remember it in our hearts. <Br / >
+
+当前的Issue是我们团队讨论问题的讨论区与任务分派区,欢迎大家参与,目前我们把它当作一个日记本在使用,您可以在里面找到我们处理问题的路径,或许能够帮到您,当然由于我们团队能力欠缺,如果您知道我们的愚蠢问题如何处理,也希望你能给予帮助,谢谢!<br/>
+The current problem is the discussion area and task assignment area of our team to discuss the problem. Everyone is welcome to participate. At present, we are using it as a diary. You can find our way to deal with the problem in it. Maybe you can help you Due to the lack of ability of our team, if you know how to deal with our stupid problems, I hope you can help, thank you!
