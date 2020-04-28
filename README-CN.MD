@@ -41,10 +41,10 @@ LuanNiao Blazor 组件库是我们团队对于落地实际网站业务时的组�
 
 - .NET Core 3.1
 - Components version:5.0.0-preview.3.20215.14
-- 支持服务端渲染 Support for server-side environments. 
-- 支持Webassembly静态文件部署 Support for WebAssembly static file deployments.
-- 支持4种主流浏览器引擎. Support for 4 major browsers engines, and Internet Explorer 11+ ([Blazor server-side](https://docs.microsoft.com/en-us/aspnet/core/blazor/supported-platforms?view=aspnetcore-3.1) only).
-- 可以运行在Electron上. Runs directly on [Electron](http://electron.atom.io/) and other Web standard-based environments like [Web Window](https://github.com/SteveSandersonMS/WebWindow).
+- 支持服务端渲染.
+- 支持Webassembly静态文件部署.
+- 支持4种主流浏览器引擎.
+- 可以运行在Electron上. 
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> Edge / IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Electron |
 | :---------: | :---------: | :---------: | :---------: | :---------: | :---------: |
