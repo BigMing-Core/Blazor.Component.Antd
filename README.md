@@ -3,8 +3,7 @@
   <img src="https://resource.luanniao.club/commonres/icon.png">
   <h3>LuanNiao Blazor Component-- ANTD</h3>
   <h3>鸾鸟Blazor组件库--基于ANTDV4 风格</h3>
-  <span>A Blazor Component Library based on Ant V4 style</span>
-  <span>A Blazor Component Library based on Ant V4 style</span>
+  <span>A Blazor Component Library based on Ant V4 style</span> 
   <br/>
   <br/>
    <a href="https://gitter.im/luanniao-Blazor-Component-Antd/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
