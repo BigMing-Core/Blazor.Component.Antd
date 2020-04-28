@@ -156,7 +156,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
 
 
             ShowSubMenuDiv();
-            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.AddCustomStyle("opacity", "0").Build();
+            
 
             if (RootMenuInstance is HorizontalMenu)
             {
@@ -170,7 +170,7 @@ namespace LuanNiao.Blazor.Component.Antd.Menu
             {
                 await HandleInDropdownMenuCase(dropdownMenu);
             }
-            _hideSubMenuDivStyle = _hideSubMenuDivStyleHelper.RemoveCustomStyle("opacity").Build();
+           
             this.Flush();
         }
 
