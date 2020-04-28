@@ -20,4 +20,4 @@ We will not synchronize the official CSS and corresponding implementations like 
 We are currently locked in antd v4.0.4.
 <Br/>
 
- [English ReadMe](/README-EN.md) [中文描述](/README-CN.md)
+ [English ReadMe](/README-EN.md) [中文描述](/README-CN.MD)
