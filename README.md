@@ -9,7 +9,7 @@
    <a href="https://gitter.im/luanniao-Blazor-Component-Antd/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     Gitter
   </a>
-  QQ Group:21051484
+ <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=37aa7e890f0ead2e3cb5955691d64f12ef7f318748bd342ed574ec1e15a22c47"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="鸾鸟" title="鸾鸟"></a>
 </div>
 
 我们的库目标在于借助现有的体系来制作稳定的,高可用性的Blazor组件库.<br/>
