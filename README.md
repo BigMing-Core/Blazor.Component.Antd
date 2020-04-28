@@ -55,7 +55,7 @@ At the same time, our performance optimization is in the development life cycle 
 根据测试部门预计,我们的测试周期大约在2~3个月.当然,这还是在我们能够开发完毕并且性能测试通过的情况下.<br/>
 您可以持续关注此仓库,我们会随时更新我们的实际项目应用进展,您可以以此作为参考来确定是否使用本仓库.<br/>
 As a project maintained by the company, we do not recommend you to use our warehouse in 2020, we still do not recommend that you use our finished components in the production environment. <br/>
-According to the test department's estimate, our test cycle is about 2 ~ 3 months. Of course, this is still when we can complete the development and pass the performance test. <br/>
+According to the test department's estimate, our test cycle is about 2 ~ 3 months. Of course, this is after when we can complete the development and pass the performance test. <br/>
 You can continue to pay attention to this warehouse, we will update our actual project application progress at any time, you can use this as a reference to determine whether to use this warehouse. <br/>
 
 同样的,您如果发现在Nuget仓库出现我们的Release版本(>1.0.0),则您可以使用其作为企业门户级别的网站使用.<br/>
