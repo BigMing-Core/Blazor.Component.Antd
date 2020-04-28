@@ -125,12 +125,17 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindMouseUpEvent($"body", nameof(HandleMouseUp), this);
-
-            ElementInfo.BindMouseMoveEvent($"body", nameof(RightHandleMove), this);
-            ElementInfo.BindMouseMoveEvent($"body", nameof(LeftHandleMove), this);
+           
+            //ElementInfo.BindMouseMoveEvent($"body", nameof(LeftHandleMove), this);
             ElementInfo.BindMouseDownEvent($"lefthandle_{IdentityKey}", nameof(LeftHandleMouseDown), this);
             ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this);
+        }
+
+        private void BindMouseMove()
+        {
+            ElementInfo.BindMouseUpEvent($"body", nameof(HandleMouseUp), this);
+
+            ElementInfo.BindMouseMoveEvent($"body", nameof(HandleMouseMove), this);
         }
  
         [JSInvokable]
@@ -152,7 +157,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
 
         [JSInvokable]
         public void HandleMouseUp()
-        {
+        {            
             _leftHandleMouseDown = _rightHandleMouseDown = false;
         }
 
@@ -164,6 +169,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 return;
             }
             _rightHandleMouseDown = true;
+            BindMouseMove();
         }
 
         [JSInvokable]
@@ -177,8 +183,22 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
         [JSInvokable]
-        public void LeftHandleMove(WindowEvent e)
+        public void HandleMouseMove(WindowEvent e)
         {
+            Console.Write(nameof(HandleMouseMove));
+            if (_leftHandleMouseDown)
+            {
+                LeftHandleMove(e);
+            }
+            else if (_rightHandleMouseDown)
+            {
+                RightHandleMove(e);
+            }
+        }
+
+        [JSInvokable]
+        public void LeftHandleMove(WindowEvent e)
+        { 
             if (!_leftHandleMouseDown)
             {
                 return;
