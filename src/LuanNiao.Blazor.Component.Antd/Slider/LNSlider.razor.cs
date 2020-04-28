@@ -123,6 +123,12 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                     .AddOrRemove(_silderDisabledClassName, () => Disabled);
         }
 
+        protected override void Dispose(bool flag)
+        {
+            base.Dispose(flag);
+            BodyEventHub.MouseUp -= HandleMouseUp;
+        }
+
         private void BindMouseEvent()
         {
             BodyEventHub.MouseUp += HandleMouseUp;
