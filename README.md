@@ -111,3 +111,6 @@ If you don't mind, you can pay attention to the current warehouse and pay attent
 ## Other 其他杂项
 如果您愿意,我们很乐意见到您来协助我们完成这项复杂的任务,我们清楚这个任务并不简单,我们感激每一位为我们提交PR的人,并将其铭记于心.<br/>
 If you are willing, we are happy to advise you to help us complete this complex task. We understand that this task is not simple. We are grateful to everyone who submitted a PR for us and remember it in our hearts. <Br / >
+
+当前的Issue是我们团队讨论问题的讨论区与任务分派区,欢迎大家参与,目前我们把它当作一个日记本在使用,您可以在里面找到我们处理问题的路径,或许能够帮到您,当然由于我们团队能力欠缺,如果您知道我们的愚蠢问题如何处理,也希望你能给予帮助,谢谢!<br/>
+The current problem is the discussion area and task assignment area of our team to discuss the problem. Everyone is welcome to participate. At present, we are using it as a diary. You can find our way to deal with the problem in it. Maybe you can help you Due to the lack of ability of our team, if you know how to deal with our stupid problems, I hope you can help, thank you!
