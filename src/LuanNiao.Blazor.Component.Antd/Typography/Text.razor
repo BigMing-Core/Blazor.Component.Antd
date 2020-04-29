@@ -1,0 +1,31 @@
+﻿@inherits LuanNiao.Blazor.Component.Antd.Typography.Common.TypographyBase
+
+    <span class="@ClassName" direction="ltr">
+        @if (!Mark && !Code && !Underline && !Delete && !Strong)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @if (Mark)
+            {
+                <mark>@ChildContent</mark>
+            }
+            @if (Code)
+            {
+                <code>@ChildContent</code>
+            }
+            @if (Underline)
+            {
+                <u>@ChildContent</u>
+            }
+            @if (Delete)
+            {
+                <del>@ChildContent</del>
+            }
+            @if (Strong)
+            {
+                <code>@ChildContent</code>
+            }
+        }
+    </span>
