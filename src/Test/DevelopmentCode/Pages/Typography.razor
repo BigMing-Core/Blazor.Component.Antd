@@ -1,6 +1,7 @@
 ﻿@page "/Typography"
 
 @using LuanNiao.Blazor.Component.Antd.Typography
+@using LuanNiao.Blazor.Component.Antd.Icons;
 @using  LuanNiao.Blazor.Component.Antd.Typography.Common
 <Title>H1</Title>
 <Title Level="2">H2</Title>
@@ -27,7 +28,7 @@
 <br />
 <Text Attribute="TypographyBase.TypographyAttribute.Underline">
     Underline
-</Text> 
+</Text>
 <br />
 <Text Attribute="TypographyBase.TypographyAttribute.Delete">
     Delete
@@ -40,4 +41,24 @@
 <Paragraph>
     <Title Level="3">Level3</Title>
     dafdadfasdfsd
+</Paragraph>
+<Paragraph Copyable="true">
+    <Icon>
+        <CopyFilled ></CopyFilled>
+    </Icon>
+    <ChildContent>
+        Company
+    </ChildContent>
+</Paragraph>
+<Paragraph Copyable="@("123123")">
+    <ChildContent>
+    CopyNameadfadfasdf af
+        <Text Attribute="TypographyBase.TypographyAttribute.Delete">
+            Delete
+        </Text>
+        adfadf
+    </ChildContent>
+    <Icon>
+        <CopyFilled></CopyFilled>
+    </Icon>
 </Paragraph>

@@ -32,20 +32,12 @@ namespace LuanNiao.Blazor.Component.Antd.Typography.Common
         public TypographyAttribute Attribute { get; set; }
         [Parameter]
         public TypographyMode Type { get; set; }
-        [Parameter]
-        public UnionType<bool, TypographyUnion> Copyable { get; set; }
-        [Parameter]
-        public UnionType<bool, TypographyUnion> Editable { get; set; }
-        [Parameter]
-        public UnionType<bool, TypographyUnion> Ellipsis { get; set; }
+        
         public TypographyBase()
         {
             _classHelper.SetStaticClass("ant-typography");
         }
     }
-    public class TypographyUnion {
-        public string Text { get; set; }
-        public Action<string> Action { get; set; }
-    }
+ 
 
 }
