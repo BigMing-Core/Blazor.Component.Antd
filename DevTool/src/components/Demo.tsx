@@ -30,6 +30,8 @@ export class Demo extends Component<any, any> {
         <div style={{ marginBottom: 16 }}>
           <Input addonBefore="http://"  addonAfter=".com"  suffix=".com" defaultValue="mysite" />
         </div>
+
+        <Input prefix="￥" suffix="RMB" />
       </div>
 
     );
