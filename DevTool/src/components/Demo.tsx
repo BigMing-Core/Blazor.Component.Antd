@@ -5,29 +5,29 @@ import "antd/dist/antd.css";
 import "./demo.less";
 
 
-import { message, Button } from 'antd';
+import { Input } from 'antd';
+import { UserOutlined } from '@ant-design/icons'
 
-const success = () => {
-  message
-    .loading('Action in progress..', 0);
-    message
-    .error('Action in progress..', 0);
-    message
-    .success('Action in progress..', 0);
-    message
-    .info('Action in progress..', 0);
-    message
-    .warning('Action in progress..', 0); 
-    message
-    .loading('Action in progress..', 0);
-};
+
 export class Demo extends Component<any, any> {
- 
- 
+
+
   render() {
-    
+
     return (
-      <Button onClick={success}>Display sequential messages</Button>
+      <div>
+        <Input placeholder="Basic usage" disabled />
+        <br />
+        <Input size="large" placeholder="large size" prefix={<UserOutlined />} />
+        <br />
+        <br />
+        <Input placeholder="default size" prefix={<UserOutlined />} />
+        <br />
+        <br />
+        <Input size="small" placeholder="small size" prefix={<UserOutlined />} />
+
+      </div>
+
     );
   }
 }
