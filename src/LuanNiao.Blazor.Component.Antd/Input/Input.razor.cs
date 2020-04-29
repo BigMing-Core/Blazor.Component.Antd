@@ -1,5 +1,6 @@
 ﻿using LuanNiao.Blazor.Core;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         private const string _staticClassName = "ant-input";
         private const string _staticWrapperClassName = "ant-input-affix-wrapper";
+        private const string _staticWrapperFocusedClassName = "ant-input-affix-wrapper-focused";
         private const string _staticDisableClassName = "ant-input-disabled";
         private const string _staticLGClassName = "ant-input-lg";
         private const string _staticSMClassName = "ant-input-sm";
@@ -40,10 +42,28 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         {
             base.OnParametersSet();
             HandleDisabled();
-
         }
 
 
+        private void BindEvent()
+        {
+            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
+            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
+        }
+
+        [JSInvokable]
+        public void HandleOnFocus()
+        {
+            _wrapperClassName = _wrapperClassNameHelper.AddCustomClass(_staticWrapperFocusedClassName).Build();
+            this.Flush();
+        }
+
+        [JSInvokable]
+        public void HandleOnBlur()
+        {
+            _wrapperClassName = _wrapperClassNameHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
+            this.Flush();
+        }
 
 
         protected override void OnInitialized()
@@ -56,21 +76,30 @@ namespace LuanNiao.Blazor.Component.Antd.Input
                 HandlePrefixSize();
             }
         }
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                BindEvent();
+            }
+        }
 
         private void HandlePrefixSize()
         {
             switch (Size)
             {
                 case InputSize.Large:
-                    _wrapperClassName = _wrapperClassNameHelper.AddCustomClass(_staticLGClassName).Build();
+                    _wrapperClassNameHelper.AddCustomClass(_staticLGClassName).Build();
                     break;
                 case InputSize.Small:
-                    _wrapperClassName = _wrapperClassNameHelper.AddCustomClass(_staticSMClassName).Build();
+                    _wrapperClassNameHelper.AddCustomClass(_staticSMClassName).Build();
                     break;
                 case InputSize.Default:
                 default:
                     break;
             }
+            _wrapperClassName = _wrapperClassNameHelper.Build();
         }
 
         private void HandleInputSize()
