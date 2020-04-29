@@ -63,7 +63,7 @@ namespace Builder
             {
 
                 var fi = new FileInfo(item);
-                Console.WriteLine($"found file:{fi.Name} in folder:{fi.Directory.Name}");
+                Console.WriteLine($@"found file:{fi.Name} in folder:{fi.Directory.Name}");
                 var iconName = string.Join("",
                     System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(fi.Name.Replace(fi.Extension, "")).Split('-'));
                 var componentName = string.Join("",
@@ -76,7 +76,7 @@ namespace Builder
                 var razorContext = ICOTemplate.Replace("{iconName}", fi.Name.Replace(fi.Extension, "")).Replace("{svgContent}", pathStr);
                 var razorFileName = $"{componentName}.razor";
                 var classFileName = $"{componentName}.cs";
-                Console.WriteLine($"The LuanNiao.Blazor.Component.Antd's icon file creating..{razorFileName}");
+                Console.WriteLine($@"The LuanNiao.Blazor.Component.Antd's icon file creating..{razorFileName}");
                 Directory.CreateDirectory(_desFolderPath);
                 var razorFile = new FileInfo($"{_desFolderPath}/{razorFileName}");
                 razorFile.Delete();
