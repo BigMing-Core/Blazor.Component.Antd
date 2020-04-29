@@ -16,20 +16,20 @@ namespace LuanNiao.Blazor.Component.Antd.Typography.Common
             None ,
             Secondary,
             Warning,
-            Danger
+            Danger,
+            Disabled
+        }
+        public enum TypographyAttribute
+        { 
+            None ,
+            Delete,
+            Mark ,
+            Code,
+            Underline,
+            Strong
         }
         [Parameter]
-        public bool Delete { get; set; }
-        [Parameter]
-        public bool Disabled { get; set; }
-        [Parameter]
-        public bool Mark { get; set; }
-        [Parameter]
-        public bool Code { get; set; }
-        [Parameter]
-        public bool Underline { get; set; }
-        [Parameter]
-        public bool Strong { get; set; }
+        public TypographyAttribute Attribute { get; set; }
         [Parameter]
         public TypographyMode Type { get; set; }
         [Parameter]
