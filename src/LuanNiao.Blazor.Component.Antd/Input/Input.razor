@@ -2,9 +2,11 @@
 @{ RenderFragment data =@<input placeholder="@Placeholder" 
                                 type="text" class="@ClassName" 
                                 style="@CStyle" 
-                                value="" 
+                                value="@DefaultValue" 
+                                
                                 disabled="@(Disabled?"true":null)"
-                                id="@($"LNInput_{IdentityKey}")" />;
+                                id="@($"LNInput_{IdentityKey}")"                                 
+                                />;
 }
 
 

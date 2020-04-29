@@ -19,6 +19,11 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         private const string _staticSMClassName = "ant-input-sm";
         private readonly ClassNameHelper _wrapperClassNameHelper = new ClassNameHelper();
         private string _wrapperClassName = "";
+        private string _defaultValue = "";
+        private string _userInputValue;
+
+
+
 
 
         public Input()
@@ -26,6 +31,23 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             _classHelper.SetStaticClass(_staticClassName);
             _wrapperClassNameHelper.SetStaticClass(_staticWrapperClassName);
         }
+
+        [Parameter]
+        public string DefaultValue
+        {
+            get => _defaultValue;
+            set
+            {
+                if (_hasFirstRender)
+                {
+                    return;
+                }
+                _defaultValue = value;
+            }
+        }
+
+
+
 
         [Parameter]
         public string Placeholder { get; set; }
@@ -50,19 +72,9 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         [Parameter]
         public RenderFragment AddonAfter { get; set; }
 
-
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-            HandleDisabled();
-        }
+        public string Value { get => _userInputValue; }
 
 
-        private void BindEvent()
-        {
-            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
-            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
-        }
 
         [JSInvokable]
         public void HandleOnFocus()
@@ -76,6 +88,30 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         {
             _wrapperClassName = _wrapperClassNameHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
+        }
+        [JSInvokable]
+        public async void HandleOnChange()
+        {
+            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
+            OnChange?.Invoke(_userInputValue);
+        }
+
+
+        public Action<string> OnChange;
+
+
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+            HandleDisabled();
+        }
+
+
+        private void BindEvent()
+        {
+            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
+            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
+            ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
         }
 
 
@@ -131,7 +167,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         private void HandleDisabled()
         {
             _classHelper.AddOrRemove(_staticDisableClassName, () => Disabled);
-            _wrapperClassName= _wrapperClassNameHelper.AddOrRemove(_staticWrapperDisabledClassName, () => Disabled).Build();
+            _wrapperClassName = _wrapperClassNameHelper.AddOrRemove(_staticWrapperDisabledClassName, () => Disabled).Build();
         }
 
     }
