@@ -7,12 +7,13 @@
 @using LuanNiao.Blazor.Component.Antd.Tooltip
 @using LuanNiao.Blazor.Component.Antd.Slider
 @using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Dropdown
 
 <LNLayout>
     <Sider CStyle="overflow:auto;height:100%;position:fixed;left:0px;" @ref="SiderInstance">
         <div style="height: 32px; background: rgba(255, 255, 255, 0.2); margin: 16px;" />
-        <InlineMenu Theme="MenuBase.MenuTheme.Dark" DefaultSelectedKeys="@(new string[]{"home"})">
-            <MenuItem Key="home"> 
+        <InlineMenu Theme="MenuBase.MenuTheme.Dark" DefaultSelectedKeys="@(new[]{"home"})">
+            <MenuItem Key="home">
                 @if (SiderInstance.Collapsed)
                 {
                     <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
@@ -68,7 +69,22 @@
                     <MenuUnfoldOutlined ClassName="trigger"></MenuUnfoldOutlined>
                 </div>
                 </Col>
+                <Col Span="21">
 
+                </Col>
+                <Col Span="1">
+                <LNDropdown Theme="DropdownTheme.Button">
+                    <ChildContent>
+                        Hover me <DownOutlined />
+                    </ChildContent>
+                    <Overlay>
+                        <DropdownMenu>
+                            <MenuItem>1st menu item</MenuItem>
+                            <MenuItem>2nd menu item</MenuItem>
+                        </DropdownMenu>
+                    </Overlay>
+                </LNDropdown>
+                </Col>
             </Row>
 
         </Header>
@@ -111,6 +127,7 @@
 
 }
 <style>
+
     .logo {
         height: 32px;
         background: rgba(255, 255, 255, 0.2);

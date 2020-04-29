@@ -1,0 +1,38 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+
+
+
+
+
+<div style="@((RenderToCurrentContainer?_renderInContainerStyle:null))">
+    <div tabindex="-1" class="@ClassName" style="@((RenderToCurrentContainer?"position: absolute;":null))">
+        <div class="ant-drawer-mask" id="@($"mask_{IdentityKey}")"></div>
+        <div class="ant-drawer-content-wrapper" style="@_contentWrapperStyle">
+            <div class="ant-drawer-content">
+                <div class="ant-drawer-wrapper-body">
+                    <div class="@((Title==null?_noTitleClassName:_withTitleClassName))">
+
+                        @if (Title != null)
+                        {
+                            <div class="ant-drawer-title">
+                                @Title
+                            </div>
+                        }
+
+                        @if (Closable)
+                        {
+                            <button aria-label="Close" class="ant-drawer-close" id="@($"closebtn_{IdentityKey}")">
+                                <CloseOutlined />
+                            </button>
+                        }
+                    </div>
+                    <div class="ant-drawer-body">
+                        @ChildContent
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+@namespace LuanNiao.Blazor.Component.Antd
+
+@using LuanNiao.Blazor.Component.Antd.Icons
+@*move-up-leave move-up-leave-active*@
+<div>
+    <div class="ant-message">
+        <span>
+            @foreach (Message.MessageItem item in MessageInstance._messages)
+            {
+                <div class="ant-message-notice @(item.Removing?"move-up-leave move-up-leave-active":"")" >
+                    <div class="ant-message-notice-content">
+                        <div class="ant-message-custom-content ant-message-success">
+                            <CheckCircleFilled></CheckCircleFilled>
+                            <span>@item.Text</span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </span>
+    </div>
+</div>
+
+
+
+@*<div class="ant-message-notice ">
+        <div class="ant-message-notice-content">
+            <div class="ant-message-custom-content ant-message-loading">
+                <LoadingOutlined Spin="true"></LoadingOutlined>
+
+                <span>Action in progress..</span>
+            </div>
+        </div>
+    </div>*@

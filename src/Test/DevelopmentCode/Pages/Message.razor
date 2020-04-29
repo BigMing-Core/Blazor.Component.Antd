@@ -1,0 +1,31 @@
+﻿@page "/message"
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Button
+
+
+<LNMessageStub @ref="asd"></LNMessageStub>
+
+
+<LNButton OnClickCallback="@Add">add </LNButton>
+
+@code{
+
+
+    
+
+    LNMessageStub asd;
+    [Inject]
+    public LuanNiao.Blazor.Component.Antd.Message MyProperty { get; set; }
+
+    private void Add(LNButton _)
+    {
+        MyProperty.Success(new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            Duration = 1000 * new Random().Next(4),
+            OnClose = null,
+            Text = Guid.NewGuid().ToString()
+        });
+
+    }
+}

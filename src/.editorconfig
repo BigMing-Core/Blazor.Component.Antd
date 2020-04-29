@@ -2,11 +2,7 @@
 # All files
 [*]
 indent_style = space
-
-# Xml files
-[*.xml]
-indent_size = 2
-root = true
+ 
 
 [*.cs]
 dotnet_naming_rule.camel_case_for_private_internal_fields.severity = suggestion

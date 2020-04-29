@@ -73,7 +73,10 @@ namespace Builder
                     );
                 var doc = XElement.Load(item);
                 var pathStr = string.Join(" ", doc.Elements().ToList());
-                var razorContext = ICOTemplate.Replace("{iconName}", fi.Name.Replace(fi.Extension, "")).Replace("{svgContent}", pathStr);
+                var viewBoxValue = doc.Attributes(XName.Get("viewBox")).ToList()[0].Value;
+                var razorContext = ICOTemplate.Replace("{iconName}", fi.Name.Replace(fi.Extension, ""))
+                    .Replace("{svgContent}", pathStr)
+                    .Replace("{viewBoxValue}", viewBoxValue);
                 var razorFileName = $"{componentName}.razor";
                 var classFileName = $"{componentName}.cs";
                 Console.WriteLine($@"The LuanNiao.Blazor.Component.Antd's icon file creating..{razorFileName}");

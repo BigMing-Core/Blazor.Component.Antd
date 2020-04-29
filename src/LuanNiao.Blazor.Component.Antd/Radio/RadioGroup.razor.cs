@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Radio
 {
-    public partial class LNRadioGroup
+    public partial class RadioGroup
     {
         [Parameter]
         public bool Disabled { get; set; }
-        [Parameter]
-        public bool Checked { get; set; }
 
-        private const string _checkClass = "ant-radio-checked";
-        private const string _disabledClass = "ant-radio-disabled";
-
-        public LNRadioGroup()
+        public RadioGroup()
         {
             _classHelper.SetStaticClass("ant-radio-group");
+        }
+        protected override void OnParametersSet()
+        {
+            this.Flush();
         }
     }
 }
