@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Typography
 {
@@ -19,6 +20,8 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
         [Parameter]
         public string CustomText { get; set; } = null;
 
+        private bool _showOkBtn = false;
+
         //[Parameter]
         //public UnionType<bool, TypographyUnion> Editable { get; set; }
         //[Parameter]
@@ -33,11 +36,21 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
         }
 
 
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                BindingMouseEvent();
+            }
+        }
+
 
 
         private void BindingMouseEvent()
         {
             ElementInfo.BindClickEvent($"LNParagraph_copyImage{IdentityKey}", nameof(HandleCopy), this);
+
         }
 
         [JSInvokable]
@@ -47,8 +60,20 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
             {
                 await Navigator.Copy(CustomText);
             }
-            
+            else
+            {
+                var text = await ElementInfo.GetElementInnerText($"paragraph_{IdentityKey}");
 
+                await Navigator.Copy(text);
+            }
+            _showOkBtn = true;
+            this.Flush();
+            await Task.Run(async () =>
+             {
+                 await Task.Delay(1000*3);
+                 _showOkBtn = false;
+                 this.Flush();
+             });
         }
     }
     public class TypographyUnion
