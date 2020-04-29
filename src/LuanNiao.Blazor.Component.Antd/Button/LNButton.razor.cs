@@ -129,9 +129,9 @@ namespace LuanNiao.Blazor.Component.Antd.Button
         }
 
         [JSInvokable]
-        public async void OnElementClicked()
+        public  void OnElementClicked()
         {
-            await Task.Run(() => { OnClickCallback?.Invoke(this); });
+            OnClickCallback?.Invoke(this);
         }
         private void IntoLoading()
         {
