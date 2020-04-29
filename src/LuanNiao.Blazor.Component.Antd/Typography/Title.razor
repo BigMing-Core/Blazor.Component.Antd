@@ -1,0 +1,18 @@
+﻿@inherits LuanNiao.Blazor.Component.Antd.Typography.Common.TypographyBase
+
+@if (Level == 1)
+{
+    <h1 class="@ClassName" direction="ltr">@ChildContent</h1>
+}
+@if (Level == 2)
+{
+    <h2 class="@ClassName" direction="ltr">@ChildContent</h2>
+}
+@if (Level == 3)
+{
+    <h3 class="@ClassName" direction="ltr">@ChildContent</h3>
+}
+@if (Level == 4)
+{
+    <h4s class="@ClassName" direction="ltr">@ChildContent</h4s>
+}
