@@ -15,6 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\core\src\LuanNiao.Blazor.Core\LuanNiao.Blazor.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Input\" />
+  </ItemGroup>
  
 
 </Project>
