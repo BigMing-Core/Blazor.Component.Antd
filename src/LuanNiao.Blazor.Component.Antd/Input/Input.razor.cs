@@ -13,6 +13,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         private const string _staticClassName = "ant-input";
         private const string _staticWrapperClassName = "ant-input-affix-wrapper";
         private const string _staticWrapperFocusedClassName = "ant-input-affix-wrapper-focused";
+        private const string _staticWrapperDisabledClassName = "ant-input-affix-wrapper-disabled";
         private const string _staticDisableClassName = "ant-input-disabled";
         private const string _staticLGClassName = "ant-input-lg";
         private const string _staticSMClassName = "ant-input-sm";
@@ -23,6 +24,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         public Input()
         {
             _classHelper.SetStaticClass(_staticClassName);
+            _wrapperClassNameHelper.SetStaticClass(_staticWrapperClassName);
         }
 
         [Parameter]
@@ -36,6 +38,17 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         [Parameter]
         public RenderFragment Prefix { get; set; }
+
+
+        [Parameter]
+        public RenderFragment Suffix { get; set; }
+
+
+        [Parameter]
+        public RenderFragment AddonBefore { get; set; }
+
+        [Parameter]
+        public RenderFragment AddonAfter { get; set; }
 
 
         protected override void OnParametersSet()
@@ -70,11 +83,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         {
             base.OnInitialized();
             HandleInputSize();
-            if (Prefix != null)
-            {
-                _wrapperClassNameHelper.SetStaticClass(_staticWrapperClassName);
-                HandlePrefixSize();
-            }
+            HandleWrapperClassName();
         }
         protected override void OnAfterRender(bool firstRender)
         {
@@ -85,7 +94,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             }
         }
 
-        private void HandlePrefixSize()
+        private void HandleWrapperClassName()
         {
             switch (Size)
             {
@@ -122,6 +131,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         private void HandleDisabled()
         {
             _classHelper.AddOrRemove(_staticDisableClassName, () => Disabled);
+            _wrapperClassName= _wrapperClassNameHelper.AddOrRemove(_staticWrapperDisabledClassName, () => Disabled).Build();
         }
 
     }
