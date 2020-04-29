@@ -88,7 +88,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                BindMouseEvent(); 
+                BindMouseEvent();
             }
         }
 
@@ -123,21 +123,21 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                     .AddOrRemove(_silderDisabledClassName, () => Disabled);
         }
 
+        protected override void Dispose(bool flag)
+        {
+            base.Dispose(flag);
+            BodyEventHub.MouseUp -= HandleMouseUp;
+        }
+
         private void BindMouseEvent()
         {
-           
-            //ElementInfo.BindMouseMoveEvent($"body", nameof(LeftHandleMove), this);
+            BodyEventHub.MouseUp += HandleMouseUp;
             ElementInfo.BindMouseDownEvent($"lefthandle_{IdentityKey}", nameof(LeftHandleMouseDown), this);
             ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this);
         }
 
-        private void BindMouseMove()
-        {
-            ElementInfo.BindMouseUpEvent($"body", nameof(HandleMouseUp), this);
 
-            ElementInfo.BindMouseMoveEvent($"body", nameof(HandleMouseMove), this);
-        }
- 
+
         [JSInvokable]
         public async void OnElementResize()
         {
@@ -156,9 +156,12 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
 
 
         [JSInvokable]
-        public void HandleMouseUp()
-        {            
+        public void HandleMouseUp(WindowEvent _)
+        {
             _leftHandleMouseDown = _rightHandleMouseDown = false;
+
+            BodyEventHub.MouseMove -= RightHandleMove;
+            BodyEventHub.MouseMove -= LeftHandleMove;
         }
 
         [JSInvokable]
@@ -169,7 +172,8 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 return;
             }
             _rightHandleMouseDown = true;
-            BindMouseMove();
+
+            BodyEventHub.MouseMove += RightHandleMove;
         }
 
         [JSInvokable]
@@ -180,25 +184,14 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
                 return;
             }
             _leftHandleMouseDown = true;
+            BodyEventHub.MouseMove += LeftHandleMove;
         }
 
-        [JSInvokable]
-        public void HandleMouseMove(WindowEvent e)
-        {
-            Console.Write(nameof(HandleMouseMove));
-            if (_leftHandleMouseDown)
-            {
-                LeftHandleMove(e);
-            }
-            else if (_rightHandleMouseDown)
-            {
-                RightHandleMove(e);
-            }
-        }
+
 
         [JSInvokable]
         public void LeftHandleMove(WindowEvent e)
-        { 
+        {
             if (!_leftHandleMouseDown)
             {
                 return;
@@ -261,7 +254,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             {
                 return;
             }
-            percentOfElement = targetStepNum * 100 / _rangeSize; 
+            percentOfElement = targetStepNum * 100 / _rangeSize;
             _currentRightValue = percentOfElement;
             if (_currentRightValue - _currentLeftValue <= 0)
             {

@@ -40,7 +40,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
 
                 var _initialSize = await WindowInfo.GetWindowSize();
 
-                if (Gutter is ResponsiveGutter adapt && adapt.TryGetGutter(_initialSize.InnerSize.Width, out var newGutter))
+                if (Gutter is ResponsiveGutter adapt && adapt.TryGetGutter(_initialSize.InnerWidth, out var newGutter))
                 {
                     this._styleHelper.Rest();
                     this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
@@ -129,7 +129,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
 
                 WindowEventHub.Resized += (data) =>
                 {
-                    if (adapt.TryGetGutter(data.InnerSize.Width, out var newGutter))
+                    if (adapt.TryGetGutter(data.InnerWidth, out var newGutter))
                     {
                         this._styleHelper.Rest();
                         this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
