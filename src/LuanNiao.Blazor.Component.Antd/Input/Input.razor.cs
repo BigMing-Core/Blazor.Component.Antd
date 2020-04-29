@@ -1,9 +1,11 @@
 ﻿using LuanNiao.Blazor.Core;
+using LuanNiao.Blazor.Core.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Input
 {
@@ -74,6 +76,10 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         public string Value { get => _userInputValue; }
 
+        [Parameter]
+        public Action<string> OnChange { get; set; }
+        [Parameter]
+        public Action<string> OnPressEnter{ get; set; }
 
 
         [JSInvokable]
@@ -96,9 +102,12 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             OnChange?.Invoke(_userInputValue);
         }
 
-
-        public Action<string> OnChange;
-
+        [JSInvokable]
+        public async void HandleKeyPress(KeyboardEvent _)
+        {
+            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}"); 
+            OnPressEnter?.Invoke(_userInputValue);
+        }
 
         protected override void OnParametersSet()
         {
@@ -111,8 +120,11 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         {
             ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
             ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
+            ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleKeyPress), this, new[] { 13 });
             ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
         }
+
+
 
 
         protected override void OnInitialized()

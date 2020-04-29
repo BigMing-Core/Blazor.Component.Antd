@@ -2,8 +2,11 @@
 @using LuanNiao.Blazor.Component.Antd.Input
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using LuanNiao.Blazor.Component.Antd.Tooltip
+@using LuanNiao.Blazor.Component.Antd
+@using static LuanNiao.Blazor.Core.Translater
+@inject LuanNiao.Blazor.Component.Antd.Message _message
 
-
+<LNMessageStub></LNMessageStub>
 <div>
     <br />
     <br />
@@ -136,4 +139,47 @@
     </Input>
 
 
+    <br />
+    <br />
+    @Tr(e => e == "en" ? "Test input value and event" : "测试获取值以及对应的事件")
+    <Input Placeholder="Enter your username" OnChange="OnChang" OnPressEnter="OnEnter">
+    <Prefix>
+        <UserOutlined className="site-form-item-icon" />
+    </Prefix>
+    <Suffix>
+        <LNTooltip Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Left">
+            <Title>
+                Extra information
+            </Title>
+            <ChildContent>
+                <InfoCircleOutlined CStyle="color: 'rgba(0,0,0,.45)" />
+            </ChildContent>
+        </LNTooltip>
+    </Suffix>
+    </Input>
+
 </div>
+
+
+@code{
+
+
+    private void OnChang(string msg)
+    {
+        _message.Show(new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            Text = msg,
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Success
+        });
+    }
+
+    private void OnEnter(string msg)
+    {
+        _message.Show(new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            Text = msg,
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Error
+        });
+    }
+
+}
