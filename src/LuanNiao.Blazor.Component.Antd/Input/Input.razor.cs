@@ -38,6 +38,17 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         public RenderFragment Prefix { get; set; }
 
 
+        [Parameter]
+        public RenderFragment Suffix { get; set; }
+
+
+        [Parameter]
+        public RenderFragment AddonBefore { get; set; }
+
+        [Parameter]
+        public RenderFragment AddonAfter { get; set; }
+
+
         protected override void OnParametersSet()
         {
             base.OnParametersSet();

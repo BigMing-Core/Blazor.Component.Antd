@@ -6,7 +6,7 @@ import "./demo.less";
 
 
 import { Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined,SettingOutlined  } from '@ant-design/icons'
 
 
 export class Demo extends Component<any, any> {
@@ -16,16 +16,20 @@ export class Demo extends Component<any, any> {
 
     return (
       <div>
-        <Input placeholder="Basic usage" disabled />
-        <br />
-        <Input size="large" placeholder="large size" prefix={<UserOutlined />} />
-        <br />
-        <br />
-        <Input placeholder="default size" prefix={<UserOutlined />} />
-        <br />
-        <br />
-        <Input size="small" placeholder="small size" prefix={<UserOutlined />} />
-
+        <div style={{ marginBottom: 16 }}>
+          <Input addonBefore="http://" addonAfter=".com" defaultValue="mysite" />
+        </div>
+      
+        <div style={{ marginBottom: 16 }}>
+          <Input addonAfter={<SettingOutlined />} defaultValue="mysite" />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Input addonBefore="http://"    suffix=".com" defaultValue="mysite" />
+        </div>
+        
+        <div style={{ marginBottom: 16 }}>
+          <Input addonBefore="http://"  addonAfter=".com"  suffix=".com" defaultValue="mysite" />
+        </div>
       </div>
 
     );

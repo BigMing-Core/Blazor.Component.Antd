@@ -1,5 +1,5 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
-@{ RenderFragment data =@<input placeholder="@Placeholder" type="text" class="@ClassName" style="@CStyle" value="" id="@($"LNInput_{IdentityKey}")" />; }
+@{ RenderFragment data =@<input placeholder="@Placeholder" type="text" class="@ClassName" style="@CStyle" value="" id="@($"LNInput_{IdentityKey}")" />;}
 
 
 @if (Prefix != null)
@@ -10,6 +10,37 @@
     </span>
     @data
 </span> }
-            else
-            {
-@data}
+else if (AddonAfter != null || AddonBefore != null || Suffix != null)
+{
+<span class="ant-input-group-wrapper">
+    <span class="ant-input-wrapper ant-input-group">
+
+        @if (AddonBefore != null)
+        {
+            <span class="ant-input-group-addon">@AddonBefore</span>
+        }
+        @if (Suffix != null)
+        {
+            <span class="ant-input-affix-wrapper">
+                @data
+                <span class="ant-input-suffix">@Suffix</span>
+            </span> 
+        }
+        else
+        {
+            @data
+        }
+
+        @if (AddonAfter != null)
+        {
+            <span class="ant-input-group-addon">@AddonAfter</span>
+        }
+    </span>
+</span> 
+}
+else
+{
+    @data
+}
+
+
