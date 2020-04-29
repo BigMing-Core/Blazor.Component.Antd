@@ -1,0 +1,13 @@
+﻿@inherits LuanNiao.Blazor.Component.Antd.Typography.Common.TypographyBase
+
+    <span class="@ClassName" direction="ltr">
+        @switch (Attribute)
+        {
+            case TypographyAttribute.None:@ChildContent break;
+            case TypographyAttribute.Mark: <mark>@ChildContent</mark> break;
+            case TypographyAttribute.Code: <code>@ChildContent</code>break;
+            case TypographyAttribute.Underline: <u>@ChildContent</u>break;
+            case TypographyAttribute.Delete: <del>@ChildContent</del>break;
+            case TypographyAttribute.Strong: <strong>@ChildContent</strong>break;
+        }
+    </span>
