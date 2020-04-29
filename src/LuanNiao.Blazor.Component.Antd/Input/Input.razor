@@ -1,0 +1,15 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@{ RenderFragment data =@<input placeholder="@Placeholder" type="text" class="@ClassName" style="@CStyle" value="" id="@($"LNInput_{IdentityKey}")" />; }
+
+
+@if (Prefix != null)
+{
+<span class="@_wrapperClassName">
+    <span class="ant-input-prefix">
+        @Prefix
+    </span>
+    @data
+</span> }
+            else
+            {
+@data}
