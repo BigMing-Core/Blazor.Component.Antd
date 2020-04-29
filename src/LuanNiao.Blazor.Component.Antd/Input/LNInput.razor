@@ -1,8 +1,104 @@
-﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+﻿@using Microsoft.AspNetCore.Components.Web
+@inherits LuanNiao.Blazor.Core.LNBCBase
 
+@if (!_hasAddOn && !_hasAffix)
+{
+    <input placeholder="@Placeholder"
+           type="text"
+           class="@ClassName"
+           disabled="@((Disabled ? "disabled" : null))"
+           value="@Value"
+           style="@((string.IsNullOrWhiteSpace(CStyle) ? null : CStyle))"
+           @onchange="(args =>    { return OnValueChangeHandler(args); })" />
+}
+else if (_hasAddOn)
+{
+    <span class="@AddOnClassName">
+        <span class="ant-input-wrapper ant-input-group">
 
-<input placeholder="@Placeholder"
-       type="text"
-       class="@ClassName"
-       disabled="@((Disabled ? "disabled" : null))"
-       value="">
+            @if (AddOnBefore != null)
+            {
+                <span class="ant-input-group-addon">
+                    @AddOnBefore
+
+                </span>
+            }
+
+            @if (_hasAffix)
+            {
+                <span class="@AffixClassName">
+
+                    @if (Prefix != null)
+                    {
+                        <span class="ant-input-prefix">
+                            @Prefix
+                        </span>
+                    }
+
+                    <input placeholder="@Placeholder"
+                           type="text"
+                           class="@ClassName"
+                           disabled="@((Disabled ? "disabled" : null))"
+                           value="@Value"
+                           style="@((string.IsNullOrWhiteSpace(CStyle) ? null : CStyle))"
+                           @onchange="(args => { return OnValueChangeHandler(args); })" />
+
+                    @if (Suffix != null)
+                    {
+                        <span class="ant-input-suffix">
+                            @Suffix
+                        </span>
+                    }
+
+                </span>
+            }
+            else
+            {
+                <input placeholder="@Placeholder"
+                       type="text"
+                       class="@ClassName"
+                       disabled="@((Disabled ? "disabled" : null))"
+                       value="@Value"
+                       style="@((string.IsNullOrWhiteSpace(CStyle) ? null : CStyle))"
+                       @onchange="(args => { return OnValueChangeHandler(args); })" />
+            }
+
+            @if (AddOnAfter != null)
+            {
+                <span class="ant-input-group-addon">
+                    @AddOnAfter
+                </span>
+            }
+
+        </span>
+                                                                                    
+    </span>
+}
+else
+{
+    <span class="@AffixClassName">
+
+        @if (Prefix != null)
+        {
+            <span class="ant-input-prefix">
+                @Prefix
+            </span>
+        }
+
+        <input placeholder="@Placeholder"
+               type="text"
+               class="@ClassName"
+               disabled="@((Disabled ? "disabled" : null))"
+               value="@Value"
+               style="@((string.IsNullOrWhiteSpace(CStyle) ? null : CStyle))"
+               @onchange="(args => { return OnValueChangeHandler(args); })" />
+
+        @if (Suffix != null)
+        {
+            <span class="ant-input-suffix">
+                @Suffix
+            </span>
+        }
+
+    </span>
+}

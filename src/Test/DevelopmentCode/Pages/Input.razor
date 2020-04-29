@@ -1,10 +1,71 @@
 ﻿@page "/input"
+@using LuanNiao.Blazor.Component.Antd
 @using LuanNiao.Blazor.Component.Antd.Input
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Grid
 
 <LNInput></LNInput>
 
+<div style="margin-bottom: 16px; padding: 0 40px;">
+    <LNInput Placeholder="With place hoder"></LNInput>
+</div>
 
-<LNInput Placeholder="With place hoder"></LNInput>
+<div style="margin-bottom: 16px; padding: 0 40px;">
+    <LNInput Placeholder="With disabled" Disabled="true"></LNInput>
+</div>
 
+<div style="margin-bottom: 16px; padding: 0 40px;">
+    <LNInput Placeholder="PLACEHOLDER" @ref="input1" DefaultValue="aaa" @bind-value="Name">
+        <AddOnBefore>测试</AddOnBefore>
+        <Prefix>
+            <UserOutlined />
+        </Prefix>
+        <AddOnAfter>
+            <CalendarFilled />
+        </AddOnAfter>
+    </LNInput>
 
-<LNInput Placeholder="With disabled" Disabled="true"></LNInput>
+    <button @onclick="OnButtonClick">获取当前值</button>
+    <button @onclick="OnButtonClick2">设置当前值</button>
+</div>
+
+<div style="margin-bottom: 16px; padding: 0 40px;">
+    <LNInputGroup>
+        <Row Gutter="@gutter">
+            <Col Span="2">
+                <LNInput></LNInput>
+            </Col>
+            <Col Span="4">
+                <LNInput></LNInput>
+            </Col>
+        </Row>
+    </LNInputGroup>
+</div>
+
+<div style="margin-bottom: 16px; padding: 0 40px;">
+    <LNInputGroup Compact="true">
+        <LNInput CStyle="width:20%" DefaultValue="失败"></LNInput>
+        <LNInput CStyle="width:50%" DefaultValue="中间的空白去不掉"></LNInput>
+    </LNInputGroup>
+</div>
+
+@code {
+    private LNInput input1;
+
+    private string Name { get; set; }
+
+    private readonly MarginGutter gutter = new MarginGutter {Horizontal = 4, Vertial = 4};
+
+    private void OnButtonClick(MouseEventArgs e)
+    {
+        Console.WriteLine($@"input1.Value = {input1.Value}");
+        Console.WriteLine($@"Name = {Name}");
+    }
+
+    private void OnButtonClick2(MouseEventArgs e)
+    {
+        Name = "被重置了";
+        Console.WriteLine($@"input1.Value = {input1.Value}");
+        Console.WriteLine($@"Name = {Name}");
+    }
+}
