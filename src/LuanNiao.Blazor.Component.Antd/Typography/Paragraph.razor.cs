@@ -1,5 +1,6 @@
 ﻿using LuanNiao.Core;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,11 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
         }
 
         [Parameter]
-        public UnionType<bool, string> Copyable { get; set; }
+        public bool Copyable { get; set; }
+
+        [Parameter]
+        public string CustomText { get; set; } = null;
+
         //[Parameter]
         //public UnionType<bool, TypographyUnion> Editable { get; set; }
         //[Parameter]
@@ -26,16 +31,25 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
             base.OnInitialized();
             //HandleCopy();
         }
-        //private void HandleCopy() {
-        //    if (this.Copyable?.Value != null) {
-        //        Copyable.Switch((a) => {
-        //            Console.WriteLine(a);
-        //        }, (b) => {
-        //            Console.WriteLine(b);
 
-        //        });
-        //    }
-        //}
+
+
+
+        private void BindingMouseEvent()
+        {
+            ElementInfo.BindClickEvent($"LNParagraph_copyImage{IdentityKey}", nameof(HandleCopy), this);
+        }
+
+        [JSInvokable]
+        public async void HandleCopy()
+        {
+            if (!string.IsNullOrWhiteSpace(CustomText))
+            {
+                await Navigator.Copy(CustomText);
+            }
+            
+
+        }
     }
     public class TypographyUnion
     {

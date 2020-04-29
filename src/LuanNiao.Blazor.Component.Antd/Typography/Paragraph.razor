@@ -1,9 +1,30 @@
 ﻿@inherits LuanNiao.Blazor.Component.Antd.Typography.Common.TypographyBase
+@using LuanNiao.Blazor.Component.Antd.Icons
 
-    <div class="@ClassName" style="@CStyle" id="paragraph_@IdentityKey">
-        @ChildContent
-        @if (Icon != null)
-        {
-            @Icon
-        }
-    </div>
+
+
+
+<div class="@ClassName" style="@CStyle" id="@($"paragraph_{IdentityKey}")">
+    @ChildContent
+
+
+
+    @if (Copyable)
+    {
+        <div role="button" tabindex="0"
+          class="ant-typography-copy"
+          aria-label="copy"
+          style="border: 0px; background: transparent; padding: 0px; line-height: inherit; display: inline-block;"
+          id="@($"LNParagraph_copyImage{IdentityKey}")" 
+             >
+            @if (Icon == null)
+            {
+                <CopyOutlined/> 
+            }
+            else
+            {
+                @Icon
+            }
+        </div>
+    }
+</div>
