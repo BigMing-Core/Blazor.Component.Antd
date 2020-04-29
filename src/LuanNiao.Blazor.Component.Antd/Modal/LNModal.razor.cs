@@ -43,10 +43,16 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         /// Text of the OK button
         /// </summary>
         [Parameter] public string OkText { get; set; }
+
         /// <summary>
         /// Width
         /// </summary>
-        [Parameter] public UnionType<string,int> Width { get; set; }
+        [Parameter] public int Width { get; set; }
+
+        /// <summary>
+        /// Whether to apply loading visual effect for OK button or not
+        /// </summary>
+        [Parameter] public bool ConfirmLoading { get; set; }
          
         [Parameter] public Action<LNModal> OnCancel { get; set; }
         /// <summary>
@@ -86,7 +92,6 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         protected override Task OnParametersSetAsync()
         {
             HandleVisiable();
-            Console.WriteLine("OnParametersSetAsync");
             return base.OnParametersSetAsync();
         }
 
@@ -96,7 +101,6 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
             {
                 BindMouseEvent();
             }
-            Console.WriteLine("OnAfterRenderAsync");
             return base.OnAfterRenderAsync(firstRender);
         }
 
@@ -115,9 +119,12 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindClickEvent($"lnBtnCancel_{IdentityKey}", nameof(OnCancelCallback), this, true);
-            ElementInfo.BindClickEvent($"lnBtnOk_{IdentityKey}", nameof(OnOkCallback), this, true);
-            ElementInfo.BindClickEvent($"lnBtnClose_{IdentityKey}",nameof(OnCancelCallback),this,true);
+
+            if (MaskClosable)
+            {
+                ElementInfo.BindClickEvent($"wrap_{IdentityKey}", nameof(OnCancelCallback), this, true);
+
+            }
         }
 
 

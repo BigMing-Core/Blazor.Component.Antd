@@ -44,6 +44,7 @@ export class Demo extends Component<any, any> {
           title="Basic Modal"
           visible={this.state.visible}
           onOk={this.handleOk}
+          confirmLoading={true}
           onCancel={this.handleCancel}
         >
           <p>Some contents...</p>

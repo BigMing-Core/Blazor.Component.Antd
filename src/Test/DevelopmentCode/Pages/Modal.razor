@@ -4,8 +4,30 @@
 
 <div class="box">
     <h3>Basic: Basic modal.</h3>
-    <LNButton Type="LNButton.BType.Primary"  OnClickCallback="OnModalShow">Open Modal</LNButton>
-    <LNModal Visible="@showModal" OnCancel="@OnCancel" OkText="sdfdsfd" >
+    <LNButton Type="LNButton.BType.Primary"  OnClickCallback="(_)=>OnModalShow(1)">Open Modal</LNButton>
+    <LNModal Visible="@showModal1" OnCancel="(_)=>OnCancel(1)"
+             MaskClosable="false"
+             OkText="sdfdsfd"
+             OnOk="@OnOk">
+        <Title>Hello, Basic Modal</Title>
+        <ChildContent>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+        </ChildContent>
+    </LNModal>
+</div>
+<div class="box">
+    <h3>
+        Asynchronously close:Asynchronously close a modal dialog when a the OK button is pressed. For example, you can use this pattern when you submit a form.
+    </h3>
+    <LNButton Type="LNButton.BType.Primary" OnClickCallback="(_)=>OnModalShow(2)">Open Modal</LNButton>
+
+    <LNModal Visible="@showModal2" OnCancel="(_)=>OnCancel(2)"
+             
+             Mask="false"
+             OnOk="@OnOk"
+             ConfirmLoading="loading">
         <Title>Hello, Basic Modal</Title>
         <ChildContent>
             <p>Some contents...</p>
@@ -16,15 +38,41 @@
 </div>
 
 @code{
-    private bool showModal = false;
-    private void OnModalShow(LNButton _)
+    private bool showModal1 = false;
+    private bool showModal2 = false;
+    private bool loading = false;
+    private void OnModalShow(int modal)
     {
-        this.showModal = true;
+        switch (modal)
+        {
+            case 1:
+                this.showModal1 = true;
+                break;
+            case 2:
+                this.showModal2 = true;
+                this.loading = false;
+                break;
+            default:
+                break;
+        }
         this.StateHasChanged();
     }
-    private void OnCancel(LNModal _)
+    private void OnCancel(int modal)
     {
-        this.showModal = false;
+        switch (modal) {
+            case 1:
+                this.showModal1 = false;
+                break;
+            case 2:
+                this.showModal2 = false;
+                this.loading = false;
+                break;
+        }
+        this.StateHasChanged();
+    }
+    private void OnOk(LNModal _)
+    {
+        this.loading = true;
         this.StateHasChanged();
     }
 
