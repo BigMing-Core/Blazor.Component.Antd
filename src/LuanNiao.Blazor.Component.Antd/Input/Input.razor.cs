@@ -48,9 +48,6 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             }
         }
 
-
-
-
         [Parameter]
         public string Placeholder { get; set; }
 

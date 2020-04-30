@@ -1,6 +1,8 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Button
+
 @{ RenderFragment data =@<input placeholder="@Placeholder"
-                                type="text"  
+                                type="text" class="@InputClass"
                                 value="@DefaultValue"
                                 disabled="@(Disabled?"true":null)"
                                 id="@($"LNInput_{IdentityKey}")" />;
@@ -8,17 +10,20 @@
 
 
 @{
-    RenderFragment affixData =@<span class="@ClassName" style="@CStyle" id="@($"LNSearch_{IdentityKey}")">
+    RenderFragment affixData =@<span style="@((!UseBtnMod?CStyle:null))" class="@ClassName">
         @if (Prefix != null)
         {
             <span class="ant-input-prefix">@Prefix</span>
         }
         @data
 
-        @if (Suffix != null)
+        @if (!UseBtnMod)
         {
-            <span class="ant-input-suffix">@Suffix</span>
+            <span class="ant-input-suffix">
+                <LuanNiao.Blazor.Component.Antd.Icons.SearchOutlined OnClick="OnIconClicked" />
+            </span>
         }
+
     </span>;
 }
 
@@ -26,9 +31,10 @@
 
 
 
-@if (AddonAfter != null || AddonBefore != null)
+@if (UseBtnMod)
 {
-    <span class="ant-input-group-wrapper">
+    <span class="ant-input-search ant-input-search-enter-button  ant-input-group-wrapper"
+          style="@((UseBtnMod?CStyle:null))">
         <span class="ant-input-wrapper ant-input-group">
             @if (AddonBefore != null)
             {
@@ -42,10 +48,20 @@
                 @data
             }
 
-            @if (AddonAfter != null)
-            {
-                <span class="ant-input-group-addon">@AddonAfter</span>
-            }
+
+            <span class="ant-input-group-addon">
+                @if (AddonAfter != null)
+                {
+                    @AddonAfter
+                }
+                else
+                {
+                    <LNButton Type="LNButton.BType.Primary" Disabled="@Disabled" OnClickCallback="(_)=> { this.OnIconClicked(); }">
+                        <LuanNiao.Blazor.Component.Antd.Icons.SearchOutlined />
+                    </LNButton>
+                }
+
+            </span>
         </span>
     </span>
 }
@@ -53,5 +69,6 @@ else
 {
     @affixData
 }
+
 
 
