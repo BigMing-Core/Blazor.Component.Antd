@@ -7,71 +7,76 @@
 
 <div class="ant-modal-root">
     @if (Mask)
-        {
-            <div class="@MaskClass"></div>
-        }
-        <div tabindex="-1"
-             class="@ClassName"
-             role="dialog"
-             style="@CStyle"
-              id="@($"wrap_{IdentityKey}")"
-             aria-labelledby="rcDialogTitle0">
-            <div role="document"
-                 class="ant-modal"
-                 style="width: 520px; transform-origin: 63px -100px;">
-                <div tabindex="0"
-                     aria-hidden="true"
-                     style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
-                <div class="ant-modal-content">
-                    <button type="button" id="@($"lnBtnClose_{IdentityKey}")" aria-label="Close" class="ant-modal-close">
-                        <span class="ant-modal-close-x">
-                            @if (CloseIcon != null)
-                            {
-                                @CloseIcon
-                            }
-                            else
-                            {
-                                <CloseOutlined></CloseOutlined>
-                            }
+    {
+        <div class="@MaskClass" id="@($"LNMask_{IdentityKey}")"></div>
+    }
+    <div tabindex="-1"
+         class="@ClassName"
+         role="dialog"
+         style="@CStyle"
+         id="@($"wrap_{IdentityKey}")"
+         aria-labelledby="rcDialogTitle0">
+        <div role="document"
+             class="ant-modal"
+             style="width: 520px; transform-origin: 63px -100px;">
+            <div tabindex="0"
+                 aria-hidden="true"
+                 style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+            <div class="ant-modal-content" style="z-index:1001" onclick="LuanNiaoBlazor.BlockClickEvent()" >
+                <button type="button" id="@($"lnBtnClose_{IdentityKey}")" aria-label="Close" class="ant-modal-close">
+                    <span class="ant-modal-close-x">
+                        @if (CloseIcon != null)
+                        {
+                            @CloseIcon
+                        }
+                        else
+                        {
+                            <CloseOutlined></CloseOutlined>
+                        }
 
-                        </span>
-                    </button>
-                    <div class="ant-modal-header">
-                        <div class="ant-modal-title" id="rcDialogTitle0">
-                            @Title
-                        </div>
-                    </div>
-                    <div class="ant-modal-body">
-
-                        @ChildContent
-                    </div>
-                    <div class="ant-modal-footer">
-                        <div>
-
-                            <LNButton OnClickCallback="(_)=>OnCancelCallback()">
-                                @Tr(e => e == "en" ? "Cancel" : "取消")
-                            </LNButton>
-
-                            @if (OkText != null)
-                            {
-                                <LNButton OnClickCallback="(_)=>OnOkCallback()" Type="LNButton.BType.Primary" Loading="ConfirmLoading"> @OkText</LNButton>
-
-                            }
-                            else
-                            {
-                                <LNButton OnClickCallback="(_)=>OnOkCallback()"
-                                          Type="LNButton.BType.Primary" Loading="ConfirmLoading">
-                                    @Tr(e => e == "en" ? "OK" : "确定")
-                                </LNButton>
-
-                            }
-
-                        </div>
+                    </span>
+                </button>
+                <div class="ant-modal-header">
+                    <div class="ant-modal-title" id="rcDialogTitle0">
+                        @Title
                     </div>
                 </div>
-                <div tabindex="0"
-                     aria-hidden="true"
-                     style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
+                <div class="ant-modal-body">
+
+                    @ChildContent
+                </div>
+                <div class="ant-modal-footer">
+                    <div>
+
+                        <LNButton OnClickCallback="(_)=>OnCancelCallback()">
+                            @Tr(e => e == "en" ? "Cancel" : "取消")
+                        </LNButton>
+
+
+                        <LNButton @ref="_okBtn" OnClickCallback="(_)=>OnOkCallback()"
+                                  Type="LNButton.BType.Primary"
+                                  >
+                            @if (OkText != null)
+                            {
+                                @OkText
+
+                            }
+                            else
+                            {
+                                @Tr(e => e == "en" ? "OK" : "确定")
+
+                            }
+                        </LNButton>
+
+
+
+
+                    </div>
+                </div>
             </div>
+            <div tabindex="0"
+                 aria-hidden="true"
+                 style="width: 0px; height: 0px; overflow: hidden; outline: none;"></div>
         </div>
     </div>
+</div>

@@ -8,6 +8,7 @@ using LuanNiao.Blazor.Core.Common;
 using Microsoft.JSInterop;
 using LuanNiao.Core;
 using System.ComponentModel.DataAnnotations;
+using LuanNiao.Blazor.Component.Antd.Button;
 
 namespace LuanNiao.Blazor.Component.Antd.Modal
 {
@@ -38,7 +39,7 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         /// <summary>
         /// Title
         /// </summary>
-        [Parameter][Required] public RenderFragment Title { get; set; }
+        [Parameter] [Required] public RenderFragment Title { get; set; }
         /// <summary>
         /// Text of the OK button
         /// </summary>
@@ -53,7 +54,7 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         /// Whether to apply loading visual effect for OK button or not
         /// </summary>
         [Parameter] public bool ConfirmLoading { get; set; }
-         
+
         [Parameter] public Action<LNModal> OnCancel { get; set; }
         /// <summary>
         /// Specify a function that will be called when the user clicks the Cancel button. 
@@ -63,6 +64,11 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         /// the modal dialog will also be closed
         /// </summary>
         [Parameter] public Action<LNModal> OnOk { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<挂起>")]
+        private LNButton _okBtn = null;
+
+        private bool _blockClose = false;
 
 
         #endregion
@@ -123,27 +129,54 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
             if (MaskClosable)
             {
                 ElementInfo.BindClickEvent($"wrap_{IdentityKey}", nameof(OnCancelCallback), this, true);
-
             }
+            ElementInfo.BindClickEvent($"lnBtnClose_{IdentityKey}", nameof(OnCancelCallback), this, true);
         }
 
+        public void Hide()
+        {
+            this.Visible = false;
+            HandleVisiable();
+        }
+
+        public void Show()
+        {
+            _okBtn.RecoverFromLoading();
+            this.Visible = true;
+            HandleVisiable();
+        }
+
+        public void ShowLoading()
+        {
+            _blockClose = true;
+            _okBtn.BeginLoading();
+        }
+
+        public void HideLoading()
+        {
+            _blockClose = false;
+            _okBtn.RecoverFromLoading();
+        }
 
         #region Event
         [JSInvokable]
         public void OnCancelCallback()
         {
-            this.Visible = false;
-            HandleVisiable();
+            if (_blockClose)
+            {
+                return;
+            }
             OnCancel?.Invoke(this);
             this.Flush();
         }
         [JSInvokable]
         public void OnOkCallback()
         {
-            this.Visible = false;
-            HandleVisiable();
+            if (ConfirmLoading)
+            {
+                ShowLoading();
+            }
             OnOk?.Invoke(this);
-            this.Flush();
         }
         #endregion
     }
