@@ -59,7 +59,11 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
         /// 	prevent default fallback behavior
         /// </summary>
         [Parameter]
-        public Action<LNAvatar> OnError { get; set; }
+        public Action<LNAvatar> OnError
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
         /// <summary>
         /// This attribute defines the alternative text describing the image
         /// </summary>
@@ -80,7 +84,7 @@ namespace LuanNiao.Blazor.Component.Antd.Avatar
             HandleShape();
             HandleSize();
             _classHelper.AddOrRemove("ant-avatar-icon", condition: () => Icon != null);
-            _classHelper.AddOrRemove("ant-avatar-image", condition: () => Src != null); 
+            _classHelper.AddOrRemove("ant-avatar-image", condition: () => Src != null);
         }
 
         /// <summary>
