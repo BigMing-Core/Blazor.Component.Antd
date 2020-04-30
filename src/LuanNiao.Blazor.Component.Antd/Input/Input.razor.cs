@@ -48,9 +48,6 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             }
         }
 
-
-
-
         [Parameter]
         public string Placeholder { get; set; }
 
@@ -117,7 +114,7 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
 
         private void BindEvent()
-        {
+        { 
             ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
             ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
             ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleKeyPress), this, new[] { 13 });

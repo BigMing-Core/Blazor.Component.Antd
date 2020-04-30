@@ -4,54 +4,58 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
-import { Card, Avatar, Button, Select, Modal } from "antd";
 
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Input } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
 
-const { Option } = Select;
+const { Search } = Input;
+
+const suffix = (
+  <AudioOutlined
+    style={{
+      fontSize: 16,
+      color: '#1890ff',
+      paddingRight: 4,
+    }}
+  />
+);
 export class Demo extends Component<any, any> {
-  state = { visible: false };
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
 
-  handleOk = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
-  };
   render() {
+
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal
-        </Button>
-        <Modal
-          title="Basic Modal"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          confirmLoading={true}
-          onCancel={this.handleCancel}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
+        <Search
+          placeholder="input search text"
+          onSearch={value => console.log(value)}
+          style={{ width: 200 }}
+          className="qweqwe"
+          disabled
+        />
+        <br />
+        <br />
+        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton  className="qweqwe" 
+          disabled/>
+        <br />
+        <br />
+        <Search
+          placeholder="input search text"
+          enterButton="Search"
+          size="large"
+          onSearch={value => console.log(value)}
+        />
+        <br />
+        <br />
+        <Search
+          placeholder="input search text"
+          enterButton="Search"
+          size="large"
+          suffix={suffix}
+          onSearch={value => console.log(value)}
+        />
       </div>
+
     );
   }
 }
