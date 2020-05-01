@@ -121,6 +121,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             _overlayClass.RemoveCustomClass("ant-tooltip-hidden");
             _overlayStyle.AddCustomStyle("opacity", "0");
             this.Flush();
+            TooltipService.NeedFlush();
             var left = 0d;
             var top = 0d;
 
@@ -202,7 +203,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
                     top = mainElementInfo.Top - mainElementInfo.Height - _toolTopArrowFixSize;
                     break;
                 case PlacementType.TopRight:
-                    left = mainElementInfo.Right- mainElementInfo.Width;
+                    left = mainElementInfo.Right- hideDivElementInfo.Width;
                     top = mainElementInfo.Top - mainElementInfo.Height - _toolTopArrowFixSize;
                     break;
 
