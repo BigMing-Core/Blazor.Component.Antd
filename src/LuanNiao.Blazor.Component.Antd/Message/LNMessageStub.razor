@@ -11,7 +11,7 @@
                 {
                     foreach (Message.MessageItem item in MessageInstance.Messages)
                     {
-                        <div class="@item.ClassName">
+                        <div class="@item.ClassName" style="@((item.Removing?"opacity:0":null))">
                             <div class="ant-message-notice-content">
                                 <div class="@item.MessageTypeClassName">
                                     @if (item.Icon == null)
