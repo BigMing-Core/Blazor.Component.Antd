@@ -64,7 +64,24 @@ private RenderFragment _content =@<LNButton Type="LNButton.BType.Dashed">I'm but
             Text = Guid.NewGuid().ToString(),
             MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Warning
         };
-        MyProperty.Chain(error).Chain(success).Chain(info).Chain(loading).Chain(warning);
+             error.OnClose += () =>
+        {
+            MyProperty.Show(success);
+        };
+        success.OnClose += () =>
+        {
+            MyProperty.Show(info);
+        };
+        info.OnClose += () =>
+        {
+            MyProperty.Show(loading);
+        };
+        loading.OnClose += () =>
+        {
+            MyProperty.Show(warning);
+        };
+
+        MyProperty.Show(error); 
     }
 
 

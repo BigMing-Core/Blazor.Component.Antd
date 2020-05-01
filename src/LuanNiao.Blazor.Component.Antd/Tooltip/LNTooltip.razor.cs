@@ -40,6 +40,13 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
         [Parameter]
         public bool InsideOfTarget { get; set; }
 
+        [Inject]
+        public TooltipService TooltipService { get; set; }
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:添加只读修饰符", Justification = "<挂起>")]
+        internal RenderFragment _toolTipData;
+
 
 
         protected override void OnInitialized()
@@ -47,16 +54,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             base.OnInitialized();
             HandlePlacementType();
             HandleDefaultVisibleInfo();
-            HandleMainDivStyle();
-        }
-        private void HandleMainDivStyle()
-        {
-            //display:inline-block
-            if (!_styleHelper.HasCustomStyle())
-            {
-                _styleHelper.AddCustomStyleStr("display:inline-block");
-            }
-        }
+        } 
 
         private void HandleDefaultVisibleInfo()
         {
@@ -69,6 +67,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
+                TooltipService.Show(this);
                 BindMouseEvent();
             }
         }
@@ -143,6 +142,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
                 .AddCustomStyle("position", $"fixed")
                 .RemoveCustomStyle("opacity");
             this.Flush();
+            TooltipService.NeedFlush();
         }
 
         [JSInvokable]
@@ -151,6 +151,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             _visibled = false;
             _overlayClass.AddCustomClass("ant-tooltip-hidden");
             this.Flush();
+            TooltipService.NeedFlush();
         }
 
         private void InsideOfTargetCals(ref double left, ref double top, ElementRects spanElementInfo, ElementRects hideDivElementInfo)
@@ -251,20 +252,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
         {
             ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(OnMouseOver), this);
             ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
-            //if (this.Trigger == TriggerType.Click)
-            //{
-            //    ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
-            //}
-            //else if (this.Trigger == TriggerType.Hover)
-            //{
-            //    ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
-            //    ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
-            //}
-            //else if (this.Trigger == TriggerType.ContextMenu)
-            //{
-            //    ElementInfo.BindContextMenuEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this, true);
-            //    ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
-            //}
+            
         }
     }
 }

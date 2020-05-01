@@ -1,4 +1,5 @@
-﻿using LuanNiao.Blazor.Core;
+﻿using LuanNiao.Blazor.Component.Antd.Tooltip;
+using LuanNiao.Blazor.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace LuanNiao.Blazor.Component.Antd
         {
             services.AddLuanNiaoBlazor();
             services.AddScoped<Message>();
+            services.AddScoped<TooltipService>();
             return services;
         }
 
