@@ -194,7 +194,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             switch (Placement)
             {
                 case PlacementType.Top:
-                    left = spanElementInfo.X - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 2;
+                    left = spanElementInfo.X - Math.Abs(spanElementInfo.Width - hideDivElementInfo.Width) / 4;
                     top = spanElementInfo.Top - spanElementInfo.Height - _toolTopArrowFixSize;
                     break;
                 case PlacementType.TopLeft:
