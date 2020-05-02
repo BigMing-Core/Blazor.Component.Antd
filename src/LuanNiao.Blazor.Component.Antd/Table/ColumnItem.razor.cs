@@ -11,5 +11,8 @@ namespace LuanNiao.Blazor.Component.Antd.Table
         public RenderFragment Title { get; set; }
         [Parameter]
         public string DataKey { get; set; }
+
+        [Parameter]
+        public Func< RenderFragment> MyProperty { get; set; }
     }
 }
