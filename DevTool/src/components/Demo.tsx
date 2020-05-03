@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./demo.less";
 
-
+ 
 
 import { Table, Tag } from 'antd';
 const columns = [

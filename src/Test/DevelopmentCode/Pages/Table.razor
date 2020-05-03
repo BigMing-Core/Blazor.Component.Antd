@@ -2,45 +2,48 @@
 
 @using LuanNiao.Blazor.Component.Antd.Table
 @using LuanNiao.Blazor.Component.Antd;
-@{
-    RenderFragment col1 =@<LuanNiao.Blazor.Component.Antd.Button.LNButton>我是按钮</LuanNiao.Blazor.Component.Antd.Button.LNButton>;
-RenderFragment col2 = @<LNBlazorEmpty>Age</LNBlazorEmpty>;
-RenderFragment col3 =@<LNBlazorEmpty>Address</LNBlazorEmpty>;
-RenderFragment col4 =@<LNBlazorEmpty>Tags</LNBlazorEmpty>;
-RenderFragment col5 =@<LNBlazorEmpty>Action</LNBlazorEmpty>;
 
 
-
-IReadOnlyList<ColumnItem> columnItems = new List<ColumnItem>() {
-         new ColumnItem(){
-          Title=col1
-         },
-         new ColumnItem(){
-          Title=col2
-         },
-        new ColumnItem(){
-          Title=col3
-         },
-        new ColumnItem(){
-          Title=col4
-         },
-        new ColumnItem(){
-          Title=col5
-         },
-    };
-
-}
-
-<LuanNiao.Blazor.Component.Antd.Table.Table ColumnItems="columnItems">
+<LuanNiao.Blazor.Component.Antd.Table.Table>
+    <Header>
+        <HeaderItem><LuanNiao.Blazor.Component.Antd.Button.LNButton>我是按钮</LuanNiao.Blazor.Component.Antd.Button.LNButton></HeaderItem>
+        <HeaderItem>Age</HeaderItem>
+        <HeaderItem>Address</HeaderItem>
+        <HeaderItem>Tags</HeaderItem>
+        <HeaderItem>Action</HeaderItem>
+    </Header>
+    <Rows>
+        @for (int i = 0; i < 10; i++)
+        {
+            var x = i;
+            <RowTemplate>
+                <RowColumn>
+                    <a>John Brown-@x</a>
+                </RowColumn>
+                <RowColumn>
+                    32-@x
+                </RowColumn>
+                <RowColumn>
+                    New York No. 1 Lake Park-@x
+                </RowColumn>
+                <RowColumn>
+                    <span>
+                        <span class="ant-tag ant-tag-green">
+                            NICE-@x
+                        </span>
+                        <span class="ant-tag ant-tag-geekblue">
+                            DEVELOPER-@x
+                        </span>
+                    </span>
+                </RowColumn>
+                <RowColumn>
+                    <span>
+                        <a style="margin-right: 16px;">Invite John Brown-@x</a>
+                        <a>Delete-@x</a>
+                    </span>
+                </RowColumn>
+            </RowTemplate>
+        }
+    </Rows>
 
 </LuanNiao.Blazor.Component.Antd.Table.Table>
-
-
-
-
-
-@*<th class="ant-table-cell">Name</th>
-    <th class="ant-table-cell">Age</th>
-    <th class="ant-table-cell">Address</th>
-    <th class="ant-table-cell">Tags</th>
-    <th class="ant-table-cell">Action</th>*@

@@ -8,6 +8,9 @@ namespace LuanNiao.Blazor.Component.Antd.Table
     public partial class Table
     {
         [Parameter]
-        public IReadOnlyList<ColumnItem> ColumnItems { get; set; }
+        public RenderFragment Header { get; set; }
+
+        [Parameter]
+        public RenderFragment Rows { get; set; }
     }
 }
