@@ -4,9 +4,9 @@
 @using LuanNiao.Blazor.Component.Antd;
 
 
-<LuanNiao.Blazor.Component.Antd.Table.Table>
+<LuanNiao.Blazor.Component.Antd.Table.Table Loading="LoadingState">
     <Header>
-        <HeaderItem><LuanNiao.Blazor.Component.Antd.Button.LNButton>我是按钮</LuanNiao.Blazor.Component.Antd.Button.LNButton></HeaderItem>
+        <HeaderItem><LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="Loading">我是按钮</LuanNiao.Blazor.Component.Antd.Button.LNButton></HeaderItem>
         <HeaderItem>Age</HeaderItem>
         <HeaderItem>Address</HeaderItem>
         <HeaderItem>Tags</HeaderItem>
@@ -47,3 +47,26 @@
     </Rows>
 
 </LuanNiao.Blazor.Component.Antd.Table.Table>
+
+
+@code
+{
+    private bool LoadingState = false;
+
+    private void Loading(LuanNiao.Blazor.Component.Antd.Button.LNButton _)
+    {
+
+        LoadingState = true;
+
+
+        Task.Run(async () => {
+            await Task.Delay(3000);
+            LoadingState = false;
+            await InvokeAsync(() => {
+                this.StateHasChanged();
+            });
+        });
+        this.StateHasChanged();
+
+    }
+}

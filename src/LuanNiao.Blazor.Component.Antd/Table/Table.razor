@@ -1,29 +1,27 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Spin 
 
 
 <div class="ant-table-wrapper">
-    <div class="ant-spin-nested-loading">
+    <LNSpin @ref="_spin" Spining="Loading">
+        <div class="ant-table">
+            <div class="ant-table-container">
 
-        <div class="ant-spin-container">
-            <div class="ant-table">
                 <div class="ant-table-container">
 
-                    <div class="ant-table-container">
-
-                        <table style="table-layout: auto;">
-                            <colgroup></colgroup>
-                            <thead class="ant-table-thead">
-                                <tr>
-                                    @Header
-                                </tr>
-                            </thead>
-                            <tbody class="ant-table-tbody">
-                                @Rows
-                            </tbody>
-                        </table>
-                    </div>
+                    <table style="table-layout: auto;">
+                        <colgroup></colgroup>
+                        <thead class="ant-table-thead">
+                            <tr>
+                                @Header
+                            </tr>
+                        </thead>
+                        <tbody class="ant-table-tbody">
+                            @Rows
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
+    </LNSpin>
 </div>
