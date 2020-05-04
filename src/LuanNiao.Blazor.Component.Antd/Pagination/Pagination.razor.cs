@@ -16,6 +16,8 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
         private const string _paginationNextDisabledClassName = "ant-pagination-next ant-pagination-disabled";
         private const string _paginationNextClassName = "ant-pagination-next";
 
+        private int _pageCount = 0;
+        
 
         public int CurrentPage { get; set; }
 
@@ -33,6 +35,22 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
                 _defaultCurrent = CurrentPage = value;
             }
         }
+        private int CurrentPageSize { get; set; } = 10;
+        private int _defaultPageSize = 10;
+
+        [Parameter]
+        public int DefaultPageSize
+        {
+            get => _defaultPageSize;
+            set
+            {
+                if (this._hasFirstRender)
+                {
+                    return;
+                }
+                _defaultPageSize = CurrentPageSize = value;
+            }
+        } 
 
         [Parameter]
         public bool SynchronizationIndex { get; set; }
@@ -52,7 +70,7 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
 
         private void PrevClicked()
         {
-            if ((CurrentPage- (SynchronizationIndex ? 1 : 0)) < 1)
+            if ((CurrentPage - (SynchronizationIndex ? 1 : 0)) < 1)
             {
                 return;
             }
@@ -60,11 +78,23 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
         }
         private void NextClicked()
         {
-            if ((Total - CurrentPage- (SynchronizationIndex ? 0 : 1)) < 1)
+            if ((_pageCount - CurrentPage - (SynchronizationIndex ? 0 : 1)) < 1)
             {
                 return;
             }
             ItemClicked(++CurrentPage);
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            CalcPageCount();
+        }
+
+
+        private void CalcPageCount()
+        {
+            _pageCount = Total / CurrentPageSize + (Total % CurrentPageSize == 0 ? 0 : 1);
         }
     }
 }

@@ -20,7 +20,7 @@
 
 
 
-    @for (int i = 0; i < Total; i++)
+    @for (int i = 0; i < _pageCount; i++)
     {
         var index = i;
         if (SynchronizationIndex)
@@ -41,7 +41,7 @@
 
 
     <li title="@Tr(e=>e=="en"?"Next Page":"下一页")" tabindex="0" 
-        class="@((CurrentPage==(SynchronizationIndex?Total:(Total-1))
+        class="@((CurrentPage==(SynchronizationIndex?_pageCount:(_pageCount-1))
                  ?_paginationNextDisabledClassName
                  :_paginationNextClassName
                  ))"
