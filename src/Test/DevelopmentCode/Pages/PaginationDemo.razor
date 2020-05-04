@@ -1,0 +1,33 @@
+﻿@page "/pagination"
+
+@using LuanNiao.Blazor.Component.Antd.Pagination
+
+This one's current index:@_currentIndex1
+<Pagination DefaultCurrent="@_currentIndex1" Total="10" OnChange="Change1">
+
+</Pagination>
+
+
+
+This one's current index:@_currentIndex2 SynchronizationIndex="true"
+<Pagination DefaultCurrent="_currentIndex2" Total="10" SynchronizationIndex="true" OnChange="Change2">
+
+</Pagination>
+
+
+
+@code{
+
+    private int _currentIndex1 = 0;
+    private int _currentIndex2 = 1;
+    private void Change1(int index)
+    {
+        _currentIndex1 = index;
+        this.StateHasChanged();
+    }
+    private void Change2(int index)
+    {
+        _currentIndex2 = index;
+        this.StateHasChanged();
+    }
+}
