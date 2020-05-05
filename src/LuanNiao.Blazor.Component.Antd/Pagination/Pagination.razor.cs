@@ -17,7 +17,7 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
         private const string _paginationNextClassName = "ant-pagination-next";
 
         private int _pageCount = 0;
-        
+
 
         public int CurrentPage { get; set; }
 
@@ -50,10 +50,17 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
                 }
                 _defaultPageSize = CurrentPageSize = value;
             }
-        } 
+        }
 
         [Parameter]
         public bool SynchronizationIndex { get; set; }
+
+        [Parameter]
+        public bool Mini { get; set; }
+
+
+        [Parameter]
+        public bool Simple { get; set; }
 
         [Parameter]
         public int Total { get; set; }
@@ -65,7 +72,7 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
         private void ItemClicked(int index)
         {
             CurrentPage = index;
-            OnChange?.Invoke(index);
+            OnChange?.Invoke(CurrentPage);
         }
 
         private void PrevClicked()
@@ -95,6 +102,29 @@ namespace LuanNiao.Blazor.Component.Antd.Pagination
         private void CalcPageCount()
         {
             _pageCount = Total / CurrentPageSize + (Total % CurrentPageSize == 0 ? 0 : 1);
+        }
+
+        private async void OnSimpleInputChange(ChangeEventArgs args)
+        {
+            if (int.TryParse(args.Value.ToString(), out var target))
+            {
+                CurrentPage = target;
+                if ((CurrentPage - (SynchronizationIndex ? 1 : 0)) < 1)
+                {
+                    ItemClicked(0); 
+                }
+                else if ((_pageCount - CurrentPage - (SynchronizationIndex ? 0 : 1)) < 1)
+                {
+                    ItemClicked(_pageCount); 
+                }
+                else
+                {
+                    CurrentPage = target;
+                }
+            }
+
+            ElementInfo.SetElementValue($"LNPagination_{IdentityKey}", CurrentPage.ToString());
+
         }
     }
 }

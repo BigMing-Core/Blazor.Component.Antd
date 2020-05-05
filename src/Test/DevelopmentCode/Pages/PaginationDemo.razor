@@ -15,9 +15,18 @@ This one's current index:@_currentIndex2 SynchronizationIndex="true"
 </Pagination>
 
 
+ Mini Version:Mini="true"
+<Pagination DefaultCurrent="_currentIndex2" Total="@_dataTotalCount" SynchronizationIndex="true" Mini="true">
+
+</Pagination>
+
+ Simple Version:Simple="true"
+<Pagination DefaultCurrent="_currentIndex2" Total="@_dataTotalCount" SynchronizationIndex="true" Simple="true">
+
+</Pagination>
 
 @code{
-    private int _dataTotalCount = 11;
+    private int _dataTotalCount = 100;
     private int _currentIndex1 = 0;
     private int _currentIndex2 = 1;
     private void Change1(int index)
