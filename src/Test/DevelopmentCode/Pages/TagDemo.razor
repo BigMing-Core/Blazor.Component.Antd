@@ -1,0 +1,55 @@
+﻿@page "/tag"
+
+@using LuanNiao.Blazor.Component.Antd.Tag
+
+
+<Tag>
+    Tag 1
+</Tag>
+
+<Tag>
+    <a href="https://github.com/ant-design/ant-design/issues/1862">Link</a>
+</Tag>
+
+<Tag Closeable="true">
+    Tag 2
+</Tag>
+
+
+
+<div>
+    <h4 style="margin-Bottom:16px">Presets:</h4>
+    <div>
+        <Tag BuildInColor="TagColor.Magenta">magenta</Tag>
+        <Tag BuildInColor="TagColor.Red">red</Tag>
+        <Tag BuildInColor="TagColor.Volcano">volcano</Tag>
+        <Tag BuildInColor="TagColor.Orange">orange</Tag>
+        <Tag BuildInColor="TagColor.Gold">gold</Tag>
+        <Tag BuildInColor="TagColor.Lime">lime</Tag>
+        <Tag BuildInColor="TagColor.Green">green</Tag>
+        <Tag BuildInColor="TagColor.Cyan">cyan</Tag>
+        <Tag BuildInColor="TagColor.Blue">blue</Tag>
+        <Tag BuildInColor="TagColor.Geekblue">geekblue</Tag>
+        <Tag BuildInColor="TagColor.Purple">purple</Tag>
+    </div>
+    <div>
+        <Tag BuildInColor="TagColor.Magenta" Closeable="true">magenta</Tag>
+        <Tag BuildInColor="TagColor.Red" Closeable="true">red</Tag>
+        <Tag BuildInColor="TagColor.Volcano" Closeable="true">volcano</Tag>
+        <Tag BuildInColor="TagColor.Orange" Closeable="true">orange</Tag>
+        <Tag BuildInColor="TagColor.Gold" Closeable="true">gold</Tag>
+        <Tag BuildInColor="TagColor.Lime" Closeable="true">lime</Tag>
+        <Tag BuildInColor="TagColor.Green" Closeable="true">green</Tag>
+        <Tag BuildInColor="TagColor.Cyan" Closeable="true">cyan</Tag>
+        <Tag BuildInColor="TagColor.Blue" Closeable="true">blue</Tag>
+        <Tag BuildInColor="TagColor.Geekblue" Closeable="true">geekblue</Tag>
+        <Tag BuildInColor="TagColor.Purple" Closeable="true">purple</Tag>
+    </div>
+    <h4 style="margin:16px 0">Custom:</h4>
+    <div>
+        @*<Tag Color="#f50">#f50</Tag>
+            <Tag Color="#2db7f5">#2db7f5</Tag>
+            <Tag Color="#87d068">#87d068</Tag>
+            <Tag Color="#108ee9">#108ee9</Tag>*@
+    </div>
+</div>

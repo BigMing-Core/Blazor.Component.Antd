@@ -1,0 +1,11 @@
+﻿@using LuanNiao.Blazor.Component.Antd.Icons
+@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<span class="@ClassName" style="@CStyle">
+    @ChildContent
+
+    @if (Closeable)
+    {
+        <CloseOutlined OnClick="IconClicked"/>
+    }
+</span>

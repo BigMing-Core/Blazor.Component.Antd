@@ -6,5 +6,13 @@ namespace LuanNiao.Blazor.Component.Antd.Table
 {
     public partial class RowColumn
     {
+
+        private const string _staticClassName = "ant-table-cell";
+
+        public RowColumn()
+        {
+            _classHelper.SetStaticClass(_staticClassName);
+        }
+
     }
 }
