@@ -6,25 +6,12 @@ using System.Text;
 
 namespace LuanNiao.Blazor.Component.Antd.Tag
 {
-    public enum TagColor
-    {
-        Magenta,
-        Red,
-        Volcano,
-        Orange,
-        Gold,
-        Lime,
-        Green,
-        Cyan,
-        Blue,
-        Geekblue,
-        Purple
-    }
+ 
 
     public partial class Tag
     {
         private const string _tagStaticClassName = "ant-tag";
-        private const string _tagHidenClassName = "ant-tag-hidden";
+        private const string _tagHidenClassName = "ant-tag-hidden"; 
 
         public Tag()
         {
@@ -43,13 +30,15 @@ namespace LuanNiao.Blazor.Component.Antd.Tag
 
         [Parameter]
         public string CustomColor { get; set; } = null;
+         
+
 
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            HandleColor();
-        }
+            HandleColor(); 
+        } 
 
         private void HandleColor()
         {
@@ -67,8 +56,11 @@ namespace LuanNiao.Blazor.Component.Antd.Tag
 
         private void IconClicked()
         {
+            Console.WriteLine(nameof(IconClicked));
             _classHelper.AddCustomClass(_tagHidenClassName);
             this.Flush();
         }
+
+     
     }
 }

@@ -1,7 +1,9 @@
 ﻿@using LuanNiao.Blazor.Component.Antd.Icons
+@using Microsoft.AspNetCore.Components.Web 
 @inherits LuanNiao.Blazor.Core.LNBCBase
 
 <span class="@ClassName" style="@CStyle">
+    @Icon
     @ChildContent
 
     @if (Closeable)
