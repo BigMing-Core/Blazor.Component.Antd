@@ -41,18 +41,26 @@ namespace LuanNiao.Blazor.Component.Antd.Tag
         [Parameter]
         public TagColor? BuildInColor { get; set; } = null;
 
+        [Parameter]
+        public string CustomColor { get; set; } = null;
+
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            HandleBuildInColor();
+            HandleColor();
         }
 
-        private void HandleBuildInColor()
+        private void HandleColor()
         {
-            if (BuildInColor!=null)
+            if (BuildInColor != null)
             {
                 _classHelper.AddCustomClass($"ant-tag-{(BuildInColor.ToString().ToLower())}");
+            }
+            else if (!string.IsNullOrWhiteSpace(CustomColor))
+            {
+                _classHelper.AddCustomClass($"ant-tag-has-color");
+                _styleHelper.AddCustomStyle("background-color", CustomColor);
             }
         }
 
