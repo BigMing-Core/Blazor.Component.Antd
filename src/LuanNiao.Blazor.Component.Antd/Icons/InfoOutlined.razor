@@ -3,8 +3,9 @@
 *@
 
 @inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.JSInterop
 
-<span role="img" aria-label="info" class="@ClassName" style="@CStyle">
+<span role="img" aria-label="info" class="@ClassName" style="@CStyle" id="@($"LNICON_{IdentityKey}")">
   <svg viewBox="0 0 1024 1024" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="info" width="1em" height="1em" fill="currentColor" aria-hidden="true">
     <defs>
       <style type="text/css"></style>
@@ -14,11 +15,34 @@
 </span>
 
 @code{
-[Parameter]
-public bool Spin { get; set; }
-protected override void OnInitialized()
+    [Parameter]
+    public bool Spin { get; set; }
+
+    protected override void OnInitialized()
     {
         base.OnInitialized();
         _classHelper.SetStaticClass("anticon anticon-info");
     }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            BindEvent();
+        }
+    }
+
+    private void BindEvent()
+    {
+        ElementInfo.BindClickEvent($"LNICON_{IdentityKey}", nameof(Clicked), this, true);
+    }
+
+    [JSInvokable]
+    public void Clicked()
+    {
+        OnClick?.Invoke();
+    }
+
+    [Parameter]
+    public Action OnClick { get; set; }
 }

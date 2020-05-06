@@ -1,0 +1,57 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@{ RenderFragment data =@<input placeholder="@Placeholder"
+                                type="text"  
+                                value="@DefaultValue"
+                                disabled="@(Disabled?"true":null)"
+                                id="@($"LNInput_{IdentityKey}")" />;
+}
+
+
+@{
+    RenderFragment affixData =@<span class="@ClassName" style="@CStyle" id="@($"LNSearch_{IdentityKey}")">
+        @if (Prefix != null)
+        {
+            <span class="ant-input-prefix">@Prefix</span>
+        }
+        @data
+
+        @if (Suffix != null)
+        {
+            <span class="ant-input-suffix">@Suffix</span>
+        }
+    </span>;
+}
+
+
+
+
+
+@if (AddonAfter != null || AddonBefore != null)
+{
+    <span class="ant-input-group-wrapper">
+        <span class="ant-input-wrapper ant-input-group">
+            @if (AddonBefore != null)
+            {
+                <span class="ant-input-group-addon">@AddonBefore</span>}
+            @if (Suffix != null || Prefix != null)
+            {
+                @affixData
+            }
+            else
+            {
+                @data
+            }
+
+            @if (AddonAfter != null)
+            {
+                <span class="ant-input-group-addon">@AddonAfter</span>
+            }
+        </span>
+    </span>
+}
+else
+{
+    @affixData
+}
+
+
