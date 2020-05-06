@@ -5,57 +5,46 @@ import "antd/dist/antd.css";
 import "./demo.less";
 
 
-import { Input } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { Tag } from 'antd';
 
-const { Search } = Input;
-
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-      paddingRight: 4,
-    }}
-  />
-);
+const { CheckableTag } = Tag;
+import {
+  CheckCircleOutlined,
+  SyncOutlined,
+  CloseCircleOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+  MinusCircleOutlined,
+} from '@ant-design/icons';
 export class Demo extends Component<any, any> {
+
+
 
 
   render() {
 
     return (
       <div>
-        <Search
-          placeholder="input search text"
-          onSearch={value => console.log(value)}
-          style={{ width: 200 }}
-          className="qweqwe"
-          disabled
-        />
-        <br />
-        <br />
-        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton  className="qweqwe" 
-          disabled/>
-        <br />
-        <br />
-        <Search
-          placeholder="input search text"
-          enterButton="Search"
-          size="large"
-          onSearch={value => console.log(value)}
-        />
-        <br />
-        <br />
-        <Search
-          placeholder="input search text"
-          enterButton="Search"
-          size="large"
-          suffix={suffix}
-          onSearch={value => console.log(value)}
-        />
+        <h4>With icon</h4>
+        <Tag icon={<CheckCircleOutlined />} color="success">
+          success
+      </Tag>
+        <Tag icon={<SyncOutlined spin />} color="processing">
+          processing
+      </Tag>
+        <Tag icon={<CloseCircleOutlined />} color="error">
+          error
+      </Tag>
+        <Tag icon={<ExclamationCircleOutlined />} color="warning">
+          warning
+      </Tag>
+        <Tag icon={<ClockCircleOutlined />} color="default">
+          waiting
+      </Tag>
+        <Tag icon={<MinusCircleOutlined />} color="default">
+          stop
+      </Tag>
       </div>
-
     );
   }
 }

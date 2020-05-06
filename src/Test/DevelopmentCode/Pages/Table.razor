@@ -1,0 +1,72 @@
+﻿@page "/table"
+
+@using LuanNiao.Blazor.Component.Antd.Table
+@using LuanNiao.Blazor.Component.Antd;
+
+
+<LuanNiao.Blazor.Component.Antd.Table.Table Loading="LoadingState">
+    <Header>
+        <HeaderItem><LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="Loading">我是按钮</LuanNiao.Blazor.Component.Antd.Button.LNButton></HeaderItem>
+        <HeaderItem>Age</HeaderItem>
+        <HeaderItem>Address</HeaderItem>
+        <HeaderItem>Tags</HeaderItem>
+        <HeaderItem>Action</HeaderItem>
+    </Header>
+    <Rows>
+        @for (int i = 0; i < 10; i++)
+        {
+            var x = i;
+            <RowTemplate>
+                <RowColumn>
+                    <a>John Brown-@x</a>
+                </RowColumn>
+                <RowColumn>
+                    32-@x
+                </RowColumn>
+                <RowColumn>
+                    New York No. 1 Lake Park-@x
+                </RowColumn>
+                <RowColumn>
+                    <span>
+                        <span class="ant-tag ant-tag-green">
+                            NICE-@x
+                        </span>
+                        <span class="ant-tag ant-tag-geekblue">
+                            DEVELOPER-@x
+                        </span>
+                    </span>
+                </RowColumn>
+                <RowColumn>
+                    <span>
+                        <a style="margin-right: 16px;">Invite John Brown-@x</a>
+                        <a>Delete-@x</a>
+                    </span>
+                </RowColumn>
+            </RowTemplate>
+        }
+    </Rows>
+
+</LuanNiao.Blazor.Component.Antd.Table.Table>
+
+
+@code
+{
+    private bool LoadingState = false;
+
+    private void Loading(LuanNiao.Blazor.Component.Antd.Button.LNButton _)
+    {
+
+        LoadingState = true;
+
+
+        Task.Run(async () => {
+            await Task.Delay(3000);
+            LoadingState = false;
+            await InvokeAsync(() => {
+                this.StateHasChanged();
+            });
+        });
+        this.StateHasChanged();
+
+    }
+}

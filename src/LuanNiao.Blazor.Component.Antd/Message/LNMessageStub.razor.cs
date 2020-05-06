@@ -36,7 +36,7 @@ namespace LuanNiao.Blazor.Component.Antd
                         itemInstance.Removing = true;
 
                         this.Flush();
-                        await Task.Delay(1000);
+                        await Task.Delay(3000);
                         lock (MessageInstance.Messages)
                         {
                             MessageInstance.Messages.Remove(itemInstance);

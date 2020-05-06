@@ -1,0 +1,62 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using static LuanNiao.Blazor.Core.Translater
+@using Microsoft.AspNetCore.Components.Web
+
+<ul class="ant-pagination @((Mini?"mini":null)) @((Simple?"ant-pagination-simple":null))" unselectable="unselectable">
+    <li title="@Tr(e=>e=="en"?"Previous Page":"上一页")"
+        class="@((CurrentPage==(SynchronizationIndex?1:0)
+                 ?_paginationPrevDisabledClassName
+                 :_paginationPrevClassName
+                 ))"
+        aria-disabled="true"
+        @onclick="PrevClicked">
+        <a class="ant-pagination-item-link" disabled="">
+            <LeftOutlined />
+        </a>
+    </li>
+
+    @if (Simple)
+    {
+        <li title="@CurrentPage/@_pageCount" class="ant-pagination-simple-pager">
+            <input id="@($"LNPagination_{IdentityKey}")"  type="text" size="3" value="@CurrentPage" @onchange="OnSimpleInputChange">
+            <span class="ant-pagination-slash">/</span>
+            @_pageCount
+        </li>
+    }
+    else
+    {
+        @for (int i = 0; i < _pageCount; i++)
+        {
+            var index = i;
+            if (SynchronizationIndex)
+            {
+                index += 1;
+            }
+            <li title="@index"
+                class="@(string.Format(
+                     ((index == CurrentPage)
+                     ?_currentPaginationItemClassNameTemplate
+                     :_paginationItemClassNameTemplate)
+                     ,index))"
+                tabindex="0" @onclick="@(()=>ItemClicked(index))">
+                <a>@(SynchronizationIndex? index:(index+1))</a>
+            </li>
+        }
+    }
+
+
+
+    <li title="@Tr(e=>e=="en"?"Next Page":"下一页")" tabindex="0"
+        class="@((CurrentPage==(SynchronizationIndex?_pageCount:(_pageCount-1))
+                 ?_paginationNextDisabledClassName
+                 :_paginationNextClassName
+                 ))"
+        aria-disabled="false"
+        @onclick="NextClicked">
+        <a class="ant-pagination-item-link">
+            <RightOutlined />
+        </a>
+    </li>
+</ul>

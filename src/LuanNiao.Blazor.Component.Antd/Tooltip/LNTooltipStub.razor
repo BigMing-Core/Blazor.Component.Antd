@@ -1,0 +1,9 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+    <div operation="LNTooltipStunbScope">
+        @{
+            for (int i = 0; i < this.Service.ToolTips.Count; i++)
+            {
+                @this.Service.ToolTips[i]._toolTipData
+            }
+        }
+    </div>
