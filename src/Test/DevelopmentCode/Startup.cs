@@ -31,6 +31,7 @@ namespace DevelopmentCode
                 new Translater.SourceItem() {  CultureName="cn", ItemType= Translater.SourceItemType.OrignalString, Data=DevelopmentCode.Properties.Resources.cn},
                 new Translater.SourceItem() {  CultureName="en", ItemType= Translater.SourceItemType.OrignalString, Data=DevelopmentCode.Properties.Resources.en},
             });
+            Translater.ConvertTo("en");
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddLuanNiaoBlazorAntdExtensions();
