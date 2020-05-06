@@ -1,0 +1,331 @@
+﻿@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Tooltip
+@using LuanNiao.Blazor.Component.Antd.Slider
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using static LuanNiao.Blazor.Core.Translater
+
+<MenuItem Key="home">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("home")</span>
+        </Title>
+        <ChildContent>
+            <HomeOutlined />
+            <span>@Tr("home")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="button">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("button")</span>
+        </Title>
+        <ChildContent>
+            <BoldOutlined />
+            <span>@Tr("button")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="input">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "input" : "输入框")</span>
+        </Title>
+        <ChildContent>
+            <LineChartOutlined />
+            <span>@Tr(e => e == "en" ? "input" : "输入框")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="grid">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("grid")</span>
+        </Title>
+        <ChildContent>
+            <ColumnWidthOutlined />
+            <span>@Tr("grid")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="icons">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("icons")</span>
+        </Title>
+        <ChildContent>
+            <SmileFilled />
+            <span>@Tr("icons")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="avatar">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "avatar" : "头像")</span>
+        </Title>
+        <ChildContent>
+            <SmileFilled />
+            <span>@Tr(e => e == "en" ? "avatar" : "头像")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="table">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Table" : "表格")</span>
+        </Title>
+        <ChildContent>
+            <BorderlessTableOutlined />
+            <span>@Tr(e => e == "en" ? "Table" : "表格")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="pagination">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Pagination" : "分页")</span>
+        </Title>
+        <ChildContent>
+            <BorderlessTableOutlined />
+            <span>@Tr(e => e == "en" ? "Pagination" : "分页")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="inputnumber">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("inputnumber")</span>
+        </Title>
+        <ChildContent>
+            <RiseOutlined />
+            <span>@Tr("inputnumber")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="layout">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("layout")</span>
+        </Title>
+        <ChildContent>
+            <BorderInnerOutlined />
+            <span>@Tr("layout")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="menu">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("menu")</span>
+        </Title>
+        <ChildContent>
+            <MenuOutlined />
+            <span>@Tr("menu")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="radio">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("radio")</span>
+        </Title>
+        <ChildContent>
+            <SelectOutlined />
+            <span>@Tr("radio")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="slider">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("slider")</span>
+        </Title>
+        <ChildContent>
+            <LineOutlined />
+            <span>@Tr("slider")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="tooltip">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr("tooltip")</span>
+        </Title>
+        <ChildContent>
+            <InfoCircleOutlined />
+            <span>@Tr("tooltip")</span>
+        </ChildContent>
+    </LNTooltip>
+
+</MenuItem>
+
+
+
+<MenuItem Key="dropdown">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "dropdown" : "下拉菜单")</span>
+        </Title>
+        <ChildContent>
+            <DropboxCircleFilled />
+            <span>@Tr(e => e == "en" ? "dropdown" : "下拉菜单")</span>
+        </ChildContent>
+    </LNTooltip>
+
+</MenuItem>
+
+<MenuItem Key="badge">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Badge" : "徽标")</span>
+        </Title>
+        <ChildContent>
+            <AntDesignOutlined />
+            <span>@Tr(e => e == "en" ? "Badge" : "徽标")</span>
+        </ChildContent>
+    </LNTooltip>
+
+</MenuItem>
+
+<MenuItem Key="modal">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Modal" : "对话框")</span>
+        </Title>
+        <ChildContent>
+            <BorderOutlined />
+            <span>@Tr(e => e == "en" ? "Modal" : "对话框")</span>
+        </ChildContent>
+    </LNTooltip>
+
+</MenuItem>
+
+<MenuItem Key="typography">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Ttypography" : "排版")</span>
+        </Title>
+        <ChildContent>
+            <PicCenterOutlined />
+            <span>@Tr(e => e == "en" ? "Typography" : "排版")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="breadcrumb">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Breadcrumb" : "面包屑")</span>
+        </Title>
+        <ChildContent>
+            <BarcodeOutlined />
+            <span>@Tr(e => e == "en" ? "Breadcrumb" : "面包屑")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="card">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Card" : "卡片")</span>
+        </Title>
+        <ChildContent>
+            <CreditCardFilled />
+            <span>@Tr(e => e == "en" ? "Card" : "卡片")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="checkbox">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Checkbox" : "多选框")</span>
+        </Title>
+        <ChildContent>
+            <CheckSquareFilled />
+            <span>@Tr(e => e == "en" ? "Checkbox" : "多选框")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="divider">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Divider" : "分割线")</span>
+        </Title>
+        <ChildContent>
+            <StopFilled />
+            <span>@Tr(e => e == "en" ? "Divider" : "分割线")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="drawer">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "drawer" : "抽屉")</span>
+        </Title>
+        <ChildContent>
+            <BoxPlotFilled />
+            <span>@Tr(e => e == "en" ? "drawer" : "抽屉")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="message">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Message" : "消息")</span>
+        </Title>
+        <ChildContent>
+            <MessageFilled />
+            <span>@Tr(e => e == "en" ? "Message" : "消息")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+
+<MenuItem Key="spin">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Spin" : "加载")</span>
+        </Title>
+        <ChildContent>
+            <BoxPlotFilled />
+            <span>@Tr(e => e == "en" ? "Spin" : "加载")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+
+<MenuItem Key="translater">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "translater" : "多语言")</span>
+        </Title>
+        <ChildContent>
+            <SafetyCertificateFilled />
+            <span>@Tr(e => e == "en" ? "translater" : "多语言")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+@code
+{
+    [Parameter]
+    public Sider SiderInstance { get; set; }
+
+}

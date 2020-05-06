@@ -1,0 +1,111 @@
+﻿@page "/devPage/layout2"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+
+<style>
+    #components-layout-demo-top-side-2 .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 28px 16px 0;
+        float: left;
+    }
+
+    .site-layout-background {
+        background: #fff;
+    }
+
+    .site-layout-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+    }
+
+    .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+        float: left;
+    }
+</style>
+
+<LNLayout ClassName="layout">
+    <Header ClassName="header">
+        <div class="logo" />
+        <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+            <MenuItem key="1">nav 1</MenuItem>
+            <MenuItem key="2">nav 2</MenuItem>
+            <MenuItem key="3">nav 3</MenuItem>
+        </HorizontalMenu>
+    </Header>
+    <LNLayout>
+        <Sider CStyle="width:200px" ClassName="site-layout-background">
+            <InlineMenu CStyle="height:100%;border-right:0px">
+                <SubMenu>
+                    <Title>
+                        <span>
+                            <UserOutlined />
+                            subnav 1
+                        </span>
+                    </Title>
+                    <ChildContent>
+                        <MenuItem Key="1">option1</MenuItem>
+                        <MenuItem Key="2">option2</MenuItem>
+                        <MenuItem Key="3">option3</MenuItem>
+                        <MenuItem Key="4">option4</MenuItem>
+                    </ChildContent>
+                </SubMenu>
+
+                <SubMenu>
+                    <Title>
+                        <span>
+                            <LaptopOutlined />
+                            subnav 2
+                        </span>
+                    </Title>
+                    <ChildContent>
+                        <MenuItem key="5">option5</MenuItem>
+                        <MenuItem key="6">option6</MenuItem>
+                        <MenuItem key="7">option7</MenuItem>
+                        <MenuItem key="8">option8</MenuItem>
+                    </ChildContent>
+                </SubMenu>
+
+                <SubMenu>
+                    <Title>
+                        <span>
+                            <NotificationOutlined />
+                            subnav 3
+                        </span>
+                    </Title>
+                    <ChildContent>
+                        <MenuItem key="9">option9</MenuItem>
+                        <MenuItem key="10">option10</MenuItem>
+                        <MenuItem key="11">option11</MenuItem>
+                        <MenuItem key="12">option12</MenuItem>
+                    </ChildContent>
+                </SubMenu>
+
+
+            </InlineMenu>
+        </Sider>
+
+        <LNLayout CStyle="padding:0 24px 24px;">
+            <LNBreadcrumb CStyle="margin:16px 0;">
+                <BreadcrumbItem>Home</BreadcrumbItem>
+                <BreadcrumbItem>List</BreadcrumbItem>
+                <BreadcrumbItem>App</BreadcrumbItem>
+            </LNBreadcrumb>
+            <Content ClassName="site-layout-background"
+                     CStyle="padding: 24;margin: 0;minHeight: 280;">
+                Content
+            </Content>
+        </LNLayout>
+    </LNLayout>
+</LNLayout>
+

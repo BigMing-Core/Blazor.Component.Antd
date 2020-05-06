@@ -1,4 +1,12 @@
-
 {
-"home":"首页"
+"home":"首页",
+"button":"按钮",
+"grid":"栅格",
+"icons":"图标",
+"inputnumber":"数字输入框",
+"layout":"布局",
+"menu":"菜单",
+"radio":"单选",
+"slider":"滑动条",
+"tooltip":"提示工具"
 }

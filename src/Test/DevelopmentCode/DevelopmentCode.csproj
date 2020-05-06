@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\LuanNiao.Blazor.Component.Antd\LuanNiao.Blazor.Component.Antd.csproj" />
+    <ProjectReference Include="..\TestPages\TestPages.csproj" />
   </ItemGroup>
 
   <ItemGroup>

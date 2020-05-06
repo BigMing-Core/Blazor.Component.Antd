@@ -1,0 +1,47 @@
+﻿
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Dropdown
+@using LuanNiao.Blazor.Component.Antd.Menu
+
+<Header ClassName="site-layout-background" CStyle="padding: 0;">
+    <Row>
+        <Col XS="new ColResponsive() {  Offset=16, Span=8}"
+             SM="new ColResponsive() {  Offset=18, Span=6}"
+             MD="new ColResponsive() {  Offset=20, Span=4}"
+             LG="new ColResponsive() {  Offset=22, Span=2}">
+        <LNDropdown Theme="DropdownTheme.Button">
+            <ChildContent>
+                @((_currentLanguage == "en" ? "English" : "中文")) <DownOutlined />
+            </ChildContent>
+            <Overlay>
+                <DropdownMenu OnSelect="@LanguageSelected">
+                    <MenuItem Key="cn">中文</MenuItem>
+                    <MenuItem Key="en">English</MenuItem>
+                </DropdownMenu>
+            </Overlay>
+        </LNDropdown>
+        </Col>
+
+    </Row>
+
+</Header>
+
+@code{
+
+    [Parameter]
+    public Sider SiderInstance { get; set; }
+
+    private string _currentLanguage = "en";
+
+    public void LanguageSelected(MenuBase menu, List<string> items)
+    {
+        _currentLanguage = items[0];
+        LuanNiao.Blazor.Core.Translater.ConvertTo(_currentLanguage);
+        this.StateHasChanged();
+    }
+
+
+}

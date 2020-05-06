@@ -1,0 +1,30 @@
+﻿@layout MainLayout
+@page "/breadcrumb"
+
+
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+
+
+
+<LNBreadcrumb CStyle="margin:16px 0">
+    <Separator>
+        <LuanNiao.Blazor.Component.Antd.Icons.ArrowDownOutlined></LuanNiao.Blazor.Component.Antd.Icons.ArrowDownOutlined>
+    </Separator>
+    <ChildContent>
+        <BreadcrumbItem>Home</BreadcrumbItem>
+        <BreadcrumbItem>List</BreadcrumbItem>
+        <BreadcrumbItem>App</BreadcrumbItem>
+    </ChildContent>
+</LNBreadcrumb>
+
+
+
+<LNBreadcrumb CStyle="margin:16px 0">
+    <ChildContent>
+        <BreadcrumbItem Href="/breadcrumb">Home</BreadcrumbItem>
+        <BreadcrumbItem Href="/breadcrumb">List</BreadcrumbItem>
+        <BreadcrumbItem Href="/breadcrumb">App</BreadcrumbItem>
+    </ChildContent>
+</LNBreadcrumb>

@@ -1,0 +1,89 @@
+﻿@page "/devPage/menu2"
+@using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Icons
+<div style="width: 256px;">
+    <LNButton Type="LNButton.BType.Primary" OnClickCallback="(item) => { instance.InverseCollapseStatus(); }">
+        <MenuUnfoldOutlined></MenuUnfoldOutlined>
+    </LNButton>
+    <InlineMenu Theme="MenuBase.MenuTheme.Dark" @ref="instance">
+        <SubMenu Key="sub1123">
+            <Title>
+                <span>
+                    <MailOutlined />
+                    <span>Navigation One</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <MenuItem key="52">Option 5</MenuItem>
+                <MenuItem key="62">Option 6</MenuItem>
+                <MenuItem key="72">Option 7</MenuItem>
+                <MenuItem key="82">Option 8</MenuItem>
+            </ChildContent>
+        </SubMenu>
+        <MenuItem key="1">
+            <PieChartOutlined />
+            <span>Option 1</span>
+        </MenuItem>
+        <MenuItem key="2">
+            <DesktopOutlined />
+            <span>Option 2</span>
+        </MenuItem>
+        <MenuItem key="3">
+            <ContainerOutlined />
+            <span>Option 3</span>
+        </MenuItem>
+        <SubMenu Key="sub1">
+            <Title>
+                <span>
+                    <MailOutlined />
+                    <span>Navigation One</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <MenuItem key="5">Option 5</MenuItem>
+                <MenuItem key="6">Option 6</MenuItem>
+                <MenuItem key="7">Option 7</MenuItem>
+                <MenuItem key="8">Option 8</MenuItem>
+            </ChildContent>
+        </SubMenu>
+        <SubMenu Key="sub2">
+            <Title>
+                <span>
+                    <AppstoreOutlined />
+                    <span>Navigation Two</span>
+                </span>
+            </Title>
+            <ChildContent>
+                <MenuItem key="9">Option 9</MenuItem>
+                <MenuItem key="10">Option 10</MenuItem>
+                <SubMenu key="sub3">
+                    <Title>
+                        <AccountBookFilled />
+                        Submenu
+                    </Title>
+                    <ChildContent>
+                        <MenuItem key="11">
+                            <TeamOutlined />
+                            Option 11
+                        </MenuItem>
+                        <MenuItem key="12">
+                            <RadiusUprightOutlined />
+                            Option 12
+                        </MenuItem>
+                    </ChildContent>
+                </SubMenu>
+            </ChildContent>
+        </SubMenu>
+    </InlineMenu>
+
+</div>
+
+@code{
+    InlineMenu instance;
+
+
+    
+
+
+}

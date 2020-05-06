@@ -1,4 +1,12 @@
-
 {
-"home":"Home"
+"home":"Home",
+"button":"Button",
+"grid":"Grid",
+"icons":"Icons",
+"inputnumber":"Input Number",
+"layout":"Layout",
+"menu":"Menu",
+"radio":"Radio",
+"slider":"Slider",
+"tooltip":"Tooltip"
 }
