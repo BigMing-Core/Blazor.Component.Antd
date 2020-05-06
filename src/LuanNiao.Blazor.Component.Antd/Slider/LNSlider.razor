@@ -14,7 +14,7 @@
     @if (Range)
     {
         <div id="@($"lefthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_leftHandleStyle">
-            <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" InsideOfTarget="true">
+            <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" >
                 <Title>@(string.Format(TipFormatter, PrettifyValue(_currentLeftValue)))</Title>
             </LNTooltip>
         </div>
@@ -22,7 +22,7 @@
 
 
     <div id="@($"righthandle_{IdentityKey}")" class="ant-slider-handle" role="slider" style="@_rightHandleStyle">
-        <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" InsideOfTarget="true">
+        <LNTooltip CStyle="width:100%;height:100%" Placement="PlacementType.Bottom" >
             <Title>@(string.Format(TipFormatter, PrettifyValue(_currentRightValue))) </Title>
         </LNTooltip>
     </div>

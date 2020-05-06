@@ -1,0 +1,313 @@
+﻿@layout MainLayout
+@page "/grid"
+
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Card
+@using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Divider
+@using static LuanNiao.Blazor.Core.Translater
+
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CultureChanged += (_) => { this.StateHasChanged(); };
+    }
+
+
+}
+
+<Row Gutter="new MarginGutter() {  Vertial=10, Horizontal=4}">
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Base operation"
+           : "基本使用方式")
+            </Title>
+            <ChildContent>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="24" CStyle="background:rgba(0,146,255,.75);min-height:30px">col</Col>
+                </Row>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="12" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-12</Col>
+                    <Col Span="12" CStyle="background:#0092ff;min-height:30px">col-12</Col>
+                </Row>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="8" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-8</Col>
+                    <Col Span="8" CStyle="background:#0092ff;min-height:30px">col-8</Col>
+                    <Col Span="8" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-8</Col>
+                </Row>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-6</Col>
+                    <Col Span="6" CStyle="background:#0092ff;min-height:30px">col-6</Col>
+                    <Col Span="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-6</Col>
+                    <Col Span="6" CStyle="background:#0092ff;min-height:30px">col-6</Col>
+                </Row>
+
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Grid gutter"
+           : "区块间隔")
+            </Title>
+            <ChildContent>
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333; fontWeight:normal">
+                    @Tr((e) => e == "en" ? "Horizontal" : "水平")
+                </LNDivider>
+                <Row Gutter="new SameGutter() {  Gutter=16}">
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                </Row>
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333; fontWeight:normal">
+
+                    @Tr((e) => e == "en" ? "Responsive" : "响应式")
+                </LNDivider>
+                <Row Gutter="new ResponsiveGutter(){ XS=8, SM= 16, MD= 24,LG= 32 }">
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                </Row>
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333; fontWeight:normal">
+
+                    @Tr((e) => e == "en" ? "Vertical" : "垂直与水平")
+                </LNDivider>
+                <Row Gutter="new MarginGutter {  Horizontal=16, Vertial=24}">
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                    <Col ClassName="gutter-row" Span="6">
+                    <div style=" background: #0092ff; padding: 8px 0">col-6</div>
+                    </Col>
+                </Row>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Offset"
+           : "左右偏移")
+            </Title>
+            <ChildContent>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="8" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-8</Col>
+                    <Col Span="8" Offset="8" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    col-8
+                    </Col>
+                </Row>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="6" Offset="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    col-6 col-offset-6
+                    </Col>
+                    <Col Span="6" Offset="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    col-6 col-offset-6
+                    </Col>
+                </Row>
+                <Row CStyle="margin-top:10px">
+                    <Col Span="12" Offset="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    col-12 col-offset-6
+                    </Col>
+                </Row>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Grid sort"
+           : "栅格排序")
+            </Title>
+            <ChildContent>
+                <Row>
+                    <Col Span="18" Push="6" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    col-18 col-push-6
+                    </Col>
+                    <Col Span="6" Pull="18" CStyle="background:#0092ff;min-height:30px">
+                    col-6 col-pull-18
+                    </Col>
+                </Row>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Typesetting"
+           : "排版")
+            </Title>
+            <ChildContent>
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    sub-element align left
+                </LNDivider>
+                <Row Justify="JustifyType.Start" CStyle="background: rgba(128, 128, 128, 0.08);">
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    sub-element align center
+                </LNDivider>
+                <Row Justify="JustifyType.Center" CStyle="background: rgba(128, 128, 128, 0.08);">
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    sub-element align right
+                </LNDivider>
+                <Row Justify="JustifyType.End" CStyle="background: rgba(128, 128, 128, 0.08);">
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    sub-element monospaced arrangement
+                </LNDivider>
+                <Row Justify="JustifyType.SpaceBetween" CStyle="background: rgba(128, 128, 128, 0.08);">
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    sub-element align full
+                </LNDivider>
+                <Row Justify="JustifyType.SpaceAround" CStyle="background: rgba(128, 128, 128, 0.08);">
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">col-4</Col>
+                </Row>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Align "
+           : "对齐")
+            </Title>
+            <ChildContent>
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    Align Top
+                </LNDivider>
+                <Row Justify=" JustifyType.Center" Align=" AlignType.Top" CStyle="background:rgba(128, 128, 128, 0.08)">
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:100px;line-height:100px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:50px;line-height:50px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:120px;line-height:120px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:80px;line-height:80px">col-4</p>
+                    </Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    Align Middle
+                </LNDivider>
+                <Row Justify=" JustifyType.SpaceAround" Align=" AlignType.Middle" CStyle="background:rgba(128, 128, 128, 0.08)">
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:100px;line-height:100px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:50px;line-height:50px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:120px;line-height:120px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:80px;line-height:80px">col-4</p>
+                    </Col>
+                </Row>
+
+                <LNDivider Orientation="LNDivider.OrientationType.Left" CStyle="color:#333;fontWeight:normal">
+                    Align Bottom
+                </LNDivider>
+                <Row Justify=" JustifyType.SpaceBetween" Align=" AlignType.Bottom" CStyle="background:rgba(128, 128, 128, 0.08)">
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:100px;line-height:100px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:50px;line-height:50px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:#0092ff;min-height:30px">
+                    <p style="height:120px;line-height:120px">col-4</p>
+                    </Col>
+                    <Col Span="4" CStyle="background:rgba(0,146,255,.75);min-height:30px">
+                    <p style="height:80px;line-height:80px">col-4</p>
+                    </Col>
+                </Row>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+</Row>
+

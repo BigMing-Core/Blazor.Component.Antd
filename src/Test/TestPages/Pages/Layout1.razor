@@ -1,0 +1,49 @@
+﻿@page "/devPage/layout1"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+
+
+<style>
+
+
+
+    .site-layout-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+    }
+
+    .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+        float: left;
+    }
+</style>
+
+<LNLayout ClassName="layout">
+    <Header>
+        <div class="logo" />
+        <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+            <MenuItem key="1">nav 1</MenuItem>
+            <MenuItem key="2">nav 2</MenuItem>
+            <MenuItem key="3">nav 3</MenuItem>
+        </HorizontalMenu>
+    </Header>
+    <Content CStyle="padding:0 50px">
+        <LNBreadcrumb CStyle="margin:16px 0">
+            <ChildContent>
+                <BreadcrumbItem Href="">Home</BreadcrumbItem>
+                <BreadcrumbItem Href="">List</BreadcrumbItem>
+                <BreadcrumbItem Href="">App</BreadcrumbItem>
+            </ChildContent>
+        </LNBreadcrumb>
+
+        <div class="site-layout-content">Content</div>
+    </Content>
+    <Footer CStyle="text-align:center">Ant Design ©2018 Created by Ant UED</Footer>
+</LNLayout>
+

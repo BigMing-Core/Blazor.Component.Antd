@@ -1,0 +1,334 @@
+﻿@layout MainLayout
+@page "/layout"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Tooltip
+
+<div class="CodeBox">
+    <LNLayout>
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+    </LNLayout>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <LNLayout>
+        <Header>Header</Header>
+        <LNLayout>
+            <Sider>Sider</Sider>
+            <Content>Content</Content>
+        </LNLayout>
+        <Footer>Footer</Footer>
+    </LNLayout>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <LNLayout>
+        <Header>Header</Header>
+        <LNLayout>
+            <Content>Content</Content>
+            <Sider>Sider</Sider>
+        </LNLayout>
+        <Footer>Footer</Footer>
+    </LNLayout>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <LNLayout>
+        <Sider>Sider</Sider>
+        <LNLayout>
+            <Header>Header</Header>
+            <Content>Content</Content>
+            <Footer>Footer</Footer>
+        </LNLayout>
+    </LNLayout>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <LNLayout ClassName="layout">
+        <Header>
+            <div ClassName="logo" />
+            <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+                <MenuItem key="1">nav 1</MenuItem>
+                <MenuItem key="2">nav 2</MenuItem>
+                <MenuItem key="3">nav 3</MenuItem>
+            </HorizontalMenu>
+        </Header>
+        <Content>
+            @*<Breadcrumb style=>
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>List</Breadcrumb.Item>
+                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                </Breadcrumb>*@
+            <div className="site-layout-content">Content</div>
+        </Content>
+        <Footer>Ant Design ©2018 Created by Ant UED</Footer>
+    </LNLayout>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <LNLayout ClassName="layout">
+        <Header>
+            <div style=" width: 120px;height: 31px;background: rgba(255, 255, 255, 0.2);margin: 16px 24px 16px 0;float: left;" />
+            <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+                <MenuItem key="1">nav 1</MenuItem>
+                <MenuItem key="2">nav 2</MenuItem>
+                <MenuItem key="3">nav 3</MenuItem>
+            </HorizontalMenu>
+        </Header>
+        <Content CStyle="padding:0 50px">
+            <LNBreadcrumb CStyle="margin:16px 0">
+                <ChildContent>
+                    <BreadcrumbItem Href="">Home</BreadcrumbItem>
+                    <BreadcrumbItem Href="">List</BreadcrumbItem>
+                    <BreadcrumbItem Href="">App</BreadcrumbItem>
+                </ChildContent>
+            </LNBreadcrumb>
+
+            <div style=" background: #fff;        padding: 24px;        min-height: 280px;">Content</div>
+        </Content>
+        <Footer CStyle="text-align:center">Ant Design ©2018 Created by Ant UED</Footer>
+    </LNLayout>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <LNLayout ClassName="layout">
+        <Header ClassName="header">
+            <div style="width: 120px;height: 31px;background: rgba(255, 255, 255, 0.2);margin: 16px 28px 16px 0;float: left;" />
+            <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+                <MenuItem key="1">nav 1</MenuItem>
+                <MenuItem key="2">nav 2</MenuItem>
+                <MenuItem key="3">nav 3</MenuItem>
+            </HorizontalMenu>
+        </Header>
+        <LNLayout>
+            <Sider CStyle="width:200px" ClassName="site-layout-background">
+                <InlineMenu CStyle="height:100%;border-right:0px">
+                    <SubMenu>
+                        <Title>
+                            <span>
+                                <UserOutlined />
+                                subnav 1
+                            </span>
+                        </Title>
+                        <ChildContent>
+                            <MenuItem Key="1">option1</MenuItem>
+                            <MenuItem Key="2">option2</MenuItem>
+                            <MenuItem Key="3">option3</MenuItem>
+                            <MenuItem Key="4">option4</MenuItem>
+                        </ChildContent>
+                    </SubMenu>
+
+                    <SubMenu>
+                        <Title>
+                            <span>
+                                <LaptopOutlined />
+                                subnav 2
+                            </span>
+                        </Title>
+                        <ChildContent>
+                            <MenuItem key="5">option5</MenuItem>
+                            <MenuItem key="6">option6</MenuItem>
+                            <MenuItem key="7">option7</MenuItem>
+                            <MenuItem key="8">option8</MenuItem>
+                        </ChildContent>
+                    </SubMenu>
+
+                    <SubMenu>
+                        <Title>
+                            <span>
+                                <NotificationOutlined />
+                                subnav 3
+                            </span>
+                        </Title>
+                        <ChildContent>
+                            <MenuItem key="9">option9</MenuItem>
+                            <MenuItem key="10">option10</MenuItem>
+                            <MenuItem key="11">option11</MenuItem>
+                            <MenuItem key="12">option12</MenuItem>
+                        </ChildContent>
+                    </SubMenu>
+
+
+                </InlineMenu>
+            </Sider>
+
+            <LNLayout CStyle="padding:0 24px 24px;">
+                <LNBreadcrumb CStyle="margin:16px 0;">
+                    <BreadcrumbItem>Home</BreadcrumbItem>
+                    <BreadcrumbItem>List</BreadcrumbItem>
+                    <BreadcrumbItem>App</BreadcrumbItem>
+                </LNBreadcrumb>
+                <Content ClassName="site-layout-background"
+                         CStyle="padding: 24;margin: 0;minHeight: 280;">
+                    Content
+                </Content>
+            </LNLayout>
+        </LNLayout>
+    </LNLayout>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <LNLayout>
+        <Header ClassName="header">
+            <div style="width: 120px;height: 31px;background: rgba(255, 255, 255, 0.2);margin: 16px 24px 16px 0;float: left;"></div>
+            <HorizontalMenu Theme="MenuBase.MenuTheme.Dark">
+                <MenuItem key="1">nav 1</MenuItem>
+                <MenuItem key="2">nav 2</MenuItem>
+                <MenuItem key="3">nav 3</MenuItem>
+            </HorizontalMenu>
+
+        </Header>
+        <Content CStyle="background: #e9e9e9;padding:0 50px">
+            <LNBreadcrumb CStyle="margin:16px 0">
+                <BreadcrumbItem>Home</BreadcrumbItem>
+                <BreadcrumbItem>List</BreadcrumbItem>
+                <BreadcrumbItem>App</BreadcrumbItem>
+            </LNBreadcrumb>
+            <LNLayout CStyle="background: #fff;padding:24px 0">
+                <Sider CStyle="background: #fff;width:200px">
+                    <InlineMenu CStyle="height:100%">
+                        <SubMenu>
+                            <Title>
+                                <span>
+                                    <UserOutlined />
+                                    subnav 1
+                                </span>
+                            </Title>
+                            <ChildContent>
+                                <MenuItem key="1">option1</MenuItem>
+                                <MenuItem key="2">option2</MenuItem>
+                                <MenuItem key="3">option3</MenuItem>
+                                <MenuItem key="4">option4</MenuItem>
+                            </ChildContent>
+                        </SubMenu>
+                        <SubMenu>
+                            <Title>
+                                <span>
+                                    <LaptopOutlined />
+                                    subnav 2
+                                </span>
+                            </Title>
+                            <ChildContent>
+                                <MenuItem key="5">option5</MenuItem>
+                                <MenuItem key="6">option6</MenuItem>
+                                <MenuItem key="7">option7</MenuItem>
+                                <MenuItem key="8">option8</MenuItem>
+                            </ChildContent>
+                        </SubMenu>
+                        <SubMenu>
+                            <Title>
+                                <span>
+                                    <NotificationOutlined />
+                                    subnav 3
+                                </span>
+                            </Title>
+                            <ChildContent>
+                                <MenuItem key="9">option9</MenuItem>
+                                <MenuItem key="10">option10</MenuItem>
+                                <MenuItem key="11">option11</MenuItem>
+                                <MenuItem key="12">option12</MenuItem>
+                            </ChildContent>
+                        </SubMenu>
+                    </InlineMenu>
+                </Sider>
+                <Content CStyle="padding:0 24px;min-Height:280px;background: #fff;padding: 24px;min-height: 280px;">Content</Content>
+            </LNLayout>
+        </Content>
+        <Footer CStyle="text-Align:center">Ant Design ©2018 Created by Ant UED</Footer>
+    </LNLayout>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+ 
+</div>
+
+
+<style>
+
+
+    .CodeBox #components-layout-demo-top .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+        float: left;
+    }
+
+
+    .CodeBox .code-box-demo {
+        text-align: center;
+    }
+
+    .CodeBox .ant-layout-header {
+        color: #fff;
+    }
+
+
+
+    .CodeBox .ant-layout-footer {
+        background: #7dbcea;
+        color: #fff;
+    }
+
+    .CodeBox [data-theme="dark"] .ant-layout-header {
+        background: #6aa0c7;
+    }
+
+    .CodeBox [data-theme="dark"] .ant-layout-footer {
+        background: #6aa0c7;
+    }
+
+    .CodeBox .ant-layout-footer {
+        line-height: 1.5;
+    }
+
+    .CodeBox .ant-layout-sider {
+        background: #3ba0e9;
+        color: #fff;
+        line-height: 120px;
+    }
+
+    .CodeBox [data-theme="dark"] .ant-layout-sider {
+        background: #3499ec;
+    }
+
+    .CodeBox .ant-layout-content {
+        background: rgba(16, 142, 233, 1);
+        color: #fff;
+        min-height: 120px;
+        line-height: 120px;
+    }
+
+    .CodeBox [data-theme="dark"] .ant-layout-content {
+        background: #107bcb;
+    }
+</style>

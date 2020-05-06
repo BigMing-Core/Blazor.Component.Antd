@@ -1,0 +1,138 @@
+﻿@layout MainLayout
+@page "/message"
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Button
+
+
+
+
+<LNButton OnClickCallback="@Add">show normal message </LNButton>
+
+
+
+<LNButton OnClickCallback="@ShowCM">Show custom message </LNButton>
+
+<LNButton OnClickCallback="@ShowMessageChain">Message Chain </LNButton>
+
+@code{
+
+    private RenderFragment _icon =@<AccountBookTwotone></AccountBookTwotone>;
+private RenderFragment _content =@<LNButton Type="LNButton.BType.Dashed">I'm button</LNButton>;
+
+}
+
+@code{
+
+
+
+     
+    [Inject]
+    public LuanNiao.Blazor.Component.Antd.Message MyProperty { get; set; }
+
+
+    private void ShowMessageChain(LNButton _)
+    {
+        var error = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Error
+        };
+
+        var success = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Success
+        };
+        var info = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Info
+        };
+        var loading = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Loading
+        };
+        var warning = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Warning
+        };
+        error.OnClose += () =>
+        {
+            MyProperty.Show(success);
+        };
+        success.OnClose += () =>
+        {
+            MyProperty.Show(info);
+        };
+        info.OnClose += () =>
+        {
+            MyProperty.Show(loading);
+        };
+        loading.OnClose += () =>
+        {
+            MyProperty.Show(warning);
+        };
+
+        MyProperty.Show(error); 
+    }
+
+
+    private void ShowCM(LNButton _)
+    {
+        MyProperty.Show(new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Icon = _icon,
+            Content = _content,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Normal
+        });
+    }
+
+    private void Add(LNButton _)
+    {
+
+        var error = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Error
+        };
+        var success = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Success
+        };
+        var info = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Info
+        };
+        var loading = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Loading
+        };
+        var warning = new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            OnClose = null,
+            Text = Guid.NewGuid().ToString(),
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Warning
+        };
+
+
+        MyProperty.Show(error).Show(success).Show(info).Show(loading).Show(warning);
+
+    }
+}

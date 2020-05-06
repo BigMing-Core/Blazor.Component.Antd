@@ -1,0 +1,176 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+
+
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using static LuanNiao.Blazor.Core.Translater
+@using LuanNiao.Blazor.Component.Antd.Tooltip
+
+
+<LNTooltipStub></LNTooltipStub>
+<LNMessageStub></LNMessageStub>
+
+<LNLayout>
+    <Sider CStyle="overflow:auto;height:100%;position:fixed;left:0px;" @ref="_siderInstance" Collapsible="true">
+        <div class="logo">
+            <img src="/favicon.ico" style="    height: 32px;    width: 32px;" />
+            @(_siderInstance.Collapsed?"": "Luan Niao")
+        </div>
+        <InlineMenu CStyle="margin-bottom:48px;" Theme="MenuBase.MenuTheme.Dark" DefaultSelectedKeys="@(new string[]{"home"})" OnSelect="MenuSelected">
+            <MenuItems SiderInstance="@_siderInstance"></MenuItems>
+        </InlineMenu>
+    </Sider>
+    <LNLayout CStyle="@_layoutStyle" ClassName="site-layout" @ref="_rightContent">
+        <MainHeader @ref="_header" SiderInstance="@_siderInstance"></MainHeader>
+        <Content CStyle="margin:24px 16px 0px; overflow:initial;">
+            <div class="site-layout-background" style="padding: 24px;text-align:center;min-height:500px;">
+                @Body
+            </div>
+        </Content>
+        <Footer CStyle="text-align:center;">Luanniao Blazor ©2020 Created by  Luanniao Blazor team <a href="http://www.beian.miit.gov.cn">陕ICP备15012326号</a> </Footer>
+    </LNLayout>
+
+</LNLayout>
+
+
+
+
+
+
+
+
+
+
+@code{
+
+    private Sider _siderInstance;
+    private string _layoutStyle = "margin-left:200px;";
+    private LNLayout _rightContent = null;
+    private Dictionary<string, string> _pageInfo = new Dictionary<string, string>() {
+        { "home","/"},
+        { "button","/button"},
+        { "icons","/icons"},
+        { "grid","/grid"},
+        { "avatar","/avatar"},
+        { "inputnumber","/inputnumber"},
+        { "layout","/layout"},
+        { "menu","/menu"},
+        { "radio","/radio"},
+        { "slider","/slider"},
+        { "tooltip","/tooltip"},
+        { "dropdown","/dropdown"},
+        { "badge","/badge"},
+        { "breadcrumb","/breadcrumb"},
+        { "card","/card"},
+        { "checkbox","/checkbox"},
+        { "divider","/divider"},
+        { "drawer","/drawer"},
+        { "message","/message"},
+        { "spin","/spin"},
+        { "translater","/translater"},
+        { "input","/input"},
+        { "typography","/typography"},
+        { "modal","/modal"},
+        { "table","/table"},
+        { "pagination","/pagination"},
+
+    };
+
+
+
+
+    private MainHeader _header = null;
+
+    public void MenuSelected(MenuBase menu, List<string> keys)
+    {
+        if (keys.Count == 0 || !_pageInfo.ContainsKey(keys[0]) || _pageInfo[keys[0]] == null)
+        {
+            return;
+        }
+        NavigationManager.NavigateTo(_pageInfo[keys[0]]);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            LuanNiao.Blazor.Core.Translater.CultureChanged += (info) =>
+            {
+                this.StateHasChanged();
+            };
+            _siderInstance.CollapsedBtnClicked += () =>
+            {
+                _rightContent.StyleHelper.RemoveCustomStyle("margin-left");
+                _layoutStyle = _siderInstance.Collapsed ? "margin-left:80px;" : "margin-left:200px;";
+                this.StateHasChanged();
+            };
+        }
+    }
+
+
+
+}
+<style>
+    .logo {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+        font-size: 21px;
+        text-align: center;
+        background: -moz-radial-gradient(80% 20%,farthest-side, #313d4b, #cacaca);
+        background: -webkit-radial-gradient(80% 20%,farthest-side, #313d4b, #cacaca);
+    }
+
+        .logo span {
+            color: hsl(200,75%,35%);
+            text-shadow: 0 0 1px currentColor, -1px -1px 1px hsl(200,75%,45%), 0 -1px 1px hsl(200,75%,40%), -1px 0 1px hsl(200,75%,35%), 1px -1px 1px hsl(200,75%,35%), 1px 0 1px hsl(200,75%,30%), 1px 1px 1px hsl(200,75%,30%), 0 1px 1px hsl(200,75%,30%), -1px 1px 1px hsl(200,75%,30%), -2px -2px 1px hsl(200,75%,75%), -2px -1px 1px hsl(200,75%,60%), -2px 0 1px hsl(200,75%,60%), -1px -2px 1px hsl(200,75%,50%), 0 -2px 1px hsl(200,75%,50%), 1px -2px 1px hsl(200,75%,50%), 2px -2px 1px hsl(200,75%,35%), 2px -1px 1px hsl(200,75%,35%), 2px 0 1px hsl(200,75%,30%), 2px 1px 1px hsl(200,75%,10%), 2px 2px 1px hsl(200,75%,10%), 1px 2px 1px hsl(200,75%,15%), 0 2px 1px hsl(200,75%,10%), -1px 2px 1px hsl(200,75%,20%), -2px 2px 1px hsl(200,75%,20%), -2px 1px 1px hsl(200,75%,10%), -3px -3px 1px #006, -2px -3px 1px #006, -1px -3px 1px #006, 0 -3px 1px #006, 1px -3px 1px #006, 2px -3px 1px #006, 3px -3px 1px #006, 3px -2px 1px #006, 3px -1px 1px #006, 3px 0 1px #006, 3px 1px 1px #006, 3px 2px 1px #006, 3px 3px 2px #006, 2px 3px 1px #006, 1px 3px 1px #006, 0 3px 1px #006, -1px 3px 1px #006, -2px 3px 1px #006, -3px 3px 1px #006, -3px 2px 1px #006, -3px 1px 1px #006, -3px 0 1px #006, -3px -1px 1px #006, -3px -2px 1px #006
+        }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+
+    .trigger {
+        font-size: 18px;
+        line-height: 64px;
+        padding: 0 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .lnsider {
+        overflow-x: hidden !important;
+    }
+
+        .lnsider::-webkit-scrollbar {
+            width: 9px;
+            height: 9px;
+        }
+
+
+        .lnsider::-webkit-scrollbar-track {
+            width: 6px;
+            background-color: #0d1b20;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em;
+        }
+
+
+        .lnsider::-webkit-scrollbar-thumb {
+            background-color: #606d71;
+            background-clip: padding-box;
+            min-height: 28px;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em;
+        }
+
+            .lnsider::-webkit-scrollbar-thumb:hover {
+                background-color: #5a7268;
+            }
+</style>

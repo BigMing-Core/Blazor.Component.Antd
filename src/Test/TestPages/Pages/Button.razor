@@ -1,0 +1,221 @@
+﻿@layout MainLayout
+@page "/button"
+
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Card
+@using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using static LuanNiao.Blazor.Core.Translater
+
+<Row Gutter="new MarginGutter() {  Vertial=10, Horizontal=4}">
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Base"
+           : "基本")
+            </Title>
+            <ChildContent>
+                <LNButton Type="LNButton.BType.Primary">@Tr("primary")</LNButton>
+                <LNButton>@Tr("default")</LNButton>
+                <LNButton Type="LNButton.BType.Dashed">@Tr("dashed")</LNButton>
+                <LNButton Type="LNButton.BType.Link">@Tr("link")</LNButton>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Size"
+           : "大小")
+            </Title>
+            <ChildContent>
+                <LNButton Size="ComponentSize.Large" Type="LNButton.BType.Primary">
+                    @Tr((current) => current == "en"
+                    ? "Large"
+                    : "大")
+                </LNButton>
+                <LNButton Size="ComponentSize.Middle" Type="LNButton.BType.Primary">
+                    @Tr((current) => current == "en"
+                   ? "Middle"
+                   : "普通")
+                </LNButton>
+                <LNButton Size="ComponentSize.Small" Type="LNButton.BType.Primary">
+
+                    @Tr((current) => current == "en"
+                   ? "Small"
+                   : "小")
+                </LNButton>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "With Icon"
+           : "与图标配合")
+            </Title>
+            <ChildContent>
+                <LNButton>
+                    <DownloadOutlined></DownloadOutlined>
+                    @Tr((current) => current == "en"
+                   ? "Normal Type"
+                   : "普通写法")
+                </LNButton>
+                <LNButton>
+                    <Icon>
+                        <AccountBookOutlined />
+                    </Icon>
+                    <ChildContent>
+                        @Tr((current) => current == "en"
+           ? "Diff Scope"
+           : "不同区域")
+                    </ChildContent>
+                </LNButton>
+                <LNButton>
+                    <AccountBookOutlined />
+                </LNButton>
+                <LNButton>
+                    <Icon>
+                        <AccountBookOutlined />
+                    </Icon>
+                </LNButton>
+                @("<---") @Tr((current) => current == "en"
+? "Diff scope with icon only, it will be closer than content icon."
+: "在不同区域定义ICON图标,会相较于写在正文中更加贴近一些")
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Diff status"
+           : "不同状态")
+            </Title>
+            <ChildContent>
+                <LNButton Danger="true">
+                    @Tr((current) => current == "en"
+               ? "Danger"
+               : "危险")
+
+                </LNButton>
+                <LNButton Disabled="true">
+                    @Tr((current) => current == "en"
+               ? "Disabled"
+               : "禁用")
+
+                </LNButton>
+                <LNButton Loading="true">
+                    @Tr((current) => current == "en"
+               ? "Loading"
+               : "加载中")
+
+                </LNButton>
+                <LNButton Ghost="true">
+                    @Tr((current) => current == "en"
+               ? "Ghost"
+               : "幽灵")
+
+                </LNButton>
+                @("<--") @Tr((current) => current == "en"
+? "There's ghost button"
+: "这里有一个幽灵按钮")
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Diff status"
+           : "不同状态")
+            </Title>
+            <ChildContent>
+                <LNButton Type="LNButton.BType.Primary" OnClickCallback="@((btn)=> { btn.BeginLoading(0,1000*5); })">
+                    @Tr((current) => current == "en"
+             ? "Click this button to show loading, and it will recover about 5 seconds"
+             : "点击加载中,5秒后恢复")
+                </LNButton>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Diff Shap"
+           : "不同形状")
+            </Title>
+            <ChildContent>
+                <LNButton>
+                    @Tr((current) => current == "en"
+            ? "Normal"
+            : "正常")
+                </LNButton>
+                <LNButton Shape="@LNButton.BShape.Circle">
+                    <SearchOutlined></SearchOutlined>
+                </LNButton>
+                <LNButton Shape="@LNButton.BShape.Round">
+                    @Tr((current) => current == "en"
+           ? "Round"
+           : "圆角")
+                </LNButton>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+    <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+        <LNCard>
+            <Title>
+                @Tr((current) => current == "en"
+           ? "Of course, we can mix those settings"
+           : "当然,我们可以组合这些属性")
+            </Title>
+            <ChildContent>
+                <LNButton Size="ComponentSize.Large" Type="LNButton.BType.Dashed" Shape="@LNButton.BShape.Round">
+                    @Tr((current) => current == "en"
+           ? "Round Large Dashed"
+           : "圆角 大按钮 虚线")
+                </LNButton>
+            </ChildContent>
+        </LNCard>
+    </LuanNiao.Blazor.Component.Antd.Grid.Col>
+
+
+</Row>
+
+
+@code{
+
+    private Dictionary<string, string> _en = new Dictionary<string, string>() {
+        { "primary","Primary"},
+        { "default","Default"},
+        { "dashed","Dashed"},
+        { "link","Link"}
+    };
+
+    private Dictionary<string, string> _cn = new Dictionary<string, string>() {
+        {"primary","主要"},
+        {"default","默认"},
+        {"dashed","虚线"},
+        {"link","超链接"}
+    };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CultureChanged += (_) => { this.StateHasChanged(); };
+        AddToCultureData("en", _en);
+        AddToCultureData("cn", _cn);
+    }
+
+}

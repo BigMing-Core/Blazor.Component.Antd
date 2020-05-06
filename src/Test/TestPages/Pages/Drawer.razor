@@ -1,0 +1,147 @@
+﻿@layout MainLayout
+@page "/drawer"
+
+@using LuanNiao.Blazor.Component.Antd.Layout
+@using LuanNiao.Blazor.Component.Antd.Menu
+@using LuanNiao.Blazor.Component.Antd
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Tooltip
+@using LuanNiao.Blazor.Component.Antd.Slider
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Drawer
+@using LuanNiao.Blazor.Component.Antd.Button
+
+
+<LNButton OnClickCallback="@(OnSelected)">
+    click mask can close
+</LNButton>
+
+<LNButton OnClickCallback="@(OnSelected1)">
+    click mask can't close
+</LNButton>
+
+
+<LNButton OnClickCallback="@(OnSelected2)">
+    click mask 800px
+</LNButton>
+
+
+<LNButton OnClickCallback="@(OnSelected3)">
+    left
+</LNButton>
+
+<LNButton OnClickCallback="@(OnSelected4)">
+    top
+</LNButton>
+
+
+<LNButton OnClickCallback="@(OnSelected5)">
+    bottom
+</LNButton>
+
+
+
+<LNButton OnClickCallback="@(OnSelected6)">
+    Show In div
+</LNButton>
+
+<LNDrawer @ref="_lNDrawer" Closable="false">
+    <Title>I'm title <AccountBookFilled></AccountBookFilled></Title>
+    <ChildContent>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+    </ChildContent>
+</LNDrawer>
+<LNDrawer @ref="_lNDrawer1" MaskClosable="false">
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+</LNDrawer>
+<LNDrawer @ref="_lNDrawer2" Width="800" MaskClosable="false"></LNDrawer>
+
+
+<LNDrawer @ref="_lNDrawer3" Placement="PlacementType.Left">
+
+    <p>Some contents...Left</p>
+    <p>Some contents...Left</p>
+    <p>Some contents...Left</p>
+
+</LNDrawer>
+
+
+<LNDrawer @ref="_lNDrawer4" Placement="PlacementType.Top">
+
+    <p>Some contents...Top</p>
+    <p>Some contents...Top</p>
+    <p>Some contents...Top</p>
+
+</LNDrawer>
+
+<LNDrawer @ref="_lNDrawer5" Placement="PlacementType.Bottom">
+    <p>Some contents...Bottom</p>
+    <p>Some contents...Bottom</p>
+    <p>Some contents...Bottom</p>
+</LNDrawer>
+
+
+
+<div style="height:200px">
+
+    <LNDrawer @ref="_lNDrawer6" Placement="PlacementType.Right" RenderToCurrentContainer="true">
+        <p>Some contents...Right</p>
+        <p>Some contents...Right</p>
+        <p>Some contents...Right</p>
+    </LNDrawer>
+
+</div>
+
+
+
+
+
+@code{
+
+    private LNDrawer _lNDrawer = null;
+    private LNDrawer _lNDrawer1 = null;
+    private LNDrawer _lNDrawer2 = null;
+    private LNDrawer _lNDrawer3 = null;
+    private LNDrawer _lNDrawer4 = null;
+    private LNDrawer _lNDrawer5 = null;
+    private LNDrawer _lNDrawer6 = null;
+
+
+    public void OnSelected(LNButton _)
+    {
+        _lNDrawer.TakeInverseOpenStatus();
+    }
+
+    public void OnSelected1(LNButton _)
+    {
+        _lNDrawer1.TakeInverseOpenStatus();
+    }
+
+    public void OnSelected2(LNButton _)
+    {
+        _lNDrawer2.TakeInverseOpenStatus();
+    }
+    public void OnSelected3(LNButton _)
+    {
+        _lNDrawer3.TakeInverseOpenStatus();
+    }
+    public void OnSelected4(LNButton _)
+    {
+        _lNDrawer4.TakeInverseOpenStatus();
+    }
+    public void OnSelected5(LNButton _)
+    {
+        _lNDrawer5.TakeInverseOpenStatus();
+    }
+
+
+    public void OnSelected6(LNButton _)
+    {
+        _lNDrawer6.TakeInverseOpenStatus();
+    }
+}
+

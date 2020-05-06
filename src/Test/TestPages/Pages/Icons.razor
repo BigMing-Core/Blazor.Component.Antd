@@ -1,0 +1,897 @@
+﻿@layout MainLayout
+@page "/icons"
+
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Grid
+@using LuanNiao.Blazor.Component.Antd.Button
+@using static LuanNiao.Blazor.Core.Translater
+
+
+
+@Tr((current) => current == "en"
+               ? "There's all icon we support,click row button to load partial icons."
+               : "这里是我们支持的所有类型的图标,点击后加载一部分图标")
+    <div style="font-size:44px">
+
+        <Row>
+            <LuanNiao.Blazor.Component.Antd.Grid.Col Span="24">
+                <LNButton OnClickCallback="@LoadIcons">@Tr((current) => current == "en" ? "Load" : "加载")</LNButton>
+            </LuanNiao.Blazor.Component.Antd.Grid.Col>
+        </Row>
+        @if (_currentIndex > 23)
+        {
+            <AccountBookFilled />
+            <AccountBookOutlined />
+            <AccountBookTwotone />
+            <AimOutlined />
+            <AlertFilled />
+            <AlertOutlined />
+            <AlertTwotone />
+            <AlibabaOutlined />
+            <AlignCenterOutlined />
+            <AlignLeftOutlined />
+            <AlignRightOutlined />
+            <AlipayCircleFilled />
+            <AlipayCircleOutlined />
+            <AlipayOutlined />
+            <AlipaySquareFilled />
+            <AliwangwangFilled />
+            <AliwangwangOutlined />
+            <AliyunOutlined />
+            <AmazonCircleFilled />
+            <AmazonOutlined />
+            <AmazonSquareFilled />
+            <AndroidFilled />
+            <AndroidOutlined />
+            <AntCloudOutlined />
+            <AntDesignOutlined />
+            <ApartmentOutlined />
+            <ApiFilled />
+        }@if (_currentIndex > 22)
+        {
+            <ApiOutlined />
+            <ApiTwotone />
+            <AppleFilled />
+            <AppleOutlined />
+            <AppstoreAddOutlined />
+            <AppstoreFilled />
+            <AppstoreOutlined />
+            <AppstoreTwotone />
+            <AreaChartOutlined />
+            <ArrowDownOutlined />
+            <ArrowLeftOutlined />
+            <ArrowRightOutlined />
+            <ArrowsAltOutlined />
+            <ArrowUpOutlined />
+            <AudioFilled />
+            <AudioMutedOutlined />
+            <AudioOutlined />
+            <AudioTwotone />
+            <AuditOutlined />
+            <BackwardFilled />
+            <BackwardOutlined />
+            <BankFilled />
+            <BankOutlined />
+            <BankTwotone />
+            <BarChartOutlined />
+            <BarcodeOutlined />
+            <BarsOutlined />
+            <BehanceCircleFilled />
+            <BehanceOutlined />
+        }
+        @if (_currentIndex > 21)
+        {
+            <BehanceSquareFilled />
+            <BehanceSquareOutlined />
+            <BellFilled />
+            <BellOutlined />
+            <BellTwotone />
+            <BgColorsOutlined />
+            <BlockOutlined />
+            <BoldOutlined />
+            <BookFilled />
+            <BookOutlined />
+            <BookTwotone />
+            <BorderBottomOutlined />
+            <BorderHorizontalOutlined />
+            <BorderInnerOutlined />
+            <BorderLeftOutlined />
+            <BorderlessTableOutlined />
+            <BorderOuterOutlined />
+            <BorderOutlined />
+            <BorderRightOutlined />
+            <BorderTopOutlined />
+            <BorderVerticleOutlined />
+            <BoxPlotFilled />
+            <BoxPlotOutlined />
+            <BoxPlotTwotone />
+            <BranchesOutlined />
+            <BugFilled />
+            <BugOutlined />
+            <BugTwotone />
+        }
+        @if (_currentIndex > 20)
+        {
+            <BuildFilled />
+            <BuildOutlined />
+            <BuildTwotone />
+            <BulbFilled />
+            <BulbOutlined />
+            <BulbTwotone />
+            <CalculatorFilled />
+            <CalculatorOutlined />
+            <CalculatorTwotone />
+            <CalendarFilled />
+            <CalendarOutlined />
+            <CalendarTwotone />
+            <CameraFilled />
+            <CameraOutlined />
+            <CameraTwotone />
+            <CaretDownFilled />
+            <CaretDownOutlined />
+            <CaretLeftFilled />
+            <CaretLeftOutlined />
+            <CaretRightFilled />
+            <CaretRightOutlined />
+            <CaretUpFilled />
+            <CaretUpOutlined />
+        }
+        @if (_currentIndex > 19)
+        {
+            <CarFilled />
+            <CarOutlined />
+            <CarryOutFilled />
+            <CarryOutOutlined />
+            <CarryOutTwotone />
+            <CarTwotone />
+            <CheckCircleFilled />
+            <CheckCircleOutlined />
+            <CheckCircleTwotone />
+            <CheckOutlined />
+            <CheckSquareFilled />
+            <CheckSquareOutlined />
+            <CheckSquareTwotone />
+            <ChromeFilled />
+            <ChromeOutlined />
+            <CiCircleFilled />
+            <CiCircleOutlined />
+            <CiCircleTwotone />
+            <CiOutlined />
+            <CiTwotone />
+            <ClearOutlined />
+            <ClockCircleFilled />
+            <ClockCircleOutlined />
+            <ClockCircleTwotone />
+            <CloseCircleFilled />
+            <CloseCircleOutlined />
+            <CloseCircleTwotone />
+            <CloseOutlined />
+            <CloseSquareFilled />
+        }
+        @if (_currentIndex > 18)
+        {
+            <CloseSquareOutlined />
+            <CloseSquareTwotone />
+            <CloudDownloadOutlined />
+            <CloudFilled />
+            <CloudOutlined />
+            <CloudServerOutlined />
+            <CloudSyncOutlined />
+            <CloudTwotone />
+            <CloudUploadOutlined />
+            <ClusterOutlined />
+            <CodeFilled />
+            <CodeOutlined />
+            <CodepenCircleFilled />
+            <CodepenCircleOutlined />
+            <CodepenOutlined />
+            <CodepenSquareFilled />
+            <CodeSandboxCircleFilled />
+            <CodeSandboxOutlined />
+            <CodeSandboxSquareFilled />
+            <CodeTwotone />
+            <CoffeeOutlined />
+            <ColumnHeightOutlined />
+            <ColumnWidthOutlined />
+        }
+        @if (_currentIndex > 17)
+        {
+            <CommentOutlined />
+            <CompassFilled />
+            <CompassOutlined />
+            <CompassTwotone />
+            <CompressOutlined />
+            <ConsoleSqlOutlined />
+            <ContactsFilled />
+            <ContactsOutlined />
+            <ContactsTwotone />
+            <ContainerFilled />
+            <ContainerOutlined />
+            <ContainerTwotone />
+            <ControlFilled />
+            <ControlOutlined />
+            <ControlTwotone />
+            <CopyFilled />
+            <CopyOutlined />
+            <CopyrightCircleFilled />
+            <CopyrightCircleOutlined />
+            <CopyrightCircleTwotone />
+            <CopyrightOutlined />
+            <CopyrightTwotone />
+            <CopyTwotone />
+            <CreditCardFilled />
+            <CreditCardOutlined />
+            <CreditCardTwotone />
+            <CrownFilled />
+            <CrownOutlined />
+            <CrownTwotone />
+            <CustomerServiceFilled />
+            <CustomerServiceOutlined />
+            <CustomerServiceTwotone />
+        }
+        @if (_currentIndex > 16)
+        {
+            <DashboardFilled />
+            <DashboardOutlined />
+            <DashboardTwotone />
+            <DashOutlined />
+            <DatabaseFilled />
+            <DatabaseOutlined />
+            <DatabaseTwotone />
+            <DeleteColumnOutlined />
+            <DeleteFilled />
+            <DeleteOutlined />
+            <DeleteRowOutlined />
+            <DeleteTwotone />
+            <DeliveredProcedureOutlined />
+            <DeploymentUnitOutlined />
+            <DesktopOutlined />
+            <DiffFilled />
+            <DiffOutlined />
+            <DiffTwotone />
+            <DingdingOutlined />
+            <DingtalkCircleFilled />
+            <DingtalkOutlined />
+            <DingtalkSquareFilled />
+            <DisconnectOutlined />
+            <DislikeFilled />
+            <DislikeOutlined />
+            <DislikeTwotone />
+            <DollarCircleFilled />
+            <DollarCircleOutlined />
+            <DollarCircleTwotone />
+            <DollarOutlined />
+            <DollarTwotone />
+            <DotChartOutlined />
+            <DoubleLeftOutlined />
+        }
+        @if (_currentIndex > 15)
+        {
+            <DoubleRightOutlined />
+            <DownCircleFilled />
+            <DownCircleOutlined />
+            <DownCircleTwotone />
+            <DownloadOutlined />
+            <DownOutlined />
+            <DownSquareFilled />
+            <DownSquareOutlined />
+            <DownSquareTwotone />
+            <DragOutlined />
+            <DribbbleCircleFilled />
+            <DribbbleOutlined />
+            <DribbbleSquareFilled />
+            <DribbbleSquareOutlined />
+            <DropboxCircleFilled />
+            <DropboxOutlined />
+            <DropboxSquareFilled />
+            <EditFilled />
+            <EditOutlined />
+            <EditTwotone />
+            <EllipsisOutlined />
+            <EnterOutlined />
+            <EnvironmentFilled />
+            <EnvironmentOutlined />
+            <EnvironmentTwotone />
+            <EuroCircleFilled />
+            <EuroCircleOutlined />
+            <EuroCircleTwotone />
+            <EuroOutlined />
+            <EuroTwotone />
+            <ExceptionOutlined />
+            <ExclamationCircleFilled />
+            <ExclamationCircleOutlined />
+        }
+        @if (_currentIndex > 14)
+        {
+            <ExclamationCircleTwotone />
+            <ExclamationOutlined />
+            <ExpandAltOutlined />
+            <ExpandOutlined />
+            <ExperimentFilled />
+            <ExperimentOutlined />
+            <ExperimentTwotone />
+            <ExportOutlined />
+            <EyeFilled />
+            <EyeInvisibleFilled />
+            <EyeInvisibleOutlined />
+            <EyeInvisibleTwotone />
+            <EyeOutlined />
+            <EyeTwotone />
+            <FacebookFilled />
+            <FacebookOutlined />
+            <FallOutlined />
+            <FastBackwardFilled />
+            <FastBackwardOutlined />
+            <FastForwardFilled />
+            <FastForwardOutlined />
+            <FieldBinaryOutlined />
+            <FieldNumberOutlined />
+            <FieldStringOutlined />
+            <FieldTimeOutlined />
+            <FileAddFilled />
+            <FileAddOutlined />
+            <FileAddTwotone />
+            <FileDoneOutlined />
+            <FileExcelFilled />
+            <FileExcelOutlined />
+        }
+        @if (_currentIndex > 13)
+        {
+            <FileExcelTwotone />
+            <FileExclamationFilled />
+            <FileExclamationOutlined />
+            <FileExclamationTwotone />
+            <FileFilled />
+            <FileGifOutlined />
+            <FileImageFilled />
+            <FileImageOutlined />
+            <FileImageTwotone />
+            <FileJpgOutlined />
+            <FileMarkdownFilled />
+            <FileMarkdownOutlined />
+            <FileMarkdownTwotone />
+            <FileOutlined />
+            <FilePdfFilled />
+            <FilePdfOutlined />
+            <FilePdfTwotone />
+            <FilePptFilled />
+            <FilePptOutlined />
+            <FilePptTwotone />
+            <FileProtectOutlined />
+            <FileSearchOutlined />
+            <FileSyncOutlined />
+            <FileTextFilled />
+            <FileTextOutlined />
+            <FileTextTwotone />
+            <FileTwotone />
+            <FileUnknownFilled />
+            <FileUnknownOutlined />
+            <FileUnknownTwotone />
+            <FileWordFilled />
+            <FileWordOutlined />
+            <FileWordTwotone />
+        }
+        @if (_currentIndex > 12)
+        {
+            <FileZipFilled />
+            <FileZipOutlined />
+            <FileZipTwotone />
+            <FilterFilled />
+            <FilterOutlined />
+            <FilterTwotone />
+            <FireFilled />
+            <FireOutlined />
+            <FireTwotone />
+            <FlagFilled />
+            <FlagOutlined />
+            <FlagTwotone />
+            <FolderAddFilled />
+            <FolderAddOutlined />
+            <FolderAddTwotone />
+            <FolderFilled />
+            <FolderOpenFilled />
+            <FolderOpenOutlined />
+            <FolderOpenTwotone />
+            <FolderOutlined />
+            <FolderTwotone />
+            <FolderViewOutlined />
+            <FontColorsOutlined />
+            <FontSizeOutlined />
+            <ForkOutlined />
+            <FormatPainterFilled />
+            <FormatPainterOutlined />
+            <FormOutlined />
+            <ForwardFilled />
+            <ForwardOutlined />
+            <FrownFilled />
+            <FrownOutlined />
+            <FrownTwotone />
+            <FullscreenExitOutlined />
+            <FullscreenOutlined />
+            <FunctionOutlined />
+            <FundFilled />
+            <FundOutlined />
+        }
+        @if (_currentIndex > 11)
+        {
+            <FundProjectionScreenOutlined />
+            <FundTwotone />
+            <FundViewOutlined />
+            <FunnelPlotFilled />
+            <FunnelPlotOutlined />
+            <FunnelPlotTwotone />
+            <GatewayOutlined />
+            <GifOutlined />
+            <GiftFilled />
+            <GiftOutlined />
+            <GiftTwotone />
+            <GithubFilled />
+            <GithubOutlined />
+            <GitlabFilled />
+            <GitlabOutlined />
+            <GlobalOutlined />
+            <GoldenFilled />
+            <GoldFilled />
+            <GoldOutlined />
+            <GoldTwotone />
+            <GoogleCircleFilled />
+            <GoogleOutlined />
+            <GooglePlusCircleFilled />
+            <GooglePlusOutlined />
+            <GooglePlusSquareFilled />
+            <GoogleSquareFilled />
+            <GroupOutlined />
+            <HddFilled />
+            <HddOutlined />
+            <HddTwotone />
+            <HeartFilled />
+            <HeartOutlined />
+            <HeartTwotone />
+            <HeatMapOutlined />
+            <HighlightFilled />
+            <HighlightOutlined />
+        }
+        @if (_currentIndex > 10)
+        {
+            <HighlightTwotone />
+            <HistoryOutlined />
+            <HomeFilled />
+            <HomeOutlined />
+            <HomeTwotone />
+            <HourglassFilled />
+            <HourglassOutlined />
+            <HourglassTwotone />
+            <Html5Filled />
+            <Html5Outlined />
+            <Html5Twotone />
+            <IdcardFilled />
+            <IdcardOutlined />
+            <IdcardTwotone />
+            <IeCircleFilled />
+            <IeOutlined />
+            <IeSquareFilled />
+            <ImportOutlined />
+            <InboxOutlined />
+            <InfoCircleFilled />
+            <InfoCircleOutlined />
+            <InfoCircleTwotone />
+            <InfoOutlined />
+            <InsertRowAboveOutlined />
+            <InsertRowBelowOutlined />
+            <InsertRowLeftOutlined />
+            <InsertRowRightOutlined />
+            <InstagramFilled />
+            <InstagramOutlined />
+            <InsuranceFilled />
+            <InsuranceOutlined />
+            <InsuranceTwotone />
+            <InteractionFilled />
+            <InteractionOutlined />
+            <InteractionTwotone />
+            <IssuesCloseOutlined />
+            <ItalicOutlined />
+            <KeyOutlined />
+            <LaptopOutlined />
+            <LayoutFilled />
+            <LayoutOutlined />
+            <LayoutTwotone />
+            <LeftCircleFilled />
+            <LeftCircleOutlined />
+            <LeftCircleTwotone />}
+        @if (_currentIndex > 9)
+        {
+            <LeftOutlined />
+            <LeftSquareFilled />
+            <LeftSquareOutlined />
+            <LeftSquareTwotone />
+            <LikeFilled />
+            <LikeOutlined />
+            <LikeTwotone />
+            <LineChartOutlined />
+            <LineHeightOutlined />
+            <LineOutlined />
+            <LinkedinFilled />
+            <LinkedinOutlined />
+            <LinkOutlined />
+            <Loading3QuartersOutlined />
+            <LoadingOutlined />
+            <LockFilled />
+            <LockOutlined />
+            <LockTwotone />
+            <LoginOutlined />
+            <LogoutOutlined />
+            <MacCommandFilled />
+            <MacCommandOutlined />
+            <MailFilled />
+            <MailOutlined />
+            <MailTwotone />
+            <ManOutlined />
+            <MedicineBoxFilled />
+        }
+        @if (_currentIndex > 8)
+        {
+            <MedicineBoxOutlined />
+            <MedicineBoxTwotone />
+            <MediumCircleFilled />
+            <MediumOutlined />
+            <MediumSquareFilled />
+            <MediumWorkmarkOutlined />
+            <MehFilled />
+            <MehOutlined />
+            <MehTwotone />
+            <MenuFoldOutlined />
+            <MenuOutlined />
+            <MenuUnfoldOutlined />
+            <MergeCellsOutlined />
+            <MessageFilled />
+            <MessageOutlined />
+            <MessageTwotone />
+            <MinusCircleFilled />
+            <MinusCircleOutlined />
+            <MinusCircleTwotone />
+            <MinusOutlined />
+            <MinusSquareFilled />
+            <MinusSquareOutlined />
+            <MinusSquareTwotone />
+            <MobileFilled />
+            <MobileOutlined />
+            <MobileTwotone />
+            <MoneyCollectFilled />
+            <MoneyCollectOutlined />
+            <MoneyCollectTwotone />
+            <MonitorOutlined />
+            <MoreOutlined />
+            <NodeCollapseOutlined />
+            <NodeExpandOutlined />
+            <NodeIndexOutlined />
+            <NotificationFilled />
+            <NotificationOutlined />
+            <NotificationTwotone />
+            <NumberOutlined />
+            <OneToOneOutlined />
+            <OrderedListOutlined />
+            <PaperClipOutlined />
+            <PartitionOutlined />
+            <PauseCircleFilled />
+            <PauseCircleOutlined />
+        }
+        @if (_currentIndex > 7)
+        {
+            <PauseCircleTwotone />
+            <PauseOutlined />
+            <PayCircleFilled />
+            <PayCircleOutlined />
+            <PercentageOutlined />
+            <PhoneFilled />
+            <PhoneOutlined />
+            <PhoneTwotone />
+            <PicCenterOutlined />
+            <PicLeftOutlined />
+            <PicRightOutlined />
+            <PictureFilled />
+            <PictureOutlined />
+            <PictureTwotone />
+            <PieChartFilled />
+            <PieChartOutlined />
+            <PieChartTwotone />
+            <PlayCircleFilled />
+            <PlayCircleOutlined />
+            <PlayCircleTwotone />
+            <PlaySquareFilled />
+            <PlaySquareOutlined />
+            <PlaySquareTwotone />
+            <PlusCircleFilled />
+            <PlusCircleOutlined />
+            <PlusCircleTwotone />
+            <PlusOutlined />
+            <PlusSquareFilled />
+            <PlusSquareOutlined />
+            <PlusSquareTwotone />
+            <PoundCircleFilled />
+        }
+        @if (_currentIndex > 6)
+        {
+            <PoundCircleOutlined />
+            <PoundCircleTwotone />
+            <PoundOutlined />
+            <PoweroffOutlined />
+            <PrinterFilled />
+            <PrinterOutlined />
+            <PrinterTwotone />
+            <ProfileFilled />
+            <ProfileOutlined />
+            <ProfileTwotone />
+            <ProjectFilled />
+            <ProjectOutlined />
+            <ProjectTwotone />
+            <PropertySafetyFilled />
+            <PropertySafetyOutlined />
+            <PropertySafetyTwotone />
+            <PullRequestOutlined />
+            <PushpinFilled />
+            <PushpinOutlined />
+            <PushpinTwotone />
+            <QqCircleFilled />
+            <QqOutlined />
+            <QqSquareFilled />
+            <QrcodeOutlined />
+            <QuestionCircleFilled />
+            <QuestionCircleOutlined />
+            <QuestionCircleTwotone />
+            <QuestionOutlined />
+            <RadarChartOutlined />
+            <RadiusBottomleftOutlined />
+            <RadiusBottomrightOutlined />
+            <RadiusSettingOutlined />
+            <RadiusUpleftOutlined />
+            <RadiusUprightOutlined />
+            <ReadFilled />
+            <ReadOutlined />
+        }
+        @if (_currentIndex > 5)
+        {
+            <ReconciliationFilled />
+            <ReconciliationOutlined />
+            <ReconciliationTwotone />
+            <RedditCircleFilled />
+            <RedditOutlined />
+            <RedditSquareFilled />
+            <RedEnvelopeFilled />
+            <RedEnvelopeOutlined />
+            <RedEnvelopeTwotone />
+            <RedoOutlined />
+            <ReloadOutlined />
+            <RestFilled />
+            <RestOutlined />
+            <RestTwotone />
+            <RetweetOutlined />
+            <RightCircleFilled />
+            <RightCircleOutlined />
+            <RightCircleTwotone />
+            <RightOutlined />
+            <RightSquareFilled />
+            <RightSquareOutlined />
+            <RightSquareTwotone />
+            <RiseOutlined />
+            <RobotFilled />
+            <RobotOutlined />
+            <RocketFilled />
+            <RocketOutlined />
+            <RocketTwotone />
+            <RollbackOutlined />
+            <RotateLeftOutlined />
+            <RotateRightOutlined />
+            <SafetyCertificateFilled />
+            <SafetyCertificateOutlined />
+            <SafetyCertificateTwotone />
+            <SafetyOutlined />
+        }
+        @if (_currentIndex > 4)
+        {
+            <SaveFilled />
+            <SaveOutlined />
+            <SaveTwotone />
+            <ScanOutlined />
+            <ScheduleFilled />
+            <ScheduleOutlined />
+            <ScheduleTwotone />
+            <ScissorOutlined />
+            <SearchOutlined />
+            <SecurityScanFilled />
+            <SecurityScanOutlined />
+            <SecurityScanTwotone />
+            <SelectOutlined />
+            <SendOutlined />
+            <SettingFilled />
+            <SettingOutlined />
+            <SettingTwotone />
+            <ShakeOutlined />
+            <ShareAltOutlined />
+            <ShopFilled />
+            <ShopOutlined />
+            <ShoppingCartOutlined />
+            <ShoppingFilled />
+            <ShoppingOutlined />
+            <ShoppingTwotone />
+            <ShopTwotone />
+            <ShrinkOutlined />
+            <SignalFilled />
+            <SisternodeOutlined />
+        }
+        @if (_currentIndex > 3)
+        {
+            <SketchCircleFilled />
+            <SketchOutlined />
+            <SketchSquareFilled />
+            <SkinFilled />
+            <SkinOutlined />
+            <SkinTwotone />
+            <SkypeFilled />
+            <SkypeOutlined />
+            <SlackCircleFilled />
+            <SlackOutlined />
+            <SlackSquareFilled />
+            <SlackSquareOutlined />
+            <SlidersFilled />
+            <SlidersOutlined />
+            <SlidersTwotone />
+            <SmallDashOutlined />
+            <SmileFilled />
+            <SmileOutlined />
+            <SmileTwotone />
+            <SnippetsFilled />
+            <SnippetsOutlined />
+            <SnippetsTwotone />
+            <SolutionOutlined />
+            <SortAscendingOutlined />
+            <SortDescendingOutlined />
+            <SoundFilled />
+            <SoundOutlined />
+            <SoundTwotone />
+            <SplitCellsOutlined />
+            <StarFilled />
+            <StarOutlined />
+            <StarTwotone />
+            <StepBackwardFilled />
+            <StepBackwardOutlined />
+            <StepForwardFilled />
+            <StepForwardOutlined />
+            <StockOutlined />
+            <StopFilled />
+            <StopOutlined />
+            <StopTwotone />
+        }
+        @if (_currentIndex > 2)
+        {
+            <StrikethroughOutlined />
+            <SubnodeOutlined />
+            <SwapLeftOutlined />
+            <SwapOutlined />
+            <SwapRightOutlined />
+            <SwitcherFilled />
+            <SwitcherOutlined />
+            <SwitcherTwotone />
+            <SyncOutlined />
+            <TableOutlined />
+            <TabletFilled />
+            <TabletOutlined />
+            <TabletTwotone />
+            <TagFilled />
+            <TagOutlined />
+            <TagsFilled />
+            <TagsOutlined />
+            <TagsTwotone />
+            <TagTwotone />
+            <TaobaoCircleFilled />
+            <TaobaoCircleOutlined />
+            <TaobaoOutlined />
+            <TaobaoSquareFilled />
+            <TeamOutlined />
+            <ThunderboltFilled />
+            <ThunderboltOutlined />
+            <ThunderboltTwotone />
+            <ToolFilled />
+            <ToolOutlined />
+            <ToolTwotone />
+            <ToTopOutlined />
+            <TrademarkCircleFilled />
+            <TrademarkCircleOutlined />
+            <TrademarkCircleTwotone />
+            <TrademarkOutlined />
+            <TransactionOutlined />
+            <TranslationOutlined />
+        }
+        @if (_currentIndex > 1)
+        {
+            <TrophyFilled />
+            <TrophyOutlined />
+            <TrophyTwotone />
+            <TwitterCircleFilled />
+            <TwitterOutlined />
+            <TwitterSquareFilled />
+            <UnderlineOutlined />
+            <UndoOutlined />
+            <UngroupOutlined />
+            <UnlockFilled />
+            <UnlockOutlined />
+            <UnlockTwotone />
+            <UnorderedListOutlined />
+            <UpCircleFilled />
+            <UpCircleOutlined />
+            <UpCircleTwotone />
+            <UploadOutlined />
+            <UpOutlined />
+            <UpSquareFilled />
+            <UpSquareOutlined />
+            <UpSquareTwotone />
+            <UsbFilled />
+            <UsbOutlined />
+            <UsbTwotone />
+            <UserAddOutlined />
+            <UserDeleteOutlined />
+            <UsergroupAddOutlined />
+            <UsergroupDeleteOutlined />
+            <UserOutlined />
+            <UserSwitchOutlined />
+        }
+        @if (_currentIndex > 0)
+        {
+            <VerifiedOutlined />
+            <VerticalAlignBottomOutlined />
+            <VerticalAlignMiddleOutlined />
+            <VerticalAlignTopOutlined />
+            <VerticalLeftOutlined />
+            <VerticalRightOutlined />
+            <VideoCameraAddOutlined />
+            <VideoCameraFilled />
+            <VideoCameraOutlined />
+            <VideoCameraTwotone />
+            <WalletFilled />
+            <WalletOutlined />
+            <WalletTwotone />
+            <WarningFilled />
+            <WarningOutlined />
+            <WarningTwotone />
+            <WechatFilled />
+            <WechatOutlined />
+            <WeiboCircleFilled />
+            <WeiboCircleOutlined />
+            <WeiboOutlined />
+            <WeiboSquareFilled />
+            <WeiboSquareOutlined />
+            <WhatsAppOutlined />
+            <WifiOutlined />
+            <WindowsFilled />
+            <WindowsOutlined />
+            <WomanOutlined />
+            <YahooFilled />
+            <YahooOutlined />
+            <YoutubeFilled />
+            <YoutubeOutlined />
+            <YuqueFilled />
+            <YuqueOutlined />
+            <ZhihuCircleFilled />
+            <ZhihuOutlined />
+            <ZhihuSquareFilled />
+            <ZoomInOutlined />
+            <ZoomOutOutlined />
+        }
+    </div>
+
+
+@code{
+    private int _currentIndex = 0;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CultureChanged += (_) => { this.StateHasChanged(); };
+    }
+
+    private void LoadIcons(LNButton _)
+    {
+        _currentIndex++;
+        this.StateHasChanged();
+    }
+
+}

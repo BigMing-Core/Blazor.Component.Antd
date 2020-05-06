@@ -1,0 +1,386 @@
+﻿@layout MainLayout
+@page "/"
+@inject IJSRuntime _jsRT
+@using static LuanNiao.Blazor.Core.Translater
+    <div align="center">
+        <img src="https://resource.luanniao.club/commonres/icon.png">
+
+
+
+        <h3>LuanNiao Blazor Component-- ANTD</h3>
+        <h3>鸾鸟Blazor组件库--基于ANTDV4 风格</h3>
+        <span>A Blazor Component Library based on Ant V4 style</span>
+        <br />
+
+
+
+        <br />
+
+
+
+        <a href="https://gitter.im/luanniao-Blazor-Component-Antd/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+            Gitter
+        </a>
+        <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=37aa7e890f0ead2e3cb5955691d64f12ef7f318748bd342ed574ec1e15a22c47"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="鸾鸟" title="鸾鸟"></a>
+    </div>
+<div id="test-editormd-view" style="@(_whichLang==0?"display:none;":null)">
+    <textarea style="display:none;" name="test-editormd-markdown-doc">      
+    
+# LuanNiao Blazor 组件库
+LuanNiao Blazor 组件库是**基于**Antd V4版本的CSS样式库开发的ASP.NET Core Blazor组件库.
+我们的库的目标在于基于Antd的高复用样式以及高兼容性的基础上去制作一套中小型企业可以落地使用的,方便,快捷的组件库.
+
+如果您对此感兴趣,您可以抽出几分钟来阅读我们的简介,以确定您是否决定使用/关注当前组件库.
+
+## 当前项目状态
+架构设计与前期框架搭建中,发布计划暂无,对于Blazor从落地到实际项目中而言,我们仍旧处于观察期,但这并不影响我们实现这个组件库,因为Blazor给予了我们无限大的想象空间.<br />
+
+另外,我们公司的实际使用中不仅需要这个UI组件库,更是需要一个Canvas组件的,目前您已经可以在Antd库中见到示例,但是确实如您所见那真的只是一个非常简单的实例,正常而言,我们会从Canvas2D开始制作我们需要的组件.
+
+## 在您阅读一切之前,我希望能够在这里感谢一下给予我们帮助的人
+这些无私且伟大的人有:<br />
+
+[diwu0510](https://github.com/orgs/luanniao/people/diwu0510)<br />
+
+[lucio-c](https://github.com/orgs/luanniao/people/lucio-c)<br />
+
+[shenbo1](https://github.com/orgs/luanniao/people/shenbo1)<br />
+
+[talabright](https://github.com/orgs/luanniao/people/talabright) <br />
+
+我们目前并没有过多的贡献者,不过这并不会影响我们的积极性,我们会尽可能的完善这个库并伴随着我们公司的项目落地这个组件库.<br />
+
+如果您愿意浪费您宝贵的时间在我们这个不起眼的项目上,那么您的帮助将是我至高的荣幸.<br />
+
+好了,不打扰您了,接下来让我给您介绍一下我们的库吧!(•́⌄•́๑)૭✧
+<br />
+
+
+
+### 设计理念
+##### **我们的组件风格并不局限于模拟Antd**
+因此,您可能会发现,我们的API可能与您印象中Antd的并不相同.
+
+
+## 库的设计背景
+该仓库仓库是由一个完整的企业团队与一些值得我尊敬的朋友共同维护的,我们的每一个举措都是需要在我们的项目中实际使用的,所以我们可能与其他库并不大相同,我们的实现策略将受到下列内容影响,如果您无法接受这些内容,可能您需要考虑是否继续使用当前组件库.
+1.  这是一个核心问题:Blazor目前是Preview版本,我们制作此库的目的在于尽可能的或者说尽早的得到我们的WASM开发组件库以应对前端人员缺失的问题(***这是一个悲伤的问题***),所以就目前情况下,如果我们没有发布Release版本的Nuget包或者我们的版本没有>1.0.0.0那么,请不要在您的生产环境使用,我们的测试必定是没有通过的.同样的,如果我们有任何新的关于版本的发布,我们会在这个网站进行同步更新.
+1.  我们并不保证我们不破坏ANTD的原本实现思路
+    例如Menu我们直接将其拆分为InlineMenu,DropdownMenu,HorizontalMenu3种,未来还会有其他扩展,但是ANTD并不是这样做的.
+1.  我们的开发路线并是以实现现实项目会出现的实际应用(是的这可能会更加偏向于我们的项目,我们是制作企业内部应用的).
+    这将可能会导致**我们会实现*****但并不是立即实现***那些在系统中不太常见的功能.
+    例如:ANTD中的大块日历,很遗憾我们的产品中并没有类似于日程表的功能,所以我们暂时不考虑投入人员去支持它.
+1.  我们可能会出现长时间的组件开发**停顿**,是的,我们目前虽然再尽快的开发更多的组件,但是如果您仔细翻看我们的提交记录(太多了,但是我保证是这样的)您会发现,在一段时间内,我们始终在修改Blazor.Core,而组件开发停滞不前,这是因为我们发现了Blazor的一个性能问题(虽然已经处理了),但是我们并不保证未来不会出现这样的情况.原因很简单,我们需要这个组件库用到我们的产品上,我们的客户是不可能接受**卡顿**的.
+
+### 我们做出这些设计的原因
+您在使用中会发现我们的组件从使用或者是设计角度上会与react或vue等主流前端框架有所不同,例如:
+1.  我们的组件属性均为大写,
+    这是因为我们是基于Blazor开发的,那么我们从设计上认为,您需要接受C#的代码风格,而C#的代码风格有一个约束**Property必须为大写字母开头**.
+    因此您会看到如下组件:
+    ```Html
+      @("<Row Gutter=\"new MarginGutter() { Vertial = 10, Horizontal = 4 }\">")
+      @("</Row>")
+    ```
+1.  我们可能会要求您传递非常多的子组件.
+    我们当然清楚您可以这么写代码来避免传递子组件:
+    ```C#
+        @("RenderFragment _filedName=@\"<X></X>\"")
+    ```
+
+    但是经过我们的测试与实际开发人员的规划,我们容许这么使用但并不期待**我们自己**的组件中充斥这样的写法.您当然可以在您的使用过程中这样编写,我们只是不在我们的组件中使用.<br />
+
+    当然这完全可能是我们公司的坏习惯.<br />
+
+    所以,我们会出现类似下面样式的代码
+    ```Html
+        @("<LNCard CStyle=\"width:300px\" Actions=\"new[]{ a1,a2,a3}\">")
+        @("     <Title>")
+        @("         Default size card")
+        @("     </Title>")
+        @("     <Extra>")
+        @("         <a href=\"#\">More</a>")
+        @("     </Extra>")
+        @("     <ChildContent>")
+        @("        <p>Card content</p>")
+        @("        <p>Card content</p>")
+        @("        <p>Card content</p>")
+        @("     </ChildContent>")
+        @("     <Actions>")
+        @("         <CardAction>")
+        @("             <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback=\"@(async ( a)=>{ Console.WriteLine(\"asd\"); })\" />")
+        @("         </CardAction>")
+        @("         <CardAction>")
+        @("             <EditOutlined />")
+        @("         </CardAction>")
+        @("         <CardAction>")
+        @("             <EllipsisOutlined />")
+        @("         </CardAction>")
+        @("     </Actions>")
+        @("</LNCard>")
+    ```
+1.  我们目前有制作状态树的计划,但是后来***取消***了,因为我们认为,必然会有更厉害的**角色**来实现类似于***Redux***的功能,到时候,我们可以顺便搭车,毕竟强如ANTD也没有考虑过这个问题.所以我们可能在近期不会将**状态树**考虑到功能范围内.
+1. 就目前而言,我们也暂时不会考虑加入**网页富文本编辑器**您如果需要这个功能,可能需要等上好一阵子了.经过我们团队在全网的搜罗而言,我们并没有找到合适于Blazor的**网页富文本编辑器**,当前的实现基本上偏向于两种极端,就拿Markdown而言:
+    1. 完全使用C#来实现所有的内容,但是根本不可能存在,除非实现类似于C库的markdown功能,但是这依赖于大量的服务器渲染,这违背了WASM的基本初衷,假设我使用了C库,那么从WASM的安全性角度考虑,这时候我们并不保证我们所生成的所有.DLL,.SO库能够在各种平台上适用,并且我们可能也没有手段在任何情况下拿到当前的操作系统平台信息.
+    1. MarkDown目前比较完善的支持是JavaScript/Type Script比较多,很遗憾,.NET的支持,只存在两种情况:依赖组件过多或生成的HTML没办法加入丰富的扩展组件.
+    1. 您当前看到的内容,或者说LuanNiao组件库的Doc是Markdown编写的,但是我们也付出了惨痛的代价,我们无法支持flow,因为当我们引入flow时,它的依赖组件与Blazor的JS引起了冲突,这使得我们不得不放弃Markdown的支持.
+
+## 关于我们在开发组件库时遇到的问题
+未来我们会在其他地方建立专门的专区来分享这些内容,但截至目前(2020年4月24日)暂无具体计划.
+>您可以关注本网站的更新来确定我们是否进行了此项更新
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+
+
+# 非常感谢您阅读到这里
+感谢您对于当前库的阅读,我们为您为此浪费的几分钟表示感谢!您尽情在我们的文档库中玩转吧.
+
+#### 小请求
+如果出现BUG,我期望您能够在[GITHUB](https://github.com/luanniao/Blazor.Component.Antd)上给我们提出Issue,您的意见会给予我们极大的帮助! 
+
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 非常感谢您阅读到这里
+感谢您对于当前库的阅读,我们为您为此浪费的几分钟表示感谢!您尽情在我们的文档库中玩转吧.
+
+#### 小请求
+如果出现BUG,我期望您能够在[GITHUB](https://github.com/luanniao/Blazor.Component.Antd)上给我们提出Issue,您的意见会给予我们极大的帮助! 
+
+            </textarea>
+</div>
+
+<div id="test-editormd-view1" style="@(_whichLang==1?"display:none;":null)">
+    <textarea style="display:none;" name="test-editormd-markdown-doc">      
+    
+>>Tips:this page use the googlea translate, if you found the **bug** you can push [PR](https://github.com/luanniao/luanniao.club/pulls) if you want.
+
+ 
+Our library goal is to use the existing system to make a stable, high-availability Blazor component library.<br />
+
+
+
+We will not synchronize the official CSS and corresponding implementations like other implementations.<br />
+
+
+
+We are currently locked in antd v4.0.4.
+<Br />
+ 
+# LuanNiao Blazor Component Library
+LuanNiao Blazor component library is an ASP.NET Core Blazor component library developed ***based on*** the CSS style library of Antd V4 version.
+The goal of our library is to create a convenient and fast component library for small and medium-sized enterprises based on Antd's high reuse style and high compatibility.
+<p>
+If you are interested in this, you can take a few minutes to read our introduction to determine if you decide to use / follow the current component library.
+</p>
+## Current project status
+In the architectural design and early framework construction, there is no release plan. For Blazor from the landing to the actual project, we are still in the observation period, but this does not affect our realization of this component library, because Blazor gives us infinite imagination Space. <br />
+
+
+
+In addition, the actual use of our company requires not only this UI component library, but also a Canvas component. At present, you can already see examples in the Antd library, but it is really just a very simple example as you can see. Normally, we will start with Canvas2D to make the components we need.
+
+## I hope to be able to thank the people who helped us here
+These selfless and great people are:<br />
+
+
+
+[diwu0510](https://github.com/orgs/luanniao/people/diwu0510)<br />
+
+
+
+[lucio-c](https://github.com/orgs/luanniao/people/lucio-c)<br />
+
+
+
+[shenbo1](https://github.com/orgs/luanniao/people/shenbo1)<br />
+
+
+
+[talabright](https://github.com/orgs/luanniao/people/talabright) <br />
+
+
+
+We currently do not have too many contributors, but this will not affect our enthusiasm. We will improve this library as much as possible and accompany our company's project landing this component library. <br />
+
+
+
+If you are willing to waste your precious time on our humble project, your help will be my highest honor. <br />
+
+
+
+Well, don't disturb you, let me introduce you to our library!(•́⌄•́๑)૭✧
+<br />
+
+
+
+
+
+
+
+### design concept
+##### **Our component style is not limited to emulating Antd**
+Therefore, you may find that our API may not be the same as Antd in your impression.
+
+
+## Design background of the library
+The warehouse is maintained by a complete enterprise team and some friends who are worthy of my respect.Each of our actions is actually used in our project, so we may not be the same as other libraries The implementation strategy will be affected by the following contents.If you cannot accept these contents, you may need to consider whether to continue to use the current component library.
+1. This is a core issue: Blazor is currently in the Preview version. The purpose of making this library is to get our WASM development component library as soon as possible or as early as possible to deal with the problem of missing front-end personnel (***This is a sad Question***), so in the current situation, if we have not released the Release version of the Nuget package or our version does not have> 1.0.0.0, please do not use it in your production environment, our test must have failed . Similarly, if we have any new releases, we will update them on this website.
+1. We do not guarantee that we will not destroy the original realization of ANTD
+    For example, we directly split Menu into InlineMenu, DropdownMenu, HorizontalMenu, there will be other extensions in the future, but ANTD does not do this.
+1. Our development route is not the actual application that will appear in real projects (yes, this may be more biased towards our projects, we are making internal applications in the enterprise).
+    This may lead to ** We will implement*****but not immediately*** those features that are less common in the system.
+    For example: the large calendar in ANTD, unfortunately, our product does not have a calendar-like function, so we don't consider investing in people to support it for the time being.
+1. We may have a long period of component development **Pause**, yes, we are currently developing more components as soon as possible, but if you carefully read our submission record (too many, but I guarantee You will find that for a period of time, we have been modifying Blazor.Core, and component development has stalled, this is because we discovered a performance problem with Blazor (although it has been dealt with), but we are not It is guaranteed that this will not happen in the future. The reason is very simple, we need this component library to be used in our products, and it is impossible for our customers to accept **carton**.
+### The reason we made these designs
+You will find that our components are different from mainstream front-end frameworks such as react or vue in terms of use or design, for example:
+1.  Our component properties are all capitalized,
+     This is because we are based on Blazor, so we think from the design that you need to accept the code style of C #, and the code style of C # has a constraint **Property must start with a capital letter**.<br />
+
+
+
+You will see the following components:
+```Html
+  @("<Row Gutter=\"new MarginGutter() { Vertial = 10, Horizontal = 4 }\">")
+  @("</Row>")
+```
+1.  We may ask you to pass very many subcomponents.<br />
+
+
+
+  We know that you can write the code like below to avoid pass subcomponents:
+
+```C#
+    @("RenderFragment _filedName=@\"<X></X>\"")
+```    
+However, after our testing and actual developer planning, we allow this use, but we don't expect **our own** components to be filled with such writing.  <br />
+     Of course, this may be a bad habit of our company.  <br />
+     So, we will have code similar to the following style
+
+```Html
+    @("<LNCard CStyle=\"width:300px\" Actions=\"new[]{ a1,a2,a3}\">")
+    @("     <Title>")
+    @("         Default size card")
+    @("     </Title>")
+    @("     <Extra>")
+    @("         <a href=\"#\">More</a>")
+    @("     </Extra>")
+    @("     <ChildContent>")
+    @("        <p>Card content</p>")
+    @("        <p>Card content</p>")
+    @("        <p>Card content</p>")
+    @("     </ChildContent>")
+    @("     <Actions>")
+    @("         <CardAction>")
+    @("             <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback=\"@(async ( a)=>{ Console.WriteLine(\"asd\"); })\" />")
+    @("         </CardAction>")
+    @("         <CardAction>")
+    @("             <EditOutlined />")
+    @("         </CardAction>")
+    @("         <CardAction>")
+    @("             <EllipsisOutlined />")
+    @("         </CardAction>")
+    @("     </Actions>")
+    @("</LNCard>")
+```
+1.  We currently have plans to make a status tree, but later ***canceled***, because we believe that there must be more powerful ** characters ** to achieve functions similar to ***Redux***, to At that time, we can take the ride by the way. After all, as strong as ANTD, this problem has not been considered. So we may not consider the ** state tree ** in the scope of functions in the near future.
+1. For now, we will not consider adding **Web Rich Text Editor for the time being** If you need this feature, you may need to wait for a while. After our team has searched the entire network, we have not Find a **web rich text editor** suitable for Blazor.The current implementation is basically biased towards two extremes, as far as Markdown is concerned:
+    1. Completely use C # to achieve all the content, but it is impossible to exist unless the markdown function similar to the C library is implemented, but this depends on a large number of server renderings, which violates the basic intention of WASM, assuming that I use the C library , From the perspective of WASM security, at this time we do not guarantee that all the .DLL, .SO libraries we generate can be applied on various platforms, and we may not have the means to get the current operation under any circumstances System platform information.
+    1. MarkDown currently has more complete support for JavaScript / Type Script. Unfortunately, .NET supports only two cases: there are too many dependent components or the generated HTML cannot add rich extension components.
+    1. What you currently see, or the Doc of the LuanNiao component library is written by Markdown, but we also paid a painful price, we can not support flow, because when we introduced flow, its dependent components and Blazor JS It caused a conflict, which made us have to give up Markdown support.
+
+## About the problems we encountered when developing the component library
+In the future, we will establish special areas in other places to share these contents, but as of now (April 24, 2020), there is no specific plan.
+> You can follow the update of this website to determine whether we have made this update
+
+<br />
+
+
+
+<br />
+
+
+
+<br />
+
+
+
+<br />
+
+
+
+<br />
+
+
+
+<br />
+
+
+
+
+
+
+
+# Thank you very much for reading here
+Thank you for reading the current library, and we thank you for the few minutes wasted! You can enjoy it in our document library.
+
+#### Small request
+If there is a bug, I expect you to[GITHUB](https://github.com/luanniao/Blazor.Component.Antd)Submit an Issue to us on the previous page, your comments will give us great help!
+
+            </textarea>
+</div>
+
+@code{
+
+    /// <summary>
+    /// 0:en 1:cn
+    /// </summary>
+    private int _whichLang = 0;
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        _jsRT.InvokeVoidAsync("ShowMD", "test-editormd-view");
+        _jsRT.InvokeVoidAsync("ShowMD", "test-editormd-view1");
+        CultureChanged += (lang) =>
+        {
+            _whichLang = lang == "en" ? 0 : 1;
+            this.StateHasChanged();
+        };
+    }
+}

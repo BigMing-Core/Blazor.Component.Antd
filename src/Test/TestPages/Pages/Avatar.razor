@@ -1,0 +1,102 @@
+﻿@layout MainLayout
+@page "/avatar"
+
+
+
+@using  LuanNiao.Blazor.Component.Antd.Avatar;
+@using LuanNiao.Blazor.Component.Antd.Icons;
+@using LuanNiao.Blazor.Component.Antd.Button;
+@using LuanNiao.Blazor.Component.Antd.Badge;
+
+<div class="box">
+    <h3>Basic:Three sizes and two shapes are available. </h3>
+    <div>
+        <LNAvatar Size="64">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar Size="LNAvatar.ASize.Small">
+
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar>
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar Size="LNAvatar.ASize.Large">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+    </div>
+    <div>
+
+        <LNAvatar Shape="LNAvatar.AShape.Square" Size="64">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar Shape="LNAvatar.AShape.Square" Size="LNAvatar.ASize.Small">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar Shape="LNAvatar.AShape.Square">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+        <LNAvatar Shape="LNAvatar.AShape.Square" Size="LNAvatar.ASize.Large">
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+    </div>
+</div>
+
+<div class="box">
+    <h3>Type: Image, Icon and letter are supported, and the latter two kinds of avatar can have custom colors and background colors.</h3>
+    <LNAvatar>U</LNAvatar>
+    <LNAvatar Src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" Alt="User">
+        <Icon>
+            <UserOutlined></UserOutlined>
+        </Icon>
+    </LNAvatar>
+    <LNAvatar CStyle="color: #f56a00; background-color:#fde3cf"></LNAvatar>
+    <LNAvatar CStyle="background-color:#87d068">
+        <Icon>
+            <UserOutlined></UserOutlined>
+        </Icon>
+    </LNAvatar>
+</div>
+<div class="box">
+    <h3>Autoset Font Size:For letter type Avatar, when the letters are too long to display, the font size can be automatically adjusted according to the width of the Avatar.</h3>
+
+    <LNAvatar Size="64">@AvatarName</LNAvatar>
+    <LNButton OnClickCallback="OnBtnChangeText">ChangeText</LNButton>
+</div>
+<div class="box">
+    <h3>With Badge:Usually used for reminders and notifications.</h3>
+    <LNBadge Count="20">
+        <LNAvatar>
+            <Icon>
+                <UserOutlined></UserOutlined>
+            </Icon>
+        </LNAvatar>
+    </LNBadge>
+</div>
+@code{
+    private string AvatarName = "Tom";
+    private void OnBtnChangeText(LNButton _)
+    {
+        var names = new List<string>() {
+            "Tom","Jackey","Bruce","Benlampson"
+        };
+        this.AvatarName = names[new Random().Next(0, names.Count)];
+        this.StateHasChanged();
+    }
+}
