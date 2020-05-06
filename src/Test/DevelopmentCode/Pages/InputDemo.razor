@@ -8,6 +8,45 @@
 
 <LNMessageStub></LNMessageStub>
 <div>
+
+
+    <br />
+    <br />
+
+    <Search Placeholder="input search text"
+            OnSearch="OnSearch"
+            UseBtnMod="true"
+            CStyle="width: 200px" Disabled="true" />
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <Search Placeholder="input search text"
+            OnSearch="OnSearch"
+            CStyle="width: 200px" Disabled="true"/>
+
+    <br />
+    <br />
+
+    <br />
+    <br />
+
+    <Search Placeholder="input search text"
+            OnSearch="OnSearch"
+            UseBtnMod="true"
+            CStyle="width: 200px" />
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <Search Placeholder="input search text"
+            OnSearch="OnSearch"
+            CStyle="width: 200px" />
+
     <br />
     <br />
     <Input placeholder="Basic usage" Disabled="true" />
@@ -159,14 +198,6 @@
     </Input>
 
 
-    <br />
-    <br />
-
-    <Search Placeholder="input search text"
-            OnSearch="@(value =>Console.WriteLine(value))"
-        CStyle="width: 200px"
-        />
-
 </div>
 
 
@@ -188,6 +219,16 @@
         {
             Text = msg,
             MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Error
+        });
+    }
+
+
+    private void OnSearch(string msg)
+    {
+        _message.Show(new LuanNiao.Blazor.Component.Antd.Message.MessageItem()
+        {
+            Text = msg,
+            MessageType = LuanNiao.Blazor.Component.Antd.Message.MessageItemType.Warning
         });
     }
 

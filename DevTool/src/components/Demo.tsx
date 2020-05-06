@@ -30,10 +30,13 @@ export class Demo extends Component<any, any> {
           placeholder="input search text"
           onSearch={value => console.log(value)}
           style={{ width: 200 }}
+          className="qweqwe"
+          disabled
         />
         <br />
         <br />
-        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton  className="qweqwe" 
+          disabled/>
         <br />
         <br />
         <Search

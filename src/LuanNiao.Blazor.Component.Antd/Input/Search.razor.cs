@@ -10,15 +10,18 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 {
     public partial class Search
     {
-         
-        private const string _staticClassName = "ant-input-search"; 
-        private const string _staticWrapperClassName = "ant-input-affix-wrapper";
+
+        private const string _staticClassName = "ant-input";
+        private const string _staticWrapperClassName = "ant-input-affix-wrapper ant-input-search ";
         private const string _staticWrapperFocusedClassName = "ant-input-affix-wrapper-focused";
         private const string _staticWrapperDisabledClassName = "ant-input-affix-wrapper-disabled";
         private const string _staticDisableClassName = "ant-input-disabled";
         private const string _staticLGClassName = "ant-input-lg";
         private const string _staticSMClassName = "ant-input-sm";
-        private readonly ClassNameHelper _wrapperClassNameHelper = new ClassNameHelper();
+        //private readonly ClassNameHelper _classHelper = new ClassNameHelper();
+        private readonly ClassNameHelper _inputClassHelper = new ClassNameHelper();
+
+        private string InputClass { get => _inputClassHelper.Build(); }
         private string _wrapperClassName = "";
         private string _defaultValue = "";
         private string _userInputValue;
@@ -29,8 +32,8 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         public Search()
         {
-            _classHelper.SetStaticClass(_staticClassName);
-            _wrapperClassNameHelper.SetStaticClass(_staticWrapperClassName);
+            _inputClassHelper.SetStaticClass(_staticClassName);
+            _classHelper.SetStaticClass(_staticWrapperClassName);
         }
 
         [Parameter]
@@ -46,9 +49,6 @@ namespace LuanNiao.Blazor.Component.Antd.Input
                 _defaultValue = value;
             }
         }
-
-
-
 
         [Parameter]
         public string Placeholder { get; set; }
@@ -73,6 +73,9 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         [Parameter]
         public RenderFragment AddonAfter { get; set; }
 
+        [Parameter]
+        public bool UseBtnMod { get; set; }
+
         public string Value { get => _userInputValue; }
 
         [Parameter]
@@ -86,21 +89,21 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         [JSInvokable]
         public void HandleOnFocus()
         {
-            _wrapperClassName = _wrapperClassNameHelper.AddCustomClass(_staticWrapperFocusedClassName).Build();
+            _wrapperClassName = _classHelper.AddCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
         }
 
         [JSInvokable]
         public void HandleOnBlur()
         {
-            _wrapperClassName = _wrapperClassNameHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
+            _wrapperClassName = _classHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
         }
         [JSInvokable]
         public async void HandleOnChange()
         {
             _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
-            OnChange?.Invoke(_userInputValue);
+            OnChange?.Invoke(_userInputValue);            
         }
 
         [JSInvokable]
@@ -108,6 +111,18 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         {
             _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
             OnPressEnter?.Invoke(_userInputValue);
+            OnSearch?.Invoke(_userInputValue);
+        }
+
+        private async void OnIconClicked()
+        {
+            if (Disabled)
+            {
+                return;
+            }
+            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
+            OnSearch?.Invoke(_userInputValue);
+
         }
 
         protected override void OnParametersSet()
@@ -119,8 +134,8 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         private void BindEvent()
         {
-            ElementInfo.BindFocusEvent($"LNSearch_{IdentityKey}", nameof(HandleOnFocus), this);
-            ElementInfo.BindBlurEvent($"LNSearch_{IdentityKey}", nameof(HandleOnBlur), this);
+            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
+            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
             ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleKeyPress), this, new[] { 13 });
             ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
         }
@@ -148,16 +163,16 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             switch (Size)
             {
                 case InputSize.Large:
-                    _wrapperClassNameHelper.AddCustomClass(_staticLGClassName).Build();
+                    _classHelper.AddCustomClass(_staticLGClassName).Build();
                     break;
                 case InputSize.Small:
-                    _wrapperClassNameHelper.AddCustomClass(_staticSMClassName).Build();
+                    _classHelper.AddCustomClass(_staticSMClassName).Build();
                     break;
                 case InputSize.Default:
                 default:
                     break;
             }
-            _wrapperClassName = _wrapperClassNameHelper.Build();
+            _wrapperClassName = _classHelper.Build();
         }
 
         private void HandleInputSize()
@@ -165,10 +180,10 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             switch (Size)
             {
                 case InputSize.Large:
-                    _classHelper.AddCustomClass(_staticLGClassName);
+                    _inputClassHelper.AddCustomClass(_staticLGClassName);
                     break;
                 case InputSize.Small:
-                    _classHelper.AddCustomClass(_staticSMClassName);
+                    _inputClassHelper.AddCustomClass(_staticSMClassName);
                     break;
                 case InputSize.Default:
                 default:
@@ -179,8 +194,8 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         private void HandleDisabled()
         {
-            _classHelper.AddOrRemove(_staticDisableClassName, () => Disabled);
-            _wrapperClassName = _wrapperClassNameHelper.AddOrRemove(_staticWrapperDisabledClassName, () => Disabled).Build();
+            _inputClassHelper.AddOrRemove(_staticDisableClassName, () => Disabled);
+            _wrapperClassName = _classHelper.AddOrRemove(_staticWrapperDisabledClassName, () => Disabled).Build();
         }
 
     }
