@@ -1,0 +1,14 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+    <div class="ant-picker">
+        <div class="ant-picker-input">
+            <input id="@FirstInputID" placeholder="@PlaceHolder" title="@_firstInputValueStr" size="12" value="@_firstInputValueStr">
+            <span class="ant-picker-suffix">
+                <CalendarOutlined />
+            </span>
+            <span class="ant-picker-clear">
+                <CloseCircleFilled OnClick="FirstInputClearValue" />
+            </span>
+        </div>
+    </div>
