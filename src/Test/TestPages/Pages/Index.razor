@@ -23,7 +23,7 @@
         </a>
         <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=37aa7e890f0ead2e3cb5955691d64f12ef7f318748bd342ed574ec1e15a22c47"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="鸾鸟" title="鸾鸟"></a>
     </div>
-<div id="test-editormd-view" style="@(_whichLang==0?"display:none;":null)">
+<div id="test-editormd-view" style="@(CurrentCulture=="en"?"display:none;":null)">
     <textarea style="display:none;" name="test-editormd-markdown-doc">      
     
 # LuanNiao Blazor 组件库
@@ -184,7 +184,7 @@ LuanNiao Blazor 组件库是**基于**Antd V4版本的CSS样式库开发的ASP.N
             </textarea>
 </div>
 
-<div id="test-editormd-view1" style="@(_whichLang==1?"display:none;":null)">
+<div id="test-editormd-view1" style="@(CurrentCulture=="cn"?"display:none;":null)">
     <textarea style="display:none;" name="test-editormd-markdown-doc">      
     
 >>Tips:this page use the googlea translate, if you found the **bug** you can push [PR](https://github.com/luanniao/luanniao.club/pulls) if you want.
@@ -199,7 +199,7 @@ We will not synchronize the official CSS and corresponding implementations like 
 
 
 We are currently locked in antd v4.0.4.
-<Br />
+<br />
  
 # LuanNiao Blazor Component Library
 LuanNiao Blazor component library is an ASP.NET Core Blazor component library developed ***based on*** the CSS style library of Antd V4 version.
@@ -364,12 +364,7 @@ If there is a bug, I expect you to[GITHUB](https://github.com/luanniao/Blazor.Co
             </textarea>
 </div>
 
-@code{
-
-    /// <summary>
-    /// 0:en 1:cn
-    /// </summary>
-    private int _whichLang = 0;
+@code{ 
 
 
     protected override void OnAfterRender(bool firstRender)
@@ -378,8 +373,7 @@ If there is a bug, I expect you to[GITHUB](https://github.com/luanniao/Blazor.Co
         _jsRT.InvokeVoidAsync("ShowMD", "test-editormd-view");
         _jsRT.InvokeVoidAsync("ShowMD", "test-editormd-view1");
         CultureChanged += (lang) =>
-        {
-            _whichLang = lang == "en" ? 0 : 1;
+        { 
             this.StateHasChanged();
         };
     }
