@@ -73,6 +73,17 @@
         </ChildContent>
     </LNTooltip>
 </MenuItem>
+<MenuItem Key="tag">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "Tag" : "标签")</span>
+        </Title>
+        <ChildContent>
+            <TagOutlined />
+            <span>@Tr(e => e == "en" ? "Tag" : "标签")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
 <MenuItem Key="table">
     <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
         <Title>
@@ -324,8 +335,5 @@
     </LNTooltip>
 </MenuItem>
 @code
-{
-    [Parameter]
-    public Sider SiderInstance { get; set; }
-
-}
+{ [Parameter]
+            public Sider SiderInstance { get; set; } }
