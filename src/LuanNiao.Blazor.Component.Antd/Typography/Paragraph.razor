@@ -1,13 +1,25 @@
 ﻿@inherits LuanNiao.Blazor.Component.Antd.Typography.Common.TypographyBase
 @using LuanNiao.Blazor.Component.Antd.Icons
+@using  LuanNiao.Blazor.Component.Antd.Input
 
 
 
 
     <div class="@ClassName" style="@CStyle" id="@($"paragraph_{IdentityKey}")">
-        @ChildContent
-
-
+        @if (Editable)
+        {
+            if (_isClick)
+            {
+                <Input Size=" InputSize.Default" Placeholder="" DefaultValue="@ChildText" OnChange="OnChang" OnPressEnter="OnEnter" />
+            }
+            else { 
+                @ChildText
+            }
+        }
+        else
+        {
+            @ChildContent
+        }
 
         @if (Copyable)
         {
@@ -35,3 +47,19 @@
 
 
     </div>
+@code{
+
+
+    private void OnChang(string msg)
+    {
+
+    }
+
+    private void OnEnter(string msg)
+    {
+        _isClick = false;
+        this.ChildText  =  msg;
+        this.Flush();
+    }
+
+}
