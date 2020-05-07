@@ -21,9 +21,13 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
         public string CustomText { get; set; } = null;
 
         private bool _showOkBtn = false;
+        private bool _isClick = false;
 
-        //[Parameter]
-        //public UnionType<bool, TypographyUnion> Editable { get; set; }
+        [Parameter]
+        public bool Editable { get; set; }
+
+        [Parameter]
+        public string ChildText { get; set; }
         //[Parameter]
         //public UnionType<bool, TypographyUnion> Ellipsis { get; set; }
         [Parameter]
@@ -50,7 +54,7 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
         private void BindingMouseEvent()
         {
             ElementInfo.BindClickEvent($"LNParagraph_copyImage{IdentityKey}", nameof(HandleCopy), this);
-
+            ElementInfo.BindClickEvent($"paragraph_{IdentityKey}", nameof(HandleClick), this);
         }
 
         [JSInvokable]
@@ -74,6 +78,14 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
                  _showOkBtn = false;
                  this.Flush();
              });
+        }
+
+        [JSInvokable]
+        public async void HandleClick()
+        {
+            if (!Editable) { return; }
+            _isClick = true;
+            this.Flush();
         }
     }
     public class TypographyUnion
