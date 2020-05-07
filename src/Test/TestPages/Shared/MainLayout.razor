@@ -100,7 +100,9 @@
         {
             LuanNiao.Blazor.Core.Translater.CultureChanged += (info) =>
             {
-                this.StateHasChanged();
+                InvokeAsync(() => {
+                    this.StateHasChanged();
+                });
             };
             _siderInstance.CollapsedBtnClicked += () =>
             {
