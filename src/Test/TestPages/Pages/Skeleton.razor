@@ -5,12 +5,14 @@
 
 
 <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@Loading"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
-<LuanNiao.Blazor.Component.Antd.Button.LNButton  OnClickCallback="LoadingToggle" Type="LNButton.BType.Primary">
+<LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="LoadingToggle" Type="LNButton.BType.Primary">
     Loading @Loading
 </LuanNiao.Blazor.Component.Antd.Button.LNButton>
 <br />
 Active:
 <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Active="@(true)" Loading="@(true)"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+<br />
+<LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton  Avatar ="@()"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
 
 @code{
     private bool Loading = false;

@@ -2,9 +2,12 @@
 @if (Loading)
 {
     <div class="@ClassName">
-        @*<div class="ant-skeleton-header">
-            <span class="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"></span>
-        </div>*@
+        @if (_isAvatar)
+        {
+        <div class="ant-skeleton-header">
+            <span class="@AvatarClassName"></span>
+        </div>
+        }
         <div class="ant-skeleton-content">
             <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
             <ul class="ant-skeleton-paragraph">
