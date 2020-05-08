@@ -102,22 +102,18 @@
                     currentDt = currentDt.AddDays(0 - currentDt.DayOfWeek);
                     for (int rowIndeex = 0; rowIndeex < 6; rowIndeex++)
                     {
-                        <tr class="ant-picker-week-panel-row">
-                            <td class="ant-picker-cell ant-picker-cell-week">
-                                @if (currentDt.Year < CurrentYear)
-                                {
-                                    @("1")
-                                }
-                                else
-                                {
-                                    @(_gc.GetWeekOfYear(currentDt, CalendarWeekRule.FirstDay, DayOfWeek.Sunday))
-                                }
 
+                        var thisRowWOY = (currentDt.Year < CurrentYear) ? 1 : _gc.GetWeekOfYear(currentDt, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+                        <tr class="ant-picker-week-panel-row @((thisRowWOY==CurrentWeek?"ant-picker-week-panel-row-selected":null))"
+                            @onclick="e=> { WeekClicked(thisRowWOY); }"
+                            >
+                            <td class="ant-picker-cell ant-picker-cell-week">
+                                @thisRowWOY
                             </td>
 
                             @for (int i = 0; i < 7; i++)
                             {
-                                <td title="@($"{currentDt:yyyy-MM-dd}")" class="ant-picker-cell @((currentDt.Month==CurrentMonth?"ant-picker-cell-in-view":null))">
+                                <td title="@($"{currentDt:yyyy-MM-dd}")" class="ant-picker-cell @((currentDt.Month==CurrentMonth?"ant-picker-cell-in-view":null)) @((currentDt.Day==CurrentDay?"ant-picker-cell-today":null))">
                                     <div class="ant-picker-cell-inner">@currentDt.Day</div>
                                 </td>
                                 currentDt = currentDt.AddDays(1);
