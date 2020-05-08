@@ -18,7 +18,7 @@ export class Demo extends Component<any, any> {
 
     return (
       <div>
-        <DatePicker onChange={onChange} picker="year"/>
+        <DatePicker onChange={onChange} picker="week"/>
         {/* <br />
         <DatePicker onChange={onChange} picker="week" />
         <br />
