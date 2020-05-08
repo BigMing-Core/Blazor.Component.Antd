@@ -1,0 +1,24 @@
+﻿@typeparam TItem
+@inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.AspNetCore.Components.Web
+
+<div class="@ClassName" style="@CStyle">
+    @if (!string.IsNullOrWhiteSpace(Header))
+    {
+        <div class="@_headerClassName">@Header</div>
+    }
+    <div class="@_spinLoadingClassName">
+        <div class="@_spinContainerClassName">
+            <ul class="ant-list-items">
+                @foreach (var item in Items)
+                {
+                    <li class="@_listItemClassName" @onclick="@(e => OnClickHandler(item))">@ListItem(item)</li>
+                }
+            </ul>
+        </div>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Footer))
+    {
+        <div class="@_footerClassName">@Footer</div>
+    }
+</div>

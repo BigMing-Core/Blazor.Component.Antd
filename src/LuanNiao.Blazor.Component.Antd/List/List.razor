@@ -1,9 +1,12 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.AspNetCore.Components.Web
 
 <div class="@ClassName" style="@CStyle">
     @if (Header != null)
     {
-        @Header
+        <div class="@_headerClassName">
+            @Header
+        </div>
     }
     <div class="@_spinLoadingClassName">
         <div class="@_spinContainerClassName">
@@ -21,10 +24,8 @@
     </div>
     @if (Footer != null)
     {
-        @Footer
+        <div class="@_footerClassName">
+            @Footer
+        </div>
     }
 </div>
-
-@code {
-
-}
