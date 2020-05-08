@@ -1,20 +1,37 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
-@if (Loading)
-{
+
     <div class="@ClassName">
-        @if (_isAvatar)
+        @if (IsElement)
         {
-        <div class="ant-skeleton-header">
-            <span class="@AvatarClassName"></span>
-        </div>
+            <span class="@ElementClassName"></span>
         }
-        <div class="ant-skeleton-content">
-            <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
-            <ul class="ant-skeleton-paragraph">
-                <li></li>
-                <li></li>
-                <li style="width: 61%;"></li>
-            </ul>
-        </div>
+        else
+        {
+            @if (Element == EElement.Avatar)
+            {
+                <div class="ant-skeleton-header">
+                    <span class="@ElementClassName"></span>
+                </div>
+            }
+            <div class="ant-skeleton-content">
+                <h3 class="ant-skeleton-title" style="width: @(TitleWidth)%;"></h3>
+                @if (Paragraph != null)
+                {
+                    <ul class="ant-skeleton-paragraph">
+                        @for (var i = 0; i < Paragraph.Rows; i++)
+                        {
+                            @if (i == Paragraph.Rows)
+                            {
+                                <li style="width: @(Paragraph.Width)%;"></li>
+                            }
+                            else
+                            {
+                                <li></li>
+                            }
+                        }
+                    </ul>
+                }
+
+            </div>
+        }
     </div>
-}
