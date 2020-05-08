@@ -1,0 +1,30 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<div class="@ClassName" style="@CStyle">
+    @if (Header != null)
+    {
+        @Header
+    }
+    <div class="@_spinLoadingClassName">
+        <div class="@_spinContainerClassName">
+            <ul class="ant-list-items">
+                @if (Items != null)
+                {
+                    @Items
+                }
+                else
+                {
+                    @ChildContent
+                }
+            </ul>
+        </div>
+    </div>
+    @if (Footer != null)
+    {
+        @Footer
+    }
+</div>
+
+@code {
+
+}

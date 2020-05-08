@@ -1,0 +1,22 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+<div class="@_listItemMetaClassName">
+    @if (Avatar != null)
+    {
+        <div class="@_listItemAvatarClassName">
+            @Avatar
+        </div>
+    }
+    <div class="@_listItemMetaContentClassName">
+        @if (Title != null)
+        {
+            <h4 class="@_listItemMetaTitleClassName">
+                @Title
+            </h4>
+        }
+        @(Description != null)
+        {
+            <div class="@_listItemMetaDescriptionClassName">@Description</div>
+        }
+    </div>
+</div>
