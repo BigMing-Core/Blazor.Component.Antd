@@ -1,41 +1,87 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.AspNetCore.Components.Web
 
-@{
-    RenderFragment mainContent =
-        @<div>
-            @if (Meta == null)
+<li class="@_listItemClassName">@ChildContent</li>
+
+@*@{
+        RenderFragment mainContent =
+            @<div>
+                @if (MetaContent == null)
+                {
+                    @ChildContent
+                }
+                else
+                {
+                    @MetaContent
+                    @if (Content != null)
+                    {
+                        <div>@Content</div>
+                    }
+                    @if (Actions != null)
+                    {
+                        <ul class="@_listItemActionClassName">
+                            @foreach (var a in Actions)
+                            {
+                                @a
+                            }
+                        </ul>
+                    }
+                }
+            </div>;
+    }
+
+    <li class="@_listItemClassName">
+        @if (Extra == null)
+        {
+            @if (MetaContent == null)
             {
                 @ChildContent
             }
             else
             {
-                @Meta
+                @MetaContent
                 @if (Content != null)
                 {
                     <div>@Content</div>
                 }
-                @if (Action != null)
+                @if (Actions != null)
                 {
-                     <div class="@_listItemActionClassName">
-                         @Action
-                     </div>
+                    <ul class="@_listItemActionClassName">
+                        @foreach (var a in Actions)
+                        {
+                            @a
+                        }
+                    </ul>
                 }
             }
-        </div>;
-}
-
-<li class="@_listItemClassName">
-    @if (Extra == null)
-    {
-        @mainContent
-    }
-    else
-    {
-        <div class="@_listItemMainClassName">
-            @mainContent
-        </div>
-        <div class="@_listItemExtraClassName">
-            @Extra
-        </div>
-    }
-</li>
+        }
+        else
+        {
+            <div class="@_listItemMainClassName">
+                @if (MetaContent == null)
+                {
+                    @ChildContent
+                }
+                else
+                {
+                    @MetaContent
+                    @if (Content != null)
+                    {
+                        <div>@Content</div>
+                    }
+                    @if (Actions != null)
+                    {
+                        <ul class="@_listItemActionClassName">
+                            @foreach (var a in Actions)
+                            {
+                                @a
+                            }
+                        </ul>
+                    }
+                }
+            </div>
+            <ul class="@_listItemExtraClassName">
+                @Extra
+            </ul>
+        }
+    </li>*@
