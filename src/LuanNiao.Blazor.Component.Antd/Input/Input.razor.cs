@@ -76,7 +76,9 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         [Parameter]
         public Action<string> OnChange { get; set; }
         [Parameter]
-        public Action<string> OnPressEnter{ get; set; }
+        public Action<string> OnPressEnter { get; set; }
+        [Parameter]
+        public Action<string> OnBlur { get; set; }
 
 
         [JSInvokable]
@@ -87,10 +89,12 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         }
 
         [JSInvokable]
-        public void HandleOnBlur()
+        public async void HandleOnBlur()
         {
             _wrapperClassName = _wrapperClassNameHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
+            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
+            OnBlur?.Invoke(_userInputValue);
         }
         [JSInvokable]
         public async void HandleOnChange()
@@ -100,9 +104,9 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         }
 
         [JSInvokable]
-        public async void HandleKeyPress(KeyboardEvent _)
+        public async void HandleEnterKeyPress(KeyboardEvent _)
         {
-            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}"); 
+            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
             OnPressEnter?.Invoke(_userInputValue);
         }
 
@@ -114,10 +118,10 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
 
         private void BindEvent()
-        { 
+        {
             ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
             ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
-            ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleKeyPress), this, new[] { 13 });
+            ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleEnterKeyPress), this, new[] { 13 });
             ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
         }
 

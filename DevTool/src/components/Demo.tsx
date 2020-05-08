@@ -5,45 +5,28 @@ import "antd/dist/antd.css";
 import "./demo.less";
 
 
-import { Tag } from 'antd';
+import { DatePicker } from 'antd';
 
-const { CheckableTag } = Tag;
-import {
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-} from '@ant-design/icons';
+function onChange(date:any, dateString:any) {
+  console.log(date, dateString);
+}
+
+
 export class Demo extends Component<any, any> {
-
-
-
 
   render() {
 
     return (
       <div>
-        <h4>With icon</h4>
-        <Tag icon={<CheckCircleOutlined />} color="success">
-          success
-      </Tag>
-        <Tag icon={<SyncOutlined spin />} color="processing">
-          processing
-      </Tag>
-        <Tag icon={<CloseCircleOutlined />} color="error">
-          error
-      </Tag>
-        <Tag icon={<ExclamationCircleOutlined />} color="warning">
-          warning
-      </Tag>
-        <Tag icon={<ClockCircleOutlined />} color="default">
-          waiting
-      </Tag>
-        <Tag icon={<MinusCircleOutlined />} color="default">
-          stop
-      </Tag>
+        <DatePicker onChange={onChange} />
+        {/* <br />
+        <DatePicker onChange={onChange} picker="week" />
+        <br />
+        <DatePicker onChange={onChange} picker="month" />
+        <br />
+        <DatePicker onChange={onChange} picker="quarter" />
+        <br />
+        <DatePicker onChange={onChange} picker="year" /> */}
       </div>
     );
   }
