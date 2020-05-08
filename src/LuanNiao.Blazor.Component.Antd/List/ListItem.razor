@@ -1,0 +1,41 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+@{
+    RenderFragment mainContent =
+        @<div>
+            @if (Meta == null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Meta
+                @if (Content != null)
+                {
+                    <div>@Content</div>
+                }
+                @if (Action != null)
+                {
+                     <div class="@_listItemActionClassName">
+                         @Action
+                     </div>
+                }
+            }
+        </div>;
+}
+
+<li class="@_listItemClassName">
+    @if (Extra == null)
+    {
+        @mainContent
+    }
+    else
+    {
+        <div class="@_listItemMainClassName">
+            @mainContent
+        </div>
+        <div class="@_listItemExtraClassName">
+            @Extra
+        </div>
+    }
+</li>
