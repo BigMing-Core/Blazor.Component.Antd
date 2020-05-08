@@ -1,0 +1,10 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using Microsoft.AspNetCore.Components.Web
+
+<div class="@_listItemMainClassName" style="@CStyle">
+    @ChildContent
+</div>
+
+@code {
+    private const string _listItemMainClassName = "ant-list-item-main";
+}

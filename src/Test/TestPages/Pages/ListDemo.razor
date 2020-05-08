@@ -1,10 +1,55 @@
 ﻿@page "/list"
 
+@using LuanNiao.Blazor.Component.Antd
 @using LuanNiao.Blazor.Component.Antd.Avatar;
 @using LuanNiao.Blazor.Component.Antd.List;
 @using LuanNiao.Blazor.Component.Antd.Icons;
+@using LuanNiao.Blazor.Component.Antd.Grid;
+@using LuanNiao.Blazor.Component.Antd.Card;
+
+<style>
+    * {
+        text-align: left;
+    }
+</style>
 
 <h3>列表</h3>
+
+<div style="padding: 10px;">
+    <h3>简单列表（Normal）</h3>
+    <SimpleList Items="@_students" Header="Header" Footer="Footer" OnClick="@(s => Console.WriteLine(s.Name))" @ref="_simpleList1">
+        <ListItem Context="item">
+            @item.Name
+        </ListItem>
+    </SimpleList>
+</div>
+<div style="padding: 10px;">
+    <h3>简单列表（Large）</h3>
+    <SimpleList Items="@_items" Size="LNListSize.Large" Header="Header" Footer="Footer">
+        <ListItem Context="item">
+            @item
+        </ListItem>
+    </SimpleList>
+</div>
+<div>
+    <h3>简单列表（Small）</h3>
+    <SimpleList Items="@_items" Size="LNListSize.Small" Header="Header" Footer="Footer">
+        <ListItem Context="item">
+            @item
+        </ListItem>
+    </SimpleList>
+</div>
+<div>
+    <h3>简单列表（NoFlex）</h3>
+    <SimpleList Items="@_items" NoFlex="true" Header="Header" Footer="Footer">
+        <ListItem Context="item">
+            @item
+        </ListItem>
+    </SimpleList>
+</div>
+
+<br />
+<br />
 
 <List>
     @foreach (var item in _items)
@@ -57,6 +102,7 @@
                     <Title>@student.Name</Title>
                     <Description>@student.Description</Description>
                 </ListItemMeta>
+                <div>Content</div>
             </ListItem>
         }
     </Items>
@@ -67,13 +113,101 @@
 <button @onclick="Refresh">使用StateHasChanged刷新</button>
 <button @onclick="Refresh2">使用Flush刷新，需要绑定组件</button>
 
+<br />
+<br />
+<Row>
+    <Col Span="8">
+    <LNCard Bordered="true" Hoverable="true">
+        <Title>
+            Default size card
+        </Title>
+        <ChildContent>
+            <p>注意：如果有extra，层级如下：</p>
+<pre>
+             - ListItemMain 
+ListItem - |  
+             - ListItemExtra 
+</pre>
+        </ChildContent>
+    </LNCard>
+    </Col>
+
+    <Col Span="8">
+    <LNCard Bordered="true" Hoverable="true">
+        <Title>
+            Default size card
+        </Title>
+        <ChildContent>
+            <p>如果没有extra，可省略 ListItemMain，层级如下：</p>
+<pre>
+                 - ListItemMeta
+ListItemMain - | - ChildContent
+                 - ListItemAction
+</pre>
+        </ChildContent>
+    </LNCard>
+    </Col>
+
+    <Col Span="8">
+    <LNCard Bordered="true" Hoverable="true">
+        <Title>
+            Default size card
+        </Title>
+        <ChildContent>
+            <p>Meta 层级：</p>
+<pre>
+                 - Avatar 
+ListItemMeta - | - Title  
+                 - Description 
+</pre>
+        </ChildContent>
+    </LNCard>
+    </Col>
+</Row>
+
+<List ItemLayout="LNListItemLayout.Vertical">
+    <Header>带 Header 和 Footer 的列表</Header>
+    <Items>
+        @foreach (var student in _students)
+        {
+            <ListItem>
+                <ListItemMain>
+                    <ListItemMeta>
+                        <Avatar>
+                            <LNAvatar Src="@student.Avatar" Alt="@student.Name">
+                                <Icon>
+                                    <UserOutlined></UserOutlined>
+                                </Icon>
+                            </LNAvatar>
+                        </Avatar>
+                        <Title>@student.Name</Title>
+                        <Description>@student.Description</Description>
+                    </ListItemMeta>
+                    测试
+                    <ListItemAction>
+                        <ListItemActionItem><StarOutlined /> 156</ListItemActionItem>
+                        <ListItemActionItem><LikeOutlined /> 156</ListItemActionItem>
+                        <ListItemActionItem><MessageOutlined /> 2</ListItemActionItem>
+                    </ListItemAction>
+                </ListItemMain>
+                <ListItemExtra>Extra</ListItemExtra>
+            </ListItem>
+        }
+    </Items>
+    <Footer>这是Footer</Footer>
+</List>
+
 @code {
     List<string> _items = new List<string> { "item1", "item2", "item3" };
 
     private List _list;
 
+    private SimpleList<Student> _simpleList1;
+
+
+
     List<Student> _students = new List<Student>
-{
+    {
         new Student {Name="张三", Description = "张三你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
         new Student {Name="李四", Description = "李四你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
         new Student {Name="王五", Description = "王五你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
@@ -95,6 +229,11 @@
             student.Name += "_flush";
         }
         _list.Flush();
+    }
+
+    public void OnStringItemClick(MouseEventArgs args, string item)
+    {
+        Console.WriteLine(item);
     }
 
     class Student

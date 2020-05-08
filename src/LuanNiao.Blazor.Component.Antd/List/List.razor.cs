@@ -4,7 +4,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
 {
     public partial class List
     {
-        // ant-list ant-list-split ant-list-bordered ant-list-something-after-last-item
+        // ant-list ant-list-vertical ant-list-lg ant-list-split ant-list-something-after-last-item
 
         private const string _basicClassName                 = "ant-list";
         private const string _splitClassName                 = "ant-list-split";
@@ -13,7 +13,11 @@ namespace LuanNiao.Blazor.Component.Antd.List
         private const string _smallClassName                 = "ant-list-sm";
         private const string _largeClassName                 = "ant-list-lg";
         private const string _gridClassName                  = "ant-list-grid";
-                                                             
+        private const string _verticalClassName              = "ant-list-vertical";
+
+        private const string _headerClassName                = "ant-list-header";
+        private const string _footerClassName                = "ant-list-footer";
+
         private const string _spinLoadingClassName           = "ant-spin-nested-loading";
         private const string _spinContainerClassName         = "ant-spin-container";
                                                              
@@ -71,6 +75,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
             SplitHandler();
             SizeHandler();
             NotEmptyAfterLastItemHandler();
+            ItemLayoutHandler();
         }
 
         protected override void OnParametersSet()
@@ -106,9 +111,14 @@ namespace LuanNiao.Blazor.Component.Antd.List
             _classHelper.AddOrRemove(_gridClassName, () => Grid);
         }
 
+        private void ItemLayoutHandler()
+        {
+            _classHelper.AddOrRemove(_verticalClassName, () => ItemLayout == LNListItemLayout.Vertical);
+        }
+
         private void NotEmptyAfterLastItemHandler()
         {
-            _classHelper.AddOrRemove(_gridClassName, () => Footer == null);
+            _classHelper.AddOrRemove(_notEmptyAfterLastItemClassName, () => Footer != null);
         }
     }
 
