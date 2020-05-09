@@ -23,8 +23,20 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
 
         [Parameter]
         public bool Disabled { get; set; }
+        private bool _checked = false;
         [Parameter]
-        public bool Checked { get; set; }
+        public bool Checked
+        {
+            get => _checked;
+            set
+            {
+                if (_hasFirstRender)
+                {
+                    return;
+                }
+                _checked = value;
+            }
+        }
         [Parameter]
         public string Value { get; set; }
         [CascadingParameter]
@@ -39,7 +51,7 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         }
         protected override void OnParametersSet()
         {
-            _classHelper.AddCustomClass(_checkClass, () => Checked)
+            _classHelper.AddOrRemove(_checkClass, () => Checked)
               .AddOrRemove(_disabledClass, condition: () => Disabled);
             this.Flush();
         }
@@ -54,8 +66,10 @@ namespace LuanNiao.Blazor.Component.Antd.Radio
         }
         private void SetPropWhitParent()
         {
-            this.Disabled = RootGourp.Disabled;
-            //_verticalStyle = _verticalStyleHelper.AddDiffCustomStyle(_verticaStyleItem, _defaultStyleItem, () => RootGourp.IsVertical).Build();
+            if (!this.Disabled)
+            {
+                this.Disabled = RootGourp.Disabled;
+            }
         }
         private void HandleClickEvent()
         {
