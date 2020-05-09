@@ -10,8 +10,7 @@ namespace LuanNiao.Blazor.Component.Antd.Skeleton
     public partial class Skeleton
     {
         private readonly ClassNameHelper _elementClassNameHelper = new ClassNameHelper();
-
-
+        private readonly OriginalStyleHelper _spanStyleHelper = new OriginalStyleHelper();
         private const string _defaultClass = "ant-skeleton";
         private const string _activeClass = "ant-skeleton-active";
         private const string _elementClass = "ant-skeleton-element";
@@ -38,18 +37,32 @@ namespace LuanNiao.Blazor.Component.Antd.Skeleton
         public SkeletonParagraphProps Paragraph { get; set; }
         [Parameter]
         public bool Loading { get; set; }
+        [Parameter]
+        public virtual string SpanStyle
+        {
+            get
+            {
+                return _spanStyleHelper.Build();
+            }
+            set
+            {
+                _spanStyleHelper.AddCustomStyleStr(value);
+            }
+        }
         public Skeleton()
         {
-            _classHelper.SetStaticClass(_defaultClass);
+            _classHelper.SetStaticClass(_defaultClass);            
         }
+
         protected override void OnInitialized()
         {
             _classHelper.AddOrRemove(_elementClass, condition: () => IsElement)
             .AddOrRemove(_activeClass, condition: () => Active);
-            HandleElement();
+            InitClass();
+            HandleSize();
+            HandleShape();
         }
-
-        private void HandleElement()
+        private void InitClass()
         {
             if (Element != EElement.Default)
             {
@@ -60,7 +73,9 @@ namespace LuanNiao.Blazor.Component.Antd.Skeleton
                 _elementSquareClass = string.Format(_elementSquareClass, _elementDefaultClass);
                 _elementCircleClass = string.Format(_elementCircleClass, _elementDefaultClass);
             }
-
+        }
+        private void HandleSize()
+        {
             switch (Size)
             {
                 case ESize.Default:
@@ -74,6 +89,9 @@ namespace LuanNiao.Blazor.Component.Antd.Skeleton
                 default:
                     break;
             }
+        }
+        private void HandleShape() {
+
             switch (Shape)
             {
                 case Eshape.Square:
