@@ -2,14 +2,29 @@
 @using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 <div style="position: absolute; top: 0px; left: 0px; width: 100%;">
     <div>
-        <div class="ant-picker-dropdown ant-picker-dropdown-placement-bottomLeft " style="left: 0px; top: 36px;">
+        <div class="ant-picker-dropdown ant-picker-dropdown-placement-bottomLeft " style="left: @($"{_elementRects.Left}px"); top: @($"{_elementRects.Bottom}px");">
             <div class="ant-picker-panel-container">
                 <div tabindex="-1" class="ant-picker-panel">
-                    @*<DecadePicker></DecadePicker>*@
-                    @*<YearPicker></YearPicker>*@
-                    @*<MonthPicker></MonthPicker>*@
-                    @*<WeekPicker></WeekPicker>*@
-                    <DatePanelPicker></DatePanelPicker>
+                    @if (_showDecade)
+                    {
+                        <DecadePicker></DecadePicker>
+                    }
+                    @if (_showYear)
+                    {
+                        <YearPicker></YearPicker>
+                    }
+                    @if (_showMonth)
+                    {
+                        <MonthPicker></MonthPicker>
+                    }
+                    @if (_showWeek)
+                    {
+                        <WeekPicker></WeekPicker>
+                    }
+                    @if (_showDate)
+                    {
+                        <DatePanelPicker></DatePanelPicker>
+                    }
                 </div>
             </div>
         </div>

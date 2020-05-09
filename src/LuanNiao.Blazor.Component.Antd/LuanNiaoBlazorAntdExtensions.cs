@@ -1,4 +1,5 @@
-﻿using LuanNiao.Blazor.Component.Antd.Tooltip;
+﻿using LuanNiao.Blazor.Component.Antd.DatePicker;
+using LuanNiao.Blazor.Component.Antd.Tooltip;
 using LuanNiao.Blazor.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,6 +15,7 @@ namespace LuanNiao.Blazor.Component.Antd
             services.AddLuanNiaoBlazor();
             services.AddScoped<Message>();
             services.AddScoped<TooltipService>();
+            services.AddScoped<DatePickerServer>();
             return services;
         }
 
