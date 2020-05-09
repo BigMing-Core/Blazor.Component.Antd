@@ -20,15 +20,6 @@ namespace LuanNiao.Blazor.Component.Antd.List
 
         private const string _spinLoadingClassName           = "ant-spin-nested-loading";
         private const string _spinContainerClassName         = "ant-spin-container";
-                                                             
-        private const string _ulClassName                    = "ant-list-items";
-        private const string _liClassName                    = "ant-list-item";
-                                                             
-        private const string _listItemMeta                   = "ant-list-item-meta";
-        private const string _listItemAvatar                 = "ant-list-item-meta-avatar";
-        private const string _listItemMetaContent            = "ant-list-item-meta-content";
-        private const string _listItemMetaTitle              = "ant-list-item-meta-title";
-        private const string _listItemMetaDescription        = "ant-list-item-meta-description";
 
         [Parameter]
         public RenderFragment Header { get; set; }

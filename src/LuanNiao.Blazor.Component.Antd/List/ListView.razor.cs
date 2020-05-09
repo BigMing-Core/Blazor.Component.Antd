@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
-
 namespace LuanNiao.Blazor.Component.Antd.List
 {
-    public partial class SimpleList<TItem>
+    [Obsolete("This class can cause performance problems; use LuanNiao.Blazor.Component.Antd.List.List instead")]
+    public partial class ListView<TItem>
     {
         private const string _basicClassName = "ant-list";
         private const string _splitClassName = "ant-list-split";
@@ -13,6 +13,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
         private const string _smallClassName = "ant-list-sm";
         private const string _largeClassName = "ant-list-lg";
         private const string _gridClassName = "ant-list-grid";
+        private const string _verticalClassName = "ant-list-vertical";
 
         private const string _headerClassName = "ant-list-header";
         private const string _footerClassName = "ant-list-footer";
@@ -59,7 +60,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
         public string EmptyText { get; set; }
 
         [Parameter]
-        public List<TItem> DataSource { get; set; }
+        public IReadOnlyList<TItem> DataSource { get; set; }
 
         [Parameter]
         public RenderFragment<TItem> Item { get; set; }
@@ -67,7 +68,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
         [Parameter]
         public Action<TItem> OnClick { get; set; }
 
-        public SimpleList()
+        public ListView()
         {
             _classHelper.SetStaticClass(_basicClassName);
         }
@@ -80,6 +81,7 @@ namespace LuanNiao.Blazor.Component.Antd.List
             SizeHandler();
             NotEmptyAfterLastItemHandler();
             NoFlexHandle();
+            ItemLayoutHandler();
         }
 
         private void BorderHandler()
@@ -121,6 +123,11 @@ namespace LuanNiao.Blazor.Component.Antd.List
                     _classHelper.AddCustomClass(_smallClassName);
                     break;
             }
+        }
+
+        private void ItemLayoutHandler()
+        {
+            _classHelper.AddOrRemove(_verticalClassName, () => ItemLayout == LNListItemLayout.Vertical);
         }
 
         private void OnClickHandler(TItem item)
