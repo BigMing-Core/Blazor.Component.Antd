@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LuanNiao.Blazor.Core;
-using LuanNiao.Blazor.Core.Common; 
+using LuanNiao.Blazor.Core.Common;
 
 namespace LuanNiao.Blazor.Component.Antd.Grid
 {
@@ -23,7 +23,7 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             set;
         }
 
-         
+
 
         [Parameter]
         public IGutter Gutter
@@ -125,25 +125,31 @@ namespace LuanNiao.Blazor.Component.Antd.Grid
             else if (Gutter is ResponsiveGutter adapt)
             {
                 adapt.Marshal();
-
-
-                WindowEventHub.Resized += (data) =>
-                {
-                    if (adapt.TryGetGutter(data.InnerWidth, out var newGutter))
-                    {
-                        this._styleHelper.Rest();
-                        this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
-                        this._styleHelper.AddCustomStyleStr($"margin-right: -{newGutter}px");
-                        this.GutterChange?.Invoke(newGutter);
-                        Flush();
-                    }
-                };
+                WindowEventHub.Resized += OnResized;
             }
             else if (Gutter is MarginGutter margin)
             {
                 var horizontalSize = margin.Horizontal / 2;
                 var vertialSize = margin.Vertial / 2;
                 this._styleHelper.AddCustomStyleStr($"margin: -{vertialSize}px -{horizontalSize}px {vertialSize}px;");
+            }
+        }
+
+        protected override void Dispose(bool flag)
+        {
+            WindowEventHub.Resized -= OnResized;
+            base.Dispose(flag);
+        }
+
+        private void OnResized(WindowSize data)
+        {
+            if ((Gutter as ResponsiveGutter).TryGetGutter(data.InnerWidth, out var newGutter))
+            {
+                this._styleHelper.Rest();
+                this._styleHelper.AddCustomStyleStr($"margin-left: -{newGutter}px");
+                this._styleHelper.AddCustomStyleStr($"margin-right: -{newGutter}px");
+                this.GutterChange?.Invoke(newGutter);
+                Flush();
             }
         }
 
