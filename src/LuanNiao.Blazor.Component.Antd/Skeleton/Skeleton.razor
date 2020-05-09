@@ -1,0 +1,37 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+    <div class="@ClassName">
+        @if (IsElement)
+        {
+            <span class="@ElementClassName"></span>
+        }
+        else
+        {
+            @if (Element == EElement.Avatar)
+            {
+                <div class="ant-skeleton-header">
+                    <span class="@ElementClassName"></span>
+                </div>
+            }
+            <div class="ant-skeleton-content">
+                <h3 class="ant-skeleton-title" style="width: @(TitleWidth)%;"></h3>
+                @if (Paragraph != null)
+                {
+                    <ul class="ant-skeleton-paragraph">
+                        @for (var i = 0; i < Paragraph.Rows; i++)
+                        {
+                            @if (i == Paragraph.Rows)
+                            {
+                                <li style="width: @(Paragraph.Width)%;"></li>
+                            }
+                            else
+                            {
+                                <li></li>
+                            }
+                        }
+                    </ul>
+                }
+
+            </div>
+        }
+    </div>

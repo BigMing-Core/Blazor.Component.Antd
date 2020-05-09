@@ -1,0 +1,37 @@
+﻿@layout MainLayout
+@page "/skleton"
+@using LuanNiao.Blazor.Component.Antd.Skeleton
+@using LuanNiao.Blazor.Component.Antd.Button
+
+    <div style="text-align:left">
+        @*<LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@Loading"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+        <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="LoadingToggle" Type="LNButton.BType.Primary">
+            Loading @Loading
+        </LuanNiao.Blazor.Component.Antd.Button.LNButton>
+        <br />*@
+        Active:
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@(true)"
+                                                          TitleWidth="@(50)"
+                                                          Paragraph="@(new SkeletonParagraphProps() { Rows = 4,Width = 60 })"
+                                                          Element="@(EElement.Avatar)">
+        </LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+        <br />
+        Input:
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Input)" ></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+        <br />
+        Button:
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Button)" Shape="@(Eshape.Circle)"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+        <br />
+        avatar
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Avatar)" Active="@(true)" Shape="@(Eshape.Circle)"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+    </div>
+@code{
+    private bool Loading = false;
+
+    private void LoadingToggle(LNButton _)
+    {
+        this.Loading = !this.Loading;
+        this.StateHasChanged();
+    }
+
+}
