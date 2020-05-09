@@ -4,11 +4,18 @@
 @using LuanNiao.Blazor.Component.Antd.Button
 
     <div style="text-align:left">
-        @*<LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@Loading"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@Loading"
+                                                    TitleWidth="@(50)"
+                                                    Paragraph="@(new SkeletonParagraphProps() { Rows = 4,Width = 60 })"
+                                                    Element="@(EElement.Avatar)">
+          test
+        </LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+
         <LuanNiao.Blazor.Component.Antd.Button.LNButton OnClickCallback="LoadingToggle" Type="LNButton.BType.Primary">
             Loading @Loading
         </LuanNiao.Blazor.Component.Antd.Button.LNButton>
-        <br />*@
+        <br />
         Active:
         <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Loading="@(true)"
                                                           TitleWidth="@(50)"
@@ -17,7 +24,7 @@
         </LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
         <br />
         Input:
-        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Input)" ></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
+        <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Input)" SpanStyle="width:40px;" ></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>
         <br />
         Button:
         <LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton Element="@(EElement.Button)" Shape="@(Eshape.Circle)"></LuanNiao.Blazor.Component.Antd.Skeleton.Skeleton>

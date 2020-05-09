@@ -1,9 +1,11 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
+@if (!Loading)
+{
     <div class="@ClassName">
         @if (IsElement)
         {
-            <span class="@ElementClassName"></span>
+            <span class="@ElementClassName" style="@SpanStyle"></span>
         }
         else
         {
@@ -35,3 +37,8 @@
             </div>
         }
     </div>
+
+}
+else{
+    @ChildContent
+}
