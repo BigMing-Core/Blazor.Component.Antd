@@ -51,6 +51,17 @@
         </ChildContent>
     </LNTooltip>
 </MenuItem>
+<MenuItem Key="skleton">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e=>e=="en"? "Skleton":"骨架屏")</span>
+        </Title>
+        <ChildContent>
+            <ColumnWidthOutlined />
+            <span>@Tr(e => e== "en" ? "Skleton" : "骨架屏")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
 <MenuItem Key="icons">
     <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
         <Title>
@@ -104,6 +115,17 @@
         <ChildContent>
             <BorderlessTableOutlined />
             <span>@Tr(e => e == "en" ? "Pagination" : "分页")</span>
+        </ChildContent>
+    </LNTooltip>
+</MenuItem>
+<MenuItem Key="list">
+    <LNTooltip OverlayStyle="margin-left:35px" Placement="LuanNiao.Blazor.Component.Antd.PlacementType.Right">
+        <Title>
+            <span>@Tr(e => e == "en" ? "List" : "列表")</span>
+        </Title>
+        <ChildContent>
+            <BorderlessTableOutlined />
+            <span>@Tr(e => e == "en" ? "List" : "列表")</span>
         </ChildContent>
     </LNTooltip>
 </MenuItem>
@@ -336,4 +358,4 @@
 </MenuItem>
 @code
 { [Parameter]
-            public Sider SiderInstance { get; set; } }
+    public Sider SiderInstance { get; set; } }

@@ -1,7 +1,6 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
-@using Microsoft.AspNetCore.Components.Web
-@using  LuanNiao.Blazor.Component.Antd.Icons
+@using Microsoft.AspNetCore.Components.Web 
 
 <div class="ant-picker-decade-panel">
     <div class="ant-picker-header">
@@ -15,7 +14,7 @@
     </div>
     <div class="ant-picker-body">
         <table class="ant-picker-content">
-            <tbody>
+            <tbody>               
 
                 @for (int tr = 0, index = 0; tr < 4; tr++)
                 {
@@ -29,7 +28,6 @@
                                     @($"{leftYear}-{rightYear}")
                                 </div>
                             </td>
-
                         }
                     </tr>
                 }                

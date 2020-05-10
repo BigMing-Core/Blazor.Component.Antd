@@ -26,19 +26,13 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
 
         [Parameter]
-        public string PlaceHolder { get; set; } = "click to select";
-
-
-
-        private void BindFirstPickerEvent()
-        {
-            ElementInfo.BindFocusEvent(FirstInputID, nameof(FirstPickerFocus), this, true);
-        }
-
-        [JSInvokable]
-        public void FirstPickerFocus()
+        public string FirstInputPlaceHolder { get; set; } = "click to select";
+         
+         
+        private async void FirstPickerFocus()
         {
 
+           await Server.ShowMonthPicker(InputOuterID);
         }
 
         private async void FirstInputClearValue()

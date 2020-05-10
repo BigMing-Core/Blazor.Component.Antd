@@ -2,10 +2,28 @@
 @page "/datepicker"
 
 @using LuanNiao.Blazor.Component.Antd.DatePicker
+@using static LuanNiao.Blazor.Core.Translater
 
 
 <DatePickerStub></DatePickerStub>
 
 <DatePicker>
 
-</DatePicker> 
+</DatePicker>
+
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CultureChanged += (lang) =>
+        {
+            InvokeAsync(() =>
+            {
+                this.StateHasChanged();
+            });
+        };
+    }
+
+}

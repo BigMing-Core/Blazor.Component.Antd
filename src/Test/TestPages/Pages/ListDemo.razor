@@ -1,4 +1,5 @@
-﻿@page "/list"
+﻿@layout MainLayout
+@page "/list"
 
 @using LuanNiao.Blazor.Component.Antd
 @using LuanNiao.Blazor.Component.Antd.Avatar;
@@ -246,7 +247,7 @@ ListItemMeta - | - Title
 
 
     List<Student> _students = new List<Student>
-    {
+{
         new Student {Name="张三", Description = "张三你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
         new Student {Name="李四", Description = "李四你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},
         new Student {Name="王五", Description = "王五你好", Avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"},

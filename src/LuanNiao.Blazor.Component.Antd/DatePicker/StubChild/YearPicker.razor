@@ -1,0 +1,37 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+
+@using Microsoft.AspNetCore.Components.Web
+
+
+<div class="ant-picker-year-panel">
+    <div class="ant-picker-header">
+        <button type="button" tabindex="-1" class="ant-picker-header-super-prev-btn" @onclick="PrevBtnClick">
+            <span class="ant-picker-super-prev-icon"></span>
+        </button>
+        <div class="ant-picker-header-view"><button type="button" class="ant-picker-decade-btn">@($"{_currentLeftBoundaryYear+1}-{_currentLeftBoundaryYear + 10}")</button></div>
+        <button type="button" tabindex="-1" class="ant-picker-header-super-next-btn" @onclick="NextBtnClick">
+            <span class="ant-picker-super-next-icon"></span>
+        </button>
+    </div>
+    <div class="ant-picker-body">
+        <table class="ant-picker-content">
+            <tbody>
+                @for (int tr = 0, index = 0; tr < 4; tr++)
+                {
+                    <tr>
+                        @for (int td = 0; td < 3; td++, index++)
+                        {
+                            var thisItemYear = _currentLeftBoundaryYear + index;
+                            <td title="@thisItemYear" class="ant-picker-cell @(((index==0||index==11)?null:"ant-picker-cell-in-view")) @((CurrentYear==thisItemYear)?"ant-picker-cell-selected":null)">
+                                <div style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="ant-picker-cell-inner" @onclick="(e=> { ItemClicked(thisItemYear); })">
+                                    @($"{thisItemYear}")
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
