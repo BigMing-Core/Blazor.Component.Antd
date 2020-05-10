@@ -7,23 +7,23 @@
                 <div tabindex="-1" class="ant-picker-panel">
                     @if (_showDecade)
                     {
-                        <DecadePicker></DecadePicker>
+                        <DecadePicker @ref="_decadePicker"></DecadePicker>
                     }
                     @if (_showYear)
                     {
-                        <YearPicker></YearPicker>
+                        <YearPicker @ref="_yearPicker"></YearPicker>
                     }
                     @if (_showMonth)
                     {
-                        <MonthPicker></MonthPicker>
+                        <MonthPicker @ref="_monthPicker"></MonthPicker>
                     }
                     @if (_showWeek)
                     {
-                        <WeekPicker></WeekPicker>
+                        <WeekPicker @ref="_weekPicker"></WeekPicker>
                     }
                     @if (_showDate)
                     {
-                        <DatePanelPicker></DatePanelPicker>
+                        <DatePanelPicker @ref="_datePicker"></DatePanelPicker>
                     }
                 </div>
             </div>

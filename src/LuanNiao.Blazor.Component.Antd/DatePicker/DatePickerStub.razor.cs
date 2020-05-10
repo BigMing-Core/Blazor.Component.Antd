@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild;
 
 namespace LuanNiao.Blazor.Component.Antd.DatePicker
 {
@@ -12,6 +13,12 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         [Inject]
         public DatePickerServer Server { get; set; }
+
+        public DecadePicker _decadePicker;
+        public YearPicker _yearPicker;
+        public MonthPicker _monthPicker;
+        public WeekPicker _weekPicker;
+        public DatePanelPicker _datePicker;
 
 
         private ElementRects _elementRects;
@@ -23,7 +30,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         private bool _showDate = false;
 
 
-      
+
         public void ShowDecadePicker()
         {
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;

@@ -11,6 +11,19 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:添加只读修饰符", Justification = "<挂起>")]
         private string _firstInputValueStr;
 
+
+        private string _firstInputOuterID;
+        private string FirstInputOuterID
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_firstInputOuterID))
+                {
+                    _firstInputOuterID = $"FirstInputOuterID_{IdentityKey}"; ;
+                }
+                return _firstInputOuterID;
+            }
+        }
         private string _firstInputID;
         private string FirstInputID
         {
@@ -18,7 +31,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
             {
                 if (string.IsNullOrWhiteSpace(_firstInputID))
                 {
-                    _firstInputID = $"FirstPicker_{IdentityKey}"; ;
+                    _firstInputID = $"FirstInputID_{IdentityKey}"; ;
                 }
                 return _firstInputID;
             }
@@ -27,12 +40,17 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         [Parameter]
         public string FirstInputPlaceHolder { get; set; } = "click to select";
-         
-         
+
+
         private async void FirstPickerFocus()
         {
 
-           await Server.ShowMonthPicker(InputOuterID);
+            await Server.ShowMonthPicker(FirstInputOuterID);
+            Server.Stub._monthPicker.ItemSelected = ((int year, int month) dataInfo) =>
+            {
+                ElementInfo.SetElementValue(FirstInputID, $"{dataInfo.year}-{dataInfo.month}");
+                this.Flush();
+            };
         }
 
         private async void FirstInputClearValue()

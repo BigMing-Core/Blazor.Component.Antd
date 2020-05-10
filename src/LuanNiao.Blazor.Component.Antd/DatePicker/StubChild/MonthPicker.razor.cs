@@ -14,8 +14,8 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         [Parameter]
         public int CurrentMonth { get; set; } = 1;
 
-        [Parameter]
-        public Action<(int yrear,int month)> ItemSelected { get; set; }
+        //[Parameter]
+        public Action<(int year, int month)> ItemSelected;
 
         protected override void OnInitialized()
         { 
