@@ -4,7 +4,9 @@
 
     <div class="ant-picker" id="@FirstInputOuterID">
         <div class="ant-picker-input">
-            <input id="@FirstInputID" @onfocus="FirstPickerFocus"  placeholder="@FirstInputPlaceHolder " title="@_firstInputValueStr" size="12" value="@_firstInputValueStr">
+            <input id="@FirstInputID" @onfocus="FirstPickerFocus"
+                   onclick="LuanNiaoBlazor.BlockClickEvent()"
+                   placeholder="@FirstInputPlaceHolder " title="@_firstInputValueStr" size="12" value="@_firstInputValueStr">
             <span class="ant-picker-suffix">
                 <CalendarOutlined />
             </span>
