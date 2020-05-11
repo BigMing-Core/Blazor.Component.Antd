@@ -19,8 +19,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
         [Parameter]
         public int CurrentWeek { get; set; } = new GregorianCalendar(GregorianCalendarTypes.USEnglish).GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
-
-        [Parameter]
+         
         public Action<(int year, int month, int week)> ItemSelected { get; set; }
 
 

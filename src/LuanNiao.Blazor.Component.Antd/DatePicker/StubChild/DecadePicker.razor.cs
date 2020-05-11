@@ -13,8 +13,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         [Parameter]
         public int CurrentYear { get; set; } = DateTime.Now.Year;
 
-        [Parameter]
-        public Action<int, int> ItemSelected { get; set; }
+        public Action<(int leftYear, int rightYear)> ItemSelected { get; set; }
 
         protected override void OnInitialized()
         {
@@ -48,7 +47,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         }
         private void ItemClicked(int leftYear,int rightYear)
         {
-            ItemSelected?.Invoke(leftYear, rightYear);
+            ItemSelected?.Invoke((leftYear, rightYear));
 #if DEBUG
             Console.WriteLine($"{leftYear}:{rightYear}");
 #endif

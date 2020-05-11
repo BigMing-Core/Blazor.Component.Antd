@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -8,6 +9,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 {
     public partial class DatePicker
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:添加只读修饰符", Justification = "<挂起>")]
         private string _firstInputValueStr;
 
 
@@ -44,15 +46,28 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         private async void FirstPickerFocus()
         {
-
             await Server.ShowPicker(Type, FirstInputOuterID);
-            Server.Stub._monthPicker.ItemSelected = ((int year, int month) dataInfo) =>
+            switch (Type)
             {
-                ElementInfo.SetElementValue(FirstInputID, $"{dataInfo.year}-{dataInfo.month}");
-                this.Flush();
-            };
+                case DatePickerType.Decade:
+                    Server.Stub._decadePicker.ItemSelected = DecadePickerSelected;
+                    break;
+                case DatePickerType.Year:
+                    Server.Stub._yearPicker.ItemSelected = YearPickerSelected;
+                    break;
+                case DatePickerType.Month:
+                    Server.Stub._monthPicker.ItemSelected = MonthPickerSelected;
+                    break;
+                case DatePickerType.Week:
+                    Server.Stub._weekPicker.ItemSelected = WeekPickerSelected;
+                    break;
+                case DatePickerType.Date:
+                    Server.Stub._datePicker.ItemSelected = DatePickerSelected;
+                    break;
+                default:
+                    break;
+            }
         }
-
 
 
 

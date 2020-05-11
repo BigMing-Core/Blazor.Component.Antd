@@ -6,7 +6,7 @@ using System.Text;
 namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 {
     public partial class DatePanelPicker
-    { 
+    {
         [Parameter]
         public int CurrentMonth { get; set; } = DateTime.Now.Month;
 
@@ -18,11 +18,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         [Parameter]
         public DateTime CurrentSelectDate { get; set; } = DateTime.Now;
 
-        
-
- 
-        [Parameter]
-        public Action<(int year, int month, int week)> ItemSelected { get; set; }
+        public Action<DateTime> ItemSelected { get; set; }
 
 
         protected override void OnInitialized()
@@ -45,7 +41,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
         private void OnClickItem(DateTime date)
         {
-            this.CurrentSelectDate = date;
+            ItemSelected?.Invoke(date);
             this.Flush();
         }
 

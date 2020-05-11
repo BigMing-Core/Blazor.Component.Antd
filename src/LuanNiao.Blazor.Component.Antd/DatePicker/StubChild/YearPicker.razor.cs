@@ -11,7 +11,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         [Parameter]
         public int CurrentYear { get; set; } = DateTime.Now.Year;
 
-        [Parameter]
+        
         public Action<int> ItemSelected { get; set; }
 
         protected override void OnInitialized()
