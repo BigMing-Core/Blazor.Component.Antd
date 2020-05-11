@@ -24,6 +24,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
                 return _firstInputOuterID;
             }
         }
+
         private string _firstInputID;
         private string FirstInputID
         {
@@ -45,13 +46,18 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         private async void FirstPickerFocus()
         {
 
-            await Server.ShowMonthPicker(FirstInputOuterID);
+            await Server.ShowPicker(Type, FirstInputOuterID);
             Server.Stub._monthPicker.ItemSelected = ((int year, int month) dataInfo) =>
             {
                 ElementInfo.SetElementValue(FirstInputID, $"{dataInfo.year}-{dataInfo.month}");
                 this.Flush();
             };
         }
+
+
+
+
+
 
         private async void FirstInputClearValue()
         {

@@ -11,6 +11,10 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         [Inject]
         public DatePickerServer Server { get; set; }
 
-       
+        [Parameter]
+        public DatePickerType Type { get; set; } = DatePickerType.Decade;
+
     }
+
+
 }

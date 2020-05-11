@@ -31,37 +31,47 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
 
 
-        public void ShowDecadePicker()
+        private async Task ShowPicker(string targetElementID)
         {
+
+            if (string.IsNullOrWhiteSpace(targetElementID))
+            {
+                return;
+            }
+            _elementRects = await ElementInfo.GetElementRectsByID(targetElementID);
+        }
+
+        public async Task ShowDecadePicker(string targetElementID)
+        {
+           await ShowPicker(targetElementID);
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;
             _showDecade = true;
             this.Flush();
         }
-        public void ShowYearPicker()
+        public async Task ShowYearPicker(string targetElementID)
         {
+            await ShowPicker(targetElementID);
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;
             _showYear = true;
             this.Flush();
         }
         public async Task ShowMonthPicker(string targetElementID)
         {
-            if (string.IsNullOrWhiteSpace(targetElementID))
-            {
-                return;
-            }
-            _elementRects = await ElementInfo.GetElementRectsByID(targetElementID);
+            await ShowPicker(targetElementID);
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;
             _showMonth = true;
             this.Flush();
         }
-        public void ShowWeekPicker()
+        public async Task ShowWeekPicker(string targetElementID)
         {
+            await ShowPicker(targetElementID);
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;
             _showWeek = true;
             this.Flush();
         }
-        public void ShowDatePicker()
+        public async Task ShowDatePicker(string targetElementID)
         {
+            await ShowPicker(targetElementID);
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false;
             _showDate = true;
             this.Flush();
