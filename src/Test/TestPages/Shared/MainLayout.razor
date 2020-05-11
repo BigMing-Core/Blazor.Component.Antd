@@ -8,10 +8,12 @@
 @using LuanNiao.Blazor.Component.Antd.Menu
 @using static LuanNiao.Blazor.Core.Translater
 @using LuanNiao.Blazor.Component.Antd.Tooltip
+@using LuanNiao.Blazor.Component.Antd.DatePicker
 
 
 <LNTooltipStub></LNTooltipStub>
 <LNMessageStub></LNMessageStub>
+<DatePickerStub></DatePickerStub>
 
 <LNLayout>
     <Sider CStyle="overflow:auto;height:100%;position:fixed;left:0px;" @ref="_siderInstance" Collapsible="true">
@@ -44,9 +46,7 @@
 
 
 
-@code{
-
-    private Sider _siderInstance;
+@code{ private Sider _siderInstance;
     private string _layoutStyle = "margin-left:200px;";
     private LNLayout _rightContent = null;
     private Dictionary<string, string> _pageInfo = new Dictionary<string, string>() {
@@ -103,7 +103,8 @@
         {
             LuanNiao.Blazor.Core.Translater.CultureChanged += (info) =>
             {
-                InvokeAsync(() => {
+                InvokeAsync(() =>
+                {
                     this.StateHasChanged();
                 });
             };
@@ -114,11 +115,7 @@
                 this.StateHasChanged();
             };
         }
-    }
-
-
-
-}
+    } }
 <style>
     .logo {
         height: 32px;

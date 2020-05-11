@@ -8,7 +8,6 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 {
     public partial class DatePicker
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:添加只读修饰符", Justification = "<挂起>")]
         private string _firstInputValueStr;
 
 

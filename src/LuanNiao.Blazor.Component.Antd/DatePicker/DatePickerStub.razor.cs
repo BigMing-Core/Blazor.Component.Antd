@@ -29,7 +29,28 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         private bool _showWeek = false;
         private bool _showDate = false;
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            BindBodyEvent();
+        }
 
+        private void BindBodyEvent()
+        {
+            BodyEventHub.Click += BodyEventHub_Click;
+        }
+
+        protected override void Dispose(bool flag)
+        {
+            base.Dispose(flag);
+            BodyEventHub.Click -= BodyEventHub_Click;
+        }
+
+        private void BodyEventHub_Click(WindowEvent obj)
+        {
+            _showDecade = _showYear = _showMonth = _showWeek = _showDate = false; 
+            this.Flush();
+        }
 
         private async Task ShowPicker(string targetElementID)
         {
