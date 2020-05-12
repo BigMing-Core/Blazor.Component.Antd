@@ -1,20 +1,24 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
-@using Microsoft.AspNetCore.Components.Web 
+@using Microsoft.AspNetCore.Components.Web
 
-<div class="ant-picker-decade-panel">
+<div class="ant-picker-decade-panel" >
     <div class="ant-picker-header">
-        <button type="button" tabindex="-1" class="ant-picker-header-super-prev-btn" @onclick="PrevBtnClick">
+        <button type="button" tabindex="-1" class="ant-picker-header-super-prev-btn" id="@TitlePrevBtnID">
             <span class="ant-picker-super-prev-icon"></span>
         </button>
-        <div class="ant-picker-header-view">@($"{_currentLeftBoundaryYear+10}-{_currentLeftBoundaryYear + 109}")</div>
-        <button type="button" tabindex="-1" class="ant-picker-header-super-next-btn"  @onclick="NextBtnClick">
+        <div class="ant-picker-header-view" >
+            <button  type="button" tabindex="-1" class="ant-picker-year-btn" @onclick="OnTitleClicked">
+                @($"{_currentLeftBoundaryYear+10}-{_currentLeftBoundaryYear + 109}")
+            </button>
+        </div>
+        <button type="button" tabindex="-1" class="ant-picker-header-super-next-btn" id="@TitleNextBtnID" >
             <span class="ant-picker-super-next-icon"></span>
         </button>
     </div>
     <div class="ant-picker-body">
         <table class="ant-picker-content">
-            <tbody>               
+            <tbody>
 
                 @for (int tr = 0, index = 0; tr < 4; tr++)
                 {
@@ -23,14 +27,14 @@
                         {
                             var leftYear = _currentLeftBoundaryYear + index * 10;
                             var rightYear = _currentLeftBoundaryYear + index * 10 + 9;
-                            <td    class="ant-picker-cell @(((index==0||index==11)?null:"ant-picker-cell-in-view")) @((CurrentYear>=leftYear&&CurrentYear<=rightYear)?"ant-picker-cell-selected":null)">
-                                <div  style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="ant-picker-cell-inner" @onclick="(e=> { ItemClicked(leftYear, rightYear); })">
+                            <td class="ant-picker-cell @(((index==0||index==11)?null:"ant-picker-cell-in-view")) @((CurrentYear>=leftYear&&CurrentYear<=rightYear)?"ant-picker-cell-selected":null)">
+                                <div style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="ant-picker-cell-inner" @onclick="(e=> { ItemClicked(leftYear, rightYear); })">
                                     @($"{leftYear}-{rightYear}")
                                 </div>
                             </td>
                         }
                     </tr>
-                }                
+                }
             </tbody>
         </table>
     </div>
