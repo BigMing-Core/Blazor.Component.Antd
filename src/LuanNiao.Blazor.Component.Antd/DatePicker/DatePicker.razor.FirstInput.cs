@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild;
 using Microsoft.AspNetCore.Components;
@@ -9,7 +10,6 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 {
     public partial class DatePicker
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:添加只读修饰符", Justification = "<挂起>")]
         private string _firstInputValueStr;
 
 
@@ -43,6 +43,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         [Parameter]
         public string FirstInputPlaceHolder { get; set; } = "click to select";
 
+        private readonly Stack<DatePickerType> _pickerStack=new Stack<DatePickerType>();
 
         private async void FirstPickerFocus()
         {
@@ -51,6 +52,10 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
             {
                 case DatePickerType.Decade:
                     Server.Stub._decadePicker.ItemSelected = DecadePickerSelected;
+                    Server.Stub.OnBodyClickHide = () =>
+                    {
+                        ResetOperationStack();
+                    };
                     break;
                 case DatePickerType.Year:
                     Server.Stub._yearPicker.ItemSelected = YearPickerSelected;
