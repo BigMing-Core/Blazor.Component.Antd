@@ -1,9 +1,9 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
 <button type="button" role="switch" 
-            aria-checked="true"
-            class="ant-switch ant-switch-checked"
-            ant-click-animating="true">
+            aria-checked="@(Checked.ToString())"
+            class="@ClassName"
+            ant-click-animating="@(Checked.ToString())">
     <span class="ant-switch-inner"></span>
     <div class="ant-click-animating-node"></div>
 </button>
