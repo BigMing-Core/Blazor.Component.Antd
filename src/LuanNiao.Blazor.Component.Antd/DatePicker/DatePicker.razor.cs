@@ -20,13 +20,13 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            ResetOperationStack();
+            ResetOperationStack();            
         }
 
         private void ResetOperationStack()
         {
-            _pickerStack.Clear();
-            _pickerStack.Push(Type);
+            _firstInputPickerStack.Clear();
+            _firstInputPickerStack.Push(Type);
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Threading.Tasks;
 using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -43,56 +44,73 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         [Parameter]
         public string FirstInputPlaceHolder { get; set; } = "click to select";
 
-        private readonly Stack<DatePickerType> _pickerStack=new Stack<DatePickerType>();
+        private readonly Stack<DatePickerType> _firstInputPickerStack = new Stack<DatePickerType>();
 
-        private async void FirstPickerFocus()
+        private async Task FirstPickerFocus()
         {
-            await Server.ShowPicker(Type, FirstInputOuterID);
-            switch (Type)
+            var thisLoopType = _firstInputPickerStack.Pop();
+            await Server.ShowPicker(thisLoopType, FirstInputOuterID);
+            Server.Stub.OnBodyClickHide = () =>
+            {
+                ResetOperationStack();
+            };
+            switch (thisLoopType)
             {
                 case DatePickerType.Decade:
-                    Server.Stub._decadePicker.ItemSelected = DecadePickerSelected;
-                    Server.Stub.OnBodyClickHide = () =>
-                    {
-                        ResetOperationStack();
-                    };
+                    Server.Stub._decadePicker.ItemSelected = FirstInputDecadePickerSelected;
                     break;
                 case DatePickerType.Year:
-                    Server.Stub._yearPicker.ItemSelected = YearPickerSelected;
+                    Server.Stub._yearPicker.ItemSelected = FirstInputYearPickerSelected;
+                    Server.Stub._yearPicker.TitleClicked = async () =>
+                    {
+                        _firstInputPickerStack.Push(DatePickerType.Year);
+                        _firstInputPickerStack.Push(DatePickerType.Decade);
+                        Type = DatePickerType.Decade;
+                        await FirstPickerFocus();
+                    };
                     break;
                 case DatePickerType.Month:
-                    Server.Stub._monthPicker.ItemSelected = MonthPickerSelected;
+                    Server.Stub._monthPicker.ItemSelected = FirstInputMonthPickerSelected;
                     break;
                 case DatePickerType.Week:
-                    Server.Stub._weekPicker.ItemSelected = WeekPickerSelected;
+                    Server.Stub._weekPicker.ItemSelected = FirstInputWeekPickerSelected;
                     break;
                 case DatePickerType.Date:
-                    Server.Stub._datePicker.ItemSelected = DatePickerSelected;
+                    Server.Stub._datePicker.ItemSelected = FirstInputDatePickerSelected;
                     break;
                 default:
                     break;
             }
         }
 
-        private void DecadePickerSelected((int leftYear, int rightYear) dateInfo)
+        private async void FirstInputHandleNext()
+        {
+            if (_firstInputPickerStack.Count>0)
+            {
+                await FirstPickerFocus();
+            }
+        }
+
+        private void FirstInputDecadePickerSelected((int leftYear, int rightYear) dateInfo)
         {
             ElementInfo.SetElementValue(FirstInputID, $"{dateInfo.leftYear}-{dateInfo.rightYear}");
             this.Flush();
+            FirstInputHandleNext();
         }
-        private void YearPickerSelected(int year)
+        private void FirstInputYearPickerSelected(int year)
         {
             ElementInfo.SetElementValue(FirstInputID, $"{year}");
             this.Flush();
         }
 
-        private void MonthPickerSelected((int year, int month) dateInfo)
+        private void FirstInputMonthPickerSelected((int year, int month) dateInfo)
         {
             ElementInfo.SetElementValue(FirstInputID, $"{dateInfo.year}-{dateInfo.month}");
             this.Flush();
         }
 
 
-        private void WeekPickerSelected((int year, int month, int week) dateInfo)
+        private void FirstInputWeekPickerSelected((int year, int month, int week) dateInfo)
         {
             ElementInfo.SetElementValue(FirstInputID, $"{dateInfo.year}-{dateInfo.month}:{dateInfo.week}");
             this.Flush();
@@ -100,7 +118,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
 
 
-        private void DatePickerSelected(DateTime date)
+        private void FirstInputDatePickerSelected(DateTime date)
         {
             ElementInfo.SetElementValue(FirstInputID, $"{date:yyyy-MM-dd}");
             this.Flush();
