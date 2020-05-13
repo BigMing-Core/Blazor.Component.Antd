@@ -46,8 +46,23 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         private readonly Stack<DatePickerType> _firstInputPickerStack = new Stack<DatePickerType>();
 
-        private async Task FirstPickerFocus()
+        protected override void OnAfterRender(bool firstRender)
         {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                ElementInfo.BindFocusEvent(FirstInputID, nameof(FirstPickerFocus), this, true, true);
+            }
+        }
+
+
+        [JSInvokable]
+        public async Task FirstPickerFocus()
+        {
+#if DEBUG
+            Console.WriteLine(nameof(FirstPickerFocus));
+
+#endif 
             var thisLoopType = _firstInputPickerStack.Pop();
             await Server.ShowPicker(thisLoopType, FirstInputOuterID);
             Server.Stub.OnBodyClickHide = () =>
@@ -85,7 +100,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         private async void FirstInputHandleNext()
         {
-            if (_firstInputPickerStack.Count>0)
+            if (_firstInputPickerStack.Count > 0)
             {
                 await FirstPickerFocus();
             }

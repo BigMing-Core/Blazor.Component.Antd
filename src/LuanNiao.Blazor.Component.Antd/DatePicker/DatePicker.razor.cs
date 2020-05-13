@@ -25,6 +25,10 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
 
         private void ResetOperationStack()
         {
+#if DEBUG
+            Console.WriteLine(nameof(ResetOperationStack));
+
+#endif
             _firstInputPickerStack.Clear();
             _firstInputPickerStack.Push(Type);
         }
