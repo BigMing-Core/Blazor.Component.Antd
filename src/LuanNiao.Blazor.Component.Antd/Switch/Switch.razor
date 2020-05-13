@@ -1,9 +1,21 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 
-<button type="button" role="switch" 
-            aria-checked="@(Checked.ToString())"
-            class="@ClassName"
-            ant-click-animating="@(Checked.ToString())">
-    <span class="ant-switch-inner"></span>
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+<button type="button" role="switch"
+        aria-checked="@(Checked.ToString())"
+        class="@ClassName"
+        ant-click-animating="@(Checked.ToString())" id="@($"Swtich_{IdentityKey}")">
+    @if (Loading)
+    {
+        <LoadingOutlined  Spin="true" />
+    }
+    <span class="ant-switch-inner">
+        @if (CheckedValue?.Value != null)
+        {
+            @CheckedValue.Value
+        }
+
+    </span>
     <div class="ant-click-animating-node"></div>
 </button>
