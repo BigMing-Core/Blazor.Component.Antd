@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         [Parameter]
         public int CurrentYear { get; set; } = DateTime.Now.Year;
 
-        [Parameter]
+
         public Action<int> ItemSelected { get; set; }
 
         protected override void OnInitialized()
@@ -20,6 +21,27 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             CalcBoundary();
         }
 
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                BindTitleClickEvent();
+            }
+        }
+
+
+        private void BindTitleClickEvent()
+        {
+            ElementInfo.BindClickEvent($"YearBtn_{IdentityKey}", nameof(OnTitleClicked), this, true, true);
+        }
+        public Action TitleClicked;
+
+        [JSInvokable]
+        public void OnTitleClicked()
+        {
+            TitleClicked?.Invoke();
+        }
         private void CalcBoundary()
         {
             _currentLeftBoundaryYear = (CurrentYear / 10) * 10 - 1;

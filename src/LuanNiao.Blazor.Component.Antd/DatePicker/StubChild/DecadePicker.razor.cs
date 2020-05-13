@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,12 +10,35 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
     {
         private int _currentLeftBoundaryYear;
 
+        private string _titleNextBtnID;
+        public string TitleNextBtnID
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_titleNextBtnID))
+                {
+                    _titleNextBtnID = $"LNDecadePicker_NextBtn_{IdentityKey}";
+                }
+                return _titleNextBtnID;
+            }
+        }
 
-        [Parameter]
+        private string _titlePrevBtnID;
+        public string TitlePrevBtnID
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_titlePrevBtnID))
+                {
+                    _titlePrevBtnID = $"LNDecadePicker_PrevBtn_{IdentityKey}";
+                }
+                return _titlePrevBtnID;
+            }
+        }
+
         public int CurrentYear { get; set; } = DateTime.Now.Year;
 
-        [Parameter]
-        public Action<int, int> ItemSelected { get; set; }
+        public Action<(int leftYear, int rightYear)> ItemSelected;
 
         protected override void OnInitialized()
         {
@@ -22,23 +46,43 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             CalcBoundary();
         }
 
+
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                BindClickEvent();
+            }
+        }
+
+
+        private void BindClickEvent()
+        {
+            ElementInfo.BindClickEvent(TitlePrevBtnID, nameof(PrevBtnClick), this, true, true);
+            ElementInfo.BindClickEvent(TitleNextBtnID, nameof(NextBtnClick), this, true, true);
+        }
+
         private void CalcBoundary()
         {
-            _currentLeftBoundaryYear = (CurrentYear / 100) * 100-10;
+            _currentLeftBoundaryYear = (CurrentYear / 100) * 100 - 10;
         }
-        private void PrevBtnClick()
+
+        [JSInvokable]
+        public void PrevBtnClick()
         {
-            if (CurrentYear-100<0)
+            if (CurrentYear - 100 < 0)
             {
                 return;
             }
             CurrentYear -= 100;
             CalcBoundary();
             this.Flush();
-        } 
-        private void NextBtnClick()
+        }
+        [JSInvokable]
+        public void NextBtnClick()
         {
-            if (CurrentYear+100>7000)
+            if ((CurrentYear + 100) > 7000)
             {
                 return;
             }
@@ -46,9 +90,10 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             CalcBoundary();
             this.Flush();
         }
-        private void ItemClicked(int leftYear,int rightYear)
+
+        private void ItemClicked(int leftYear, int rightYear)
         {
-            ItemSelected?.Invoke(leftYear, rightYear);
+            ItemSelected?.Invoke((leftYear, rightYear));
 #if DEBUG
             Console.WriteLine($"{leftYear}:{rightYear}");
 #endif

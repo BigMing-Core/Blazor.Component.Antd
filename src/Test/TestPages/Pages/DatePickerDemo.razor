@@ -5,13 +5,31 @@
 @using static LuanNiao.Blazor.Core.Translater
 
 
-<DatePickerStub></DatePickerStub>
 
-<DatePicker>
+<DatePicker FirstInputPlaceHolder="Decade">
 
 </DatePicker>
 
 
+
+<DatePicker Type="DatePickerType.Year"  FirstInputPlaceHolder="Year">
+
+</DatePicker>
+
+
+<DatePicker Type="DatePickerType.Month" FirstInputPlaceHolder="Month">
+
+</DatePicker>
+
+
+<DatePicker Type="DatePickerType.Week" FirstInputPlaceHolder="Week">
+
+</DatePicker>
+
+
+<DatePicker Type="DatePickerType.Date" FirstInputPlaceHolder="Date">
+
+</DatePicker>
 @code{
 
     protected override void OnInitialized()

@@ -9,7 +9,11 @@
         <button type="button" tabindex="-1" class="ant-picker-header-super-prev-btn" @onclick="PrevBtnClick">
             <span class="ant-picker-super-prev-icon"></span>
         </button>
-        <div class="ant-picker-header-view"><button type="button" class="ant-picker-decade-btn">@($"{_currentLeftBoundaryYear+1}-{_currentLeftBoundaryYear + 10}")</button></div>
+        <div class="ant-picker-header-view">
+            <button type="button" class="ant-picker-decade-btn" id="@($"YearBtn_{IdentityKey}")">
+                @($"{_currentLeftBoundaryYear+1}-{_currentLeftBoundaryYear + 10}")
+            </button>
+        </div>
         <button type="button" tabindex="-1" class="ant-picker-header-super-next-btn" @onclick="NextBtnClick">
             <span class="ant-picker-super-next-icon"></span>
         </button>

@@ -16,13 +16,16 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         public int CurrentYear { get; set; } = DateTime.Now.Year;
         [Parameter]
         public int CurrentDay { get; set; } = DateTime.Now.Day;
-
-        [Parameter]
+         
         public int CurrentWeek { get; set; } = new GregorianCalendar(GregorianCalendarTypes.USEnglish).GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
-
-        [Parameter]
+         
         public Action<(int year, int month, int week)> ItemSelected { get; set; }
 
+
+        public void SetWeek(DateTime dt)
+        {
+            CurrentWeek = _gc.GetWeekOfYear(dt, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+        }   
 
         protected override void OnInitialized()
         {
@@ -35,11 +38,22 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             this.Flush();
         }
 
+        public Action TitleYearClicked;
+        private void OnTitleYearClicked()
+        {
+            TitleYearClicked?.Invoke();
+        }
+
+        public Action TitleWeekClicked;
+        private void OnTitleWeekClicked()
+        {
+            TitleWeekClicked?.Invoke();
+        }
 
         protected override void Dispose(bool flag)
         {
-            base.Dispose(flag);
             Core.Translater.CultureChanged -= OnCultureChanged;
+            base.Dispose(flag);
         }
 
         private void WeekClicked(int week)

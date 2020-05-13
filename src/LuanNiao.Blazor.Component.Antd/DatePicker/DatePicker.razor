@@ -2,14 +2,15 @@
 @using LuanNiao.Blazor.Component.Antd.Icons
 @using Microsoft.AspNetCore.Components.Web
 
-    <div class="ant-picker" id="@InputOuterID">
-        <div class="ant-picker-input">
-            <input id="@FirstInputID" @onfocus="FirstPickerFocus"  placeholder="@FirstInputPlaceHolder " title="@_firstInputValueStr" size="12" value="@_firstInputValueStr">
-            <span class="ant-picker-suffix">
-                <CalendarOutlined />
-            </span>
-            <span class="ant-picker-clear">
-                <CloseCircleFilled OnClick="FirstInputClearValue" />
-            </span>
-        </div>
+<div class="ant-picker" id="@FirstInputOuterID" onclick="LuanNiaoBlazor.BlockClickEvent()">
+    <div class="ant-picker-input">
+        <input id="@FirstInputID"
+               placeholder="@FirstInputPlaceHolder " title="@_firstInputValueStr" size="12" value="@_firstInputValueStr">
+        <span class="ant-picker-suffix">
+            <CalendarOutlined />
+        </span>
+        <span class="ant-picker-clear">
+            <CloseCircleFilled OnClick="FirstInputClearValue" />
+        </span>
     </div>
+</div> @*@onfocus="FirstPickerFocus"*@

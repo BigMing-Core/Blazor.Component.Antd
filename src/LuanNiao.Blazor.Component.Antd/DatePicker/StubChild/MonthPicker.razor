@@ -8,7 +8,9 @@
         <button type="button" tabindex="-1" class="ant-picker-header-super-prev-btn" @onclick="PrevBtnClick">
             <span class="ant-picker-super-prev-icon"></span>
         </button>
-        <div class="ant-picker-header-view"><button type="button" class="ant-picker-decade-btn">@CurrentYear</button></div>
+        <div class="ant-picker-header-view">
+            <button type="button" class="ant-picker-decade-btn" @onclick="OnTitleClicked">@CurrentYear</button>
+        </div>
         <button type="button" tabindex="-1" class="ant-picker-header-super-next-btn" @onclick="NextBtnClick">
             <span class="ant-picker-super-next-icon"></span>
         </button>
@@ -20,8 +22,8 @@
                 {
                     <tr>
                         @for (int td = 0; td < 3; td++, index++)
-                            {
-                                var currentMonth = index;
+                        {
+                            var currentMonth = index;
                             <td title="@($"{CurrentYear}-{index:00}")" class="ant-picker-cell ant-picker-cell-in-view  @((CurrentMonth==index)?"ant-picker-cell-selected":null)">
                                 <div style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" class="ant-picker-cell-inner" @onclick="(e=> { ItemClicked(currentMonth); })">
                                     @switch (index)
