@@ -40,11 +40,6 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
         public Action<(int leftYear, int rightYear)> ItemSelected;
 
-        public Action TitleClicked;
-        private void OnTitleClicked()
-        {
-            TitleClicked?.Invoke();
-        }
         protected override void OnInitialized()
         {
             base.OnInitialized();

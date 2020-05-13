@@ -10,7 +10,7 @@
             <span class="ant-picker-super-prev-icon"></span>
         </button>
         <div class="ant-picker-header-view">
-            <button type="button" class="ant-picker-decade-btn" @onclick="OnTitleClicked">
+            <button type="button" class="ant-picker-decade-btn" id="@($"YearBtn_{IdentityKey}")">
                 @($"{_currentLeftBoundaryYear+1}-{_currentLeftBoundaryYear + 10}")
             </button>
         </div>
