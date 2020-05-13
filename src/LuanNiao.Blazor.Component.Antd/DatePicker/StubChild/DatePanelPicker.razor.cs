@@ -14,11 +14,22 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         public int CurrentYear { get; set; } = DateTime.Now.Year;
         [Parameter]
         public int CurrentDay { get; set; } = DateTime.Now.Day;
-
-        [Parameter]
+         
         public DateTime CurrentSelectDate { get; set; } = DateTime.Now;
 
-        public Action<DateTime> ItemSelected { get; set; }
+        public Action<DateTime> ItemSelected;
+
+        public Action TitleYearClicked;
+        private void OnTitleYearClicked()
+        {
+            TitleYearClicked?.Invoke();
+        }
+
+        public Action TitleWeekClicked;
+        private void OnTitleWeekClicked()
+        {
+            TitleWeekClicked?.Invoke();
+        }
 
 
         protected override void OnInitialized()

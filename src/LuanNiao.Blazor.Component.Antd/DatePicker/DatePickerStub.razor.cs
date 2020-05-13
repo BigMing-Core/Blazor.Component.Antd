@@ -19,6 +19,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         public MonthPicker _monthPicker;
         public WeekPicker _weekPicker;
         public DatePanelPicker _datePicker;
+        public Action OnBodyClickHide;
 
 
         private ElementRects _elementRects;
@@ -50,6 +51,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         {
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false; 
             this.Flush();
+            OnBodyClickHide?.Invoke();
         }
 
         private async Task ShowPicker(string targetElementID)

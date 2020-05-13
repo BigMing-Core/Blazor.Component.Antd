@@ -19,7 +19,11 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             base.OnInitialized();
             CalcBoundary();
         }
-
+        public Action TitleClicked;
+        private void OnTitleClicked()
+        {
+            TitleClicked?.Invoke();
+        }
         private void CalcBoundary()
         {
             _currentLeftBoundaryYear = (CurrentYear / 10) * 10 - 1;

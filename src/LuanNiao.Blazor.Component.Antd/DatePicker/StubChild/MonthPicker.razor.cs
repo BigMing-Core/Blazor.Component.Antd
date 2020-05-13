@@ -10,8 +10,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
 
         [Parameter]
-        public int CurrentYear { get; set; } = DateTime.Now.Year;
-        [Parameter]
+        public int CurrentYear { get; set; } = DateTime.Now.Year; 
         public int CurrentMonth { get; set; } = 1;
 
         public Action<(int year, int month)> ItemSelected;
@@ -20,7 +19,11 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
         { 
             base.OnInitialized();
         }
-
+        public Action TitleClicked;
+        private void OnTitleClicked()
+        {
+            TitleClicked?.Invoke();
+        }
         private void PrevBtnClick()
         {
             if (CurrentYear - 1 < 0)
