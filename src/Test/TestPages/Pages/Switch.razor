@@ -1,0 +1,35 @@
+﻿@layout MainLayout
+@page "/Switch"
+
+@using LuanNiao.Blazor.Component.Antd.Switch
+@using LuanNiao.Blazor.Component.Antd.Button
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+<CloseOutlined />
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch Disabled="true"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch CheckedChildren="@("1")" Checked="true" UnCheckedChildren="@("0")"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch CheckedChildren="@("开")" Checked="true" UnCheckedChildren="@("关")"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch CheckedChildren="@(_icon )" Checked="true" UnCheckedChildren="@(_iconUnCheck)"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch Checked="true" Size="small"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+<br />
+
+
+<LuanNiao.Blazor.Component.Antd.Switch.Switch Disabled="true" Loading="true"></LuanNiao.Blazor.Component.Antd.Switch.Switch>
+@code{
+    private RenderFragment _icon =@<CheckOutlined></CheckOutlined>;
+private RenderFragment _iconUnCheck =@<CloseOutlined></CloseOutlined>;
+
+
+}

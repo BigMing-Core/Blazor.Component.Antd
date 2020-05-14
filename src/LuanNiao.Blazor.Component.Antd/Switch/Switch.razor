@@ -1,0 +1,28 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+
+@using LuanNiao.Blazor.Component.Antd.Icons
+
+<button type="button" role="switch"
+        aria-checked="@(Checked.ToString())"
+        class="@ClassName"
+        ant-click-animating="@(Checked.ToString())" id="@($"Swtich_{IdentityKey}")">
+    @if (Loading)
+    {
+        <LoadingOutlined ClassName="anticon anticon-loading ant-switch-loading-icon"  Spin="true" />
+    }
+<span class="ant-switch-inner">
+    @if (CheckedValue?.Value != null)
+    {
+        if (CheckedValue.Value is RenderFragment icon)
+        {
+            @icon
+        }
+        else
+        {
+            @CheckedValue.Value
+        }
+    }
+
+</span>
+    <div class="ant-click-animating-node"></div>
+</button>
