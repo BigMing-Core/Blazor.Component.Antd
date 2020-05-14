@@ -14,6 +14,7 @@ namespace LuanNiao.Blazor.Component.Antd.Switch
         private const string _disabledClass = "ant-switch-disabled";
         private const string _smallClass = "ant-switch-small";
         private const string _loadingClass = "ant-switch-loading";
+
         [Parameter]
         public bool Checked { get; set; }
         [Parameter]
