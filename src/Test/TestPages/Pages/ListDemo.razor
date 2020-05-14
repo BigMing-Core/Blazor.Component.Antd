@@ -208,35 +208,6 @@ ListItemMeta - | - Title
 <br />
 <br />
 
-<ListView DataSource="@_students">
-    <Header>带 Header 和 Footer 的列表</Header>
-    <Item Context="student">
-        <ListItem>
-            <ListItemMain>
-                <ListItemMeta>
-                    <Avatar>
-                        <LNAvatar Src="@student.Avatar" Alt="@student.Name">
-                            <Icon>
-                                <UserOutlined></UserOutlined>
-                            </Icon>
-                        </LNAvatar>
-                    </Avatar>
-                    <Title>@student.Name</Title>
-                    <Description>@student.Description</Description>
-                </ListItemMeta>
-                测试
-                <ListItemAction>
-                    <ListItemActionItem><StarOutlined /> 156</ListItemActionItem>
-                    <ListItemActionItem><LikeOutlined /> 156</ListItemActionItem>
-                    <ListItemActionItem><MessageOutlined /> 2</ListItemActionItem>
-                </ListItemAction>
-            </ListItemMain>
-            <ListItemExtra>Extra</ListItemExtra>
-        </ListItem>
-    </Item>
-    <Footer>这是Footer</Footer>
-</ListView>
-
 @code {
     List<string> _items = new List<string> { "item1", "item2", "item3" };
 

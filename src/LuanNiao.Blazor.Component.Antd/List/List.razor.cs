@@ -4,8 +4,6 @@ namespace LuanNiao.Blazor.Component.Antd.List
 {
     public partial class List
     {
-        // ant-list ant-list-vertical ant-list-lg ant-list-split ant-list-something-after-last-item
-
         private const string _basicClassName                 = "ant-list";
         private const string _splitClassName                 = "ant-list-split";
         private const string _borderedClassName              = "ant-list-bordered";
