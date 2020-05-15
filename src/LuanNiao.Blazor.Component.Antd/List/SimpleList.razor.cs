@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using LuanNiao.Blazor.Core.Common;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace LuanNiao.Blazor.Component.Antd.List
 {
@@ -50,19 +47,22 @@ namespace LuanNiao.Blazor.Component.Antd.List
         public bool Grid { get; set; }
 
         [Parameter]
-        public string Header { get; set; }
+        public RenderFragment Header { get; set; }
 
         [Parameter]
         public bool NoFlex { get; set; }
 
         [Parameter]
-        public string Footer { get; set; }
+        public RenderFragment Footer { get; set; }
 
         [Parameter]
-        public List<TItem> Items { get; set; }
+        public string EmptyText { get; set; }
 
         [Parameter]
-        public RenderFragment<TItem> ListItem { get; set; }
+        public List<TItem> DataSource { get; set; }
+
+        [Parameter]
+        public RenderFragment<TItem> Item { get; set; }
 
         [Parameter]
         public Action<TItem> OnClick { get; set; }

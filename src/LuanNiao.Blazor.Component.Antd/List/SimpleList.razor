@@ -3,21 +3,32 @@
 @using Microsoft.AspNetCore.Components.Web
 
 <div class="@ClassName" style="@CStyle">
-    @if (!string.IsNullOrWhiteSpace(Header))
+    @if (Header != null)
     {
         <div class="@_headerClassName">@Header</div>
     }
     <div class="@_spinLoadingClassName">
         <div class="@_spinContainerClassName">
             <ul class="ant-list-items">
-                @foreach (var item in Items)
+                @if (DataSource == null || DataSource.Count == 0)
                 {
-                    <li class="@_listItemClassName" @onclick="@(e => OnClickHandler(item))">@ListItem(item)</li>
+                    if (string.IsNullOrWhiteSpace(EmptyText))
+                    {
+                        EmptyText = "no data";
+                    }
+                    <li class="@_listItemClassName">@EmptyText</li>
+                }
+                else
+                {
+                    @foreach (var item in DataSource)
+                    {
+                        <li class="@_listItemClassName" @onclick="@(e => OnClickHandler(item))">@Item(item)</li>
+                    }
                 }
             </ul>
         </div>
     </div>
-    @if (!string.IsNullOrWhiteSpace(Footer))
+    @if (Footer != null)
     {
         <div class="@_footerClassName">@Footer</div>
     }
