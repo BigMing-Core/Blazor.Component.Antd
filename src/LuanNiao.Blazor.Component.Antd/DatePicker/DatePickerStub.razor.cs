@@ -51,9 +51,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
         {
             _showDecade = _showYear = _showMonth = _showWeek = _showDate = false; 
             this.Flush();
-#if DEBUG
-            Console.WriteLine(nameof(BodyEventHub_Click));
-#endif
+ 
             OnBodyClickHide?.Invoke();
         }
 
