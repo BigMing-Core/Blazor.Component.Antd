@@ -1,4 +1,5 @@
 ﻿using LuanNiao.Blazor.Core;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,12 @@ namespace TestPages.Pages
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                ElementEventHub.GetElementItem("TestInfo").Bind(this);
+                ElementEventHub.RegistInstance(this);
             }
         }
 
         
-        [LNElementEvent(ElementEventType.OnClick)]
+        [OnClickEvent($"TestInfo{IdentityKey}")]
         public void OnClick()
         {
             Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnClick)}");
