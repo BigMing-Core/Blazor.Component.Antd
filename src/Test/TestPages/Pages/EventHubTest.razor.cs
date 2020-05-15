@@ -26,18 +26,68 @@ namespace TestPages.Pages
                     //, nameof(MouseOut)
                     //, nameof(ContextMenu));
                 ElementEventHub.GetElementInstance("TestInfo1");
-                    //.Bind(this, nameof(OnClick)
-                    //, nameof(MouseOver1)
-                    //, nameof(MouseDown1)
-                    //, nameof(MouseEnter1)
-                    //, nameof(MouseUp1)
-                    //, nameof(MouseMove1)
-                    //, nameof(MouseOut1)
-                    //, nameof(ContextMenu1));
+                //.Bind(this, nameof(OnClick)
+                //, nameof(MouseOver1)
+                //, nameof(MouseDown1)
+                //, nameof(MouseEnter1)
+                //, nameof(MouseUp1)
+                //, nameof(MouseMove1)
+                //, nameof(MouseOut1)
+                //, nameof(ContextMenu1));
+
+                ElementEventHub.GetElementInstance("input1")
+                    .Bind(this
+                    ,nameof(OnBlur)
+                    ,nameof(OnChange)
+                    , nameof(OnFocus)
+                    , nameof(OnFocusIn)
+                    , nameof(OnFocusOut)
+                    , nameof(OnInput) 
+                    );
             }
         }
 
-        
+        [OnBlurEvent]
+        public void OnBlur()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnBlur)}");
+        }
+
+        [OnChangeEvent]
+        public void OnChange()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnChange)}");
+        }
+
+        [OnFocusEvent]
+        public void OnFocus()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnFocus)}");
+        }
+
+
+        [OnFocusInEvent]
+        public void OnFocusIn()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnFocusIn)}");
+        }
+
+
+
+        [OnFocusOutEvent]
+        public void OnFocusOut()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnFocusOut)}");
+        }
+
+        [OnInputEvent]
+        public void OnInput()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnInput)}");
+        }
+
+
+      
 
 
         [OnClickEvent]
