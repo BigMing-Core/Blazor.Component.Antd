@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using LuanNiao.Blazor.Core;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,13 @@ namespace TestPages.Pages
             {
                 ElementEventHub.GetElementItem("TestInfo").Bind(this);
             }
+        }
+
+        
+        [LNElementEvent(ElementEventType.OnClick)]
+        public void OnClick()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnClick)}");
         }
     }
 }
