@@ -16,24 +16,24 @@ namespace TestPages.Pages
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                ElementEventHub.GetElementInstance("TestInfo");
-                    //.Bind(this, nameof(OnClick)
-                    //, nameof(MouseOver)
-                    //, nameof(MouseDown)
-                    //, nameof(MouseEnter)
-                    //, nameof(MouseUp)
-                    //, nameof(MouseMove)
-                    //, nameof(MouseOut)
-                    //, nameof(ContextMenu));
-                ElementEventHub.GetElementInstance("TestInfo1");
-                //.Bind(this, nameof(OnClick)
-                //, nameof(MouseOver1)
-                //, nameof(MouseDown1)
-                //, nameof(MouseEnter1)
-                //, nameof(MouseUp1)
-                //, nameof(MouseMove1)
-                //, nameof(MouseOut1)
-                //, nameof(ContextMenu1));
+                ElementEventHub.GetElementInstance("TestInfo")
+                    .Bind(this, nameof(OnClick)
+                    , nameof(MouseOver)
+                    , nameof(MouseDown)
+                    , nameof(MouseEnter)
+                    , nameof(MouseUp)
+                    , nameof(MouseMove)
+                    , nameof(MouseOut)
+                    , nameof(ContextMenu));
+                ElementEventHub.GetElementInstance("TestInfo1")
+                .Bind(this, nameof(OnClick)
+                , nameof(MouseOver1)
+                , nameof(MouseDown1)
+                , nameof(MouseEnter1)
+                , nameof(MouseUp1)
+                , nameof(MouseMove1)
+                , nameof(MouseOut1)
+                , nameof(ContextMenu1));
 
                 ElementEventHub.GetElementInstance("input1")
                     .Bind(this
