@@ -42,9 +42,39 @@ namespace TestPages.Pages
                     , nameof(OnFocus)
                     , nameof(OnFocusIn)
                     , nameof(OnFocusOut)
-                    , nameof(OnInput) 
+                    , nameof(OnInput)
+                    , nameof(OnKeyDown)
+                    , nameof(OnKeypress)
+                    , nameof(OnKeyup) 
                     );
+
+                ElementEventHub.GetElementInstance("scrolltest")
+                    .Bind(this, nameof(OnScroll));
             }
+        }
+
+        [OnScrollEvent]
+        public void OnScroll(ElementScrollEvent scrollEvent)
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnScroll)}:{scrollEvent.ScrollTop}:{scrollEvent.ScrollHeight}");
+        }
+
+        [OnKeyDownEvent]
+        public void OnKeyDown()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnKeyDown)}");
+        }
+
+        [OnKeypressEvent]
+        public void OnKeypress()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnKeypress)}");
+        }
+
+        [OnKeyupEvent]
+        public void OnKeyup()
+        {
+            Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnKeyup)}");
         }
 
         [OnBlurEvent]
