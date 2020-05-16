@@ -27,7 +27,7 @@ export class Demo extends Component<any, any> {
         <DatePicker onChange={onChange} picker="quarter" />
         <br />
         <DatePicker onChange={onChange} picker="year" /> */}
-      </div>
+      </div> 
     );
   }
 }
