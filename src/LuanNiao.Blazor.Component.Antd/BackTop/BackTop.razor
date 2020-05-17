@@ -1,9 +1,20 @@
 ﻿@inherits LuanNiao.Blazor.Core.LNBCBase
 @using Microsoft.AspNetCore.Components.Web
 
+@if (_isWindowEvent)
+{
 <div class="@ClassName" style="@CStyle" onclick="window.scrollTo(window.pageXOffset, 0)">
     <div class="@_childClassName">
         @ChildContent
     </div>
 </div>
+}
+else
+{
+<div class="@ClassName" style="@CStyle" onclick="document.getElementById('@Target').scroll(0, 0)">
+    <div class="@_childClassName">
+        @ChildContent
+    </div>
+</div>
+}
 
