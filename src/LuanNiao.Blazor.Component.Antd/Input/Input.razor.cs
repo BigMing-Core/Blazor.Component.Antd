@@ -1,11 +1,8 @@
 ﻿using LuanNiao.Blazor.Core;
 using LuanNiao.Blazor.Core.Common;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Input
 {
@@ -80,15 +77,15 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         [Parameter]
         public Action<string> OnBlur { get; set; }
 
-
-        [JSInvokable]
+         
+        [OnFocusEvent]
         public void HandleOnFocus()
         {
             _wrapperClassName = _wrapperClassNameHelper.AddCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
         }
 
-        [JSInvokable]
+        [OnBlurEvent]
         public async void HandleOnBlur()
         {
             _wrapperClassName = _wrapperClassNameHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
@@ -96,18 +93,21 @@ namespace LuanNiao.Blazor.Component.Antd.Input
             _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
             OnBlur?.Invoke(_userInputValue);
         }
-        [JSInvokable]
+        [OnChangeEvent]
         public async void HandleOnChange()
         {
             _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
             OnChange?.Invoke(_userInputValue);
         }
 
-        [JSInvokable]
-        public async void HandleEnterKeyPress(KeyboardEvent _)
+        [OnKeypressEvent]
+        public async void HandleEnterKeyPress(KeyboardEvent key)
         {
-            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
-            OnPressEnter?.Invoke(_userInputValue);
+            if (key.KeyCode== 13)
+            {
+                _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
+                OnPressEnter?.Invoke(_userInputValue);
+            }
         }
 
         protected override void OnParametersSet()
@@ -118,11 +118,13 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
 
         private void BindEvent()
-        {
-            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
-            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
-            ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleEnterKeyPress), this, new[] { 13 });
-            ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
+        { 
+            ElementEventHub.GetElementInstance($"LNInput_{IdentityKey}").Bind(this
+                ,nameof(HandleOnFocus)
+                , nameof(HandleOnBlur)
+                , nameof(HandleEnterKeyPress)
+                , nameof(HandleOnChange)
+                ); 
         }
 
 

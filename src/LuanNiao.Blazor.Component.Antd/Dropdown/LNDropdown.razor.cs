@@ -1,5 +1,6 @@
 ﻿using LuanNiao.Blazor.Core;
 using LuanNiao.Blazor.Core.Common;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -107,8 +108,25 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         }
 
 
-        [JSInvokable]
-        public async void WillShowSubInfo(WindowEvent data)
+        [OnClickEvent]
+        public async void HandleClick(MouseEvent mouseEvent)
+        {
+            await WillShowSubInfo(mouseEvent);
+        }
+
+        [OnMouseOverEvent]
+        public async void HandleMouseOver(MouseEvent mouseEvent)
+        {
+            await WillShowSubInfo(mouseEvent);
+        }
+        [OnContextMenuEvent]
+        public async void HandleContextMenu(MouseEvent mouseEvent)
+        {
+            Console.WriteLine($"{nameof(LNDropdown)}:{nameof(HandleContextMenu)}");
+            await WillShowSubInfo(mouseEvent);
+        }
+
+        public async Task WillShowSubInfo(MouseEvent data)
         {
 
             switch (this.Trigger)
@@ -129,7 +147,15 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
                     }
                     break;
                 case TriggerType.ContextMenu:
-                    ShowSubInfo(data);
+                    this._inElementScope = !this._inElementScope;
+                    if (this._inElementScope)
+                    {
+                        ShowSubInfo(data);
+                    }
+                    else
+                    {
+                        await HideSubInfo();
+                    }
                     break;
                 default:
                     break;
@@ -138,11 +164,11 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
         }
 
-        private void ShowSubInfo(WindowEvent data)
+        private void ShowSubInfo(MouseEvent data)
         {
             _hideSubMenuDivStyleStr = _hideSubMenuDivStyle
-                    .AddCustomStyle("left", $"{data.MouseEvent.ClientX}px")
-                    .AddCustomStyle("top", $"{data.MouseEvent.ClientY}px")
+                    .AddCustomStyle("left", $"{data.ClientX}px")
+                    .AddCustomStyle("top", $"{data.ClientY}px")
                     .AddCustomStyle("min-width", "74px")
                     .Build();
             _hideDivClassNameStr = _hideDivInfo.RemoveCustomClass(_hideDivClassName).Build();
@@ -165,18 +191,18 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
         public async Task HideSubInfo()
         {
             await Task.Run(async () =>
-            { 
+            {
                 await Task.Delay(100);
                 if (_inElementScope)
                 {
                     return;
                 }
-                _hideDivClassNameStr = _hideDivInfo.AddCustomClass(_hideDivClassName).Build(); 
+                _hideDivClassNameStr = _hideDivInfo.AddCustomClass(_hideDivClassName).Build();
                 this.Flush();
             });
         }
 
-        [JSInvokable]
+        [OnMouseOutEvent]
         public async void OnMouseOut()
         {
             _inElementScope = false;
@@ -201,17 +227,29 @@ namespace LuanNiao.Blazor.Component.Antd.Dropdown
 
             if (this.Trigger == TriggerType.Click)
             {
-                ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
+                ElementEventHub.GetElementInstance($"main_{IdentityKey}")
+                    .Bind(this
+                    , nameof(HandleClick));
+                //ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
             }
             else if (this.Trigger == TriggerType.Hover)
             {
-                ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
-                ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
+
+                ElementEventHub.GetElementInstance($"main_{IdentityKey}")
+                    .Bind(this
+                    , nameof(HandleMouseOver)
+                    , nameof(OnMouseOut));
+                //ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this);
+                //ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
             }
             else if (this.Trigger == TriggerType.ContextMenu)
             {
-                ElementInfo.BindContextMenuEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this, true);
-                ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
+                ElementEventHub.GetElementInstance($"main_{IdentityKey}")
+                    .Bind(this
+                    , nameof(HandleContextMenu)
+                   );
+                //ElementInfo.BindContextMenuEvent($"main_{IdentityKey}", nameof(WillShowSubInfo), this, true);
+                //ElementInfo.BindClickEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
             }
         }
 
