@@ -1,0 +1,43 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using Microsoft.AspNetCore.Components
+
+
+<div class="ant-select ant-select-single ant-select-show-arrow" style="@CStyle" id="@($"LNSelectDIV_{IdentityKey}")" onclick="LuanNiaoBlazor.BlockClickEvent()">
+    <div class="ant-select-selector" id="@($"LnSelect_input_{IdentityKey}")">
+        <span class="ant-select-selection-search">
+            <input autocomplete="off" class="ant-select-selection-search-input" role="combobox"
+                   id="@($"input0_{IdentityKey}")" style="opacity: 0;" aria-expanded="false">
+        </span>
+        <span class="ant-select-selection-item">@_currentSelectText</span>
+    </div>
+    <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none;" id="@($"LnSelect_icon_{IdentityKey}")">
+        @if (_showHidenDiv)
+        {
+            <UpOutlined />
+        }
+        else
+        {
+            <DownOutlined />
+        }
+    </span>
+</div>
+
+
+<CascadingValue Value="this">
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%;" onclick="LuanNiaoBlazor.BlockClickEvent()">
+        <div>
+            <div class="ant-select-dropdown ant-select-dropdown-placement-bottomLeft  @((_showHidenDiv?null:"ant-select-dropdown-hidden"))" style="min-width: @($"{_inputWidth}px"); width: @($"{_inputWidth}px"); left: @($"{_hideDivLeft}px"); top:@($"{_hideDivTop}px");">
+                <div>
+                    <div class="" style="max-height: 256px; overflow-y: auto; overflow-anchor: none;">
+                        <div>
+                            <div class="" style="display: flex; flex-direction: column;">
+                                @Options
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</CascadingValue>
