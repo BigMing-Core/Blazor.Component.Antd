@@ -62,7 +62,7 @@ namespace LuanNiao.Blazor.Component.Antd.BackTop
             _visiable = visiable;
         }
 
-        private void WindowEventHub_Scrolled(WindowScrollEvent e)
+        private void WindowEventHub_Scrolled(WindowScrollInfo e)
         {
             var visiable = e.PageYOffset > VisibilityHeight;
             HandleVisibily(visiable);
