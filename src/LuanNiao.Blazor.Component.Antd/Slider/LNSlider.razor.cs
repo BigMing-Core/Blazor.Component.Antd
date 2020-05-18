@@ -1,11 +1,10 @@
 ﻿using LuanNiao.Blazor.Core.Common;
 using LuanNiao.Blazor.Core;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 
 namespace LuanNiao.Blazor.Component.Antd.Slider
 {
@@ -132,20 +131,17 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         private void BindMouseEvent()
         {
             BodyEventHub.MouseUp += HandleMouseUp;
-            ElementInfo.BindMouseDownEvent($"lefthandle_{IdentityKey}", nameof(LeftHandleMouseDown), this);
-            ElementInfo.BindMouseDownEvent($"righthandle_{IdentityKey}", nameof(RightHandleMouseDown), this);
+            ElementEventHub.GetElementInstance($"lefthandle_{IdentityKey}")
+                .Bind(this
+                , nameof(LeftHandleMouseDown));
+            ElementEventHub.GetElementInstance($"righthandle_{IdentityKey}")
+                .Bind(this
+                , nameof(RightHandleMouseDown)); 
         }
 
 
 
-        [JSInvokable]
-        public async void OnElementResize()
-        {
-            _elementRects = await ElementInfo.GetElementRectsByID($"maindiv_{IdentityKey}");
-#if DEBUG
-            Console.WriteLine(nameof(OnElementResize));
-#endif
-        }
+
 
 
         private double PrettifyValue(double value)
@@ -155,7 +151,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
 
-        [JSInvokable]
+
         public void HandleMouseUp(WindowEvent _)
         {
             _leftHandleMouseDown = _rightHandleMouseDown = false;
@@ -164,7 +160,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             BodyEventHub.MouseMove -= LeftHandleMove;
         }
 
-        [JSInvokable]
+        [OnMouseDownEvent]
         public void RightHandleMouseDown()
         {
             if (this.Disabled)
@@ -176,7 +172,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             BodyEventHub.MouseMove += RightHandleMove;
         }
 
-        [JSInvokable]
+        [OnMouseDownEvent]
         public void LeftHandleMouseDown()
         {
             if (this.Disabled)
@@ -188,8 +184,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
         }
 
 
-
-        [JSInvokable]
+         
         public void LeftHandleMove(WindowEvent e)
         {
             if (!_leftHandleMouseDown)
@@ -227,8 +222,7 @@ namespace LuanNiao.Blazor.Component.Antd.Slider
             OnChange?.Invoke(_currentLeftValue, _currentRightValue);
             this.Flush();
         }
-
-        [JSInvokable]
+         
         public void RightHandleMove(WindowEvent e)
         {
             if (!_rightHandleMouseDown)

@@ -1,11 +1,8 @@
 ﻿using LuanNiao.Blazor.Core;
 using LuanNiao.Blazor.Core.Common;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Tooltip
 {
@@ -114,7 +111,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
                     break;
             }
         }
-        [JSInvokable]
+        [OnMouseOverEvent]
         public async void OnMouseOver()
         {
             _visibled = true;
@@ -146,7 +143,7 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
             TooltipService.NeedFlush();
         }
 
-        [JSInvokable]
+        [OnMouseOutEvent]
         public void OnMouseOut()
         {
             _visibled = false;
@@ -251,9 +248,11 @@ namespace LuanNiao.Blazor.Component.Antd.Tooltip
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindMouseOverEvent($"main_{IdentityKey}", nameof(OnMouseOver), this);
-            ElementInfo.BindMouseOutEvent($"main_{IdentityKey}", nameof(OnMouseOut), this);
-            
+            ElementEventHub.GetElementInstance($"main_{IdentityKey}")
+                .Bind(this
+                , nameof(OnMouseOver)
+                , nameof(OnMouseOut)
+                );             
         }
     }
 }
