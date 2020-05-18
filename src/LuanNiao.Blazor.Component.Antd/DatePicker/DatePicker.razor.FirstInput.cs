@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading.Tasks;
 using LuanNiao.Blazor.Component.Antd.DatePicker.StubChild;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -51,12 +52,14 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                ElementInfo.BindFocusEvent(FirstInputID, nameof(FirstPickerFocus), this, true, true);
+                ElementEventHub.GetElementInstance(FirstInputID)
+                    .Bind(this
+                    , nameof(FirstPickerFocus));
             }
         }
 
 
-        [JSInvokable]
+        [OnFocusEvent]
         public async Task FirstPickerFocus()
         {
 #if DEBUG

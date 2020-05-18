@@ -1,5 +1,6 @@
 ﻿using LuanNiao.Blazor.Core;
 using LuanNiao.Blazor.Core.Common;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -86,32 +87,35 @@ namespace LuanNiao.Blazor.Component.Antd.Input
         public Action<string> OnSearch { get; set; }
 
 
-        [JSInvokable]
+        [OnFocusEvent]
         public void HandleOnFocus()
         {
             _wrapperClassName = _classHelper.AddCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
         }
 
-        [JSInvokable]
+        [OnBlurEvent]
         public void HandleOnBlur()
         {
             _wrapperClassName = _classHelper.RemoveCustomClass(_staticWrapperFocusedClassName).Build();
             this.Flush();
         }
-        [JSInvokable]
+        [OnChangeEvent]
         public async void HandleOnChange()
         {
             _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
             OnChange?.Invoke(_userInputValue);            
         }
 
-        [JSInvokable]
-        public async void HandleKeyPress(KeyboardEvent _)
+        [OnKeypressEvent]
+        public async void HandleKeyPress(KeyboardEvent e)
         {
-            _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
-            OnPressEnter?.Invoke(_userInputValue);
-            OnSearch?.Invoke(_userInputValue);
+            if (e.KeyCode==13)
+            {
+                _userInputValue = await ElementInfo.GetElementValue($"LNInput_{IdentityKey}");
+                OnPressEnter?.Invoke(_userInputValue);
+                OnSearch?.Invoke(_userInputValue);
+            }
         }
 
         private async void OnIconClicked()
@@ -134,10 +138,13 @@ namespace LuanNiao.Blazor.Component.Antd.Input
 
         private void BindEvent()
         {
-            ElementInfo.BindFocusEvent($"LNInput_{IdentityKey}", nameof(HandleOnFocus), this);
-            ElementInfo.BindBlurEvent($"LNInput_{IdentityKey}", nameof(HandleOnBlur), this);
-            ElementInfo.BindKeypressEvent($"LNInput_{IdentityKey}", nameof(HandleKeyPress), this, new[] { 13 });
-            ElementInfo.BindChangeEvent($"LNInput_{IdentityKey}", nameof(HandleOnChange), this);
+            ElementEventHub.GetElementInstance($"LNInput_{IdentityKey}")
+                .Bind(this
+                ,nameof(HandleOnFocus)
+                ,nameof(HandleOnBlur)
+                ,nameof(HandleKeyPress)
+                ,nameof(HandleOnChange)
+                ); 
         }
 
 
