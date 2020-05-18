@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
+using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 {
@@ -33,11 +31,13 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
         private void BindTitleClickEvent()
         {
-            ElementInfo.BindClickEvent($"YearBtn_{IdentityKey}", nameof(OnTitleClicked), this, true, true);
+            ElementEventHub.GetElementInstance($"YearBtn_{IdentityKey}")
+                .Bind(this
+                , nameof(OnTitleClicked)); 
         }
         public Action TitleClicked;
 
-        [JSInvokable]
+        [OnClickEvent]
         public void OnTitleClicked()
         {
             TitleClicked?.Invoke();

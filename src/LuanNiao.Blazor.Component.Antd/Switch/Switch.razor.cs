@@ -1,4 +1,5 @@
-﻿using LuanNiao.Core;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
+using LuanNiao.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -56,10 +57,12 @@ namespace LuanNiao.Blazor.Component.Antd.Switch
         }
         private void BindEvent()
         {
-            ElementInfo.BindClickEvent($"Swtich_{IdentityKey}", nameof(HandleOnClick), this);
+            ElementEventHub.GetElementInstance($"Swtich_{IdentityKey}")
+                .Bind(this
+                , nameof(HandleOnClick)); 
          
         }
-        [JSInvokable]
+        [OnClickEvent]
         public async void HandleOnClick()
         {
             if (this.Disabled) { return; }

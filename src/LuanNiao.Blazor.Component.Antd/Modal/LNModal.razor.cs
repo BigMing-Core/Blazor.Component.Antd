@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using LuanNiao.Blazor.Core;
 using LuanNiao.Blazor.Core.Common;
-using Microsoft.JSInterop;
-using LuanNiao.Core;
 using System.ComponentModel.DataAnnotations;
 using LuanNiao.Blazor.Component.Antd.Button;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 
 namespace LuanNiao.Blazor.Component.Antd.Modal
 {
@@ -128,9 +125,13 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
 
             if (MaskClosable)
             {
-                ElementInfo.BindClickEvent($"wrap_{IdentityKey}", nameof(OnCancelCallback), this, true);
+                ElementEventHub.GetElementInstance($"wrap_{IdentityKey}")
+                    .Bind(this
+                    , nameof(OnCancelCallback)); 
             }
-            ElementInfo.BindClickEvent($"lnBtnClose_{IdentityKey}", nameof(OnCancelCallback), this, true);
+            ElementEventHub.GetElementInstance($"lnBtnClose_{IdentityKey}")
+                .Bind(this
+                , nameof(OnCancelCallback)); 
         }
 
         public void Hide()
@@ -159,7 +160,7 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
         }
 
         #region Event
-        [JSInvokable]
+        [OnClickEvent]
         public void OnCancelCallback()
         {
             if (_blockClose)
@@ -169,7 +170,7 @@ namespace LuanNiao.Blazor.Component.Antd.Modal
             OnCancel?.Invoke(this);
             this.Flush();
         }
-        [JSInvokable]
+        [OnClickEvent]
         public void OnOkCallback()
         {
             if (ConfirmLoading)

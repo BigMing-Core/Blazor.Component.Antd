@@ -1,4 +1,5 @@
 ﻿using LuanNiao.Blazor.Core;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -78,15 +79,19 @@ namespace LuanNiao.Blazor.Component.Antd.Drawer
         {
             if (MaskClosable)
             {
-                ElementInfo.BindClickEvent($"mask_{IdentityKey}", nameof(OnMaskClick), this, true);
+                ElementEventHub.GetElementInstance($"mask_{IdentityKey}")
+                    .Bind(this
+                    , nameof(OnMaskClick)); 
             }
             if (Closable)
-            {
-                ElementInfo.BindClickEvent($"closebtn_{IdentityKey}", nameof(OnCloseBtnClick), this, true);
+            { 
+                ElementEventHub.GetElementInstance($"closebtn_{IdentityKey}")
+                    .Bind(this
+                    , nameof(OnCloseBtnClick));
             }
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public void OnCloseBtnClick()
         {
             if (_openState)
@@ -98,7 +103,7 @@ namespace LuanNiao.Blazor.Component.Antd.Drawer
             }
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public void OnMaskClick()
         {
             if (_openState)

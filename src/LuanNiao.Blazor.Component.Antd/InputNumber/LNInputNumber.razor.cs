@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
+using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.InputNumber
 {
@@ -79,7 +76,7 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
 
 
 
-        [JSInvokable]
+        [OnClickEvent]
         public void OnUpClicked()
         {
 #if DEBUG
@@ -96,7 +93,7 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
 
 
 
-        [JSInvokable]
+        [OnClickEvent]
         public void OnDownClicked()
         {
 #if DEBUG
@@ -120,8 +117,12 @@ namespace LuanNiao.Blazor.Component.Antd.InputNumber
 
         private void BindSpanClickEvent()
         {
-            ElementInfo.BindClickEvent($"up_{this.IdentityKey}", nameof(OnUpClicked), this, true);
-            ElementInfo.BindClickEvent($"down_{this.IdentityKey}", nameof(OnDownClicked), this, true);
+            ElementEventHub.GetElementInstance($"up_{this.IdentityKey}")
+                .Bind(this
+                , nameof(OnUpClicked));
+            ElementEventHub.GetElementInstance($"down_{this.IdentityKey}")
+                .Bind(this
+                , nameof(OnDownClicked)); 
         }
 
         private void HandleSize()

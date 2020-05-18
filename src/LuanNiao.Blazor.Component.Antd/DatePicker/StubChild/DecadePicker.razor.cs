@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 {
@@ -59,8 +56,12 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
 
         private void BindClickEvent()
         {
-            ElementInfo.BindClickEvent(TitlePrevBtnID, nameof(PrevBtnClick), this, true, true);
-            ElementInfo.BindClickEvent(TitleNextBtnID, nameof(NextBtnClick), this, true, true);
+            ElementEventHub.GetElementInstance(TitlePrevBtnID)
+                .Bind(this
+                , nameof(PrevBtnClick));
+            ElementEventHub.GetElementInstance(TitleNextBtnID)
+                .Bind(this
+                , nameof(NextBtnClick)); 
         }
 
         private void CalcBoundary()
@@ -68,7 +69,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             _currentLeftBoundaryYear = (CurrentYear / 100) * 100 - 10;
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public void PrevBtnClick()
         {
             if (CurrentYear - 100 < 0)
@@ -79,7 +80,7 @@ namespace LuanNiao.Blazor.Component.Antd.DatePicker.StubChild
             CalcBoundary();
             this.Flush();
         }
-        [JSInvokable]
+        [OnClickEvent]
         public void NextBtnClick()
         {
             if ((CurrentYear + 100) > 7000)

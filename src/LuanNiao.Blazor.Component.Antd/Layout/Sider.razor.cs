@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LuanNiao.Blazor.Core;
 using Microsoft.JSInterop;
 using LuanNiao.Blazor.Core.Common;
+using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 
 namespace LuanNiao.Blazor.Component.Antd.Layout
 {
@@ -118,7 +119,7 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
         }
 
        
-        [JSInvokable]
+        [OnClickEvent]
         public void InverseCollapseStatus()
         {
             this.Collapsed = !this.Collapsed;
@@ -129,7 +130,8 @@ namespace LuanNiao.Blazor.Component.Antd.Layout
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindClickEvent($"sider_trigger_{IdentityKey}", nameof(InverseCollapseStatus), this, true);
+            ElementEventHub.GetElementInstance($"sider_trigger_{IdentityKey}")
+                .Bind(this, nameof(InverseCollapseStatus)); 
         }
 
 

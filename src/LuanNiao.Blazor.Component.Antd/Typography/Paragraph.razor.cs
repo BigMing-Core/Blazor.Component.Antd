@@ -1,4 +1,5 @@
-﻿using LuanNiao.Core;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
+using LuanNiao.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -53,11 +54,15 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
 
         private void BindingMouseEvent()
         {
-            ElementInfo.BindClickEvent($"LNParagraph_copyImage{IdentityKey}", nameof(HandleCopy), this);
-            ElementInfo.BindClickEvent($"paragraph_{IdentityKey}", nameof(HandleClick), this);
+            ElementEventHub.GetElementInstance($"LNParagraph_copyImage{IdentityKey}")
+                .Bind(this
+                , nameof(HandleCopy));
+            ElementEventHub.GetElementInstance($"paragraph_{IdentityKey}")
+                .Bind(this
+                , nameof(HandleClick)); 
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public async void HandleCopy()
         {
             if (!string.IsNullOrWhiteSpace(CustomText))
@@ -80,7 +85,7 @@ namespace LuanNiao.Blazor.Component.Antd.Typography
              });
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public async void HandleClick()
         {
             if (!Editable) { return; }
