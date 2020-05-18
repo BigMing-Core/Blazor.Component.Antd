@@ -1,11 +1,6 @@
-﻿using LuanNiao.Blazor.Component.Antd.Icons;
-using LuanNiao.Blazor.Core;
+﻿using LuanNiao.Blazor.Core.ElementEventHub.Attributes;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LuanNiao.Blazor.Component.Antd.Button
@@ -125,10 +120,12 @@ namespace LuanNiao.Blazor.Component.Antd.Button
 
         private void BindMouseEvent()
         {
-            ElementInfo.BindClickEvent($"lnButton_{IdentityKey}", nameof(OnElementClicked), this, true);
+            ElementEventHub.GetElementInstance($"lnButton_{IdentityKey}")
+                .Bind(this
+                , nameof(OnElementClicked));
         }
 
-        [JSInvokable]
+        [OnClickEvent]
         public  void OnElementClicked()
         {
             OnClickCallback?.Invoke(this);
