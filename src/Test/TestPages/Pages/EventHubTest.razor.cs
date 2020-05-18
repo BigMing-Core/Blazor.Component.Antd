@@ -54,7 +54,7 @@ namespace TestPages.Pages
         }
 
         [OnScrollEvent]
-        public void OnScroll(ElementScrollEvent scrollEvent)
+        public void OnScroll(ElementScrollInfo scrollEvent)
         {
             Console.WriteLine($"{nameof(EventHubTest)}:{nameof(OnScroll)}:{scrollEvent.ScrollTop}:{scrollEvent.ScrollHeight}");
         }
