@@ -2,8 +2,7 @@
       Pls don't modify this file, this file build by LuanNiao.Blazor.Component.Antd's icon-builder
 *@
 
-@inherits LuanNiao.Blazor.Core.LNBCBase
-@using Microsoft.JSInterop
+@inherits LuanNiao.Blazor.Core.LNBCBase 
 
 <span role="img" aria-label="select" class="@ClassName" style="@CStyle" id="@($"LNICON_{IdentityKey}")">
   <svg viewBox="0 0 1024 1024" focusable="false" class="@((Spin?"anticon-spin":""))" data-icon="select" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -34,10 +33,11 @@
 
     private void BindEvent()
     {
-        ElementInfo.BindClickEvent($"LNICON_{IdentityKey}", nameof(Clicked), this, true);
+        ElementEventHub.GetElementInstance($"LNICON_{IdentityKey}")
+            .Bind(this, nameof(Clicked)); 
     }
-
-    [JSInvokable]
+    
+    [LuanNiao.Blazor.Core.ElementEventHub.Attributes.OnClickEvent]
     public void Clicked()
     {
         OnClick?.Invoke();
