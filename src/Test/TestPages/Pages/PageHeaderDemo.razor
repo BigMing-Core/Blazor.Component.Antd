@@ -1,0 +1,30 @@
+﻿@layout MainLayout
+@page "/PageHeader"
+@using LuanNiao.Blazor.Component.Antd.PageHeader
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+@using  LuanNiao.Blazor.Component.Antd.Avatar;
+
+<PageHeader className="site-page-header" Title="1级标题" SubTitle="副标题" Ghost="false">
+    <BackIcon>
+        <DownloadOutlined />
+    </BackIcon>
+
+    <Avatar Size="LNAvatar.ASize.Small">
+        <Icon>
+            <UserOutlined></UserOutlined>
+        </Icon>
+    </Avatar>
+
+
+    <Content>
+        内容区
+    </Content>
+    <Footer> 尾巴区</Footer>
+</PageHeader>
+
+<style>
+    .site-page-header {
+        border: 1px solid rgb(235, 237, 240);
+    }
+</style>

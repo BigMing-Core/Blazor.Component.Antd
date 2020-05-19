@@ -1,0 +1,73 @@
+﻿@inherits LuanNiao.Blazor.Core.LNBCBase
+@using LuanNiao.Blazor.Component.Antd.Icons
+@using Microsoft.AspNetCore.Components
+@using  LuanNiao.Blazor.Component.Antd.Avatar;
+@using LuanNiao.Blazor.Component.Antd.Breadcrumb
+
+
+<div class="ant-page-header site-page-header @(Ghost?"ant-page-header-ghost":string.Empty)">
+    @if (Breadcrumb != null)
+    {
+
+        @Breadcrumb
+    }
+
+    <div class="ant-page-header-heading">
+        <div class="ant-page-header-heading-left">
+            @if (BackIcon != null)
+            {<div class="ant-page-header-back">
+                    <div role="button" tabindex="0" class="ant-page-header-back-button" style="border: 0px; background: transparent; padding: 0px; line-height: inherit; display: inline-block;">
+                        @BackIcon
+                    </div>
+                </div>
+            }
+
+            @if (Avatar != null)
+            {
+                @Avatar
+
+            }
+
+            @if (Title != null)
+            {
+                <span class="ant-page-header-heading-title" title="@Title">@Title</span>
+            }
+            @if (SubTitle != null)
+            {
+                <span class="ant-page-header-heading-sub-title" title="@SubTitle">@SubTitle</span>
+            }
+
+            @if (Tags != null && Tags.Length > 0)
+            {
+                <span class="ant-page-header-heading-tags">
+
+                    @for (int i = 0; i < Tags.Length; i++)
+                    {
+                        @Tags[i];
+                    })
+                </span>
+            }
+        </div>
+
+        @if (Extra != null)
+        {
+            <div class="ant-page-header-heading-extra">
+                @Extra
+            </div>
+        }
+
+
+        @if (Content != null)
+        {
+            <div class="ant-page-header-content"><div class="content"> @Content</div></div>
+        }
+
+        @if (Footer != null)
+        {
+            <div class="ant-page-header-footer">  @Footer</div>
+        }
+
+    </div>
+</div>
+
+
